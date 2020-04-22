@@ -1,11 +1,11 @@
 {
-  "name": "@yanyan0v0/yyui",
-  "version": "0.1.1",
+  "name": "y2-ui",
+  "version": "0.1.0",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name yyui ./src/components/index.js",
+    "build-bundle": "vue-cli-service build --target lib --name yyui ./src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

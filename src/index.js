@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import Loading from './Loading.vue'
-import TimeLine from './TimeLine.vue'
-import BarRank from './BarRank.vue'
+import YLoading from '@/components/Loading.vue'
+import YTimeLine from '@/components/TimeLine.vue'
+import YBarRank from '@/components/BarRank.vue'
 const Components = {
-  Loading,
-  TimeLine,
-  BarRank
+  YLoading,
+  YTimeLine,
+  YBarRank
 }
 
 Object.keys(Components).forEach(name => {

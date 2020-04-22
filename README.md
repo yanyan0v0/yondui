@@ -1,4 +1,4 @@
-# @yanyan0v0/yyui
+# y2-ui
 
 ## Project setup
 ```
