@@ -267,7 +267,7 @@ export default {
   .content.active-row {
     background-color: #3393fb;
     .ivu-progress-text {
-      color: @alert-color;
+      color: @warning-color;
     }
   }
 }

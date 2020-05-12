@@ -168,7 +168,6 @@ export default {
         .content-right.card {
           position: relative;
           padding: 0.5rem;
-          background-image: url("~@/assets/images/grid_bg_1.png");
           font-size: 0.8rem;
           line-height: 1rem;
           .full-w;

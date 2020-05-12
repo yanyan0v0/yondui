@@ -6,10 +6,21 @@
 
 //  全局自定义class
 
-@primary-color: #57a3f3;
-@warning-color: #f60;
-@alert-color: #d8ff00;
+@primary-color: #2d8cf0;
+@light-primary-color: #5cadff;
+@dark-primary-color: #2b85e4;
+
+
+@info-color: #2db7f5;
+@success-color: #19be6b;
+@warning-color: #ff9900;
+@error-color: #ed4014;
+
+@title-color: #17233d;
+@content-color: #515a6e;
+@subtext-color: #808695;
 @disabled-color: #c5c8ce;
+@border-color: #dcdee2;
 
 .m-t-5{
   margin-top: 0.5rem;
@@ -76,15 +87,6 @@
 .warning-color-i{
   color: @warning-color !important;
 }
-.font-size-normal{
-  font-size: 1rem;
-}
-.font-size-middle{
-  font-size: 1.2rem;
-}
-.font-size-large{
-  font-size: 1.5rem;
-}
 .text-over(@column:1){
   min-width: 0;
   word-break: break-all;
@@ -100,7 +102,7 @@
 
 
 // 按钮样式 分默认 .lager .max大小 默认圆角 .circular半圆圆角
-.ct-button{
+.y-button{
   cursor: pointer;
   height: 2rem;
   border: none;
@@ -111,32 +113,32 @@
   color: #fff;
   background-image: linear-gradient(to right,#4AA0FD,#2186FE);
 }
-.ct-button.circular{
+.y-button.circular{
   border-radius: 1rem;
 }
-.ct-button.small{
+.y-button.small{
   height: 1.5rem;
   padding: 0 1rem;
   font-size: 0.8rem;
 }
-.ct-button.large{
+.y-button.large{
   height: 2.5rem;
   font-size: 1.2rem;
 }
-.ct-button.circular.large{
+.y-button.circular.large{
   border-radius: 1.25rem;
 }
-.ct-button.max{
+.y-button.max{
   height: 3rem;
   font-size: 1.4rem;
 }
-.ct-button.circular.max{
+.y-button.circular.max{
   border-radius: 1.5rem;
 }
-.ct-button:hover{
+.y-button:hover{
   background-image: linear-gradient(to right,#71b1f7,#4a99f7);
 }
-.ct-button.normal{
+.y-button.normal{
   background-image: linear-gradient(to right,#97c4f5, #70adf5);
 }
 
@@ -152,4 +154,5 @@ html,body{
 }
 ul{
   list-style-type: none;
+  padding: 0;
 }

@@ -4,6 +4,9 @@
  * @description 通用常量配置 常量名全部大写加下划线
  */
 
+// 首页名
+export const HOME = 'home'
+
 // 折线图表和饼状图表所用的颜色
 export const LINE_COLORS = [
   '#FCAF5C',

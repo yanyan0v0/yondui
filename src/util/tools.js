@@ -28,7 +28,7 @@ export const setLocalItem = (name, value) => {
   return window.localStorage.setItem(name, JSON.stringify(value))
 }
 
-export const logout = () => {
+export const clearStorage = () => {
   window.sessionStorage.clear()
   window.localStorage.clear()
 }

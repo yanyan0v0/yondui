@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  name: "loading"
+  name: "y-loading"
 };
 </script>
 

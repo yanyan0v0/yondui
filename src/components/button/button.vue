@@ -1,10 +1,12 @@
 <template>
-  <div>我是button组件</div>
+  <button class="y-button">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
 export default {
-  name: "button"
+  name: "y-button"
 };
 </script>
 
