@@ -43,6 +43,7 @@
 
 <script>
 export default {
+  name: "timeline",
   components: {
     Loading: () => import("./Loading")
   },

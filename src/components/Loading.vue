@@ -60,16 +60,16 @@
 
 <script>
 export default {
- 
+  name: "loading"
 };
 </script>
 
 <style lang="less" scoped>
-.ct-loading{
+.ct-loading {
   .full;
   .center;
   flex-direction: column;
-  .loading-tip{
+  .loading-tip {
     color: #fff;
   }
 }
