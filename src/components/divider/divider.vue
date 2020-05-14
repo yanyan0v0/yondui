@@ -1,6 +1,10 @@
 <template>
-  <div class="y-divider" :class="[dircetion, dashed ? 'dashed' : '']" :style="{margin}">
-    <div class="y-divider-inner" :class="position">
+  <div
+    class="y-divider"
+    :class="[classPrefix + dircetion, dashed ? classPrefix + 'dashed' : '']"
+    :style="{margin}"
+  >
+    <div class="y-divider-inner" :class="classPrefix + position">
       <slot></slot>
     </div>
   </div>
@@ -29,6 +33,11 @@ export default {
       type: String,
       default: "10px 0"
     }
+  },
+  data() {
+    return {
+      classPrefix: "y-divider-"
+    };
   }
 };
 </script>
@@ -37,13 +46,13 @@ export default {
 .y-divider {
   position: relative;
   background: @border-color;
-  &.horizontal {
+  &.y-divider-horizontal {
     display: block;
     height: 1px;
     width: 100%;
     margin: 20px 0;
   }
-  &.vertical {
+  &.y-divider-vertical {
     margin: 0 8px;
     display: inline-block;
     height: 0.9em;
@@ -52,7 +61,7 @@ export default {
     position: relative;
     top: -0.06em;
   }
-  &.dashed {
+  &.y-divider-dashed {
     background: 0 0;
     border-top: 1px dashed #e8eaec;
   }
@@ -64,15 +73,15 @@ export default {
     font-size: 14px;
     background-color: #fff;
   }
-  &-inner.left {
+  &-inner.y-divider-left {
     left: 15%;
     transform: translate(-50%, -50%);
   }
-  &-inner.center {
+  &-inner.y-divider-center {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  &-inner.right {
+  &-inner.y-divider-right {
     left: 85%;
     transform: translate(-50%, -50%);
   }

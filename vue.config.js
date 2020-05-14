@@ -8,7 +8,7 @@ const path = require('path')
 const resolve = dir => {
   return path.join(__dirname, dir)
 }
-
+// 版本发布 npm publish --access public
 // 项目部署基础
 // 默认情况下，我们假设你的应用将被部署在域的根目录下,
 // 例如：https://www.my-app.com/

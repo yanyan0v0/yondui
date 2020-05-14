@@ -26,3 +26,39 @@
 &lt;y-button color="primary" shape="round"&gt;default&lt;/y-button&gt;
 &lt;y-button color="primary" shape="round" size="small"&gt;small&lt;/y-button&gt;
 &lt;y-button color="primary" shape="round" size="mini"&gt;mini&lt;/y-button&gt;
+
+&lt;y-icon type="tianjia"&gt;&lt;/y-icon&gt;
+
+&lt;y-timeline :data="timeList"&gt;
+  &lt;div slot-scope="{row}"&gt;{{row.title}}&lt;/div&gt;
+&lt;/y-timeline&gt;
+
+&lt;y-timeline :data="timeList" type="card"&gt;
+  &lt;div slot-scope="{row}"&gt;{{row.title}}&lt;/div&gt;
+&lt;/y-timeline&gt;
+
+&lt;y-timeline :data="timeList" :leftWidth="80"&gt;
+  &lt;p slot="left" slot-scope="{row}"&gt;{{row.time}}&lt;/p&gt;
+  &lt;div slot-scope="{row}"&gt;{{row.title}}&lt;/div&gt;
+&lt;/y-timeline&gt;
+&lt;y-timeline :data="timeList" :leftWidth="80" type="card"&gt;
+  &lt;p slot="left" slot-scope="{row}"&gt;{{row.time}}&lt;/p&gt;
+  &lt;div slot-scope="{row}"&gt;{{row.title}}&lt;/div&gt;
+&lt;/y-timeline&gt;
+
+export default {
+  data() {
+    return {
+      timeList: [
+        {
+          time: "2020-05-14 12:15:14",
+          title: "右侧内容1"
+        },
+        {
+          time: "2020-05-14 15:34:52",
+          title: "右侧内容2"
+        }
+      ]
+    };
+  }
+};

@@ -1,5 +1,9 @@
 <template>
-  <button class="y-button" :class="[ size, shape]" :style="[colorStyle]">
+  <button
+    class="y-button"
+    :class="[ classPrefix + size, classPrefix + shape, disabled ? classPrefix + 'disabled' : '']"
+    :style="[colorStyle]"
+  >
     <slot></slot>
   </button>
 </template>
@@ -22,21 +26,35 @@ export default {
     shape: {
       type: String,
       default: "arc"
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
+      classPrefix: "y-button-",
       THEME_COLORS
     };
   },
   computed: {
     colorStyle() {
+      // 颜色不存在时
       if (!this.color) {
-        return {
-          "border-style": this.shape === "dashed" ? "dashed" : "",
-          "border-color": this.THEME_COLORS["border"]
-        };
+        if (this.shape === "text") {
+          return {
+            border: "none",
+            background: "none"
+          };
+        } else {
+          return {
+            "border-style": this.shape === "dashed" ? "dashed" : "",
+            "border-color": this.THEME_COLORS["border"]
+          };
+        }
       }
+      // 颜色存在时
       if (typeof this.color === "string") {
         if (this.shape === "dashed" || this.shape === "solid") {
           return {
@@ -90,29 +108,37 @@ export default {
   padding: 6px 12px;
   outline: none;
   font-size: 14px;
-  color: @content-color;
+  color: @text-color;
   background-color: #fff;
   cursor: pointer;
 }
-.y-button:hover {
+.y-button:not(.y-button-disabled):hover {
   opacity: 0.8;
 }
-.y-button.arc {
+.y-button.y-button-arc {
   border-radius: 4px;
 }
-.y-button.round {
+.y-button.y-button-round {
   border-radius: 18px;
 }
-.y-button.mini {
+.y-button.y-button-mini {
   padding: 1px 10px;
   font-size: 12px;
 }
-.y-button.small {
+.y-button.y-button-small {
   padding: 4px 10px;
   font-size: 12px;
 }
-.y-button.large {
+.y-button.y-button-large {
   padding: 8px 16px;
   font-size: 16px;
+}
+.y-button.y-button-disabled {
+  color: @disabled-color !important;
+  cursor: not-allowed;
+}
+.y-button.y-button-disabled:not(.y-button-text) {
+  background-color: #f7f7f7 !important;
+  border-color: #dcdee2 !important;
 }
 </style>

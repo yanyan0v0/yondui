@@ -1,36 +1,27 @@
 <template>
-  <div class="ct-timeline" v-scrollBottom="handleLoad">
-    <div class="header" v-show="data.length">
-      <div class="left">
-        <span class="circle"></span>
-        <span class="line"></span>
+  <div class="y-timeline" v-scrollBottom="handleLoad">
+    <div class="y-timeline-header" v-show="data.length">
+      <div class="y-timeline-header-content" :style="{'margin-left': leftWidth + 'px'}">
+        <span class="y-timeline-header-content-circle"></span>
+        <span class="y-timeline-header-content-line"></span>
       </div>
     </div>
-    <ul class="time-line">
+    <ul class="y-timeline-content">
       <li v-for="(item, index) in data" :key="index">
-        <div class="left">
-          <p>{{item.time}}</p>
+        <div class="y-timeline-content-left" v-if="leftWidth" :style="{'width': leftWidth + 'px'}">
+          <slot name="left" :row="item" :index="index" />
         </div>
-        <div class="right">
-          <div class="content-left">
-            <span class="dot" :style="`background-color: ${item.color}`"></span>
-            <span class="line" v-if="type === 'card'"></span>
-          </div>
-          <div class="content-right card" v-if="type === 'card'">
-            <div class="title">
-              <p :title="item.title" @click="handleTitleClick(item)" v-html="item.title"></p>
-              <slot name="extra" :row="item"></slot>
+        <div class="y-timeline-content-right">
+          <span class="y-timeline-content-right-dot" :style="{'background-color': item.color}"></span>
+          <div class="y-timeline-content-right-card" v-if="type === 'card'">
+            <div class="y-timeline-content-right-card-left">
+              <span></span>
             </div>
-            <p class="content">{{item.content}}</p>
-            <div class="footer">
-              <div class="footer-left" v-if="item.leftTip">
-                <span class="dot"></span>
-                <p>{{item.leftTip}}</p>
-              </div>
-              <p class="footer-right" v-if="item.rightTip">{{item.rightTip}}</p>
+            <div class="y-timeline-content-right-card-right">
+              <slot :row="item" :index="index" />
             </div>
           </div>
-          <div class="content-right line" v-else>
+          <div class="y-timeline-content-right-line" v-else>
             <slot :row="item" :index="index" />
           </div>
         </div>
@@ -43,7 +34,7 @@
 
 <script>
 export default {
-  name: "timeline",
+  name: "y-timeline",
   props: {
     /**
       card 卡片样式
@@ -51,7 +42,7 @@ export default {
      */
     type: {
       type: String,
-      default: "card"
+      default: "line"
     },
     loading: {
       type: Boolean,
@@ -61,19 +52,21 @@ export default {
       type: Boolean,
       default: false
     },
-    /**
-      time: 左侧时间轴参数 必须,
-      title: 标题,
-      content 内容
-      leftTip 左下提示,
-      rightTip 右下提示
-
-      可传 name='extra' 的slot来自定义右上内容
-    */
+    // 左侧宽度
+    leftWidth: {
+      type: Number,
+      default: 0
+    },
+    // 遍历数组
     data: {
       type: Array,
       required: true
     }
+  },
+  data() {
+    return {
+      classPrefix: "y-timeline-"
+    };
   },
   methods: {
     handleLoad() {
@@ -90,127 +83,83 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.ct-timeline {
+.y-timeline {
   .full;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  padding: 5px 5px 5px 0;
   overflow-y: auto;
-  .header {
-    height: 2rem;
-    .left {
-      width: 1rem;
+  &-header {
+    &-content {
+      width: 12px;
       height: 100%;
-      margin-left: 5.5rem;
+      margin-left: 80px;
       .flex-wrap(column);
-      .circle {
+      &-circle {
         display: block;
-        margin: 0 auto;
-        width: 0.8rem;
-        height: 0.8rem;
+        width: 100%;
+        height: 12px;
         background-color: @primary-color;
         border-radius: 50%;
       }
-      .line {
+      &-line {
         display: block;
         margin: 0 auto;
-        width: 0.1rem;
-        height: 1.2rem;
+        width: 2px;
+        height: 10px;
         background-color: @primary-color;
       }
     }
   }
-  .time-line {
+  &-content {
     width: 100%;
     li {
       .flex;
-      .left {
+      .y-timeline-content-left {
         .center-h;
-        width: 5.95rem;
-        padding-right: 1rem;
-        margin-bottom: 1rem;
-        p {
-          width: 100%;
-          text-align: right;
-          color: #fff;
-          font-size: 0.8rem;
-        }
+        // width: 85px;
+        padding-right: 10px;
+        text-align: right;
+        font-size: 12px;
       }
-      .right {
+      .y-timeline-content-right {
         .flex;
         flex: 1;
         position: relative;
-        padding-bottom: 1rem;
-        border-left: 0.1rem solid @primary-color;
-        .content-left {
+        margin-left: 5px;
+        border-left: 2px solid @primary-color;
+        padding: 8px 0;
+        &-dot {
+          position: absolute;
+          left: -6px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 10px;
+          height: 10px;
+          background-color: @primary-color;
+          border-radius: 50%;
+        }
+        &-card {
+          .flex;
           position: relative;
-          height: 100%;
-          width: 1rem;
-          .center;
-          .dot {
-            position: absolute;
-            left: -0.4rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0.8rem;
-            height: 0.8rem;
-            background-color: @primary-color;
-            border-radius: 50%;
+          width: 100%;
+          &-left {
+            .center;
+            width: 15px;
+            & > span {
+              display: block;
+              width: 100%;
+              height: 2px;
+              background-color: @primary-color;
+            }
           }
-          .line {
-            display: block;
-            width: 100%;
-            height: 0.1rem;
-            background-color: @primary-color;
+          &-right {
+            flex: 1;
+            border: 2px solid @primary-color;
+            padding: 5px;
           }
         }
-        .content-right.card {
+        &-line {
           position: relative;
-          padding: 0.5rem;
-          font-size: 0.8rem;
-          line-height: 1rem;
-          .full-w;
-          .border-gradual;
-          .title {
-            display: flex;
-            justify-content: space-between;
-            p {
-              .pointer;
-              .text-over;
-              flex: 1;
-              color: @primary-color;
-            }
-          }
-          .content {
-            .text-over(2);
-            margin-bottom: 0.5rem;
-          }
-          .footer {
-            display: flex;
-            justify-content: space-between;
-            .footer-left {
-              flex: 1;
-              .center-h;
-              .dot {
-                display: block;
-                width: 0.5rem;
-                height: 0.5rem;
-                border-radius: 50%;
-                background-color: @primary-color;
-                margin-right: 0.5rem;
-              }
-              p {
-                flex: 1;
-                color: @disabled-color;
-                .text-over;
-              }
-            }
-            .footer-right {
-              flex: 1;
-              color: @primary-color;
-            }
-          }
-        }
-        .content-right.line {
-          position: relative;
+          padding: 5px 5px 5px 20px;
           .full-w;
         }
       }

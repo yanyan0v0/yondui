@@ -1,5 +1,6 @@
 <template>
   <div class="main-row">
+    <!-- 文档内容 -->
     <article class="code-article">
       <h1>Button 按钮</h1>
       <h2>代码示例</h2>
@@ -85,7 +86,7 @@
               <code>round</code>半圆角、
               <code>solid</code>实线、
               <code>dashed</code>虚线、
-              <code>text</code>文本等这些关键字
+              <code>text</code>文本等这些关键字。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
@@ -104,7 +105,7 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[1].version >= version">
+      <div v-show="navList[2].version >= version">
         <h3 :id="navList[2].id">{{navList[2].name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
@@ -145,7 +146,49 @@
           </div>
         </y-card>
       </div>
+
+      <!-- 分割线 -->
+      <div v-show="navList[3].version >= version">
+        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-button>default</y-button>
+              <y-button color="primary">primary</y-button>
+              <y-button shape="dashed">dashed</y-button>
+              <y-button shape="text">text</y-button>
+              <br />
+              <y-button disabled>default</y-button>
+              <y-button disabled color="primary">primary</y-button>
+              <y-button disabled shape="dashed">dashed</y-button>
+              <y-button disabled shape="text">text</y-button>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过添加
+              <code>disabled</code>属性可将按钮设置为不可用状态。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card">
+            <pre>
+            <code>
+  &lt;y-button color="primary" size="large"&gt;large&lt;/y-button&gt;
+  &lt;y-button color="primary"&gt;default&lt;/y-button&gt;
+  &lt;y-button color="primary" size="small"&gt;small&lt;/y-button&gt;
+  &lt;y-button color="primary" size="mini"&gt;mini&lt;/y-button&gt;
+  &lt;br /&gt;
+  &lt;y-button color="primary" shape="round" size="large"&gt;large&lt;/y-button&gt;
+  &lt;y-button color="primary" shape="round"&gt;default&lt;/y-button&gt;
+  &lt;y-button color="primary" shape="round" size="small"&gt;small&lt;/y-button&gt;
+  &lt;y-button color="primary" shape="round" size="mini"&gt;mini&lt;/y-button&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
     </article>
+
+    <!-- 导航滚动条 -->
     <ul class="code-navigation">
       <li v-for="nav in navList" :key="nav.id">{{nav.name}}</li>
     </ul>
@@ -171,6 +214,11 @@ export default {
           id: "ANCC",
           name: "按钮尺寸",
           version: "0.1.4"
+        },
+        {
+          id: "JY",
+          name: "禁用",
+          version: "0.1.4"
         }
       ]
     };
@@ -182,6 +230,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" scoped>
-</style>

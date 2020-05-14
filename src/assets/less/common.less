@@ -17,7 +17,7 @@
 @error-color: #ed4014;
 
 @title-color: #17233d;
-@content-color: #515a6e;
+@text-color: #515a6e;
 @subtext-color: #808695;
 @disabled-color: #c5c8ce;
 @border-color: #dcdee2;
@@ -106,8 +106,8 @@
 .title-color{
   color: @title-color;
 }
-.content-color{
-  color: @content-color;
+.text-color{
+  color: @text-color;
 }
 .subtext-color{
   color: @subtext-color;
@@ -140,7 +140,7 @@ html,body{
   margin: 0;
   padding: 0;
   overflow-y: hidden;
-  color: @content-color;
+  color: @text-color;
 }
 ul{
   list-style-type: none;
@@ -171,6 +171,18 @@ code, kbd, pre, samp {
   padding-right: 20px;
   flex: 1;
   overflow-y: auto;
+  h1 {
+    font-size: 26px;
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 400;
+  }
 }
 // 代码关键词
 .keyword-code{
@@ -208,8 +220,9 @@ code, kbd, pre, samp {
 // 右侧导航条
 .code-navigation {
   display: table;
+  margin-left: 10px;
   border-left: 1px solid @border-color;
-  min-width: 120px;
+  width: 120px;
   font-size: 12px;
   & > li {
     padding: 8px 0 8px 16px;
