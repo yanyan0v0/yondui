@@ -126,6 +126,23 @@ export const off = (function () {
 })()
 
 /**
+ * 比较版本号大小
+ * @param cur 当前版本
+ * @param pre 比较版本
+ * @return false 小  true 大
+ */
+export const compareVersion = (cur, pre) => {
+  let curList = cur.split('.')
+  let preList = pre.split('.')
+  for (let i = 0; i < curList.length; i++) {
+    if (curList[i] < preList[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+/**
  * 时间格式化
  * @param fmt
  * @returns {*}

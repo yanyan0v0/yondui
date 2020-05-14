@@ -1,17 +1,21 @@
 import Button from '@/components/button/button.vue'
+import Card from '@/components/card/card.vue'
+import Divider from '@/components/divider/divider.vue'
 import Icon from '@/components/icon/icon.vue'
-import Loading from '@/components/Loading.vue'
+import Loading from '@/components/loading/loading.vue'
 import Menu from '@/components/menu/menu.vue'
-import Ranker from '@/components/Ranker.vue'
-import TimeLine from '@/components/TimeLine.vue'
-const components = {
-  'y-button': Button,
-  'y-icon': Icon,
-  'y-loading': Loading,
-  'y-menu': Menu,
-  'y-ranker': Ranker,
-  'y-timeline': TimeLine,
-}
+import Rank from '@/components/rank/rank.vue'
+import TimeLine from '@/components/timeline/timeline.vue'
+const components = [
+  Button,
+  Card,
+  Divider,
+  Icon,
+  Loading,
+  Menu,
+  Rank,
+  TimeLine,
+]
 
 // import { FormatDate } from '@/util/tools'
 // import customDirective from '@/directive'
@@ -22,8 +26,8 @@ const install = function (Vue) {
   // FormatDate() // 注册格式化时间函数
   // customDirective(Vue) // 注册指令
 
-  Object.keys(components).forEach(key => {
-    Vue.component(key, components[key]);
+  components.forEach(component => {
+    Vue.component(component.name, component);
   });
 };
 

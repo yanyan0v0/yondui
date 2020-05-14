@@ -47,14 +47,22 @@ export const BAR_COLORS = [
 
 // 各种主题色
 export const THEME_COLORS = {
-  primaryColor: '#2ac0f5',
-  dashedColor: '#5EC9F4',
-  blueColor: '#0b3f69',
-  bgColor: '#001238',
-  disabledColor: '#c5c8ce',
-  successColor: '#19BE6B',
-  errorColor: '#FB6B69',
-  warningColor: '#CDAE7B'
+  primary: '#2d8cf0',
+  lightPrimary: '#5cadff',
+  darkPrimary: '#2b85e4',
+
+  info: '#2db7f5',
+  success: '#19be6b',
+  error: '#ed4014',
+  warning: '#ff9900',
+
+  title: '#17233d',
+  content: '#515a6e',
+  subtext: '#808695',
+  disabled: '#c5c8ce',
+  border: '#dcdee2',
+
+  keyword: '#2db7f5',
 }
 
 // 省份经纬度

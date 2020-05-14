@@ -1,10 +1,17 @@
 <template>
-  <div class="main">
+  <div class="home-main">
     <header class="header">
-      <img src="@/assets/images/logo/logo.png" alt class="full-h" />
+      <router-link to="/">
+        <img src="@/assets/images/logo/logo.png" alt class="full-h" />
+      </router-link>
     </header>
     <div class="container">
-      <y-menu :data="menuList"></y-menu>
+      <div class="left">
+        <y-menu :data="menuList"></y-menu>
+      </div>
+      <div class="right">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -16,7 +23,8 @@ export default {
       menuList: [
         {
           value: 1,
-          name: "快速上手"
+          name: "快速上手",
+          to: "start"
         },
         {
           value: 2,
@@ -25,22 +33,26 @@ export default {
             {
               value: 21,
               name: "Button 按钮",
-              icon: "ziyuanguanli"
+              icon: "anniu",
+              to: "button"
             },
             {
               value: 22,
               name: "Icon 图标",
-              icon: "ziyuanguanli"
+              icon: "tubiao",
+              to: "icon"
             },
             {
               value: 23,
               name: "Menu 菜单",
-              icon: "ziyuanguanli"
+              icon: "caidan",
+              to: "menu"
             },
             {
               value: 24,
               name: "Timeline 时间轴列表",
-              icon: "ziyuanguanli"
+              icon: "shijianzhou",
+              to: "timeline"
             }
           ]
         }
@@ -51,11 +63,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.main {
-  .header {
-    margin: 0 auto;
+.home-main {
+  .main-column;
+  padding: 0 2.5%;
+  & > .header {
+    position: fixed;
+    top: 0;
     border-bottom: 1px solid @border-color;
-    width: 95%;
+    width: 100%;
     height: 80px;
     img {
       margin: auto 0;
@@ -63,21 +78,17 @@ export default {
       padding: 20px 0;
     }
   }
-  .container {
+  & > .container {
     .flex;
-    margin: 0 auto;
-    width: 95%;
-    .left,
-    .middle,
-    .right {
-      padding-top: 50px;
-    }
-    .left,
-    .right {
-      width: 200px;
-    }
-    .middle {
+    padding-top: 80px;
+    width: 100%;
+    height: 100%;
+    & > .right {
+      padding: 20px 0 20px 20px;
       flex: 1;
+    }
+    & > .left {
+      width: 240px;
     }
   }
 }

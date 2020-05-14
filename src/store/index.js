@@ -7,12 +7,18 @@ import { getSessionItem, setSessionItem } from '@/util/tools'
 
 export default new Vuex.Store({
   state: {
+    // 当前版本
+    version: '0.0.1',
     // 当前菜单name
     activeMenuName: getSessionItem('activeMenuName') || HOME,
     // 当前菜单列表
     menuList: getSessionItem('menuList') || [],
   },
   mutations: {
+    setVersion(state, version) {
+      state.version = version
+      setSessionItem('version', version)
+    },
     setActiveMenuName(state, name) {
       state.activeMenuName = name
       setSessionItem('activeMenuName', name)

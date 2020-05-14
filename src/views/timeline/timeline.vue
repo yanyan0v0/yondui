@@ -1,5 +1,5 @@
 <template>
-  <div>这是menu介绍文档</div>
+  <div>这是timeline介绍文档</div>
 </template>
 
 <script>

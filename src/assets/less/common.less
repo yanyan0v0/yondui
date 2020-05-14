@@ -22,6 +22,8 @@
 @disabled-color: #c5c8ce;
 @border-color: #dcdee2;
 
+@keyword-color: #fa795e;
+
 .m-t-5{
   margin-top: 0.5rem;
 }
@@ -77,6 +79,14 @@
   position: relative;
   .full;
 }
+.main-row{
+  .main;
+  .flex-wrap;
+}
+.main-column{
+  .main;
+  .flex-wrap(column);
+}
 .border-gradual(@wid: .1rem) {
   border: @wid solid #096cd4;
   border-image: linear-gradient(to right,#0d57a5,#23b7cb,) 1 10;
@@ -84,8 +94,29 @@
 .warning-color{
   color: @warning-color;
 }
-.warning-color-i{
-  color: @warning-color !important;
+.info-color{
+  color: @info-color;
+}
+.success-color{
+  color: @success-color;
+}
+.error-color{
+  color: @error-color;
+}
+.title-color{
+  color: @title-color;
+}
+.content-color{
+  color: @content-color;
+}
+.subtext-color{
+  color: @subtext-color;
+}
+.disabled-color{
+  color: @disabled-color;
+}
+.border-color{
+  color: @border-color;
 }
 .text-over(@column:1){
   min-width: 0;
@@ -100,48 +131,6 @@
   cursor: pointer;
 }
 
-
-// 按钮样式 分默认 .lager .max大小 默认圆角 .circular半圆圆角
-.y-button{
-  cursor: pointer;
-  height: 2rem;
-  border: none;
-  border-radius: 0.4rem;
-  padding: 0 1.5rem;
-  font-size: 1rem;
-  outline: none;
-  color: #fff;
-  background-image: linear-gradient(to right,#4AA0FD,#2186FE);
-}
-.y-button.circular{
-  border-radius: 1rem;
-}
-.y-button.small{
-  height: 1.5rem;
-  padding: 0 1rem;
-  font-size: 0.8rem;
-}
-.y-button.large{
-  height: 2.5rem;
-  font-size: 1.2rem;
-}
-.y-button.circular.large{
-  border-radius: 1.25rem;
-}
-.y-button.max{
-  height: 3rem;
-  font-size: 1.4rem;
-}
-.y-button.circular.max{
-  border-radius: 1.5rem;
-}
-.y-button:hover{
-  background-image: linear-gradient(to right,#71b1f7,#4a99f7);
-}
-.y-button.normal{
-  background-image: linear-gradient(to right,#97c4f5, #70adf5);
-}
-
 // 全局标签样式
 *, :after, :before {
   box-sizing: border-box;
@@ -151,8 +140,78 @@ html,body{
   margin: 0;
   padding: 0;
   overflow-y: hidden;
+  color: @content-color;
 }
 ul{
   list-style-type: none;
+}
+ul,pre,p{
   padding: 0;
+  margin: 0;
+}
+code, kbd, pre, samp {
+  font-family: Consolas,Menlo,Courier,monospace;
+}
+
+// 滚动条整体样式
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
+// 滚动条滑块样式
+::-webkit-scrollbar-thumb{
+  background: @border-color;
+  -webkit-border-radius: 4px;
+}
+
+/* 全局自定义的样式 */
+
+// 整个代码文章块
+.code-article{
+  padding-right: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+// 代码关键词
+.keyword-code{
+  padding: 0 5px;
+  color: @keyword-color;
+  background-color: #fff5f5;
+}
+// 代码框
+.code-card{
+  .main;
+  pre{
+    .full;
+    .center;
+    padding: 5px;
+    .hljs{
+      .full;
+      line-height: 1.5;
+    }
+  }
+}
+// 预览框
+.preview-card {
+  .preview,
+  .introduce {
+    padding: 10px;
+    font-size: 14px;
+    & > p {
+      margin: 5px 0;
+    }
+    code {
+      .keyword-code;
+    }
+  }
+}
+// 右侧导航条
+.code-navigation {
+  display: table;
+  border-left: 1px solid @border-color;
+  min-width: 120px;
+  font-size: 12px;
+  & > li {
+    padding: 8px 0 8px 16px;
+  }
 }
