@@ -31,8 +31,10 @@ module.exports = {
     config.resolve.alias
       .set('@ui', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
   },
-  // 打包时不生成source map
-  productionSourceMap: true,
+  // 取消hash值
+  filenameHashing: false,
+  // 打包时不生成js.map文件 加速生产环境的构建
+  productionSourceMap: false,
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',

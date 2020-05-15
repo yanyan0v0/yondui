@@ -95,6 +95,21 @@ export const SLOT_COLUMNS = [
     title: "说明"
   }
 ]
+export const EVENT_COLUMNS = [
+  {
+    key: "attr",
+    title: "事件名"
+  },
+  {
+    key: "explain",
+    title: "说明"
+  },
+  {
+    key: "return",
+    title: "返回值",
+    ifHtml: true
+  }
+]
 
 // 省份经纬度
 export const PROVINCE_COORDS = {

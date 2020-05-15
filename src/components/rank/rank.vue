@@ -3,7 +3,7 @@
     <div
       v-for="(row, index) in rankList"
       :key="index"
-      :class="['y-rank-content', classPrefix + direction, {'pointer': showClick}, {'y-rank-active': showClick && activeIndex === index}]"
+      :class="['y-rank-content', classPrefix + direction, {[activeClass]: activeIndex === index}]"
       @click="handleRowClick(row, index)"
     >
       <!-- 可以自定义标题 -->
@@ -48,11 +48,6 @@ export default {
       type: String,
       default: "row"
     },
-    // 是否需要计算后展示
-    onlyShow: {
-      type: Boolean,
-      default: false
-    },
     // 是否隐藏排名序号
     hideRankIcon: {
       type: Boolean,
@@ -68,10 +63,15 @@ export default {
       type: String,
       default: "number"
     },
-    // 每条颜色是否不同
-    showColors: {
+    // 是否需要计算后展示
+    onlyShow: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    // 颜色列表
+    colors: {
+      type: Array,
+      default: () => BAR_COLORS
     },
     // top3颜色显示
     showTop3: {
@@ -93,17 +93,17 @@ export default {
       type: Number,
       default: 0
     },
-    // 激活点击事件
-    showClick: {
-      type: Boolean,
-      default: false
+    // 激活class
+    activeClass: {
+      type: String,
+      default: ""
     },
     /**
      *  [{name: '',value: 0}]
      */
     data: {
       type: Array,
-      required: true
+      default: () => []
     }
   },
   watch: {
@@ -170,8 +170,7 @@ export default {
   computed: {
     getColors() {
       return index => {
-        if (this.showColors) return BAR_COLORS[index % BAR_COLORS.length];
-        else return ["#31D8FE", "#81E7FE"];
+        return this.colors[index % this.colors.length];
       };
     },
     sliceName() {
@@ -189,7 +188,7 @@ export default {
   },
   methods: {
     handleRowClick(row, index) {
-      if (this.showClick) {
+      if (this.activeClass) {
         this.activeIndex = index;
       }
       this.$emit("on-click", row);
@@ -204,6 +203,7 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   &-content {
+    .pointer;
     padding: 5px;
     .y-rank-title {
       & > p {
@@ -219,7 +219,7 @@ export default {
           border-radius: 50%;
           color: @text-color;
           text-align: center;
-          background-color: #7ecaea;
+          background-color: @keyword-color;
         }
         .show-top.top-1 {
           background-image: linear-gradient(to right bottom, #f55577, #f67094);
@@ -258,15 +258,12 @@ export default {
     }
     &.y-rank-column {
       .flex-wrap(column);
-      .left {
-        margin-bottom: 0.1rem;
+      .y-rank-title {
+        margin-bottom: 5px;
       }
     }
     &.y-rank-active {
-      background-color: #3393fb;
-      .ivu-progress-text {
-        color: @warning-color;
-      }
+      transform: scale(1.1);
     }
   }
 }

@@ -191,7 +191,7 @@
       <h2>API</h2>
       <div v-show="navList[1].version >= version">
         <h3 :id="navList[1].id">{{navList[1].name}}</h3>
-        <y-table :data="propList" :columns="columns" size="small"></y-table>
+        <y-table :data="propList" :columns="columns"></y-table>
       </div>
     </article>
 
@@ -233,19 +233,19 @@ export default {
       propList: [
         {
           attr: "color",
-          explain: `<pre>按钮颜色，可选值为 <code class="keyword-code">primary</code>、<code class="keyword-code">success</code>等关键字；16进制颜色值；rgba；数组实现渐变或者不设置</pre>`,
+          explain: `按钮颜色，可选值为 <code class="keyword-code">primary</code>、<code class="keyword-code">success</code>等关键字；16进制颜色值；rgba；数组实现渐变或者不设置`,
           type: "String | Array",
           default: "default"
         },
         {
           attr: "shape",
-          explain: `<pre>按钮形状，可选值为<code class="keyword-code">arc</code>圆弧、 <code class="keyword-code">none</code>直角、<code class="keyword-code">round</code>半圆角、<code class="keyword-code">solid</code>实线、<code class="keyword-code">dashed</code>虚线、<code class="keyword-code">text</code>文本关键字或者不设置</pre>`,
+          explain: `按钮形状，可选值为<code class="keyword-code">arc</code>圆弧、 <code class="keyword-code">none</code>直角、<code class="keyword-code">round</code>半圆角、<code class="keyword-code">solid</code>实线、<code class="keyword-code">dashed</code>虚线、<code class="keyword-code">text</code>文本关键字或者不设置`,
           type: "String",
           default: "arc"
         },
         {
           attr: "size",
-          explain: `<pre>按钮大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小关键字或者不设置</pre>`,
+          explain: `按钮大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小关键字或者不设置`,
           type: "String",
           default: "default"
         },

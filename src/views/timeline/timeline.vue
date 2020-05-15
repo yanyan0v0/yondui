@@ -121,6 +121,19 @@
           </div>
         </y-card>
       </div>
+
+      <h2>API</h2>
+      <!-- 分割线 -->
+      <div v-show="navList[3].version >= version">
+        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
+        <y-table :data="propList" :columns="propColumns"></y-table>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="navList[4].version >= version">
+        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
+        <y-table :data="slotList" :columns="slotColumns"></y-table>
+      </div>
     </article>
 
     <!-- 导航滚动条 -->
@@ -131,6 +144,7 @@
 </template>
 
 <script>
+import { PROP_COLUMNS, SLOT_COLUMNS } from "@ui/util/config";
 export default {
   data() {
     return {
@@ -149,6 +163,16 @@ export default {
           id: "ZCL",
           name: "左侧栏",
           version: "0.1.4"
+        },
+        {
+          id: "PROPS",
+          name: "Timeline props",
+          version: "0.1.4"
+        },
+        {
+          id: "SLOTS",
+          name: "Timeline slots",
+          version: "0.1.4"
         }
       ],
       timeList: [
@@ -159,6 +183,48 @@ export default {
         {
           time: "2020-05-14 15:34:52",
           title: "右侧内容2"
+        }
+      ],
+      propColumns: PROP_COLUMNS,
+      slotColumns: SLOT_COLUMNS,
+      propList: [
+        {
+          attr: "data",
+          explain: "显示的结构化数据",
+          type: "Array",
+          default: "[]"
+        },
+        {
+          attr: "type",
+          explain: `<code class="keyword-code">outer</code>卡片样式、<code class="keyword-code">line</code>简约的线条样式`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "loading",
+          explain: `是否显示loading`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "finished",
+          explain: `是否数据全部加载完了`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "left-width",
+          explain: `左侧宽度，0代表不显示`,
+          type: "Number",
+          default: "0"
+        }
+      ],
+      slotList: [
+        {
+          attr: "title",
+          explain: "左侧标题内容",
+          type: "String",
+          default: "-"
         }
       ]
     };

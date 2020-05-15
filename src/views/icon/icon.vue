@@ -32,7 +32,7 @@
       <h2>API</h2>
       <div v-show="navList[1].version >= version">
         <h3 :id="navList[1].id">{{navList[1].name}}</h3>
-        <y-table :data="propList" :columns="columns" size="small"></y-table>
+        <y-table :data="propList" :columns="columns"></y-table>
       </div>
     </article>
 
