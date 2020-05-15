@@ -1,12 +1,12 @@
 <template>
   <div class="main">
     <header class="header">
-      <img src="@/assets/images/logo/logo.png" alt class="full-h" />
+      <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
     </header>
     <div class="container">
       <div class="content">
         <div class="logo">
-          <y-button color="error" size="mini" shape="round">0.0.1</y-button>
+          <y-button color="error" size="mini" shape="round">{{version}}</y-button>
           <p class="title">Y2-UI</p>
         </div>
         <p class="introduce">一套基于 Vue.js 的高质量 UI 组件库</p>
@@ -20,7 +20,13 @@
 </template>
 
 <script>
+import { version } from "../../package.json";
 export default {
+  data() {
+    return {
+      version
+    };
+  },
   methods: {
     start() {
       this.$router.push("button");
@@ -31,7 +37,7 @@ export default {
 
 <style lang="less" scoped>
 .main {
-  background-image: url("~@/assets/images/bg/home_bg.png");
+  background-image: url("~@ui/assets/images/bg/home_bg.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

@@ -27,6 +27,13 @@
           </div>
         </y-card>
       </div>
+
+      <!-- 分割线 -->
+      <h2>API</h2>
+      <div v-show="navList[1].version >= version">
+        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+        <y-table :data="propList" :columns="columns" size="small"></y-table>
+      </div>
     </article>
 
     <!-- 导航滚动条 -->
@@ -37,6 +44,7 @@
 </template>
 
 <script>
+import { PROP_COLUMNS } from "@ui/util/config";
 export default {
   data() {
     return {
@@ -45,6 +53,32 @@ export default {
           id: "JC",
           name: "基础",
           version: "0.1.4"
+        },
+        {
+          id: "PROPS",
+          name: "Icon props",
+          version: "0.1.4"
+        }
+      ],
+      columns: PROP_COLUMNS,
+      propList: [
+        {
+          attr: "type",
+          explain: "图标的名称",
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "size",
+          explain: "图标的大小，单位px",
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "color",
+          explain: "图标的颜色",
+          type: "String",
+          default: "-"
         }
       ]
     };

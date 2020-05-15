@@ -89,6 +89,7 @@
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
               </y-timeline>
+              <y-divider />
               <y-timeline :data="timeList" :leftWidth="80" type="card">
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
@@ -110,6 +111,7 @@
     &lt;p slot="left" slot-scope="{row}"&gt;{{row.time}}&lt;/p&gt;
     &lt;div slot-scope="{row}"&gt;{{row.title}}&lt;/div&gt;
   &lt;/y-timeline&gt;
+  &lt;y-divider /&gt;
   &lt;y-timeline :data="timeList" :leftWidth="80" type="card"&gt;
     &lt;p slot="left" slot-scope="{row}"&gt;{{row.time}}&lt;/p&gt;
     &lt;div slot-scope="{row}"&gt;{{row.title}}&lt;/div&gt;

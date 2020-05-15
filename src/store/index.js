@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-import { HOME } from '@/util/config'
-import { getSessionItem, setSessionItem } from '@/util/tools'
+import { HOME } from '@ui/util/config'
+import { getSessionItem, setSessionItem } from '@ui/util/tools'
 
 export default new Vuex.Store({
   state: {

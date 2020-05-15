@@ -2,7 +2,7 @@
   <div class="home-main">
     <header class="header">
       <router-link to="/">
-        <img src="@/assets/images/logo/logo.png" alt class="full-h" />
+        <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
       </router-link>
     </header>
     <div class="container">
@@ -50,6 +50,12 @@ export default {
             },
             {
               value: 24,
+              name: "Rank 排行",
+              icon: "ziyuanjiankong",
+              to: "rank"
+            },
+            {
+              value: 25,
               name: "Timeline 时间轴列表",
               icon: "shijianzhou",
               to: "timeline"

@@ -62,3 +62,5 @@ export default {
     };
   }
 };
+
+&lt;y-rank :data="rankList"&gt;&lt;/y-rank&gt;

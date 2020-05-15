@@ -65,6 +65,37 @@ export const THEME_COLORS = {
   keyword: '#2db7f5',
 }
 
+// API表格所需的列
+export const PROP_COLUMNS = [
+  {
+    key: "attr",
+    title: "属性"
+  },
+  {
+    key: "explain",
+    title: "说明",
+    ifHtml: true
+  },
+  {
+    key: "type",
+    title: "类型"
+  },
+  {
+    key: "default",
+    title: "默认值"
+  }
+]
+export const SLOT_COLUMNS = [
+  {
+    key: "attr",
+    title: "属性"
+  },
+  {
+    key: "explain",
+    title: "说明"
+  }
+]
+
 // 省份经纬度
 export const PROVINCE_COORDS = {
   '新疆': [86.61, 40.79],

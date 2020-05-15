@@ -4,16 +4,16 @@ import router from './router'
 import store from './store'
 
 // 组件库
-import y2Ui from '@/components/index.js'
+import y2Ui from '@ui/components/index.js'
 // 代码高亮
 import vueHljs from "vue-hljs";
 // css样式
-import '@/assets/less/common.less'
-import '@/assets/iconfont/iconfont.css'
+import '@ui/assets/less/common.less'
+import '@ui/assets/iconfont/iconfont.css'
 import "vue-hljs/dist/vue-hljs.min.css";
 
-import { FormatDate } from '@/util/tools'
-import customDirective from '@/directive'
+import { FormatDate } from '@ui/util/tools'
+import customDirective from '@ui/directive'
 
 Vue.use(y2Ui)
 Vue.use(vueHljs)

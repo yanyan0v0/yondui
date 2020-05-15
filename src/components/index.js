@@ -1,11 +1,12 @@
-import Button from '@/components/button/button.vue'
-import Card from '@/components/card/card.vue'
-import Divider from '@/components/divider/divider.vue'
-import Icon from '@/components/icon/icon.vue'
-import Loading from '@/components/loading/loading.vue'
-import Menu from '@/components/menu/menu.vue'
-import Rank from '@/components/rank/rank.vue'
-import TimeLine from '@/components/timeline/timeline.vue'
+import Button from '@ui/components/button/button.vue'
+import Card from '@ui/components/card/card.vue'
+import Divider from '@ui/components/divider/divider.vue'
+import Icon from '@ui/components/icon/icon.vue'
+import Loading from '@ui/components/loading/loading.vue'
+import Menu from '@ui/components/menu/menu.vue'
+import Rank from '@ui/components/rank/rank.vue'
+import Table from '@ui/components/table/table.vue'
+import TimeLine from '@ui/components/timeline/timeline.vue'
 const components = [
   Button,
   Card,
@@ -14,11 +15,12 @@ const components = [
   Loading,
   Menu,
   Rank,
+  Table,
   TimeLine,
 ]
 
-// import { FormatDate } from '@/util/tools'
-// import customDirective from '@/directive'
+// import { FormatDate } from '@ui/util/tools'
+// import customDirective from '@ui/directive'
 
 const install = function (Vue) {
   if (install.installed) return;
@@ -37,5 +39,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
-  ...components
+  Button,
+  Card,
+  Divider,
+  Icon,
+  Loading,
+  Menu,
+  Rank,
+  Table,
+  TimeLine,
 }

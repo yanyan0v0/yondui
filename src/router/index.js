@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import('@/views/index.vue'),
+    component: () => import('@ui/views/index.vue'),
   },
   {
     path: '/home',
@@ -15,32 +15,37 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/home.vue'),
+    component: () => import('@ui/views/home.vue'),
     children: [
       {
         path: '/start',
         name: 'start',
-        component: () => import('@/views/quick-start/quick-start.vue'),
+        component: () => import('@ui/views/quick-start/quick-start.vue'),
       },
       {
         path: '/button',
         name: 'button',
-        component: () => import('@/views/button/button.vue'),
+        component: () => import('@ui/views/button/button.vue'),
       },
       {
         path: '/icon',
         name: 'icon',
-        component: () => import('@/views/icon/icon.vue'),
+        component: () => import('@ui/views/icon/icon.vue'),
       },
       {
         path: '/menu',
         name: 'menu',
-        component: () => import('@/views/menu/menu.vue'),
+        component: () => import('@ui/views/menu/menu.vue'),
+      },
+      {
+        path: '/rank',
+        name: 'rank',
+        component: () => import('@ui/views/rank/rank.vue'),
       },
       {
         path: '/timeline',
         name: 'timeline',
-        component: () => import('@/views/timeline/timeline.vue'),
+        component: () => import('@ui/views/timeline/timeline.vue'),
       },
     ]
   },

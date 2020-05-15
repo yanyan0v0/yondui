@@ -2,14 +2,14 @@
   <button
     class="y-button"
     :class="[ classPrefix + size, classPrefix + shape, disabled ? classPrefix + 'disabled' : '']"
-    :style="[colorStyle]"
+    :style="[colorStyle, {'width': width}]"
   >
     <slot></slot>
   </button>
 </template>
 
 <script>
-import { THEME_COLORS } from "@/util/config";
+import { THEME_COLORS } from "@ui/util/config";
 export default {
   name: "y-button",
   props: {
@@ -26,6 +26,10 @@ export default {
     shape: {
       type: String,
       default: "arc"
+    },
+    width: {
+      type: String,
+      default: ""
     },
     disabled: {
       type: Boolean,

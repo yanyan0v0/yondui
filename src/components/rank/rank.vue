@@ -1,33 +1,36 @@
 <template>
-  <div class="ct-barrank" :style="`transform: scale(${scale});`">
+  <div class="y-rank">
     <div
       v-for="(row, index) in rankList"
       :key="index"
-      :class="['content', direction, customClass, {'active-row': showClick && activeIndex === index}]"
+      :class="['y-rank-content', classPrefix + direction, {'pointer': showClick}, {'y-rank-active': showClick && activeIndex === index}]"
       @click="handleRowClick(row, index)"
     >
       <!-- 可以自定义标题 -->
       <slot name="title" :row="row" :color="getColors(index)[0]" :index="index">
-        <p
-          class="left"
-          :class="{'text-over': direction === 'row' && !Boolean(slice)}"
-          :title="sliceName(row.name)"
-          :style="{'width': sliceWidth}"
-        >
-          <span v-if="!hideRankIcon" :class="[{'show-top': showTop3}, `top-${index+1}`]">{{index+1}}</span>
-          {{sliceName(row.name)}}
-        </p>
-      </slot>
-      <!-- 自定义进度条 -->
-      <div class="ct-custom ivu-progress progress-custom">
-        <div class="ivu-progress-inner" :style="`width: ${row.percent}%;height: ${height+0.5}rem`">
-          <div
-            class="ivu-progress-bg"
-            :style="`height: 100%;background-image: linear-gradient(to right,${getColors(index)[0]},${getColors(index)[1]});`"
-          ></div>
+        <div class="y-rank-title center-h">
+          <p :title="sliceName(row.name)" :style="{'width': sliceWidth}">
+            <span
+              v-if="!hideRankIcon"
+              :class="[{'show-top': showTop3}, `top-${index+1}`]"
+            >{{index+1}}</span>
+            {{sliceName(row.name)}}
+          </p>
         </div>
-        <span v-show="!hideBarValue" class="ivu-progress-text">
-          <span v-if="barValueMode === 'number'">{{row.value}}{{onData.unit}}</span>
+      </slot>
+      <!-- 进度条 -->
+      <div class="y-rank-bar">
+        <div
+          class="y-rank-bar-inner"
+          :style="{width: row.percent +'%', height: height + 'px', 'background-image': `linear-gradient(to right,${getColors(index)[0]},${getColors(index)[1]})`}"
+        >
+          <span v-if="textPlace == 'inner'" class="y-rank-bar-text y-rank-bar-text-inner">
+            <span v-if="textType === 'number'">{{row.value}}</span>
+            <span v-else>{{row.ratio}}%</span>
+          </span>
+        </div>
+        <span v-if="textPlace == 'outer'" class="y-rank-bar-text y-rank-bar-text-outer">
+          <span v-if="textType === 'number'">{{row.value}}</span>
           <span v-else>{{row.ratio}}%</span>
         </span>
       </div>
@@ -36,9 +39,9 @@
 </template>
 
 <script>
-import { BAR_COLORS } from "@/util/config";
+import { BAR_COLORS } from "@ui/util/config";
 export default {
-  name: "ranker",
+  name: "y-rank",
   props: {
     // 排列方式 row/column
     direction: {
@@ -55,17 +58,17 @@ export default {
       type: Boolean,
       default: false
     },
-    // 是否显示bar后面的值
-    hideBarValue: {
-      type: Boolean,
-      default: false
+    // bar后面值的位置 none 不显示 outer 外面 inner 里面
+    textPlace: {
+      type: String,
+      default: "outer"
     },
     // bar后面的值显示类型 number：具体指 percent: 百分比
-    barValueMode: {
+    textType: {
       type: String,
       default: "number"
     },
-    // 每条颜色是否相同
+    // 每条颜色是否不同
     showColors: {
       type: Boolean,
       default: true
@@ -75,30 +78,20 @@ export default {
       type: Boolean,
       default: true
     },
-    // 自定义class
-    customClass: {
-      type: String,
-      default: ""
-    },
     // 每个bar的高
     height: {
       type: Number,
-      default: 0.4
+      default: 15
     },
-    // 左边名称宽度 单位rem
+    // 左边名称宽度 单位px
     leftWidth: {
       type: Number,
-      default: 6
+      default: 60
     },
     // 截取字符串的长度 默认为0代表不截取
     slice: {
       type: Number,
       default: 0
-    },
-    // 放大缩小倍数
-    scale: {
-      type: Number,
-      default: 1
     },
     // 激活点击事件
     showClick: {
@@ -106,24 +99,21 @@ export default {
       default: false
     },
     /**
-     * {
-     *   data: [{name: '',value: 0}]
-     *   unit
-     * }
+     *  [{name: '',value: 0}]
      */
-    onData: {
-      type: Object,
+    data: {
+      type: Array,
       required: true
     }
   },
   watch: {
-    onData: {
+    data: {
       handler(data) {
-        if (!data.data.length) {
+        if (!data.length) {
           this.rankList = [];
           return;
         }
-        this.rankList = [...data.data].sort((a, b) => {
+        this.rankList = [...data].sort((a, b) => {
           return b.value - a.value;
         });
         let total = this.rankList
@@ -171,6 +161,7 @@ export default {
   },
   data() {
     return {
+      classPrefix: "y-rank-",
       // 当前点击的bar序号
       activeIndex: 0,
       rankList: []
@@ -190,11 +181,7 @@ export default {
     },
     sliceWidth() {
       if (this.direction === "row") {
-        return (
-          (this.slice
-            ? (1.8 + 1.5 * this.slice) / this.scale
-            : this.leftWidth) + "rem"
-        );
+        return this.leftWidth + "px";
       } else {
         return "100%";
       }
@@ -212,62 +199,74 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.ct-barrank {
+.y-rank {
   .full;
   overflow-y: auto;
   overflow-x: hidden;
-  .content {
-    margin: 0.5rem;
-    .left {
-      margin-right: 1rem;
-      color: #ddd;
-      font-size: 0.8rem;
-      & > span:first-child {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        line-height: 1rem;
-        border-radius: 50%;
-        color: #1a3e81;
-        text-align: center;
-        background-color: #7ecaea;
-      }
-      .show-top.top-1 {
-        background-image: linear-gradient(to right bottom, #f55577, #f67094);
-      }
-      .show-top.top-2 {
-        background-image: linear-gradient(to right bottom, #f88b30, #f8c252);
-      }
-      .show-top.top-3 {
-        background-image: linear-gradient(to right bottom, #899eea, #b391e8);
+  &-content {
+    padding: 5px;
+    .y-rank-title {
+      & > p {
+        .text-over;
+        margin-right: 10px;
+        color: @text-color;
+        font-size: 0.8rem;
+        & > span {
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+          line-height: 1rem;
+          border-radius: 50%;
+          color: @text-color;
+          text-align: center;
+          background-color: #7ecaea;
+        }
+        .show-top.top-1 {
+          background-image: linear-gradient(to right bottom, #f55577, #f67094);
+        }
+        .show-top.top-2 {
+          background-image: linear-gradient(to right bottom, #f88b30, #f8c252);
+        }
+        .show-top.top-3 {
+          background-image: linear-gradient(to right bottom, #899eea, #b391e8);
+        }
       }
     }
-    .left.text-over {
-      .text-over;
-    }
-    .ct-custom.progress-custom {
+    .y-rank-bar {
       .center-h;
       flex: 1;
-      .ivu-progress-text {
-        min-width: 3rem;
-        color: @primary-color;
-        font-size: 0.8rem;
+      &-inner {
+        .center-h;
+        position: relative;
+        border-radius: 50px;
+      }
+      &-text {
+        margin-left: 5px;
+        font-size: 12px;
+      }
+      &-text-outer {
+        color: @text-color;
+      }
+      &-text-inner {
+        position: absolute;
+        right: 8px;
+        color: #fff;
       }
     }
-  }
-  .content.row {
-    .flex-wrap;
-  }
-  .content.column {
-    .flex-wrap(column);
-    .left {
-      margin-bottom: 0.1rem;
+    &.y-rank-row {
+      .flex-wrap;
     }
-  }
-  .content.active-row {
-    background-color: #3393fb;
-    .ivu-progress-text {
-      color: @warning-color;
+    &.y-rank-column {
+      .flex-wrap(column);
+      .left {
+        margin-bottom: 0.1rem;
+      }
+    }
+    &.y-rank-active {
+      background-color: #3393fb;
+      .ivu-progress-text {
+        color: @warning-color;
+      }
     }
   }
 }

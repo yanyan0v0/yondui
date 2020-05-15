@@ -86,7 +86,7 @@
               <code>round</code>半圆角、
               <code>solid</code>实线、
               <code>dashed</code>虚线、
-              <code>text</code>文本等这些关键字。
+              <code>text</code>文本这些关键字。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
@@ -186,6 +186,13 @@
           </div>
         </y-card>
       </div>
+
+      <!-- 分割线 -->
+      <h2>API</h2>
+      <div v-show="navList[1].version >= version">
+        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+        <y-table :data="propList" :columns="columns" size="small"></y-table>
+      </div>
     </article>
 
     <!-- 导航滚动条 -->
@@ -196,6 +203,7 @@
 </template>
 
 <script>
+import { PROP_COLUMNS } from "@ui/util/config";
 export default {
   data() {
     return {
@@ -219,6 +227,33 @@ export default {
           id: "JY",
           name: "禁用",
           version: "0.1.4"
+        }
+      ],
+      columns: PROP_COLUMNS,
+      propList: [
+        {
+          attr: "color",
+          explain: `<pre>按钮颜色，可选值为 <code class="keyword-code">primary</code>、<code class="keyword-code">success</code>等关键字；16进制颜色值；rgba；数组实现渐变或者不设置</pre>`,
+          type: "String | Array",
+          default: "default"
+        },
+        {
+          attr: "shape",
+          explain: `<pre>按钮形状，可选值为<code class="keyword-code">arc</code>圆弧、 <code class="keyword-code">none</code>直角、<code class="keyword-code">round</code>半圆角、<code class="keyword-code">solid</code>实线、<code class="keyword-code">dashed</code>虚线、<code class="keyword-code">text</code>文本关键字或者不设置</pre>`,
+          type: "String",
+          default: "arc"
+        },
+        {
+          attr: "size",
+          explain: `<pre>按钮大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小关键字或者不设置</pre>`,
+          type: "String",
+          default: "default"
+        },
+        {
+          attr: "disabled",
+          explain: "设置按钮为禁用状态",
+          type: "Boolean",
+          default: "false"
         }
       ]
     };
