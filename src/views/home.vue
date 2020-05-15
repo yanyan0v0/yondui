@@ -2,15 +2,15 @@
   <div class="home-main">
     <header class="header">
       <router-link to="/">
-        <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
+        <img src="@ui/assets/images/logo/logo.png" alt class="full-h">
       </router-link>
     </header>
     <div class="container">
       <div class="left">
-        <y-menu :data="menuList"></y-menu>
+        <y-menu v-model="activeMenu" :data="menuList" @on-change="handleMenuChange"></y-menu>
       </div>
       <div class="right">
-        <router-view />
+        <router-view/>
       </div>
     </div>
   </div>
@@ -20,42 +20,49 @@
 export default {
   data() {
     return {
+      activeMenu: [
+        {
+          id: 1,
+          name: "快速上手",
+          to: "start"
+        }
+      ],
       menuList: [
         {
-          value: 1,
+          id: 1,
           name: "快速上手",
           to: "start"
         },
         {
-          value: 2,
+          id: 2,
           name: "组件",
           children: [
             {
-              value: 21,
+              id: 21,
               name: "Button 按钮",
               icon: "anniu",
               to: "button"
             },
             {
-              value: 22,
+              id: 22,
               name: "Icon 图标",
               icon: "tubiao",
               to: "icon"
             },
             {
-              value: 23,
+              id: 23,
               name: "Menu 菜单",
               icon: "caidan",
               to: "menu"
             },
             {
-              value: 24,
+              id: 24,
               name: "Rank 排行",
               icon: "ziyuanjiankong",
               to: "rank"
             },
             {
-              value: 25,
+              id: 25,
               name: "Timeline 时间轴列表",
               icon: "shijianzhou",
               to: "timeline"
@@ -64,6 +71,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    handleMenuChange(menu) {
+      this.activeMenu = menu;
+    }
   }
 };
 </script>
@@ -85,16 +97,19 @@ export default {
     }
   }
   & > .container {
-    .flex;
+    position: relative;
     padding-top: 80px;
     width: 100%;
     height: 100%;
-    & > .right {
-      padding: 20px 0 20px 20px;
-      flex: 1;
-    }
     & > .left {
-      width: 240px;
+      position: absolute;
+      left: 0;
+      width: 220px;
+      overflow-y: auto;
+    }
+    & > .right {
+      padding: 20px 0 20px 240px;
+      width: 100%;
     }
   }
 }

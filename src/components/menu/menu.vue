@@ -2,14 +2,20 @@
   <ul class="y-menu">
     <li v-for="(menuItem, index) in data" :key="index" :class="{'sub-menu': menuItem.children}">
       <a
-        :class="{'hover-a': !menuItem.children, 'active-a': activeMenu.value === menuItem.value}"
+        :class="{'hover-a': !menuItem.children, 'active-a': check(menuItem)}"
         :style="`padding-left: ${20 + 10 * level}px`"
         @click="handleMenuClick(menuItem)"
       >
-        <y-icon v-if="menuItem.icon" :type="menuItem.icon" />
+        <y-icon v-if="menuItem.icon" :type="menuItem.icon"/>
         {{menuItem.name}}
       </a>
-      <y-menu v-if="menuItem.children" :data="menuItem.children" :level="level + 1"></y-menu>
+      <y-menu
+        v-if="menuItem.children"
+        v-model="activeMenu"
+        :data="menuItem.children"
+        :level="level + 1"
+        @on-change="handleMenuChange"
+      ></y-menu>
     </li>
   </ul>
 </template>
@@ -18,6 +24,10 @@
 export default {
   name: "y-menu",
   props: {
+    value: {
+      type: Array,
+      default: () => []
+    },
     data: {
       type: Array,
       required: true
@@ -29,19 +39,47 @@ export default {
   },
   data() {
     return {
-      activeMenu: {}
+      activeMenu: []
     };
+  },
+  computed: {
+    check() {
+      return menuItem => {
+        return (
+          this.level == this.activeMenu.length - 1 &&
+          this.activeMenu[this.level] &&
+          this.activeMenu[this.level].id === menuItem.id
+        );
+      };
+    }
   },
   methods: {
     handleMenuClick(menu) {
       if (!menu.children) {
-        this.activeMenu = menu;
+        this.$set(this.activeMenu, this.level, menu);
+        if (this.level < this.activeMenu.length - 1) {
+          this.activeMenu = this.activeMenu.slice(0, this.level + 1);
+        }
+        this.$emit("input", this.activeMenu);
+        this.$emit("on-change", this.activeMenu);
       }
       if (menu.to) {
         this.$router.push({
           name: menu.to
         });
       }
+    },
+    handleMenuChange(menu) {
+      this.activeMenu = menu;
+      this.$emit("on-change", menu);
+    }
+  },
+  watch: {
+    value: {
+      handler(list) {
+        this.activeMenu = list;
+      },
+      immediate: true
     }
   }
 };
@@ -50,7 +88,6 @@ export default {
 <style lang="less" scoped>
 .y-menu {
   & > li {
-    // margin-left: 10px;
     font-size: 16px;
     a {
       display: block;
