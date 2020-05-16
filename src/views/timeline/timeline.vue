@@ -1,7 +1,7 @@
 <template>
   <div class="main-row">
     <!-- 文档内容 -->
-    <article class="code-article">
+    <article class="code-article" ref="art">
       <h1>Timeline 时间轴列表</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
@@ -89,7 +89,7 @@
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
               </y-timeline>
-              <y-divider />
+              <y-divider/>
               <y-timeline :data="timeList" :leftWidth="80" type="card">
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
@@ -100,7 +100,7 @@
               通过设置
               <code>slot</code>属性为
               <code>left</code>生成左侧内容。
-              <br />注意： 必须指定
+              <br>注意： 必须指定
               <code>leftWidth</code>的值，其代表左侧栏的宽度。
             </div>
           </div>
@@ -137,9 +137,7 @@
     </article>
 
     <!-- 导航滚动条 -->
-    <ul class="code-navigation">
-      <li v-for="nav in navList" :key="nav.id">{{nav.name}}</li>
-    </ul>
+    <y-nav ref="nav" :data="navList"></y-nav>
   </div>
 </template>
 
@@ -233,6 +231,11 @@ export default {
     version() {
       return this.$store.state.version;
     }
+  },
+  mounted() {
+    this.$refs["art"].onscroll = () => {
+      this.$refs["nav"].findActiveNav();
+    };
   }
 };
 </script>

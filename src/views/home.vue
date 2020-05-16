@@ -7,7 +7,12 @@
     </header>
     <div class="container">
       <div class="left">
-        <y-menu v-model="activeMenu" :data="menuList" @on-change="handleMenuChange"></y-menu>
+        <y-menu
+          v-model="activeMenu"
+          :data="menuList"
+          type="column-fixed"
+          @on-click="handleMenuClick"
+        ></y-menu>
       </div>
       <div class="right">
         <router-view/>
@@ -73,8 +78,12 @@ export default {
     };
   },
   methods: {
-    handleMenuChange(menu) {
-      this.activeMenu = menu;
+    handleMenuClick(menu) {
+      if (menu.to) {
+        this.$router.push({
+          name: menu.to
+        });
+      }
     }
   }
 };
@@ -86,6 +95,7 @@ export default {
   padding: 0 2.5%;
   & > .header {
     position: fixed;
+    z-index: 1;
     top: 0;
     border-bottom: 1px solid @border-color;
     width: 100%;
@@ -110,6 +120,7 @@ export default {
     & > .right {
       padding: 20px 0 20px 240px;
       width: 100%;
+      height: 100%;
     }
   }
 }

@@ -152,6 +152,10 @@ html,body{
   overflow-y: hidden;
   color: @text-color;
 }
+a{
+  text-decoration: none;
+  color: @text-color;
+}
 ul{
   list-style-type: none;
 }
@@ -225,16 +229,5 @@ code, kbd, pre, samp {
     code {
       .keyword-code;
     }
-  }
-}
-// 右侧导航条
-.code-navigation {
-  display: table;
-  margin-left: 10px;
-  border-left: 1px solid @border-color;
-  width: 120px;
-  font-size: 12px;
-  & > li {
-    padding: 8px 0 8px 16px;
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="main-row">
     <!-- 文档内容 -->
-    <article class="code-article">
+    <article class="code-article" ref="art">
       <h1>Button 按钮</h1>
       <h2>代码示例</h2>
 
@@ -114,7 +114,7 @@
               <y-button color="primary">default</y-button>
               <y-button color="primary" size="small">small</y-button>
               <y-button color="primary" size="mini">mini</y-button>
-              <br />
+              <br>
               <y-button color="primary" shape="round" size="large">large</y-button>
               <y-button color="primary" shape="round">default</y-button>
               <y-button color="primary" shape="round" size="small">small</y-button>
@@ -157,7 +157,7 @@
               <y-button color="primary">primary</y-button>
               <y-button shape="dashed">dashed</y-button>
               <y-button shape="text">text</y-button>
-              <br />
+              <br>
               <y-button disabled>default</y-button>
               <y-button disabled color="primary">primary</y-button>
               <y-button disabled shape="dashed">dashed</y-button>
@@ -196,9 +196,7 @@
     </article>
 
     <!-- 导航滚动条 -->
-    <ul class="code-navigation">
-      <li v-for="nav in navList" :key="nav.id">{{nav.name}}</li>
-    </ul>
+    <y-nav ref="nav" :data="navList"></y-nav>
   </div>
 </template>
 
@@ -262,6 +260,11 @@ export default {
     version() {
       return this.$store.state.version;
     }
+  },
+  mounted() {
+    this.$refs["art"].onscroll = () => {
+      this.$refs["nav"].findActiveNav();
+    };
   }
 };
 </script>

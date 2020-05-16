@@ -1,7 +1,7 @@
 <template>
   <div class="main-row">
     <!-- 文档内容 -->
-    <article class="code-article">
+    <article class="code-article" ref="art">
       <h1>Icon 图标</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
@@ -37,9 +37,7 @@
     </article>
 
     <!-- 导航滚动条 -->
-    <ul class="code-navigation">
-      <li v-for="nav in navList" :key="nav.id">{{nav.name}}</li>
-    </ul>
+    <y-nav ref="nav" :data="navList"></y-nav>
   </div>
 </template>
 
@@ -87,6 +85,11 @@ export default {
     version() {
       return this.$store.state.version;
     }
+  },
+  mounted() {
+    this.$refs["art"].onscroll = () => {
+      this.$refs["nav"].findActiveNav();
+    };
   }
 };
 </script>

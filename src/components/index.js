@@ -4,6 +4,7 @@ import Divider from '@ui/components/divider/divider.vue'
 import Icon from '@ui/components/icon/icon.vue'
 import Loading from '@ui/components/loading/loading.vue'
 import Menu from '@ui/components/menu/menu.vue'
+import Nav from '@ui/components/navigator/navigator.vue'
 import Rank from '@ui/components/rank/rank.vue'
 import Table from '@ui/components/table/table.vue'
 import TimeLine from '@ui/components/timeline/timeline.vue'
@@ -14,6 +15,7 @@ const components = [
   Icon,
   Loading,
   Menu,
+  Nav,
   Rank,
   Table,
   TimeLine,
@@ -45,6 +47,7 @@ export default {
   Icon,
   Loading,
   Menu,
+  Nav,
   Rank,
   Table,
   TimeLine,

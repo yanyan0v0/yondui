@@ -6,6 +6,41 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "14751610",
+      "name": "三角-上",
+      "font_class": "sanjiao-shang",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "14751611",
+      "name": "三角-右",
+      "font_class": "sanjiao-you",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "14751612",
+      "name": "三角-下",
+      "font_class": "sanjiao-xia",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "14751613",
+      "name": "三角-左",
+      "font_class": "sanjiao-zuo",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "14721010",
+      "name": "排行",
+      "font_class": "paihang",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
       "icon_id": "14681501",
       "name": "菜单",
       "font_class": "caidan",
