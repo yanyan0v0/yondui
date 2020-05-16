@@ -1,7 +1,7 @@
 <template>
   <div class="main-row">
     <!-- 文档内容 -->
-    <article class="code-article" ref="art">
+    <article class="code-article" v-scrolling>
       <h1>Timeline 时间轴列表</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
@@ -231,11 +231,6 @@ export default {
     version() {
       return this.$store.state.version;
     }
-  },
-  mounted() {
-    this.$refs["art"].onscroll = () => {
-      this.$refs["nav"].findActiveNav();
-    };
   }
 };
 </script>

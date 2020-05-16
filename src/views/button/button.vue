@@ -1,7 +1,7 @@
 <template>
   <div class="main-row">
     <!-- 文档内容 -->
-    <article class="code-article" ref="art">
+    <article class="code-article" v-scrolling>
       <h1>Button 按钮</h1>
       <h2>代码示例</h2>
 
@@ -189,8 +189,8 @@
 
       <!-- 分割线 -->
       <h2>API</h2>
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+      <div v-show="navList[4].version >= version">
+        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
         <y-table :data="propList" :columns="columns"></y-table>
       </div>
     </article>
@@ -224,6 +224,11 @@ export default {
         {
           id: "JY",
           name: "禁用",
+          version: "0.1.4"
+        },
+        {
+          id: "PROPS",
+          name: "Button props",
           version: "0.1.4"
         }
       ],
@@ -260,11 +265,6 @@ export default {
     version() {
       return this.$store.state.version;
     }
-  },
-  mounted() {
-    this.$refs["art"].onscroll = () => {
-      this.$refs["nav"].findActiveNav();
-    };
   }
 };
 </script>
