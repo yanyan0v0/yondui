@@ -44,7 +44,7 @@ export default {
       type: Number,
       default: 0
     },
-    // column-flex:竖向可伸缩  column-fixed:竖向不可伸缩 row:横向
+    // column-flex:竖向可伸缩  column-fixed:竖向不可伸缩
     type: {
       type: String,
       default: "column-flex"
