@@ -22,7 +22,34 @@
           <div slot="card2" v-highlight class="code-card">
             <pre>
             <code>
-  &lt;y-icon type="tianjia"&gt;&lt;/y-icon&gt;
+  &lt;y-menu v-model="menu1" :data="menuList" &gt;&lt;/y-menu&gt;
+
+  export default {
+    data() {
+      return {
+        menuList: [
+          {
+            id: 1,
+            name: "主菜单1"
+          },
+          {
+            id: 2,
+            name: "主菜单2",
+            children: [
+              {
+                id: 21,
+                name: "子菜单2-1"
+              },
+              {
+                id: 22,
+                name: "子菜单2-2"
+              }
+            ]
+          }
+        ]
+      };
+    }
+  };
             </code>
             </pre>
           </div>
