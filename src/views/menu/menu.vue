@@ -19,7 +19,7 @@
               <code>data</code>属性生成菜单列表。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card">
+          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
             <pre>
             <code>
   &lt;y-menu v-model="menu1" :data="menuList" &gt;&lt;/y-menu&gt;
@@ -104,7 +104,8 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4"
+          version: "0.1.4",
+          height: "200px"
         },
         {
           id: "ZSLX",

@@ -18,7 +18,7 @@
               <code>data</code>属性生成列表。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card">
+          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
             <pre>
             <code>
   &lt;y-rank :data="rankList"&gt;&lt;/y-rank&gt;
@@ -52,7 +52,7 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <y-rank :data="rankList" text-place="inner"></y-rank>
-              <y-divider/>
+              <y-divider />
               <y-rank :data="rankList" text-place="none"></y-rank>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -136,7 +136,8 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4"
+          version: "0.1.4",
+          height: "180px"
         },
         {
           id: "ZXSWZ",

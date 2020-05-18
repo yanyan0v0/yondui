@@ -19,7 +19,7 @@ import {
 
 Vue.component(Button.name, Button)
 ```
-For more information, please refer to [Quick Start]() in our documentation.
+For more information, please refer to [Quick Start](http://marktest.zhlyjg.cn/y2-ui/index.html) in our documentation.
 
 ## Project setup
 ```

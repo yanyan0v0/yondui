@@ -8,7 +8,7 @@ const path = require('path')
 const resolve = dir => {
   return path.join(__dirname, dir)
 }
-// 版本发布 npm publish --access public
+// npm发布 npm publish --access public
 // 项目部署基础
 // 默认情况下，我们假设你的应用将被部署在域的根目录下,
 // 例如：https://www.my-app.com/
@@ -20,9 +20,9 @@ const resolve = dir => {
 
 module.exports = {
   // 打包输出目录
-  //   outputDir: 'dist',
+  outputDir: 'y2-ui',
   // 项目基础路径
-  // publicPath: BASE_URL,
+  publicPath: './',
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
@@ -39,6 +39,17 @@ module.exports = {
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: [path.resolve(__dirname, './src/assets/less/common.less')]
+    }
+  },
+  devServer: {
+    proxy: {
+      '/mys': {
+        target: 'http://mcmstest.yilvbao.cn/mca-web/api/v1/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/mys': ''
+        }
+      }
     }
   }
 }

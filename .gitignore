@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+/y2-ui
+/public/isz
 
 # local env files
 .env.local
