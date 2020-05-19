@@ -44,7 +44,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/mys': {
-        target: 'http://mcmstest.yilvbao.cn/mca-web/api/v1/',
+        target: 'http://mcmstest.yilvbao.cn/mca-web/api/v1',
         changeOrigin: true,
         pathRewrite: {
           '^/mys': ''

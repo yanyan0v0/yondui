@@ -2,7 +2,7 @@
 
 ## Install
 ```shell
-npm install y2-ui -S
+npm install y2-ui --save
 ```
 ## Quick Start
 ``` javascript

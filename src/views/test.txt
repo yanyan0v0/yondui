@@ -86,3 +86,11 @@ export default {
 &lt;span&gt;文本&lt;/span&gt;
 &lt;y-divider dircetion="vertical" /&gt;
 &lt;span&gt;文本&lt;/span&gt;
+
+&lt;y-input v-model="value6" placeholder="请输入" width="300px" class="m-b-5"&gt;
+  &lt;y-icon type="sousuo" slot="prefix"&gt;&lt;/y-icon&gt;
+&lt;/y-input&gt;
+&lt;br /&gt;
+&lt;y-input v-model="value6" placeholder="请输入" width="300px"&gt;
+  &lt;y-icon type="sousuo" slot="suffix"&gt;&lt;/y-icon&gt;
+&lt;/y-input&gt;

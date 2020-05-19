@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     start() {
-      this.$router.push("button");
+      this.$router.push("start");
     }
   }
 };

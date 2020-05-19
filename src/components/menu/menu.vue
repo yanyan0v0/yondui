@@ -6,7 +6,7 @@
         :style="`padding-left: ${20 + 10 * level}px`"
         @click="handleMenuClick(menuItem, index)"
       >
-        <y-icon v-if="menuItem.icon" class="y-menu-begin-i" :type="menuItem.icon"/>
+        <y-icon v-if="menuItem.icon" class="y-menu-begin-i" :type="menuItem.icon" />
         {{menuItem.name}}
         <y-icon
           v-if="type === 'column-flex' && menuItem.children"
@@ -65,7 +65,6 @@ export default {
     check() {
       return menuItem => {
         return (
-          this.type != "column-fixed" &&
           this.level == this.activeMenu.length - 1 &&
           this.activeMenu[this.level] &&
           this.activeMenu[this.level].id === menuItem.id

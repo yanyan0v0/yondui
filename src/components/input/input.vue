@@ -7,10 +7,16 @@
       :disabled="disabled"
       :maxlength="maxlength"
       :placeholder="placeholder"
-      :class="[size ? (classPrefix + size) : '', disabled ? (classPrefix + 'disabled') : '']"
+      :class="[size ? (classPrefix + size) : '', disabled ? (classPrefix + 'disabled') : '', $slots.prefix ? (classPrefix + 'with-prefix') : '', $slots.suffix ? (classPrefix + 'with-suffix') : '']"
       @keyup.enter="handleEnter"
       @input="handleInput"
     />
+    <span class="y-input-prefix">
+      <slot name="prefix"></slot>
+    </span>
+    <span class="y-input-suffix">
+      <slot name="suffix"></slot>
+    </span>
   </div>
 </template>
 
@@ -124,7 +130,30 @@ export default {
   }
   .y-input-disabled {
     background-color: @background-color;
+    cursor: not-allowed;
     pointer-events: none;
+  }
+  .y-input-with-prefix {
+    padding-left: 34px;
+  }
+  .y-input-with-suffix {
+    padding-right: 34px;
+  }
+  .y-input-prefix {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 34px;
+    text-align: center;
+    line-height: 34px;
+  }
+  .y-input-suffix {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 34px;
+    text-align: center;
+    line-height: 34px;
   }
 }
 </style>

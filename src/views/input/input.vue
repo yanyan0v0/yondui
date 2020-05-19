@@ -106,10 +106,52 @@
       </div>
 
       <!-- 分割线 -->
+      <div v-show="navList[2].version >= version">
+        <h3 :id="navList[2].id">{{navList[2].name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-input v-model="value7" placeholder="请输入" width="300px" class="m-b-5">
+                <y-icon type="sousuo" slot="prefix"></y-icon>
+              </y-input>
+              <br />
+              <y-input v-model="value8" placeholder="请输入" width="300px">
+                <y-icon type="sousuo" slot="suffix"></y-icon>
+              </y-input>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过设置
+              <code>prefix</code> 和
+              <code>suffix</code> 的 slot 设置前缀及后缀图标
+              。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card">
+            <pre>
+            <code>
+  &lt;y-input v-model="value7" placeholder="请输入" width="300px" class="m-b-5"&gt;
+    &lt;y-icon type="sousuo" slot="prefix"&gt;&lt;/y-icon&gt;
+  &lt;/y-input&gt;
+  &lt;br /&gt;
+  &lt;y-input v-model="value8" placeholder="请输入" width="300px"&gt;
+    &lt;y-icon type="sousuo" slot="suffix"&gt;&lt;/y-icon&gt;
+  &lt;/y-input&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
       <h2>API</h2>
       <div v-show="navList[3].version >= version">
         <h3 :id="navList[3].id">{{navList[3].name}}</h3>
-        <y-table :data="propList" :columns="columns"></y-table>
+        <y-table :data="propList" :columns="propColumns"></y-table>
+      </div>
+      <div v-show="navList[4].version >= version">
+        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
+        <y-table :data="slotList" :columns="slotColumns"></y-table>
       </div>
     </article>
 
@@ -119,7 +161,7 @@
 </template>
 
 <script>
-import { PROP_COLUMNS } from "@ui/util/config";
+import { PROP_COLUMNS, SLOT_COLUMNS } from "@ui/util/config";
 export default {
   data() {
     return {
@@ -129,6 +171,8 @@ export default {
       value4: "",
       value5: "",
       value6: "",
+      value7: "",
+      value8: "",
       navList: [
         {
           id: "JC",
@@ -149,9 +193,15 @@ export default {
           id: "PROPS",
           name: "Input props",
           version: "0.1.6"
+        },
+        {
+          id: "SLOTS",
+          name: "Input slots",
+          version: "0.1.6"
         }
       ],
-      columns: PROP_COLUMNS,
+      propColumns: PROP_COLUMNS,
+      slotColumns: SLOT_COLUMNS,
       propList: [
         {
           attr: "type",
@@ -188,6 +238,16 @@ export default {
           explain: `设置输入框为禁用状态`,
           type: "Boolean",
           default: "false"
+        }
+      ],
+      slotList: [
+        {
+          attr: "prefix",
+          explain: `输入框头部图标`
+        },
+        {
+          attr: "suffix",
+          explain: `输入框尾部图标`
         }
       ]
     };

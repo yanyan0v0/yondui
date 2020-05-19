@@ -50,7 +50,7 @@ export default {
             },
             {
               id: 27,
-              name: "Divider 按钮",
+              name: "Divider 分割线",
               icon: "xian",
               to: "divider"
             },
