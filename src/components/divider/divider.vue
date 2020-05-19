@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="y-divider"
-    :class="[classPrefix + dircetion, dashed ? classPrefix + 'dashed' : '']"
-    :style="{margin}"
-  >
+  <div class="y-divider" :class="[classPrefix + dircetion, dashed ? classPrefix + 'dashed' : '']">
     <div class="y-divider-inner" :class="classPrefix + position">
       <slot></slot>
     </div>
@@ -31,7 +27,7 @@ export default {
     },
     margin: {
       type: String,
-      default: "10px 0"
+      default: "12px 0"
     }
   },
   data() {
@@ -59,7 +55,6 @@ export default {
     width: 1px;
     vertical-align: middle;
     position: relative;
-    top: -0.06em;
   }
   &.y-divider-dashed {
     background: 0 0;

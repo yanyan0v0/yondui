@@ -63,4 +63,26 @@ export default {
   }
 };
 
-&lt;y-rank :data="rankList"&gt;&lt;/y-rank&gt;
+&lt;y-input v-model="value2" size="large" placeholder="请输入" width="100px" style="margin-right: 10px" /&gt;
+&lt;y-input v-model="value3" placeholder="请输入" width="100px" style="margin-right: 10px" /&gt;
+&lt;y-input v-model="value4" size="small" placeholder="请输入" width="100px" style="margin-right: 10px" /&gt;
+&lt;y-input v-model="value5" size="mini" placeholder="请输入" width="100px" style="margin-right: 10px" /&gt;
+
+
+&lt;p&gt;段落&lt;/p&gt;
+&lt;y-divider /&gt;
+&lt;p&gt;段落&lt;/p&gt;
+&lt;y-divider&gt;文本&lt;/y-divider&gt;
+&lt;p&gt;段落&lt;/p&gt;
+&lt;y-divider position="left"&gt;文本&lt;/y-divider&gt;
+&lt;p&gt;段落&lt;/p&gt;
+&lt;y-divider position="right"&gt;文本&lt;/y-divider&gt;
+&lt;p&gt;段落&lt;/p&gt;
+&lt;y-divider dashed /&gt;
+
+
+&lt;span&gt;文本&lt;/span&gt;
+&lt;y-divider dircetion="vertical" /&gt;
+&lt;span&gt;文本&lt;/span&gt;
+&lt;y-divider dircetion="vertical" /&gt;
+&lt;span&gt;文本&lt;/span&gt;

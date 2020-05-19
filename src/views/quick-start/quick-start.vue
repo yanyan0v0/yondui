@@ -30,7 +30,7 @@
           <pre>
             <code>
   import Vue from 'vue';
-  import App from 'components/app.vue';
+  import App from 'app.vue';
   import Y2UI from 'y2-ui'
 
   Vue.use(Y2UI);

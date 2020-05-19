@@ -6,6 +6,20 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "14797198",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "14797201",
+      "name": "线",
+      "font_class": "xian",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
       "icon_id": "14751610",
       "name": "三角-上",
       "font_class": "sanjiao-shang",

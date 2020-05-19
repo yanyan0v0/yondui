@@ -151,6 +151,7 @@ html,body{
   padding: 0;
   overflow-y: hidden;
   color: @text-color;
+  background-color: #fff;
 }
 a{
   text-decoration: none;
@@ -166,7 +167,15 @@ ul,pre,p{
 code, kbd, pre, samp {
   font-family: Consolas,Menlo,Courier,monospace;
 }
-
+/*伪元素是行内元素 正常浏览器清除浮动方法*/
+.clearfix:after{
+  content: "";
+  display: block;
+  height: 0;
+  clear:both;
+  visibility: hidden;
+}
+// 滚动条样式目前只支持webkit
 // 滚动条整体样式
 ::-webkit-scrollbar{
   width: 8px;

@@ -2,7 +2,7 @@
   <div class="home-main">
     <header class="header">
       <router-link to="/">
-        <img src="@ui/assets/images/logo/logo.png" alt class="full-h">
+        <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
       </router-link>
     </header>
     <div class="container">
@@ -15,7 +15,7 @@
         ></y-menu>
       </div>
       <div class="right">
-        <router-view/>
+        <router-view />
       </div>
     </div>
   </div>
@@ -49,10 +49,22 @@ export default {
               to: "button"
             },
             {
+              id: 27,
+              name: "Divider 按钮",
+              icon: "xian",
+              to: "divider"
+            },
+            {
               id: 22,
               name: "Icon 图标",
               icon: "tubiao",
               to: "icon"
+            },
+            {
+              id: 26,
+              name: "Input 输入框",
+              icon: "bianji",
+              to: "input"
             },
             {
               id: 23,
@@ -63,7 +75,7 @@ export default {
             {
               id: 24,
               name: "Rank 排行",
-              icon: "ziyuanjiankong",
+              icon: "paihang",
               to: "rank"
             },
             {

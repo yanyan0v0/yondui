@@ -34,6 +34,10 @@
         <h3 :id="navList[1].id">{{navList[1].name}}</h3>
         <y-table :data="propList" :columns="columns"></y-table>
       </div>
+
+      <!-- 分割线 -->
+      <h2>所有图标</h2>
+      <y-icon-list></y-icon-list>
     </article>
 
     <!-- 导航滚动条 -->
@@ -44,6 +48,9 @@
 <script>
 import { PROP_COLUMNS } from "@ui/util/config";
 export default {
+  components: {
+    YIconList: () => import("./icon-list.vue")
+  },
   data() {
     return {
       navList: [

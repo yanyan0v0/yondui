@@ -2,6 +2,7 @@ import Button from '@ui/components/button/button.vue'
 import Card from '@ui/components/card/card.vue'
 import Divider from '@ui/components/divider/divider.vue'
 import Icon from '@ui/components/icon/icon.vue'
+import Input from '@ui/components/input/input.vue'
 import Loading from '@ui/components/loading/loading.vue'
 import Menu from '@ui/components/menu/menu.vue'
 import Nav from '@ui/components/navigator/navigator.vue'
@@ -13,6 +14,7 @@ const components = [
   Card,
   Divider,
   Icon,
+  Input,
   Loading,
   Menu,
   Nav,

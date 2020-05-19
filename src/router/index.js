@@ -28,9 +28,19 @@ const routes = [
         component: () => import('@ui/views/button/button.vue'),
       },
       {
+        path: '/divider',
+        name: 'divider',
+        component: () => import('@ui/views/divider/divider.vue'),
+      },
+      {
         path: '/icon',
         name: 'icon',
         component: () => import('@ui/views/icon/icon.vue'),
+      },
+      {
+        path: '/input',
+        name: 'input',
+        component: () => import('@ui/views/input/input.vue'),
       },
       {
         path: '/menu',
