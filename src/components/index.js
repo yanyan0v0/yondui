@@ -20,16 +20,16 @@ const components = [
   Nav,
   Rank,
   Table,
-  TimeLine,
+  TimeLine
 ]
 
-// import { FormatDate } from '@ui/util/tools'
+// import { setDateFormat } from '@ui/util/tools'
 // import customDirective from '@ui/directive'
 
 const install = function (Vue) {
   if (install.installed) return;
 
-  // FormatDate() // 注册格式化时间函数
+  // setDateFormat() // 注册格式化时间函数
   // customDirective(Vue) // 注册指令
 
   components.forEach(component => {
@@ -47,10 +47,11 @@ export default {
   Card,
   Divider,
   Icon,
+  Input,
   Loading,
   Menu,
   Nav,
   Rank,
   Table,
-  TimeLine,
+  TimeLine
 }

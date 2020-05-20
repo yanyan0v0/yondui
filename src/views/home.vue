@@ -22,80 +22,48 @@
 </template>
 
 <script>
+import { MENU_LIST } from "@/util/config";
 export default {
   data() {
     return {
-      activeMenu: [
-        {
-          id: 1,
-          name: "快速上手",
-          to: "start"
-        }
-      ],
-      menuList: [
-        {
-          id: 1,
-          name: "快速上手",
-          to: "start"
-        },
-        {
-          id: 2,
-          name: "组件",
-          children: [
-            {
-              id: 21,
-              name: "Button 按钮",
-              icon: "anniu",
-              to: "button"
-            },
-            {
-              id: 27,
-              name: "Divider 分割线",
-              icon: "xian",
-              to: "divider"
-            },
-            {
-              id: 22,
-              name: "Icon 图标",
-              icon: "tubiao",
-              to: "icon"
-            },
-            {
-              id: 26,
-              name: "Input 输入框",
-              icon: "bianji",
-              to: "input"
-            },
-            {
-              id: 23,
-              name: "Menu 菜单",
-              icon: "caidan",
-              to: "menu"
-            },
-            {
-              id: 24,
-              name: "Rank 排行",
-              icon: "paihang",
-              to: "rank"
-            },
-            {
-              id: 25,
-              name: "Timeline 时间轴列表",
-              icon: "shijianzhou",
-              to: "timeline"
-            }
-          ]
-        }
-      ]
+      activeMenu: [MENU_LIST[0]],
+      menuList: MENU_LIST
     };
   },
   methods: {
+    getActiveMenu(activeMenu, list, level = 0) {
+      for (let menu of list) {
+        if (activeMenu.id == menu.id) {
+          this.$set(this.activeMenu, level, menu);
+          break;
+        } else {
+          if (menu.children) {
+            this.$set(this.activeMenu, level, {
+              ...menu,
+              children: []
+            });
+            this.getActiveMenu(activeMenu, menu.children, level + 1);
+          }
+        }
+      }
+    },
     handleMenuClick(menu) {
+      this.activeMenu = [];
+      this.getActiveMenu(menu, MENU_LIST);
       if (menu.to) {
+        this.$store.commit("setActiveMenu", this.activeMenu);
         this.$router.push({
           name: menu.to
         });
       }
+    }
+  },
+  watch: {
+    "$store.state.activeMenu": {
+      handler(menu) {
+        if (menu.length) this.activeMenu = menu;
+      },
+      immediate: true
     }
   }
 };

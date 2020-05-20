@@ -35,7 +35,7 @@ export const clearStorage = () => {
 
 /**
  * @param day 与现在相差天数
- * @description 返回与现在相差天数的日期
+ * @description 返回与现在相差天数的日期，格式为yyyy-MM-dd
  */
 export const getDay = (day) => {
   let dd = new Date()
@@ -126,7 +126,7 @@ export const off = (function () {
 })()
 
 /**
- * 比较版本号大小
+ * @description 比较版本号大小
  * @param cur 当前版本
  * @param pre 比较版本
  * @return false 小  true 大
@@ -143,12 +143,61 @@ export const compareVersion = (cur, pre) => {
 }
 
 /**
+ * @description 获取类型
+ * @param obj 检测对象
+ * @return 类型
+ */
+export const typeOf = (obj) => {
+  const map = {
+    '[object Boolean]': 'boolean',
+    '[object Number]': 'number',
+    '[object String]': 'string',
+    '[object Function]': 'function',
+    '[object Array]': 'array',
+    '[object Date]': 'date',
+    '[object RegExp]': 'regExp',
+    '[object Undefined]': 'undefined',
+    '[object Null]': 'null',
+    '[object Object]': 'object'
+  };
+  return map[Object.prototype.toString.call(obj)];
+}
+
+/**
+ * @description 深拷贝
+ * @param obj 拷贝对象
+ * @return 新对象
+ */
+export const deepCopy = (obj) => {
+  let o;
+  let t = typeOf(obj)
+
+  if (t === 'object') {
+    o = {}
+    for (let i in obj) {
+      o[i] = deepCopy(obj[i])
+    }
+  } else if (t === 'array') {
+    o = []
+    for (let j of obj) {
+      o.push(deepCopy(j))
+    }
+  } else if (t === 'function') {
+    o = t.bind(o)
+  } else {
+    o = obj
+  }
+
+  return o
+}
+
+/**
  * 时间格式化
  * @param fmt
  * @returns {*}
  * @constructor
  */
-export const FormatDate = () => {
+export const setDateFormat = () => {
   // eslint-disable-next-line no-extend-native
   Date.prototype.Format = function (fmt) {
     var o = {

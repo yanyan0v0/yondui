@@ -4,8 +4,77 @@
  * @description 通用常量配置 常量名全部大写加下划线
  */
 
-// 首页名
-export const HOME = 'home'
+// 菜单列表
+export const MENU_LIST = [
+  {
+    id: 1,
+    name: "快速上手",
+    to: "start",
+    file: '/quick-start/quick-start.vue'
+  },
+  {
+    id: 2,
+    name: "组件",
+    children: [
+      {
+        id: 21,
+        name: "Button 按钮",
+        icon: "anniu",
+        to: "button",
+        file: '/button/button.vue'
+      },
+      {
+        id: 27,
+        name: "Divider 分割线",
+        icon: "xian",
+        to: "divider",
+        file: '/divider/divider.vue'
+      },
+      {
+        id: 22,
+        name: "Icon 图标",
+        icon: "tubiao",
+        to: "icon",
+        file: '/icon/icon.vue'
+      },
+      {
+        id: 26,
+        name: "Input 输入框",
+        icon: "bianji",
+        to: "input",
+        file: '/input/input.vue'
+      },
+      {
+        id: 23,
+        name: "Menu 菜单",
+        icon: "caidan",
+        to: "menu",
+        file: '/menu/menu.vue'
+      },
+      {
+        id: 24,
+        name: "Rank 排行",
+        icon: "paihang",
+        to: "rank",
+        file: '/rank/rank.vue'
+      },
+      {
+        id: 28,
+        name: "Table 表格",
+        icon: "ziyuanguanli",
+        to: "table",
+        file: '/table/table.vue'
+      },
+      {
+        id: 25,
+        name: "Timeline 时间轴列表",
+        icon: "shijianzhou",
+        to: "timeline",
+        file: '/timeline/timeline.vue'
+      }
+    ]
+  }
+]
 
 // 折线图表和饼状图表所用的颜色
 export const LINE_COLORS = [
@@ -69,20 +138,24 @@ export const THEME_COLORS = {
 export const PROP_COLUMNS = [
   {
     key: "attr",
-    title: "属性"
+    title: "属性",
+    width: 150
   },
   {
     key: "explain",
     title: "说明",
-    ifHtml: true
+    ifHtml: true,
+    minWidth: 100
   },
   {
     key: "type",
-    title: "类型"
+    title: "类型",
+    width: 150
   },
   {
     key: "default",
-    title: "默认值"
+    title: "默认值",
+    width: 100
   }
 ]
 export const SLOT_COLUMNS = [

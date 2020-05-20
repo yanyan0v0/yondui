@@ -1,7 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { MENU_LIST } from "@/util/config";
 
 Vue.use(VueRouter)
+
+// 菜单转化成路由
+function menuToRoute(list) {
+  let routes = []
+  for (let menu of list) {
+    if (menu.children) {
+      routes = routes.concat(menuToRoute(menu.children))
+    } else {
+      routes.push({
+        path: '/' + menu.to,
+        name: menu.to,
+        component: () => import("@ui/views" + menu.file)
+      })
+    }
+  }
+  return routes
+}
 
 const routes = [
   {
@@ -16,48 +34,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('@ui/views/home.vue'),
-    children: [
-      {
-        path: '/start',
-        name: 'start',
-        component: () => import('@ui/views/quick-start/quick-start.vue'),
-      },
-      {
-        path: '/button',
-        name: 'button',
-        component: () => import('@ui/views/button/button.vue'),
-      },
-      {
-        path: '/divider',
-        name: 'divider',
-        component: () => import('@ui/views/divider/divider.vue'),
-      },
-      {
-        path: '/icon',
-        name: 'icon',
-        component: () => import('@ui/views/icon/icon.vue'),
-      },
-      {
-        path: '/input',
-        name: 'input',
-        component: () => import('@ui/views/input/input.vue'),
-      },
-      {
-        path: '/menu',
-        name: 'menu',
-        component: () => import('@ui/views/menu/menu.vue'),
-      },
-      {
-        path: '/rank',
-        name: 'rank',
-        component: () => import('@ui/views/rank/rank.vue'),
-      },
-      {
-        path: '/timeline',
-        name: 'timeline',
-        component: () => import('@ui/views/timeline/timeline.vue'),
-      },
-    ]
+    children: menuToRoute(MENU_LIST)
   },
 ]
 

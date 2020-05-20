@@ -1,39 +1,63 @@
 <template>
-  <div class="y-table-wrapper">
+  <div class="y-table" :class="{'y-table-border': border}">
+    <!-- 表头 -->
     <table
-      class="y-table"
-      :class="[classPrefix + align, {'y-table-border': border}, size ? classPrefix + size : '' ]"
+      class="y-table-header"
+      :class="[classPrefix + align, {'y-table-header-border': border}, size ? classPrefix + size : '' ]"
     >
+      <colgroup>
+        <col v-for="col in colgroups" :key="col.key" :width="col.width" />
+        <col v-if="ifScroll" :width="scrollWidth" />
+      </colgroup>
       <thead>
         <tr>
           <th v-for="col in columns" :key="col.key" :class="[col.class]">{{col.title}}</th>
+          <th v-if="ifScroll" class="scroll-th"></th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="(row, index) in data" :key="index" :class="[row.class]">
-          <td v-for="col in columns" :key="col.key" :class="[col.class]">
-            <template v-if="col.ifHtml">
-              <div v-html="row[col.key]"></div>
-            </template>
-            <template v-else>{{row[col.key]}}</template>
-          </td>
-        </tr>
-      </tbody>
     </table>
+
+    <!-- 表体外层 为了实现滚动效果 -->
+    <div class="y-table-body-warpper" :style="{height: autoHeight ? '0' : height}">
+      <!-- 表体 -->
+      <table
+        class="y-table-body"
+        :class="[
+        classPrefix + align, 
+          {'y-table-body-border': border, 'y-table-body-stripe': stripe, 'y-table-body-disabled-hover': disabledHover},
+          size ? classPrefix + size : '' 
+        ]"
+      >
+        <colgroup>
+          <col v-for="col in colgroups" :key="col.key" :width="col.width" />
+        </colgroup>
+        <tbody>
+          <tr v-for="(row, index) in data" :key="index" :class="[row.class]">
+            <td v-for="col in columns" :key="col.key" :class="[col.class]">
+              <template v-if="col.ifHtml">
+                <div v-html="row[col.key]"></div>
+              </template>
+              <template v-else>{{row[col.key]}}</template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
+import { deepCopy } from "@ui/util/tools";
 export default {
   name: "y-table",
   props: {
     data: {
       type: Array,
-      required: true
+      default: () => []
     },
     columns: {
       type: Array,
-      required: true
+      default: () => []
     },
     align: {
       type: String,
@@ -43,22 +67,115 @@ export default {
       type: Boolean,
       default: false
     },
+    stripe: {
+      type: Boolean,
+      default: false
+    },
     size: {
       type: String,
       default: ""
+    },
+    height: {
+      type: String,
+      default: ""
+    },
+    autoHeight: {
+      type: Boolean,
+      default: false
+    },
+    disabledHover: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      classPrefix: "y-table-"
+      classPrefix: "y-table-",
+      colgroups: [],
+
+      // 根据浏览器内核判定滚动条的宽度
+      scrollWidth: navigator.userAgent.indexOf("AppleWebKit") != -1 ? 8 : 17,
+      // 是否出现滚动条
+      ifScroll: false
     };
+  },
+  methods: {
+    // 此函数是为了计算每一列的宽度，当表格需要重绘时调用
+    handleResize() {
+      // 设置autoHeight属性会自动调整表格高度 这时会忽略height属性
+      let tableHeader = this.$el.firstChild;
+      let tableBody = this.$el.lastChild;
+      if (this.autoHeight) {
+        tableBody.style.height =
+          this.$el.offsetHeight - tableHeader.offsetHeight + "px";
+      }
+      // 判断是否出现滚动条
+      this.ifScroll = tableBody.scrollHeight > tableBody.offsetHeight;
+
+      this.colgroups = deepCopy(this.columns);
+      let tableWidth = this.$el.offsetWidth; // 整个table的宽度
+      if (this.ifScroll) {
+        tableWidth -= this.scrollWidth;
+      }
+      let hasWidthCols = []; // 设置width或minWidth参数的列
+      let noWidthCols = []; // 未设置width或minWidth参数的列
+      let usedSumWidth = 0; // 设置width或minWidth参数的列的宽度总和
+      let useableSumWidth = 0; // 未分配宽度的总和
+      let avgWidth = 0; // 平均未分配宽度
+
+      // 遍历获取各参数数据
+      for (let col of this.colgroups) {
+        if (col.width) {
+          hasWidthCols.push(col);
+          usedSumWidth += col.width;
+        } else if (col.minWidth) {
+          usedSumWidth += col.minWidth;
+          hasWidthCols.push(col);
+          noWidthCols.push(col);
+        } else {
+          noWidthCols.push(col);
+        }
+      }
+      usedSumWidth = hasWidthCols
+        .map(item => item.width || item.minWidth)
+        .reduce((a, b) => a + b, 0);
+      useableSumWidth = tableWidth - usedSumWidth;
+      if (useableSumWidth > 0 && noWidthCols.length > 0) {
+        avgWidth = parseInt(useableSumWidth / noWidthCols.length);
+      }
+
+      // 遍历分配各参数
+      for (let col of this.colgroups) {
+        if (col.minWidth) {
+          col.width = avgWidth + col.minWidth;
+        } else if (col.maxWidth) {
+          col.width = avgWidth >= col.maxWidth ? col.maxWidth : avgWidth;
+        } else if (!col.width) {
+          col.width = avgWidth;
+        }
+      }
+    }
+  },
+  watch: {
+    columns: {
+      handler() {
+        this.handleResize();
+      },
+      deep: true
+    }
+  },
+  mounted() {
+    this.handleResize();
   }
 };
 </script>
 
 <style lang="less">
-.y-table-wrapper {
-  .y-table {
+.y-table {
+  // 默认样式
+  position: relative;
+  .y-table-header,
+  .y-table-body {
     width: 100%;
     border-spacing: 0;
     font-size: 14px;
@@ -70,6 +187,31 @@ export default {
       padding: 8px 16px;
     }
   }
+  .y-table-header {
+    th {
+      border-top: 1px solid @border-color;
+      background-color: @background-color;
+    }
+    .scroll-th {
+      padding: 0;
+    }
+  }
+  .y-table-body-warpper {
+    overflow-y: auto;
+    .y-table-body:not(.y-table-body-disabled-hover) {
+      tr:hover {
+        background-color: ~"@{primary-color}30";
+      }
+    }
+    // 斑马线
+    .y-table-body-stripe {
+      tr:nth-child(2n) {
+        background-color: @background-color;
+      }
+    }
+  }
+
+  // align 样式
   .y-table-center {
     td,
     th {
@@ -82,15 +224,6 @@ export default {
       .text-right;
     }
   }
-  // 边框表格
-  .y-table-border {
-    border-top: 1px solid @border-color;
-    border-left: 1px solid @border-color;
-    td,
-    th {
-      border-right: 1px solid #e8eaec;
-    }
-  }
 
   // 小型表格
   .y-table-small {
@@ -99,6 +232,36 @@ export default {
     th {
       padding: 6px 12px;
     }
+  }
+}
+
+// 边框表格
+.y-table-border {
+  border-left: 1px solid @border-color;
+  .y-table-header-border,
+  .y-table-body-border {
+    td,
+    th {
+      border-right: 1px solid #e8eaec;
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background-color: @border-color;
+    width: 1px;
+    height: 100%;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    background-color: @border-color;
+    width: 100%;
+    height: 1px;
   }
 }
 </style>
