@@ -3,7 +3,11 @@
     <!-- 表头 -->
     <table
       class="y-table-header"
-      :class="[classPrefix + align, {'y-table-header-border': border}, size ? classPrefix + size : '' ]"
+      :class="[
+        classPrefix + align,
+        {'y-table-header-border': border},
+        size ? classPrefix + size : '' 
+      ]"
     >
       <colgroup>
         <col v-for="col in colgroups" :key="col.key" :width="col.width" />
@@ -11,7 +15,14 @@
       </colgroup>
       <thead>
         <tr>
-          <th v-for="col in columns" :key="col.key" :class="[col.class]">{{col.title}}</th>
+          <th v-for="col in columns" :key="col.key" :class="[col.class]">
+            {{col.title}}
+            <div
+              v-if="resizable && border"
+              class="y-table-header-resizable"
+              @mousedown="handleMouseDown(col, $event)"
+            ></div>
+          </th>
           <th v-if="ifScroll" class="scroll-th"></th>
         </tr>
       </thead>
@@ -35,14 +46,19 @@
           <tr v-for="(row, index) in data" :key="index" :class="[row.class]">
             <td v-for="col in columns" :key="col.key" :class="[col.class]">
               <template v-if="col.ifHtml">
-                <div v-html="row[col.key]"></div>
+                <div :class="{'y-td-ellipsis': col.ellipsis}" v-html="row[col.key]"></div>
               </template>
-              <template v-else>{{row[col.key]}}</template>
+              <template v-else>
+                <div :class="{'y-td-ellipsis': col.ellipsis}">{{row[col.key]}}</div>
+              </template>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <!-- 拖拽线 -->
+    <div v-show="dragCol.key" class="y-table-resize-line" :style="getResizeLineStyle"></div>
   </div>
 </template>
 
@@ -86,6 +102,10 @@ export default {
     disabledHover: {
       type: Boolean,
       default: false
+    },
+    resizable: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -96,15 +116,99 @@ export default {
       // 根据浏览器内核判定滚动条的宽度
       scrollWidth: navigator.userAgent.indexOf("AppleWebKit") != -1 ? 8 : 17,
       // 是否出现滚动条
-      ifScroll: false
+      ifScroll: false,
+
+      // 当前点击的拖拽列
+      dragCol: {}
     };
   },
+  computed: {
+    getResizeLineStyle() {
+      return {
+        left: (this.dragCol.startX || 0) + "px",
+        transform: `translateX(${this.dragCol.moveX || 0}px)`
+      };
+    }
+  },
   methods: {
+    handleMouseDown(col, event) {
+      this.dragCol = {
+        key: col.key,
+        x: event.x,
+        startX: event.x - this.$el.getBoundingClientRect().left,
+        moveX: 0
+      };
+      this.$el.addEventListener("mousemove", this.handleMouseMove);
+      this.$el.addEventListener("mouseup", this.handleMouseUp);
+    },
+    handleMouseMove(event) {
+      if (this.dragCol.key) {
+        document.body.style["user-select"] = "none";
+        this.dragCol.moveX = event.x - this.dragCol.x;
+      }
+    },
+    handleMouseUp() {
+      if (this.dragCol.key) {
+        document.body.style["user-select"] = "";
+        // 找到对应列 增加减少宽度
+        let index = this.colgroups.findIndex(
+          item => item.key === this.dragCol.key
+        );
+        this.$set(this.colgroups, index, {
+          ...this.colgroups[index],
+          width: this.colgroups[index].width + this.dragCol.moveX
+        });
+        // 将增加或减少的宽度分配到不含width或含minWidth、maxWidth的col中
+        let noWidthCols = this.columns.filter(
+          item =>
+            item.key != this.dragCol.key &&
+            (!item.width || item.minWidth || item.maxWidth)
+        );
+        // 每一个列需要增加或减少的量
+        let avgWidth = noWidthCols.length
+          ? parseInt(this.dragCol.moveX / noWidthCols.length)
+          : 0;
+
+        for (let col of this.colgroups) {
+          // 过滤掉拖拽的列
+          if (col.key == this.dragCol.key) {
+            continue;
+          }
+          let afterWidth = col.width - avgWidth;
+          // 含minWidth的col最多只能减少到其minWidth的宽度
+          if (col.minWidth && avgWidth > 0) {
+            if (afterWidth < col.minWidth) {
+              col.width = col.minWidth;
+              avgWidth += parseInt(
+                avgWidth - (col.width - col.minWidth) / (noWidthCols.length - 1)
+              );
+            }
+          }
+          // 含maxWidth的col最多只能增加到其maxWidth的宽度
+          if (col.maxWidth && avgWidth < 0) {
+            if (afterWidth > col.maxWidth) {
+              col.width = col.maxWidth;
+              avgWidth += parseInt(
+                (col.width - col.minWidth) / (noWidthCols.length - 1)
+              );
+            }
+          }
+          let colIndex = this.columns.findIndex(item => item.key === col.key);
+          if (!this.columns[colIndex].width && !col.minWidth && !col.maxWidth) {
+            col.width = afterWidth;
+          }
+        }
+
+        this.dragCol = {};
+        this.$el.removeEventListener("mousemove", this.handleMouseMove);
+        this.$el.removeEventListener("mouseup", this.handleMouseUp);
+      }
+    },
     // 此函数是为了计算每一列的宽度，当表格需要重绘时调用
     handleResize() {
       // 设置autoHeight属性会自动调整表格高度 这时会忽略height属性
       let tableHeader = this.$el.firstChild;
-      let tableBody = this.$el.lastChild;
+      let tableBody = this.$el.childNodes[1];
       if (this.autoHeight) {
         tableBody.style.height =
           this.$el.offsetHeight - tableHeader.offsetHeight + "px";
@@ -112,7 +216,6 @@ export default {
       // 判断是否出现滚动条
       this.ifScroll = tableBody.scrollHeight > tableBody.offsetHeight;
 
-      this.colgroups = deepCopy(this.columns);
       let tableWidth = this.$el.offsetWidth; // 整个table的宽度
       if (this.ifScroll) {
         tableWidth -= this.scrollWidth;
@@ -158,13 +261,15 @@ export default {
   },
   watch: {
     columns: {
-      handler() {
+      handler(columns) {
+        this.colgroups = deepCopy(columns);
         this.handleResize();
       },
       deep: true
     }
   },
   mounted() {
+    this.colgroups = deepCopy(this.columns);
     this.handleResize();
   }
 };
@@ -182,6 +287,7 @@ export default {
     td,
     th {
       .text-left;
+      position: relative;
       border: none;
       border-bottom: 1px solid @border-color;
       padding: 8px 16px;
@@ -201,6 +307,14 @@ export default {
     .y-table-body:not(.y-table-body-disabled-hover) {
       tr:hover {
         background-color: ~"@{primary-color}30";
+      }
+    }
+    // 省略
+    .y-table-body {
+      tr {
+        .y-td-ellipsis {
+          .text-over;
+        }
       }
     }
     // 斑马线
@@ -244,6 +358,16 @@ export default {
     th {
       border-right: 1px solid #e8eaec;
     }
+    // 头部拖拽
+    .y-table-header-resizable {
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      bottom: 0;
+      right: -5px;
+      cursor: col-resize;
+      z-index: 1;
+    }
   }
   &::before {
     content: "";
@@ -262,6 +386,13 @@ export default {
     background-color: @border-color;
     width: 100%;
     height: 1px;
+  }
+  .y-table-resize-line {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-left: 1px dashed @border-color;
+    z-index: 2;
   }
 }
 </style>

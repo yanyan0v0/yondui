@@ -6,6 +6,55 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "14860017",
+      "name": "刷新-右",
+      "font_class": "shuaxin-you",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "14858590",
+      "name": "刷新-左",
+      "font_class": "shuaxin-zuo",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "14858592",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "14858593",
+      "name": "全屏",
+      "font_class": "quanping1",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "14858594",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "14850492",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "14829113",
+      "name": "表格",
+      "font_class": "biaoge",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
       "icon_id": "14797198",
       "name": "删除",
       "font_class": "shanchu",
@@ -92,7 +141,7 @@
     {
       "icon_id": "1183021",
       "name": "添加",
-      "font_class": "tianjia",
+      "font_class": "tianjia-circle",
       "unicode": "e657",
       "unicode_decimal": 58967
     },
@@ -127,21 +176,21 @@
     {
       "icon_id": "14625651",
       "name": "添加",
-      "font_class": "tianjia1",
+      "font_class": "tianjia",
       "unicode": "e63c",
       "unicode_decimal": 58940
     },
     {
       "icon_id": "14625652",
       "name": "下拉_面性",
-      "font_class": "xiala_mianxing",
+      "font_class": "xiala-mianxing",
       "unicode": "e63d",
       "unicode_decimal": 58941
     },
     {
       "icon_id": "14625653",
       "name": "下拉_线性",
-      "font_class": "xiala_xianxing",
+      "font_class": "xiala-xianxing",
       "unicode": "e63e",
       "unicode_decimal": 58942
     },
@@ -176,7 +225,7 @@
     {
       "icon_id": "14625666",
       "name": "取消_关闭",
-      "font_class": "quxiao_guanbi",
+      "font_class": "quxiao-guanbi",
       "unicode": "e649",
       "unicode_decimal": 58953
     },

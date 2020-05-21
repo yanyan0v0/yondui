@@ -21,9 +21,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.iconfont {
-  color: @subtext-color;
-}
-</style>

@@ -78,15 +78,21 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-table border :data="data1" :columns="columns1"></y-table>
+              <y-table border resizable :data="data1" :columns="columns1"></y-table>
             </div>
             <y-divider position="left">说明</y-divider>
-            <div class="introduce">添加表格的边框线。</div>
+            <div class="introduce">
+              添加表格的边框线，增加
+              <code>resizable</code>
+              属性即可实现拖拽列
+              。
+            </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: navList[1].height}">
             <pre>
             <code>
   &lt;y-table border :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
+  &lt;y-table border resizable :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
             </code>
             </pre>
           </div>
@@ -124,7 +130,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-table border height="100px" :data="data1" :columns="columns1"></y-table>
+              <y-table border resizable height="100px" :data="data1" :columns="columns1"></y-table>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -182,7 +188,8 @@ export default {
         },
         {
           title: "地址",
-          key: "address"
+          key: "address",
+          ellipsis: true
         }
       ],
       data1: [
@@ -220,7 +227,7 @@ export default {
         },
         {
           id: "DBK",
-          name: "带边框",
+          name: "边框和拖拽",
           version: "0.1.6"
         },
         {
@@ -268,6 +275,12 @@ export default {
         {
           attr: "border",
           explain: "是否显示边框",
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "resizable",
+          explain: "是否可以拖拽列",
           type: "Boolean",
           default: "false"
         },
@@ -326,6 +339,18 @@ export default {
           explain: `最大列宽`,
           type: "Number",
           default: "-"
+        },
+        {
+          attr: "ifHtml",
+          explain: `对应列内容是否直接以html的方式渲染`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "ellipsis",
+          explain: `对应列内容过长是否用...省略`,
+          type: "Boolean",
+          default: "false"
         }
       ]
     };

@@ -38,6 +38,13 @@ export const MENU_LIST = [
         file: '/icon/icon.vue'
       },
       {
+        id: 29,
+        name: "Image 图片",
+        icon: "tupian",
+        to: "image",
+        file: '/image/image.vue'
+      },
+      {
         id: 26,
         name: "Input 输入框",
         icon: "bianji",
@@ -61,7 +68,7 @@ export const MENU_LIST = [
       {
         id: 28,
         name: "Table 表格",
-        icon: "ziyuanguanli",
+        icon: "biaoge",
         to: "table",
         file: '/table/table.vue'
       },
