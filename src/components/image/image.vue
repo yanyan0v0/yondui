@@ -24,7 +24,7 @@
         <y-icon type="sanjiao-you"></y-icon>
       </span>
       <span class="y-image-operator-btn y-image-close" @click="showMask = false">
-        <y-icon type="quxiao-guanbi"></y-icon>
+        <y-icon type="guanbi"></y-icon>
       </span>
       <div class="y-image-bar">
         <y-icon type="fangda" @click="handleScale(0.2)"></y-icon>

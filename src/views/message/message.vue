@@ -13,10 +13,7 @@
               <y-button @click="open()">打开消息提示</y-button>
             </div>
             <y-divider position="left">说明</y-divider>
-            <div class="introduce">
-              通过传递
-              <code>message</code>属性生成消息提示内容。
-            </div>
+            <div class="introduce">最基本的提示，默认在3秒后消失。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
             <pre>
@@ -26,7 +23,7 @@
   export default{
     methods: {
       open() {
-        this.$message({message: '这是一条消息！'});
+        this.$message.info('这是一条消息！');
       }
     }
   }
@@ -67,7 +64,7 @@
   export default{
     methods: {
       open(type) {
-        this.$message({type,message: '这是一条消息！'});
+        this.$message[type]('这是一条消息！');
       }
     }
   }
@@ -78,37 +75,10 @@
       </div>
 
       <!-- 分割线 -->
+      <h2>API</h2>
       <div v-show="navList[2].version >= version">
         <h3 :id="navList[2].id">{{navList[2].name}}</h3>
-        <y-card :split="2">
-          <div slot="card1" class="preview-card">
-            <div class="preview"></div>
-            <y-divider position="left">说明</y-divider>
-            <div class="introduce">
-              通过
-              <code>direction</code>属性设置消息提示展示方向， 可选
-              <code>horizontal</code>水平（默认），
-              <code>vertical</code>垂直。
-            </div>
-          </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[2].height}">
-            <pre>
-            <code>
-            </code>
-            </pre>
-          </div>
-        </y-card>
-      </div>
-
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div v-show="navList[3].version >= version">
-        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
         <y-table :data="propList" :columns="propColumns"></y-table>
-      </div>
-      <div v-show="navList[4].version >= version">
-        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
-        <y-table :data="eventList" :columns="eventColumns"></y-table>
       </div>
     </article>
 
@@ -118,7 +88,7 @@
 </template>
 
 <script>
-import { PROP_COLUMNS, EVENT_COLUMNS } from "@ui/util/config";
+import { PROP_COLUMNS } from "@ui/util/config";
 export default {
   data() {
     return {
@@ -126,59 +96,40 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.6",
-          height: "330px"
+          version: "0.1.7",
+          height: "200px"
         },
         {
           id: "SL",
-          name: "缩略",
-          version: "0.1.6",
-          height: "330px"
-        },
-        {
-          id: "FX",
-          name: "方向",
-          version: "0.1.6",
-          height: "420px"
+          name: "类别",
+          version: "0.1.7",
+          height: "200px"
         },
         {
           id: "PROPS",
           name: "Message props",
           version: "0.1.6"
-        },
-        {
-          id: "EVENTS",
-          name: "Message events",
-          version: "0.1.6"
         }
       ],
       propColumns: PROP_COLUMNS,
-      eventColumns: EVENT_COLUMNS,
       propList: [
         {
-          attr: "data",
-          explain: "显示的结构化数据",
-          type: "Array",
-          default: "[]"
+          attr: "message",
+          explain: "显示消息内容",
+          type: "String",
+          default: ""
         },
         {
-          attr: "max",
-          explain: "消息提示固定展示张数",
+          attr: "duration",
+          explain: "消息提示持续时间，0代表无限制，单位毫秒",
           type: "Number",
-          default: "-"
+          default: "3000"
         },
         {
-          attr: "direction",
-          explain: `消息提示方向，可选<code class="keyword-code">horizontal</code>水平，<code class="keyword-code">vertical</code>垂直`,
+          attr: "showClose",
+          explain: "显示关闭按钮",
           type: "String",
           default: "horizontal"
-        }
-      ],
-      eventList: [
-        {
-          attr: "on-click",
-          explain: "点击消息提示的回调",
-          return: "点击的消息提示对象"
         }
       ]
     };
@@ -190,10 +141,7 @@ export default {
   },
   methods: {
     open(type = "info") {
-      this.$message({
-        type,
-        showClose: true,
-        duration: 0,
+      this.$message[type]({
         message: "这是一条消息！"
       });
     }

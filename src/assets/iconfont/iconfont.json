@@ -6,6 +6,55 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "14884939",
+      "name": "成功-checkbox",
+      "font_class": "chenggong-checkbox",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "14884940",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "14884941",
+      "name": "提示-线性",
+      "font_class": "tishi-xianxing",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "14884942",
+      "name": "提示-面性",
+      "font_class": "tishi-mianxing",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "14884943",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "14884944",
+      "name": "警告",
+      "font_class": "jinggao",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "14884945",
+      "name": "成功",
+      "font_class": "chenggong",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
       "icon_id": "14860017",
       "name": "刷新-右",
       "font_class": "shuaxin-you",
@@ -221,13 +270,6 @@
       "font_class": "zuijincaijishijian",
       "unicode": "e647",
       "unicode_decimal": 58951
-    },
-    {
-      "icon_id": "14625666",
-      "name": "取消_关闭",
-      "font_class": "quxiao-guanbi",
-      "unicode": "e649",
-      "unicode_decimal": 58953
     },
     {
       "icon_id": "14625668",

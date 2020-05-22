@@ -7,11 +7,8 @@ const MessageConstructor = Vue.extend(Message)
 let instances = []
 
 const _Message = function (data) {
-  // 可接受data为字符串的传参
   const instance = new MessageConstructor({
-    data: (typeof data === 'string') ? {
-      message: data
-    } : data
+    data
   })
   instance.$mount()
   document.body.appendChild(instance.$el)
@@ -24,6 +21,17 @@ const _Message = function (data) {
   instances.push(instance)
   return instance;
 }
+
+const typeList = ['info', 'success', 'warning', 'error']
+typeList.forEach(type => {
+  _Message[type] = data => {
+    data.type = type
+    // 可接受data为字符串的传参
+    return _Message((typeof data === 'string') ? {
+      message: data
+    } : data)
+  }
+})
 
 export const refresh = (vm) => {
   // 从数组中移除

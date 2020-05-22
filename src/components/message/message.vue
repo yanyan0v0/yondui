@@ -6,8 +6,9 @@
       :class="['y-message-' + type]"
       :style="{top: top + 'px'}"
     >
+      <y-icon :type="typeIcons[type]"></y-icon>
       {{message}}
-      <y-icon ref="icon" v-show="showClose" type="quxiao-guanbi" @click="close"></y-icon>
+      <y-icon v-show="showClose" type="guanbi" @click="close"></y-icon>
     </div>
   </transition>
 </template>
@@ -22,7 +23,13 @@ export default {
       showClose: false,
       top: 0,
       type: "info",
-      duration: 3000
+      duration: 3000,
+      typeIcons: {
+        info: "tishi-mianxing",
+        success: "chenggong",
+        warning: "jinggao",
+        error: "shanchu"
+      }
     };
   },
   methods: {
@@ -63,12 +70,16 @@ export default {
   left: 50%;
   border-radius: 4px;
   padding: 10px 20px;
+  font-size: 14px;
   opacity: 1;
   transform: translateX(-50%);
   transition: opacity 0.3s, top 0.3s;
   z-index: 2020;
+  i {
+    font-size: 12px;
+  }
   &-info {
-    background-color: #dcdee2;
+    background-color: #e8eaec;
     color: @text-color;
   }
   &-success {

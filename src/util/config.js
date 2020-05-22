@@ -61,7 +61,7 @@ export const MENU_LIST = [
       {
         id: 210,
         name: "Message 消息提示",
-        icon: "caidan",
+        icon: "xiaoxi",
         to: "message",
         file: '/message/message.vue'
       },
