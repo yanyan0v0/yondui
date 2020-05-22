@@ -192,6 +192,23 @@ export const deepCopy = (obj) => {
 }
 
 /**
+ * @description 对象转数组
+ * @param obj 对象
+ * @return 数组
+ */
+
+export const objToArray = (obj) => {
+  if (!(typeOf(obj) === 'object')) {
+    return []
+  }
+  let list = []
+  for (let key in obj) {
+    list.push(obj[key])
+  }
+  return list
+}
+
+/**
  * 时间格式化
  * @param fmt
  * @returns {*}

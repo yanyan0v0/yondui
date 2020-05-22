@@ -113,7 +113,7 @@
           <div slot="card2" v-highlight class="code-card" :style="{height: navList[2].height}">
             <pre>
             <code>
-  &lt;y-image :data="imageList" :max="2" style="width: 200px;" /&gt;
+  &lt;y-image :data="imageList" direction="vertical" :max="2" style="width: 200px;" /&gt;
 
   export default {
     data() {

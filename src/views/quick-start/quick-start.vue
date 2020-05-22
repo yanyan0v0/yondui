@@ -1,6 +1,6 @@
 <template>
   <div class="main-row">
-    <article class="code-article">
+    <article class="code-article" v-scrolling>
       <h1>快速上手</h1>
 
       <!-- 分隔线 -->
@@ -58,6 +58,9 @@
         </div>
       </div>
     </article>
+
+    <!-- 导航滚动条 -->
+    <y-nav ref="nav" :data="navList"></y-nav>
   </div>
 </template>
 
@@ -78,7 +81,7 @@ export default {
         },
         {
           id: "YR",
-          name: "引入UI",
+          name: "引入组件库",
           version: "0.0.1"
         },
         {

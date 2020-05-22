@@ -139,7 +139,7 @@ export default {
         moveX: 0
       };
       this.$el.addEventListener("mousemove", this.handleMouseMove);
-      this.$el.addEventListener("mouseup", this.handleMouseUp);
+      window.addEventListener("mouseup", this.handleMouseUp);
     },
     handleMouseMove(event) {
       if (this.dragCol.key) {
@@ -201,7 +201,7 @@ export default {
 
         this.dragCol = {};
         this.$el.removeEventListener("mousemove", this.handleMouseMove);
-        this.$el.removeEventListener("mouseup", this.handleMouseUp);
+        window.removeEventListener("mouseup", this.handleMouseUp);
       }
     },
     // 此函数是为了计算每一列的宽度，当表格需要重绘时调用
