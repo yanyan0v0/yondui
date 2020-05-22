@@ -1,6 +1,6 @@
 {
   "name": "y2-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve --mode development",
@@ -48,7 +48,7 @@
     "not dead"
   ],
   "description": "## Project setup ``` npm install ```",
-  "main": "./dist/y2-ui.common.js",
+  "main": "./y2-ui/y2-ui.common.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yanyan0v0/yyui.git"

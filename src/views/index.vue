@@ -10,7 +10,7 @@
           <p class="title">Y2-UI</p>
         </div>
         <p class="introduce">一套基于 Vue.js 的高质量 UI 组件库</p>
-        <y-button shape="round" :color="['primary', '#b519be']" @click.native="start">快速开始</y-button>
+        <y-button shape="round" :color="['primary', '#b519be']" @click="start">快速开始</y-button>
       </div>
     </div>
     <footer class="footer">

@@ -1,4 +1,6 @@
 import { objToArray } from '@ui/util/tools'
+
+// 指令式
 import Button from '@ui/components/button/button.vue'
 import Card from '@ui/components/card/card.vue'
 import Divider from '@ui/components/divider/divider.vue'
@@ -11,6 +13,10 @@ import Nav from '@ui/components/navigator/navigator.vue'
 import Rank from '@ui/components/rank/rank.vue'
 import Table from '@ui/components/table/table.vue'
 import TimeLine from '@ui/components/timeline/timeline.vue'
+
+// 函数式
+import Message from '@ui/components/message/index.js'
+
 const components = {
   Button,
   Card,
@@ -37,6 +43,9 @@ const install = function (Vue) {
   objToArray(components).forEach(component => {
     Vue.component(component.name, component);
   });
+
+  Vue.prototype.$message = Message;
+
 };
 
 if (typeof window !== 'undefined' && window.Vue) {

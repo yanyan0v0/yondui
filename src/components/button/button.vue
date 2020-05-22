@@ -1,6 +1,7 @@
 <template>
   <button
     class="y-button"
+    @click="handleClick"
     :class="[ classPrefix + size, classPrefix + shape, disabled ? classPrefix + 'disabled' : '']"
     :style="[colorStyle, {'width': width}]"
   >
@@ -100,6 +101,11 @@ export default {
           };
         }
       }
+    }
+  },
+  methods: {
+    handleClick(e) {
+      this.$emit("click", e);
     }
   }
 };

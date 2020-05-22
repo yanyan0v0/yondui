@@ -1,5 +1,9 @@
 <template>
-  <i :class="`iconfont y-icon-${type}`" :style="{'font-size': size + 'px', 'color': color}"></i>
+  <i
+    @click="handleClick"
+    :class="`iconfont y-icon-${type}`"
+    :style="{'font-size': size + 'px', 'color': color}"
+  ></i>
 </template>
 
 <script>
@@ -17,6 +21,11 @@ export default {
     color: {
       type: String,
       default: ""
+    }
+  },
+  methods: {
+    handleClick(e) {
+      this.$emit("click", e);
     }
   }
 };

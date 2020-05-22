@@ -59,6 +59,13 @@ export const MENU_LIST = [
         file: '/menu/menu.vue'
       },
       {
+        id: 210,
+        name: "Message 消息提示",
+        icon: "caidan",
+        to: "message",
+        file: '/message/message.vue'
+      },
+      {
         id: 24,
         name: "Rank 排行",
         icon: "paihang",

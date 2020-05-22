@@ -27,11 +27,11 @@
         <y-icon type="quxiao-guanbi"></y-icon>
       </span>
       <div class="y-image-bar">
-        <y-icon type="fangda" @click.native="handleScale(0.2)"></y-icon>
-        <y-icon type="suoxiao" @click.native="handleScale(-0.2)"></y-icon>
-        <y-icon type="quanping1"></y-icon>
-        <y-icon type="shuaxin-zuo" @click.native="handleRotate(-45)"></y-icon>
-        <y-icon type="shuaxin-you" @click.native="handleRotate(45)"></y-icon>
+        <y-icon type="fangda" @click="handleScale(0.2)"></y-icon>
+        <y-icon type="suoxiao" @click="handleScale(-0.2)"></y-icon>
+        <y-icon :type="objectFit ==='none' ? 'quanping1' : 'tuichuquanping'" @click="handleFit"></y-icon>
+        <y-icon type="shuaxin-zuo" @click="handleRotate(-45)"></y-icon>
+        <y-icon type="shuaxin-you" @click="handleRotate(45)"></y-icon>
       </div>
     </div>
   </div>
@@ -64,12 +64,14 @@ export default {
       showMask: false,
       activeIndex: 0,
       scale: 1,
-      rotate: 0
+      rotate: 0,
+      objectFit: "none"
     };
   },
   computed: {
     imageStyle() {
       return {
+        "object-fit": this.objectFit,
         transform: `scale(${this.scale}) rotate(${this.rotate}deg)`
       };
     }
@@ -93,13 +95,14 @@ export default {
       }
     },
     handleScale(scale) {
-      console.log(scale);
-      if (this.scale + scale > 0) {
+      if (this.scale + scale >= 0.1) {
         this.scale += scale;
       }
     },
+    handleFit() {
+      this.objectFit = this.objectFit === "none" ? "contain" : "none";
+    },
     handleRotate(rotate) {
-      console.log(rotate);
       this.rotate += rotate;
     }
   },
@@ -175,7 +178,6 @@ export default {
     background-color: @mask-color;
     .y-image-mask-img {
       .full;
-      object-fit: none;
       transition: all 0.3s;
     }
     .y-image-operator-btn {
