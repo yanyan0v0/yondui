@@ -14,6 +14,7 @@ import Menu from '@ui/components/menu/menu.vue'
 import Nav from '@ui/components/navigator/navigator.vue'
 import Rank from '@ui/components/rank/rank.vue'
 import Table from '@ui/components/table/table.vue'
+import Slider from '@ui/components/slider/slider.vue'
 import TimeLine from '@ui/components/timeline/timeline.vue'
 
 // 函数式
@@ -32,6 +33,7 @@ const components = {
   Menu,
   Nav,
   Rank,
+  Slider,
   Table,
   TimeLine
 }

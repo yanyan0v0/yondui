@@ -8,7 +8,7 @@
       <y-color-picker v-model="penColor" showFooter width="24px" height="24px"></y-color-picker>
     </div>
     <canvas
-      :id="id"
+      :id="canvasId"
       :width="canvasRect.width + 'px'"
       :height="canvasRect.height + 'px'"
       class="y-draw-canvas"
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       // 随机id
-      id: "canvas" + (Date.now() + parseInt(Math.random() * 1000)),
+      canvasId: "drawCanvas" + (Date.now() + parseInt(Math.random() * 1000)),
       // 画笔颜色
       penColor: "#ed4014",
       // 画笔粗细
@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-    this.canvasDom = document.getElementById(this.id);
+    this.canvasDom = document.getElementById(this.canvasId);
     this.canvasRect = this.canvasDom.getBoundingClientRect();
     this.canvasDom.addEventListener("mousedown", this.handleMouseDown);
     this.canvasDom.addEventListener("mousemove", this.handleMouseMove);

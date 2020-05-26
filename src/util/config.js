@@ -87,6 +87,13 @@ export const MENU_LIST = [
         file: '/rank/rank.vue'
       },
       {
+        id: 213,
+        name: "Slider 滑块",
+        icon: "xian",
+        to: "slider",
+        file: '/slider/slider.vue'
+      },
+      {
         id: 28,
         name: "Table 表格",
         icon: "biaoge",

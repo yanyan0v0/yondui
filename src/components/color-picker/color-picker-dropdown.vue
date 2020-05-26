@@ -7,9 +7,9 @@
   >
     <y-panel :color="colorData" @on-change="handlePanelChange"></y-panel>
     <div class="y-color-picker-select">
-      <span class="select-picker">
+      <!-- <span class="select-picker">
         <y-icon type="huabi"></y-icon>
-      </span>
+      </span>-->
       <div class="selected-color">
         <span :style="{'background': colorData.toHslString ? colorData.toHslString() : ''}"></span>
       </div>
