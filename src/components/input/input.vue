@@ -11,10 +11,10 @@
       @keyup.enter="handleEnter"
       @input="handleInput"
     />
-    <span class="y-input-prefix">
+    <span v-if="this.$slots.prefix" class="y-input-prefix" :class="['y-input-prefix-' + size]">
       <slot name="prefix"></slot>
     </span>
-    <span class="y-input-suffix">
+    <span v-if="this.$slots.suffix" class="y-input-suffix" :class="['y-input-suffix-' + size]">
       <slot name="suffix"></slot>
     </span>
   </div>
@@ -86,6 +86,7 @@ export default {
   display: inline-block;
   position: relative;
   width: 100%;
+  font-size: 14px;
   .y-input {
     border: 1px solid @border-color;
     border-radius: 4px;
@@ -93,7 +94,6 @@ export default {
     width: 100%;
     outline: none;
     background-color: #fff;
-    font-size: 14px;
     color: @text-color;
     &:hover,
     &:focus {
@@ -122,7 +122,7 @@ export default {
     font-size: 16px;
   }
   .y-input-small {
-    padding: 5px 8px;
+    padding: 4px 8px;
   }
   .y-input-mini {
     padding: 2px 5px;
@@ -146,6 +146,15 @@ export default {
     width: 34px;
     text-align: center;
     line-height: 34px;
+    &-large {
+      line-height: 40px;
+    }
+    &-small {
+      line-height: 26px;
+    }
+    &-mini {
+      line-height: 20px;
+    }
   }
   .y-input-suffix {
     position: absolute;
@@ -154,6 +163,15 @@ export default {
     width: 34px;
     text-align: center;
     line-height: 34px;
+    &-large {
+      line-height: 40px;
+    }
+    &-small {
+      line-height: 26px;
+    }
+    &-mini {
+      line-height: 20px;
+    }
   }
 }
 </style>

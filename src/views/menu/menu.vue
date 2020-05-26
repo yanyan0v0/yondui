@@ -114,7 +114,7 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Menu props",
+          name: "Menu Props",
           version: "0.1.4"
         }
       ],

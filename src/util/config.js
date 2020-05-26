@@ -24,11 +24,25 @@ export const MENU_LIST = [
         file: '/button/button.vue'
       },
       {
+        id: 212,
+        name: "ColorPicker 颜色选择器",
+        icon: "tiaoseban",
+        to: "colorPicker",
+        file: '/color-picker/color-picker.vue'
+      },
+      {
         id: 27,
         name: "Divider 分割线",
         icon: "xian",
         to: "divider",
         file: '/divider/divider.vue'
+      },
+      {
+        id: 211,
+        name: "Draw 绘图",
+        icon: "huabi",
+        to: "draw",
+        file: '/draw/draw.vue'
       },
       {
         id: 22,

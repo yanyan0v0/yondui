@@ -165,12 +165,12 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Timeline props",
+          name: "Timeline Props",
           version: "0.1.4"
         },
         {
           id: "SLOTS",
-          name: "Timeline slots",
+          name: "Timeline Slots",
           version: "0.1.4"
         }
       ],

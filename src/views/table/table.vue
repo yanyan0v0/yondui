@@ -243,12 +243,12 @@ export default {
         },
         {
           id: "TPROPS",
-          name: "Table props",
+          name: "Table Props",
           version: "0.1.6"
         },
         {
           id: "CPROPS",
-          name: "Column props",
+          name: "Column Props",
           version: "0.1.6"
         }
       ],
@@ -262,7 +262,7 @@ export default {
         },
         {
           attr: "columns",
-          explain: "表格列的配置描述，具体项见后文Column props",
+          explain: "表格列的配置描述，具体项见后文Column Props",
           type: "Array",
           default: "-"
         },

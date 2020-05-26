@@ -228,7 +228,7 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Button props",
+          name: "Button Props",
           version: "0.1.4"
         }
       ],

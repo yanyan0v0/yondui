@@ -107,8 +107,8 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Message props",
-          version: "0.1.6"
+          name: "Message Props",
+          version: "0.1.7"
         }
       ],
       propColumns: PROP_COLUMNS,

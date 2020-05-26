@@ -61,7 +61,7 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Icon props",
+          name: "Icon Props",
           version: "0.1.4"
         }
       ],

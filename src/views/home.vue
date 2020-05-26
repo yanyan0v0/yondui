@@ -4,6 +4,13 @@
       <router-link to="/">
         <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
       </router-link>
+      <ul class="header-group">
+        <li>
+          <a href="https://github.com/yanyan0v0/yyui" target="_blank">
+            <y-icon type="github"></y-icon>
+          </a>
+        </li>
+      </ul>
     </header>
     <div class="container">
       <div class="left">
@@ -71,10 +78,12 @@ export default {
 
 <style lang="less" scoped>
 .home-main {
-  .main-column;
-  padding: 0 2.5%;
+  .flex-wrap(column);
+  position: relative;
+  height: 100%;
+  margin: 0 2%;
   & > .header {
-    position: fixed;
+    position: absolute;
     z-index: 1;
     top: 0;
     border-bottom: 1px solid @border-color;
@@ -85,6 +94,17 @@ export default {
       height: 100%;
       padding: 20px 0;
     }
+    .header-group {
+      float: right;
+      height: 100%;
+      li {
+        .center-h;
+        height: 100%;
+        i {
+          font-size: 32px;
+        }
+      }
+    }
   }
   & > .container {
     position: relative;
@@ -94,11 +114,11 @@ export default {
     & > .left {
       position: absolute;
       left: 0;
-      width: 220px;
+      width: 240px;
       overflow-y: auto;
     }
     & > .right {
-      padding: 20px 0 20px 240px;
+      padding: 20px 0 20px 260px;
       width: 100%;
       height: 100%;
     }

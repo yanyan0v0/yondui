@@ -82,9 +82,9 @@ export default {
 
 
 &lt;span&gt;文本&lt;/span&gt;
-&lt;y-divider dircetion="vertical" /&gt;
+&lt;y-divider direction="vertical" /&gt;
 &lt;span&gt;文本&lt;/span&gt;
-&lt;y-divider dircetion="vertical" /&gt;
+&lt;y-divider direction="vertical" /&gt;
 &lt;span&gt;文本&lt;/span&gt;
 
 &lt;y-input v-model="value6" placeholder="请输入" width="300px" class="m-b-5"&gt;

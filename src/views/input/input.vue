@@ -191,12 +191,12 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Input props",
+          name: "Input Props",
           version: "0.1.6"
         },
         {
           id: "SLOTS",
-          name: "Input slots",
+          name: "Input Slots",
           version: "0.1.6"
         }
       ],
@@ -226,6 +226,12 @@ export default {
           explain: `最大输入长度`,
           type: "Number",
           default: "-"
+        },
+        {
+          attr: "width",
+          explain: `宽度`,
+          type: "String",
+          default: "100%"
         },
         {
           attr: "placeholder",

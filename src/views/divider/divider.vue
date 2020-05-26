@@ -60,15 +60,15 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <span>文本</span>
-              <y-divider dircetion="vertical" />
+              <y-divider direction="vertical" />
               <span>文本</span>
-              <y-divider dircetion="vertical" />
+              <y-divider direction="vertical" />
               <span>文本</span>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               通过设置
-              <code>dircetion</code>可控制方向，可选
+              <code>direction</code>可控制方向，可选
               <code>horizontal</code>水平（默认）、
               <code>vertical</code>垂直
               。
@@ -78,9 +78,9 @@
             <pre>
             <code>
   &lt;span&gt;文本&lt;/span&gt;
-  &lt;y-divider dircetion="vertical" /&gt;
+  &lt;y-divider direction="vertical" /&gt;
   &lt;span&gt;文本&lt;/span&gt;
-  &lt;y-divider dircetion="vertical" /&gt;
+  &lt;y-divider direction="vertical" /&gt;
   &lt;span&gt;文本&lt;/span&gt;
             </code>
             </pre>
@@ -119,7 +119,7 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Icon props",
+          name: "Icon Props",
           version: "0.1.4"
         }
       ],
@@ -138,7 +138,7 @@ export default {
           default: "false"
         },
         {
-          attr: "dircetion",
+          attr: "direction",
           explain: `可选<code class="keyword-code">horizontal</code>水平、<code class="keyword-code">vertical</code>垂直`,
           type: "String",
           default: "horizontal"

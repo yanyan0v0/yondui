@@ -6,6 +6,83 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "14936872",
+      "name": "上下切换",
+      "font_class": "shangxiaqiehuan",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "630083",
+      "name": "下拉",
+      "font_class": "xiala",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "14310223",
+      "name": "上拉",
+      "font_class": "shangla",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "14906933",
+      "name": "保存-实心",
+      "font_class": "baocun-shixin",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "14906934",
+      "name": "调色板",
+      "font_class": "tiaoseban",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "14906935",
+      "name": "垃圾桶-实心",
+      "font_class": "lajitong-shixin",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "14906936",
+      "name": "保存=空心",
+      "font_class": "baocunkongxin",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "14906937",
+      "name": "画笔",
+      "font_class": "huabi",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "14906938",
+      "name": "垃圾桶-空心",
+      "font_class": "lajitong-kongxin",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "14906939",
+      "name": "撤销",
+      "font_class": "chexiao",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "836610",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e718",
+      "unicode_decimal": 59160
+    },
+    {
       "icon_id": "14884939",
       "name": "成功-checkbox",
       "font_class": "chenggong-checkbox",
@@ -228,20 +305,6 @@
       "font_class": "tianjia",
       "unicode": "e63c",
       "unicode_decimal": 58940
-    },
-    {
-      "icon_id": "14625652",
-      "name": "下拉_面性",
-      "font_class": "xiala-mianxing",
-      "unicode": "e63d",
-      "unicode_decimal": 58941
-    },
-    {
-      "icon_id": "14625653",
-      "name": "下拉_线性",
-      "font_class": "xiala-xianxing",
-      "unicode": "e63e",
-      "unicode_decimal": 58942
     },
     {
       "icon_id": "14625658",

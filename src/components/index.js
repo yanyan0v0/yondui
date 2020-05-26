@@ -3,7 +3,9 @@ import { objToArray } from '@ui/util/tools'
 // 指令式
 import Button from '@ui/components/button/button.vue'
 import Card from '@ui/components/card/card.vue'
+import ColorPicker from '@ui/components/color-picker/color-picker.vue'
 import Divider from '@ui/components/divider/divider.vue'
+import Draw from '@ui/components/draw/draw.vue'
 import Icon from '@ui/components/icon/icon.vue'
 import Image from '@ui/components/image/image.vue'
 import Input from '@ui/components/input/input.vue'
@@ -20,7 +22,9 @@ import Message from '@ui/components/message/index.js'
 const components = {
   Button,
   Card,
+  ColorPicker,
   Divider,
+  Draw,
   Icon,
   Image,
   Input,

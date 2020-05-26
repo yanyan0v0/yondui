@@ -223,12 +223,12 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Image props",
+          name: "Image Props",
           version: "0.1.6"
         },
         {
           id: "EVENTS",
-          name: "Image events",
+          name: "Image Events",
           version: "0.1.6"
         }
       ],

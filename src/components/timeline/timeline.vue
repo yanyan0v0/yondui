@@ -1,5 +1,5 @@
 <template>
-  <div class="y-timeline" v-scrollBottom="handleLoad">
+  <div class="y-timeline" v-scrollbottom="handleLoad">
     <div class="y-timeline-header" v-show="data.length">
       <div class="y-timeline-header-content" :style="{'margin-left': leftWidth + 'px'}">
         <span class="y-timeline-header-content-circle"></span>

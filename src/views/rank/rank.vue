@@ -151,17 +151,17 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Rank props",
+          name: "Rank Props",
           version: "0.1.4"
         },
         {
           id: "SLOTS",
-          name: "Rank slots",
+          name: "Rank Slots",
           version: "0.1.4"
         },
         {
           id: "EVENTS",
-          name: "Rank events",
+          name: "Rank Events",
           version: "0.1.4"
         }
       ],

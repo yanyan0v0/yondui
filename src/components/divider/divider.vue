@@ -1,5 +1,5 @@
 <template>
-  <div class="y-divider" :class="[classPrefix + dircetion, dashed ? classPrefix + 'dashed' : '']">
+  <div class="y-divider" :class="[classPrefix + direction, dashed ? classPrefix + 'dashed' : '']">
     <div class="y-divider-inner" :class="classPrefix + position">
       <slot></slot>
     </div>
@@ -11,7 +11,7 @@ export default {
   name: "y-divider",
   props: {
     // horizontal 水平 vertical 垂直
-    dircetion: {
+    direction: {
       type: String,
       default: "horizontal"
     },
