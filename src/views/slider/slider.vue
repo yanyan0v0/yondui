@@ -2,7 +2,7 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>ColorPicker 颜色选择器</h1>
+      <h1>Slider 滑块</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="navList[0].version >= version">
@@ -12,20 +12,26 @@
             <div class="preview">
               <div :style="{height: navList[0].height}">
                 <y-slider v-model="slider1" />
+                <y-slider v-model="slider2" :max="250" :min="10" />
+                <span>值1：{{slider1}}</span>
+                <y-button @click="slider1 = slider1 + 4">加4</y-button>
+                <span>值2：{{slider2}}</span>
               </div>
             </div>
             <y-divider position="left">说明</y-divider>
-            <div class="introduce">最基本的颜色选择器。</div>
+            <div class="introduce">最基本的滑块。</div>
           </div>
           <div slot="card2" v-highlight class="code-card">
             <pre>
             <code>
-  &lt;y-color-picker v-model="color1" /&gt;
+  &lt;y-slider v-model="slider1" /&gt;
+  &lt;y-slider v-model="slider2" :max="250" :min="40" /&gt;
 
   export defalut {
     data() {
       return {
-        color1: 'red'
+        slider1: 50,
+        slider2: 50,
       }
     }
   }
@@ -58,6 +64,7 @@ export default {
   data() {
     return {
       slider1: 50,
+      slider2: 50,
       navList: [
         {
           id: "JC",
@@ -67,12 +74,12 @@ export default {
         },
         {
           id: "PROPS",
-          name: "ColorPicker Props",
+          name: "Slider Props",
           version: "0.1.7"
         },
         {
           id: "EVENTS",
-          name: "ColorPicker Events",
+          name: "Slider Events",
           version: "0.1.7"
         }
       ],
@@ -86,22 +93,34 @@ export default {
           default: "-"
         },
         {
-          attr: "show-footer",
-          explain: `是否显示底部确认按钮`,
-          type: "Boolean",
-          default: "false"
+          attr: "min",
+          explain: `最小值`,
+          type: "Number",
+          default: 0
+        },
+        {
+          attr: "max",
+          explain: `最大值`,
+          type: "Number",
+          default: 100
+        },
+        {
+          attr: "color",
+          explain: `滑块颜色`,
+          type: "String",
+          default: "#2d8cf0"
         }
       ],
       eventList: [
         {
           attr: "on-change",
-          explain: "颜色发生变化后的回调",
-          return: "当前颜色值"
+          explain: "在松开滑动时触发，返回当前的选值，在滑动过程中不会触发",
+          return: "value"
         },
         {
-          attr: "on-confirm",
-          explain: "点击确定按钮的回调",
-          return: "当前颜色值"
+          attr: "on-input",
+          explain: "滑动条数据变化时触发，返回当前的选值，在滑动过程中实时触发",
+          return: "value"
         }
       ]
     };

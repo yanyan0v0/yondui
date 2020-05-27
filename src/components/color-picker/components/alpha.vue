@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     handleAlphaChange({ offsetX }) {
+      this.initRect();
       let a = 0;
       if (offsetX >= this.alphaRect.width) {
         a = 1;
@@ -45,16 +46,19 @@ export default {
     },
     handleMouseMove(event) {
       if (this.startDrag) {
+        this.initRect();
         let offsetX = event.x - this.alphaRect.x;
         this.handleAlphaChange({ offsetX });
       }
     },
     handleMouseUp() {
       this.startDrag = false;
+    },
+    initRect() {
+      if (this.alphaRect.width === 0 || this.alphaRect.height === 0) {
+        this.alphaRect = this.$el.getBoundingClientRect();
+      }
     }
-  },
-  mounted() {
-    this.alphaRect = this.$el.getBoundingClientRect();
   },
   beforeDestroy() {
     document.removeEventListener("mousemove", this.handleMouseMove);

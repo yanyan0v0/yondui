@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     handleHueChange({ offsetX }) {
+      this.initRect();
       let h = 0;
       if (offsetX >= this.hueRect.width) {
         h = 359;
@@ -42,16 +43,19 @@ export default {
     },
     handleMouseMove(event) {
       if (this.startDrag) {
+        this.initRect();
         let offsetX = event.x - this.hueRect.x;
         this.handleHueChange({ offsetX });
       }
     },
     handleMouseUp() {
       this.startDrag = false;
+    },
+    initRect() {
+      if (this.hueRect.width === 0 || this.hueRect.height === 0) {
+        this.hueRect = this.$el.getBoundingClientRect();
+      }
     }
-  },
-  mounted() {
-    this.hueRect = this.$el.getBoundingClientRect();
   },
   beforeDestroy() {
     document.removeEventListener("mousemove", this.handleMouseMove);

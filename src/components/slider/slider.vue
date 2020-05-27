@@ -1,11 +1,21 @@
 <template>
   <div class="y-slider">
-    <canvas
-      :id="canvasId"
-      :width="canvasRect.width + 'px'"
-      :height="canvasRect.height + 'px'"
-      class="y-slider-canvas"
-    ></canvas>
+    <div ref="bar" class="y-slider-bar" @click="handleSliderClick">
+      <div
+        ref="barActive"
+        class="y-slider-bar-active"
+        :style="{width: left + '%','background-color': color}"
+      ></div>
+      <span
+        ref="block"
+        class="y-slider-block"
+        :style="{left: left + '%', height: barRect.height + 5 + 'px', width: barRect.height + 5 + 'px','border-color': color}"
+        @mousedown="handleMouseDown"
+        @hover="handleHover"
+      >
+        <y-tooltip v-model="tipVisible">{{value}}</y-tooltip>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -16,56 +26,127 @@ export default {
     value: {
       type: Number,
       default: 0
+    },
+    max: {
+      type: Number,
+      default: 100
+    },
+    min: {
+      type: Number,
+      default: 0
+    },
+    color: {
+      type: String,
+      default: ""
     }
   },
   data() {
     return {
-      canvasId: "sliderCanvas" + (Date.now() + parseInt(Math.random() * 1000)),
-      canvasDom: null,
-      canvasRect: {},
-      list: [
-        [0, 0],
-        [0, 10],
-        [10, 30],
-        [20, 70],
-        [30, 10],
-        [40, 30],
-        [50, 20],
-        [60, 60],
-        [60, 0]
-      ]
+      // 滑块的left属性 以百分比展示
+      left: 0,
+      barRect: {},
+      tipVisible: false,
+      startDrag: false
     };
   },
-  mounted() {
-    this.canvasDom = document.getElementById(this.canvasId);
-    this.canvasRect = this.canvasDom.getBoundingClientRect();
-    console.log(this.canvasRect);
-    this.$nextTick(() => {
-      var ctx = this.canvasDom.getContext("2d");
-      // ctx.translate(0, this.canvasRect.height);
-      ctx.fillStyle = "#FF0000";
-      ctx.beginPath();
-      ctx.moveTo(this.list[0][0], this.canvasRect.height - this.list[0][1]);
-      let lines = [];
-      for (let i = 1; i < this.list.length; i++) {
-        lines.push(this.list[i][0]);
-        lines.push(this.canvasRect.height - this.list[i][1]);
-        // ctx.lineTo(this.list[i][0], this.canvasRect.height - this.list[i][1]);
+  computed: {
+    handleLeft() {
+      return parseInt(this.min + (this.left * (this.max - this.min)) / 100);
+    }
+  },
+  methods: {
+    initLeft(value) {
+      console.log(value);
+      let left = parseInt((100 * (value - this.min)) / (this.max - this.min));
+      console.log(left);
+      if (left >= 100) {
+        this.$emit("input", this.max);
+        return 100;
+      } else if (left <= 0) {
+        this.$emit("input", this.min);
+        return 0;
+      } else {
+        return left;
       }
-      ctx.bezierCurveTo(...lines);
-      ctx.stroke();
-      // ctx.fill();
-      // ctx.scale(1, -1);
-    });
+    },
+    handleHover(event) {},
+    handleSliderClick(event) {
+      if (event.x - this.barRect.left >= this.barRect.width) {
+        this.left = 100;
+      } else if (event.x - this.barRect.left <= 0) {
+        this.left = 0;
+      } else {
+        this.left = parseInt(
+          (100 * (event.x - this.barRect.left)) / this.barRect.width
+        );
+      }
+      this.$emit("input", this.handleLeft);
+      this.$emit("on-input", this.handleLeft);
+    },
+    handleMouseDown() {
+      this.startDrag = true;
+      document.addEventListener("mousemove", this.handleMouseMove);
+      document.addEventListener("mouseup", this.handleMouseUp);
+      document.body.style["userSelect"] = "none";
+      this.$refs["barActive"].style.transition = "none";
+      this.$refs["block"].style.transition = "none";
+    },
+    handleMouseMove(event) {
+      if (this.startDrag) {
+        this.handleSliderClick(event);
+      }
+    },
+    handleMouseUp() {
+      this.startDrag = false;
+      this.$emit("on-change", this.handleLeft);
+      document.removeEventListener("mousemove", this.handleMouseMove);
+      document.removeEventListener("mouseup", this.handleMouseUp);
+      document.body.style["userSelect"] = "";
+      this.$refs["barActive"].style.transition = "";
+      this.$refs["block"].style.transition = "";
+    }
+  },
+  watch: {
+    value: {
+      handler(_value) {
+        if (!this.startDrag) this.left = this.initLeft(_value);
+      },
+      immediate: true
+    }
+  },
+  mounted() {
+    this.barRect = this.$refs["bar"].getBoundingClientRect();
   }
 };
 </script>
 
 <style lang="less">
 .y-slider {
-  .main;
-  &-canvas {
-    .full;
+  margin: 20px 0;
+  &-bar {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    background-color: @background-color;
+    &-active {
+      border-radius: 20px;
+      height: 100%;
+      background-color: @primary-color;
+      transition: width 0.3s;
+    }
+  }
+  &-block {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid @primary-color;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: left 0.3s;
+    cursor: pointer;
   }
 }
 </style>

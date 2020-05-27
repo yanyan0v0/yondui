@@ -113,8 +113,10 @@ export default {
     height: 100%;
     & > .left {
       position: absolute;
+      top: 80px;
       left: 0;
       width: 240px;
+      height: 100%;
       overflow-y: auto;
     }
     & > .right {

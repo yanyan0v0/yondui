@@ -16,6 +16,7 @@ import Rank from '@ui/components/rank/rank.vue'
 import Table from '@ui/components/table/table.vue'
 import Slider from '@ui/components/slider/slider.vue'
 import TimeLine from '@ui/components/timeline/timeline.vue'
+import Tooltip from '@ui/components/tooltip/tooltip.vue'
 
 // 函数式
 import Message from '@ui/components/message/index.js'
@@ -35,7 +36,8 @@ const components = {
   Rank,
   Slider,
   Table,
-  TimeLine
+  TimeLine,
+  Tooltip
 }
 
 // import customDirective from '@ui/directive'
