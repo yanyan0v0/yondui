@@ -6,6 +6,9 @@
       <y-icon type="lajitong-shixin" title="清除" @click="clear"></y-icon>
       <y-divider direction="vertical"></y-divider>
       <y-color-picker v-model="penColor" showFooter width="24px" height="24px"></y-color-picker>
+      <y-divider direction="vertical"></y-divider>
+      <span>画笔粗细：</span>
+      <y-slider v-model="penWidth" :min="1" :max="10"></y-slider>
     </div>
     <canvas
       :id="canvasId"
@@ -59,6 +62,11 @@ export default {
         event.x - this.canvasRect.left,
         event.y - this.canvasRect.top
       ];
+      // 开始绘制
+      this.ctx.strokeStyle = this.penColor;
+      this.ctx.lineWidth = this.penWidth;
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.drawOrigin[0], this.drawOrigin[1]);
       this.startDraw = true;
     },
     handleMouseMove(event) {
@@ -67,12 +75,6 @@ export default {
           event.x - this.canvasRect.left,
           event.y - this.canvasRect.top
         ];
-        this.ctx = this.canvasDom.getContext("2d");
-        this.ctx.strokeStyle = this.penColor;
-        this.ctx.lineWidh = this.penWidth;
-        // 开始绘制
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.drawOrigin[0], this.drawOrigin[1]);
         this.ctx.lineTo(curPoint[0], curPoint[1]);
         this.ctx.stroke();
         // 结束绘制
@@ -106,6 +108,7 @@ export default {
   },
   mounted() {
     this.canvasDom = document.getElementById(this.canvasId);
+    this.ctx = this.canvasDom.getContext("2d");
     this.canvasRect = this.canvasDom.getBoundingClientRect();
     this.canvasDom.addEventListener("mousedown", this.handleMouseDown);
     this.canvasDom.addEventListener("mousemove", this.handleMouseMove);
@@ -145,6 +148,11 @@ export default {
   .y-draw-group {
     top: 0;
     width: 100%;
+    .y-slider {
+      display: inline-block;
+      margin: 0 10px -10px;
+      width: 100px;
+    }
   }
   .y-draw-canvas {
     padding-top: 35px;

@@ -113,11 +113,15 @@ export default {
     height: 100%;
     & > .left {
       position: absolute;
-      top: 80px;
       left: 0;
+      top: 0;
+      padding-top: 80px;
       width: 240px;
       height: 100%;
       overflow-y: auto;
+      & > ul {
+        height: 100%;
+      }
     }
     & > .right {
       padding: 20px 0 20px 260px;

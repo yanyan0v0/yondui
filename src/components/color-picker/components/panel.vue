@@ -32,9 +32,7 @@ export default {
   },
   methods: {
     handlePanelClick(event) {
-      if (this.panelRect.width === 0 || this.panelRect.height === 0) {
-        this.initRect();
-      }
+      this.initRect();
       let s = (100 * event.offsetX) / this.panelRect.width;
       let v = 100 * (1 - event.offsetY / this.panelRect.height);
       this.$emit("on-change", {
@@ -43,7 +41,9 @@ export default {
       });
     },
     initRect() {
-      this.panelRect = this.$el.getBoundingClientRect();
+      if (!this.panelRect.width || !this.panelRect.height) {
+        this.panelRect = this.$el.getBoundingClientRect();
+      }
     }
   }
 };

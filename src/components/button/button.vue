@@ -113,6 +113,7 @@ export default {
 
 <style lang="less">
 .y-button {
+  position: relative;
   margin: 5px;
   border: 1px solid;
   padding: 6px 12px;

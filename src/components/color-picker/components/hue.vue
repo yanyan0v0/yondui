@@ -52,7 +52,7 @@ export default {
       this.startDrag = false;
     },
     initRect() {
-      if (this.hueRect.width === 0 || this.hueRect.height === 0) {
+      if (!this.hueRect.width || !this.hueRect.height) {
         this.hueRect = this.$el.getBoundingClientRect();
       }
     }

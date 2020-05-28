@@ -106,7 +106,14 @@ export const MENU_LIST = [
         icon: "shijianzhou",
         to: "timeline",
         file: '/timeline/timeline.vue'
-      }
+      },
+      {
+        id: 214,
+        name: "Tooltip 提示框",
+        icon: "xiaoxi",
+        to: "tooltip",
+        file: '/tooltip/tooltip.vue'
+      },
     ]
   }
 ]

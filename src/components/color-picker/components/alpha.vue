@@ -55,7 +55,7 @@ export default {
       this.startDrag = false;
     },
     initRect() {
-      if (this.alphaRect.width === 0 || this.alphaRect.height === 0) {
+      if (!this.alphaRect.width || !this.alphaRect.height) {
         this.alphaRect = this.$el.getBoundingClientRect();
       }
     }

@@ -94,3 +94,68 @@ export default {
 &lt;y-input v-model="value6" placeholder="请输入" width="300px"&gt;
   &lt;y-icon type="sousuo" slot="suffix"&gt;&lt;/y-icon&gt;
 &lt;/y-input&gt;
+
+
+&lt;y-button&gt; 
+  上左
+  &lt;y-tooltip placement="top-start"&gt;top-start 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button @click="test"&gt;
+  上中
+  &lt;y-tooltip placement="top"&gt;top 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  上右
+  &lt;y-tooltip placement="top-end"&gt;top-end 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  左上
+  &lt;y-tooltip placement="left-start"&gt;left-start 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  左中
+  &lt;y-tooltip placement="left"&gt;left 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  左下
+  &lt;y-tooltip placement="left-end"&gt;left-end 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  右上
+  &lt;y-tooltip placement="right-start"&gt;right-start 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  右中
+  &lt;y-tooltip placement="right"&gt;right 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  右下
+  &lt;y-tooltip placement="right-end"&gt;right-end 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  下左
+  &lt;y-tooltip placement="bottom-start"&gt;bottom-start 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  下中
+  &lt;y-tooltip placement="bottom"&gt;bottom 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  下右
+  &lt;y-tooltip placement="bottom-end"&gt;bottom-end 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+
+&lt;y-button&gt;
+  hover触发
+  &lt;y-tooltip&gt;hover触发 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+&lt;y-button&gt;
+  click触发
+  &lt;y-tooltip trigger="click"&gt;click触发 文字提示&lt;/y-tooltip&gt;
+&lt;/y-button&gt;
+
+&lt;y-button @click="visible1 = !visible1"&gt;click触发&lt;/y-button&gt;
+&lt;span style="position: relative"&gt;
+  需要提示的一段文字
+  &lt;y-tooltip v-model="visible1" trigger="custom"&gt;custom触发 文字提示&lt;/y-tooltip&gt;
+&lt;/span&gt;

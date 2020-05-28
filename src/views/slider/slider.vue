@@ -12,10 +12,12 @@
             <div class="preview">
               <div :style="{height: navList[0].height}">
                 <y-slider v-model="slider1" />
-                <y-slider v-model="slider2" :max="250" :min="10" />
-                <span>值1：{{slider1}}</span>
+                <y-slider v-model="slider2" :max="250" :min="10"></y-slider>
+                <span>slider1：{{slider1}}</span>
                 <y-button @click="slider1 = slider1 + 4">加4</y-button>
-                <span>值2：{{slider2}}</span>
+                <br />
+                <span>slider2：{{slider2}}</span>
+                <y-button @click="slider2 = slider2 + 4">加4</y-button>
               </div>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -103,6 +105,12 @@ export default {
           explain: `最大值`,
           type: "Number",
           default: 100
+        },
+        {
+          attr: "showLabel",
+          explain: `是否显示最大最小值标识`,
+          type: "Boolean",
+          default: true
         },
         {
           attr: "color",

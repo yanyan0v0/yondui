@@ -6,15 +6,23 @@
         class="y-slider-bar-active"
         :style="{width: left + '%','background-color': color}"
       ></div>
+
       <span
         ref="block"
         class="y-slider-block"
-        :style="{left: left + '%', height: barRect.height + 5 + 'px', width: barRect.height + 5 + 'px','border-color': color}"
+        :style="{left: left + '%', height: barRect.height + blockWidth + 'px', width: barRect.height + blockWidth + 'px','border-color': color}"
         @mousedown="handleMouseDown"
-        @hover="handleHover"
+        @mouseenter="handleMouseEnter"
+        @mouseleave="handleMouseLeave"
       >
-        <y-tooltip v-model="tipVisible">{{value}}</y-tooltip>
+        <y-tooltip ref="tooltip" v-model="tipVisible" trigger="custom">
+          <slot>{{value}}</slot>
+        </y-tooltip>
       </span>
+    </div>
+    <div v-show="showLabel" class="y-slider-label">
+      <span class="y-slider-label-min">{{min}}</span>
+      <span class="y-slider-label-max">{{max}}</span>
     </div>
   </div>
 </template>
@@ -35,6 +43,10 @@ export default {
       type: Number,
       default: 0
     },
+    showLabel: {
+      type: Boolean,
+      default: true
+    },
     color: {
       type: String,
       default: ""
@@ -44,6 +56,8 @@ export default {
     return {
       // 滑块的left属性 以百分比展示
       left: 0,
+      // 滑块宽度
+      blockWidth: 5,
       barRect: {},
       tipVisible: false,
       startDrag: false
@@ -56,9 +70,7 @@ export default {
   },
   methods: {
     initLeft(value) {
-      console.log(value);
       let left = parseInt((100 * (value - this.min)) / (this.max - this.min));
-      console.log(left);
       if (left >= 100) {
         this.$emit("input", this.max);
         return 100;
@@ -69,7 +81,6 @@ export default {
         return left;
       }
     },
-    handleHover(event) {},
     handleSliderClick(event) {
       if (event.x - this.barRect.left >= this.barRect.width) {
         this.left = 100;
@@ -87,13 +98,16 @@ export default {
       this.startDrag = true;
       document.addEventListener("mousemove", this.handleMouseMove);
       document.addEventListener("mouseup", this.handleMouseUp);
+      // 禁止选择
       document.body.style["userSelect"] = "none";
+      // 取消动画
       this.$refs["barActive"].style.transition = "none";
       this.$refs["block"].style.transition = "none";
     },
     handleMouseMove(event) {
       if (this.startDrag) {
         this.handleSliderClick(event);
+        this.$refs["tooltip"].init();
       }
     },
     handleMouseUp() {
@@ -104,6 +118,18 @@ export default {
       document.body.style["userSelect"] = "";
       this.$refs["barActive"].style.transition = "";
       this.$refs["block"].style.transition = "";
+      // 隐藏tooltip
+      this.handleMouseLeave();
+    },
+    handleMouseEnter() {
+      this.blockWidth = 8;
+      this.tipVisible = true;
+    },
+    handleMouseLeave() {
+      if (!this.startDrag) {
+        this.blockWidth = 5;
+        this.tipVisible = false;
+      }
     }
   },
   watch: {
@@ -128,7 +154,7 @@ export default {
     width: 100%;
     height: 8px;
     border-radius: 20px;
-    background-color: @background-color;
+    background-color: @bar-background-color;
     &-active {
       border-radius: 20px;
       height: 100%;
@@ -145,8 +171,12 @@ export default {
     border: 2px solid @primary-color;
     border-radius: 50%;
     background-color: #fff;
-    transition: left 0.3s;
-    cursor: pointer;
+    transition: all 0.3s;
+  }
+  &-label {
+    .flex;
+    justify-content: space-between;
+    font-size: 12px;
   }
 }
 </style>
