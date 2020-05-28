@@ -1,6 +1,7 @@
 import { objToArray } from '@ui/util/tools'
 
 // 指令式
+import Alert from '@ui/components/alert/alert.vue'
 import Button from '@ui/components/button/button.vue'
 import Card from '@ui/components/card/card.vue'
 import ColorPicker from '@ui/components/color-picker/color-picker.vue'
@@ -19,9 +20,10 @@ import TimeLine from '@ui/components/timeline/timeline.vue'
 import Tooltip from '@ui/components/tooltip/tooltip.vue'
 
 // 函数式
-import Message from '@ui/components/message/index.js'
+import AlertJs from '@ui/components/alert/index.js'
 
 const components = {
+  Alert,
   Button,
   Card,
   ColorPicker,
@@ -52,7 +54,7 @@ const install = function (Vue) {
     Vue.component(component.name, component);
   });
 
-  Vue.prototype.$message = Message;
+  Vue.prototype.$alert = AlertJs;
 
 };
 

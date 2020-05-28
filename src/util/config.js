@@ -17,6 +17,13 @@ export const MENU_LIST = [
     name: "组件",
     children: [
       {
+        id: 210,
+        name: "Alert 消息提示",
+        icon: "jinggao",
+        to: "alert",
+        file: '/alert/alert.vue'
+      },
+      {
         id: 21,
         name: "Button 按钮",
         icon: "anniu",
@@ -71,13 +78,6 @@ export const MENU_LIST = [
         icon: "caidan",
         to: "menu",
         file: '/menu/menu.vue'
-      },
-      {
-        id: 210,
-        name: "Message 消息提示",
-        icon: "xiaoxi",
-        to: "message",
-        file: '/message/message.vue'
       },
       {
         id: 24,

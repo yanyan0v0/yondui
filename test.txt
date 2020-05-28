@@ -159,3 +159,19 @@ export default {
   需要提示的一段文字
   &lt;y-tooltip v-model="visible1" trigger="custom"&gt;custom触发 文字提示&lt;/y-tooltip&gt;
 &lt;/span&gt;
+
+&lt;y-alert&gt;默认提示栏&lt;/y-alert&gt;
+&lt;y-alert type="success"&gt;成功提示栏&lt;/y-alert&gt;
+&lt;y-alert type="warning"&gt;警告提示栏&lt;/y-alert&gt;
+&lt;y-alert type="error"&gt;错误提示栏&lt;/y-alert&gt;
+
+&lt;y-alert theme="dark"&gt;默认提示栏&lt;/y-alert&gt;
+&lt;y-alert type="success" theme="dark"&gt;成功提示栏&lt;/y-alert&gt;
+&lt;y-alert type="warning" theme="dark"&gt;警告提示栏&lt;/y-alert&gt;
+&lt;y-alert type="error" theme="dark"&gt;错误提示栏&lt;/y-alert&gt;
+
+&lt;y-alert type="success" show-close&gt;浅色成功提示栏&lt;/y-alert&gt;
+&lt;y-alert type="success" show-close theme="dark"&gt;深色成功提示栏&lt;/y-alert&gt;
+
+&lt;y-alert type="warning" hide-icon&gt;浅色警告提示栏&lt;/y-alert&gt;
+&lt;y-alert type="warning" hide-icon theme="dark"&gt;深色警告提示栏&lt;/y-alert&gt;
