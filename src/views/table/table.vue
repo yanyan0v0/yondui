@@ -82,6 +82,8 @@
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
+              设置
+              <code>borde</code>
               添加表格的边框线，增加
               <code>resizable</code>
               属性即可实现拖拽列
@@ -91,7 +93,6 @@
           <div slot="card2" v-highlight class="code-card" :style="{height: navList[1].height}">
             <pre>
             <code>
-  &lt;y-table border :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
   &lt;y-table border resizable :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
             </code>
             </pre>
@@ -146,8 +147,11 @@
           <div slot="card2" v-highlight class="code-card" :style="{height: navList[3].height}">
             <pre>
             <code>
+  固定高度
   &lt;y-table border height="100px" :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
-  &lt;y-table border auto-height :data="data1" :columns="columns1" :style="{height: 100%}"&gt;&lt;/y-table&gt;
+
+  不固定高度
+  &lt;y-table border auto-height :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
             </code>
             </pre>
           </div>

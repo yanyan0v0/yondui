@@ -1,5 +1,5 @@
 <template>
-  <div class="y-table" :class="{'y-table-border': border}">
+  <div class="y-table" :class="{'y-table-border': border, 'full-h': autoHeight}">
     <!-- 表头 -->
     <table
       class="y-table-header"

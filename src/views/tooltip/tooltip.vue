@@ -3,7 +3,7 @@
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
       <h1>Tooltip 提示框</h1>
-      <y-alert type="warning">使用tooltip组件时，父元素的position必须是非static的！</y-alert>
+      <y-alert type="warning">注意：使用tooltip组件时，父元素的position必须是非static的！</y-alert>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="navList[0].version >= version">
