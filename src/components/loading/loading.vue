@@ -8,12 +8,12 @@
     <y-svg-grid :style="style" :color="color" />
     <y-svg-hearts :style="style" :color="color" />
     <y-svg-oval :style="style" :color="color" />
-    <y-svg-oval :style="style" :color="color" />
     <y-svg-puff :style="style" :color="color" />
     <y-svg-rings :style="style" :color="color" />
     <y-svg-spinning-circles :style="style" :color="color" />
     <y-svg-tail-spin :style="style" :color="color" />
     <y-svg-three-dots :style="style" :color="color" />
+    <y-svg-spinning-rectangle :style="style" :color="color" />
     <slot>Loading...</slot>
   </div>
 </template>
@@ -33,6 +33,7 @@ export default {
     "y-svg-oval": () => import("./svg/oval.vue"),
     "y-svg-puff": () => import("./svg/puff.vue"),
     "y-svg-rings": () => import("./svg/rings.vue"),
+    "y-svg-spinning-rectangle": () => import("./svg/spinning-rectangle.vue"),
     "y-svg-spinning-circles": () => import("./svg/spinning-circles.vue"),
     "y-svg-tail-spin": () => import("./svg/tail-spin.vue"),
     "y-svg-three-dots": () => import("./svg/three-dots.vue")

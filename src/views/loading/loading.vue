@@ -31,6 +31,22 @@
         </y-card>
       </div>
 
+      <y-alert class="m-t-5">
+        部分loading来自
+        <a
+          class="keyword-code"
+          href="http://samherbert.net/svg-loaders/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >svg-loaders</a>、
+        <a
+          class="keyword-code"
+          href="http://tobiasahlin.com/spinkit/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >spinkit</a>
+      </y-alert>
+
       <!-- 分割线 -->
       <h2>API</h2>
       <div>
