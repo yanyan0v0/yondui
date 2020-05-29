@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { BAR_COLORS } from "@ui/util/config";
+import { BAR_COLORS } from "@/util/config";
 export default {
   name: "y-rank",
   props: {

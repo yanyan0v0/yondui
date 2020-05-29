@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-import { getSessionItem, setSessionItem } from '@ui/util/tools'
+import { getSessionItem, setSessionItem } from '@/util/tools'
 
 export default new Vuex.Store({
   state: {
     // 当前版本
-    version: '0.0.1',
+    version: '0.1.7',
     // 当前激活的菜单数组
     activeMenu: getSessionItem('activeMenu') || [],
     // 当前菜单列表

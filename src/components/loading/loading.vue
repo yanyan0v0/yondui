@@ -1,76 +1,70 @@
 <template>
-  <div class="ct-loading">
-    <svg width="5rem" height="5rem">
-      <circle
-        cx="25"
-        cy="25"
-        r="20"
-        fill="transparent"
-        stroke-width="3"
-        stroke-dasharray="31.415 31.415"
-        stroke="#02bcfe"
-        stroke-linecap="round"
-        transform="rotate(76.0493 25 25)"
-      >
-        <animateTransform
-          attributeName="transform"
-          type="rotate"
-          values="0, 25 25;360, 25 25"
-          dur="1.5s"
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="stroke"
-          values="#02bcfe;#3be6cb;#02bcfe"
-          dur="3s"
-          repeatCount="indefinite"
-        />
-      </circle>
-      <circle
-        cx="25"
-        cy="25"
-        r="10"
-        fill="transparent"
-        stroke-width="3"
-        stroke-dasharray="15.7 15.7"
-        stroke="#3be6cb"
-        stroke-linecap="round"
-        transform="rotate(283.951 25 25)"
-      >
-        <animateTransform
-          attributeName="transform"
-          type="rotate"
-          values="360, 25 25;0, 25 25"
-          dur="1.5s"
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="stroke"
-          values="#3be6cb;#02bcfe;#3be6cb"
-          dur="3s"
-          repeatCount="indefinite"
-        />
-      </circle>
-    </svg>
-    <div class="loading-tip">
-      <slot>Loading...</slot>
-    </div>
+  <div class="y-loading">
+    <y-svg-circle :style="style" :color="color" />
+    <y-svg-circles :style="style" :color="color" />
+    <y-svg-audio :style="style" :color="color" />
+    <y-svg-ball-triangle :style="style" :color="color" />
+    <y-svg-bars :style="style" :color="color" />
+    <y-svg-grid :style="style" :color="color" />
+    <y-svg-hearts :style="style" :color="color" />
+    <y-svg-oval :style="style" :color="color" />
+    <y-svg-oval :style="style" :color="color" />
+    <y-svg-puff :style="style" :color="color" />
+    <y-svg-rings :style="style" :color="color" />
+    <y-svg-spinning-circles :style="style" :color="color" />
+    <y-svg-tail-spin :style="style" :color="color" />
+    <y-svg-three-dots :style="style" :color="color" />
+    <slot>Loading...</slot>
   </div>
 </template>
 
 <script>
+import { THEME_COLORS } from "@/util/config";
 export default {
-  name: "y-loading"
+  name: "y-loading",
+  components: {
+    "y-svg-circle": () => import("./svg/circle.vue"),
+    "y-svg-circles": () => import("./svg/circles.vue"),
+    "y-svg-audio": () => import("./svg/audio.vue"),
+    "y-svg-ball-triangle": () => import("./svg/ball-triangle.vue"),
+    "y-svg-bars": () => import("./svg/bars.vue"),
+    "y-svg-grid": () => import("./svg/grid.vue"),
+    "y-svg-hearts": () => import("./svg/hearts.vue"),
+    "y-svg-oval": () => import("./svg/oval.vue"),
+    "y-svg-puff": () => import("./svg/puff.vue"),
+    "y-svg-rings": () => import("./svg/rings.vue"),
+    "y-svg-spinning-circles": () => import("./svg/spinning-circles.vue"),
+    "y-svg-tail-spin": () => import("./svg/tail-spin.vue"),
+    "y-svg-three-dots": () => import("./svg/three-dots.vue")
+  },
+  props: {
+    size: {
+      type: Number,
+      default: 25
+    },
+    color: {
+      type: String,
+      default: THEME_COLORS.lightPrimary
+    }
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    style() {
+      return {
+        width: this.size + "px",
+        height: this.size + "px"
+      };
+    }
+  }
 };
 </script>
 
 <style lang="less" scoped>
-.ct-loading {
+.y-loading {
   .full;
   .center;
-  flex-direction: column;
-  .loading-tip {
-    color: #fff;
-  }
+  .flex-wrap(column);
 }
 </style>

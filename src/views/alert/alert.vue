@@ -6,8 +6,8 @@
       <h2>代码示例</h2>
 
       <!-- 分割线 -->
-      <div v-show="navList[0].version >= version">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+      <div v-show="compareVersion('JC')">
+        <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
@@ -39,8 +39,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+      <div v-show="compareVersion('ZT')">
+        <h3 id="ZT">{{getNav('ZT').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
@@ -71,8 +71,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[2].version >= version">
-        <h3 :id="navList[2].id">{{navList[2].name}}</h3>
+      <div v-show="compareVersion('GBAN')">
+        <h3 id="GBAN">{{getNav('GBAN').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
@@ -98,8 +98,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[3].version >= version">
-        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
+      <div v-show="compareVersion('YCTB')">
+        <h3 id="YCTB">{{getNav('YCTB').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
@@ -124,8 +124,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[4].version >= version">
-        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
+      <div v-show="compareVersion('XHGD')">
+        <h3 id="XHGD">{{getNav('XHGD').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
@@ -199,8 +199,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[5].version >= version">
-        <h3 :id="navList[5].id">{{navList[5].name}}</h3>
+      <div v-show="compareVersion('HSSDY')">
+        <h3 id="HSSDY">{{getNav('HSSDY').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -242,8 +242,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[6].version >= version">
-        <h3 :id="navList[6].id">{{navList[6].name}}</h3>
+      <div v-show="compareVersion('SZSJ')">
+        <h3 id="SZSJ">{{getNav('SZSJ').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -287,24 +287,26 @@
 
       <!-- 分割线 -->
       <h2>API</h2>
-      <div v-show="navList[7].version >= version">
-        <h3 :id="navList[7].id">{{navList[7].name}}</h3>
-        <y-table :data="propList" :columns="propColumns"></y-table>
+      <div>
+        <h3 id="PROPS">{{getNav('PROPS').name}}</h3>
+        <y-table :data="filterVersion(propList)" :columns="propColumns"></y-table>
       </div>
-      <div v-show="navList[8].version >= version">
-        <h3 :id="navList[8].id">{{navList[8].name}}</h3>
-        <y-table :data="slotList" :columns="slotColumns"></y-table>
+      <div>
+        <h3 id="SLOTS">{{getNav('SLOTS').name}}</h3>
+        <y-table :data="filterVersion(slotList)" :columns="slotColumns"></y-table>
       </div>
     </article>
 
     <!-- 导航滚动条 -->
-    <y-nav ref="nav" :data="navList"></y-nav>
+    <y-nav ref="nav" :data="filterVersion(navList)"></y-nav>
   </div>
 </template>
 
 <script>
-import { PROP_COLUMNS, SLOT_COLUMNS } from "@ui/util/config";
+import { PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
+import viewMixins from "@/util/viewMixins";
 export default {
+  mixins: [viewMixins],
   data() {
     return {
       navList: [
@@ -365,48 +367,56 @@ export default {
       slotColumns: SLOT_COLUMNS,
       propList: [
         {
+          version: "0.1.7",
           attr: "type",
           explain: `消息类型，可选<code class="keyword-code">info</code>默认、 <code class="keyword-code">success</code>成功、<code class="keyword-code">warning</code>警告、<code class="keyword-code">error</code>错误`,
           type: "String",
           default: "info"
         },
         {
+          version: "0.1.7",
           attr: "theme",
           explain: `消息主题，可选<code class="keyword-code">light</code>浅色、 <code class="keyword-code">success</code>深色`,
           type: "String",
           default: "light"
         },
         {
+          version: "0.1.7",
           attr: "hide-icon",
           explain: `隐藏头部图标`,
           type: "Boolean",
           default: "false"
         },
         {
+          version: "0.1.7",
           attr: "scroll",
           explain: "循环滚动，详情见示例",
           type: "String | Object",
           default: "空"
         },
         {
+          version: "0.1.7",
           attr: "message",
           explain: "显示消息内容，函数式调用",
           type: "String",
           default: "空"
         },
         {
+          version: "0.1.7",
           attr: "duration",
           explain: "消息提示持续时间，0代表无限制，单位毫秒，函数式调用",
           type: "Number",
           default: "3000"
         },
         {
+          version: "0.1.7",
           attr: "showClose",
           explain: "显示关闭按钮",
           type: "Boolean",
           default: "false"
         },
         {
+          version: "0.1.7",
           attr: "onClose",
           explain: "点击关闭按钮的回调",
           type: "function",
@@ -428,11 +438,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    version() {
-      return this.$store.state.version;
-    }
   },
   methods: {
     open(type = "info") {

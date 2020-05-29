@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { PROP_COLUMNS, EVENT_COLUMNS } from "@ui/util/config";
+import { PROP_COLUMNS, EVENT_COLUMNS } from "@/util/config";
 export default {
   data() {
     return {

@@ -1,26 +1,26 @@
-import { objToArray } from '@ui/util/tools'
+import { objToArray } from '@/util/tools'
 
 // 指令式
-import Alert from '@ui/components/alert/alert.vue'
-import Button from '@ui/components/button/button.vue'
-import Card from '@ui/components/card/card.vue'
-import ColorPicker from '@ui/components/color-picker/color-picker.vue'
-import Divider from '@ui/components/divider/divider.vue'
-import Draw from '@ui/components/draw/draw.vue'
-import Icon from '@ui/components/icon/icon.vue'
-import Image from '@ui/components/image/image.vue'
-import Input from '@ui/components/input/input.vue'
-import Loading from '@ui/components/loading/loading.vue'
-import Menu from '@ui/components/menu/menu.vue'
-import Nav from '@ui/components/navigator/navigator.vue'
-import Rank from '@ui/components/rank/rank.vue'
-import Table from '@ui/components/table/table.vue'
-import Slider from '@ui/components/slider/slider.vue'
-import TimeLine from '@ui/components/timeline/timeline.vue'
-import Tooltip from '@ui/components/tooltip/tooltip.vue'
+import Alert from '@/components/alert/alert.vue'
+import Button from '@/components/button/button.vue'
+import Card from '@/components/card/card.vue'
+import ColorPicker from '@/components/color-picker/color-picker.vue'
+import Divider from '@/components/divider/divider.vue'
+import Draw from '@/components/draw/draw.vue'
+import Icon from '@/components/icon/icon.vue'
+import Image from '@/components/image/image.vue'
+import Input from '@/components/input/input.vue'
+import Loading from '@/components/loading/loading.vue'
+import Menu from '@/components/menu/menu.vue'
+import Nav from '@/components/navigator/navigator.vue'
+import Rank from '@/components/rank/rank.vue'
+import Table from '@/components/table/table.vue'
+import Slider from '@/components/slider/slider.vue'
+import TimeLine from '@/components/timeline/timeline.vue'
+import Tooltip from '@/components/tooltip/tooltip.vue'
 
 // 函数式
-import AlertJs from '@ui/components/alert/index.js'
+import AlertJs from '@/components/alert/index.js'
 
 const components = {
   Alert,
@@ -42,7 +42,7 @@ const components = {
   Tooltip
 }
 
-// import customDirective from '@ui/directive'
+// import customDirective from '@/directive'
 
 const install = function (Vue) {
   if (install.installed) return;

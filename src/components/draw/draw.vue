@@ -150,8 +150,9 @@ export default {
     width: 100%;
     .y-slider {
       display: inline-block;
-      margin: 0 10px -10px;
+      margin: 0 10px;
       width: 100px;
+      transform: translateY(10px);
     }
   }
   .y-draw-canvas {

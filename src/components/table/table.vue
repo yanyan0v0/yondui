@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { deepCopy } from "@ui/util/tools";
+import { deepCopy } from "@/util/tools";
 export default {
   name: "y-table",
   props: {

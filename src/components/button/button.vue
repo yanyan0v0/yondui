@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { THEME_COLORS } from "@ui/util/config";
+import { THEME_COLORS } from "@/util/config";
 export default {
   name: "y-button",
   props: {

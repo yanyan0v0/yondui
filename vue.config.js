@@ -29,7 +29,7 @@ module.exports = {
   lintOnSave: false,
   chainWebpack: config => {
     config.resolve.alias
-      .set('@ui', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
+      .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
   },
   // 取消hash值
   filenameHashing: false,

@@ -161,7 +161,7 @@
 </template>
 
 <script>
-import { PROP_COLUMNS, SLOT_COLUMNS } from "@ui/util/config";
+import { PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
 export default {
   data() {
     return {

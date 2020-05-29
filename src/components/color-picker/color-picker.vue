@@ -11,7 +11,7 @@
 <script>
 import Vue from "vue";
 import ColorPickerDropdown from "./color-picker-dropdown.vue";
-import { THEME_COLORS } from "@ui/util/config";
+import { THEME_COLORS } from "@/util/config";
 export default {
   name: "y-color-picker",
   props: {

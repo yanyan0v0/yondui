@@ -14,7 +14,7 @@ function menuToRoute(list) {
       routes.push({
         path: '/' + menu.to,
         name: menu.to,
-        component: () => import("@ui/views" + menu.file)
+        component: () => import("@/views" + menu.file)
       })
     }
   }
@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import('@ui/views/index.vue'),
+    component: () => import('@/views/index.vue'),
   },
   {
     path: '/home',
@@ -33,7 +33,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@ui/views/home.vue'),
+    component: () => import('@/views/home.vue'),
     children: menuToRoute(MENU_LIST)
   },
 ]

@@ -73,6 +73,13 @@ export const MENU_LIST = [
         file: '/input/input.vue'
       },
       {
+        id: 215,
+        name: "Loading 加载中",
+        icon: "shuaxin-you",
+        to: "loading",
+        file: '/loading/loading.vue'
+      },
+      {
         id: 23,
         name: "Menu 菜单",
         icon: "caidan",

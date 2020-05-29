@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <header class="header">
-      <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
+      <img src="@/assets/images/logo/logo.png" alt class="full-h" />
     </header>
     <div class="container">
       <div class="content">
@@ -37,7 +37,7 @@ export default {
 
 <style lang="less" scoped>
 .main {
-  background-image: url("~@ui/assets/images/bg/home_bg.png");
+  background-image: url("~@/assets/images/bg/home_bg.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

@@ -2,7 +2,7 @@
   <div class="home-main">
     <header class="header">
       <router-link to="/">
-        <img src="@ui/assets/images/logo/logo.png" alt class="full-h" />
+        <img src="@/assets/images/logo/logo.png" alt class="full-h" />
       </router-link>
       <ul class="header-group">
         <li>
