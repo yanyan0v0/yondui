@@ -1,47 +1,24 @@
 <template>
   <div class="y-loading">
-    <y-svg-circle :style="style" :color="color" />
-    <y-svg-circles :style="style" :color="color" />
-    <y-svg-audio :style="style" :color="color" />
-    <y-svg-ball-triangle :style="style" :color="color" />
-    <y-svg-bars :style="style" :color="color" />
-    <y-svg-grid :style="style" :color="color" />
-    <y-svg-hearts :style="style" :color="color" />
-    <y-svg-oval :style="style" :color="color" />
-    <y-svg-puff :style="style" :color="color" />
-    <y-svg-rings :style="style" :color="color" />
-    <y-svg-spinning-circles :style="style" :color="color" />
-    <y-svg-tail-spin :style="style" :color="color" />
-    <y-svg-three-dots :style="style" :color="color" />
-    <y-svg-spinning-rectangle :style="style" :color="color" />
-    <slot>Loading...</slot>
+    <component :is="'y-svg-' + type" :style="style" :color="color"></component>
+    <slot></slot>
   </div>
 </template>
 
 <script>
 import { THEME_COLORS } from "@/util/config";
+import { getComponents } from "./svg.js";
 export default {
   name: "y-loading",
-  components: {
-    "y-svg-circle": () => import("./svg/circle.vue"),
-    "y-svg-circles": () => import("./svg/circles.vue"),
-    "y-svg-audio": () => import("./svg/audio.vue"),
-    "y-svg-ball-triangle": () => import("./svg/ball-triangle.vue"),
-    "y-svg-bars": () => import("./svg/bars.vue"),
-    "y-svg-grid": () => import("./svg/grid.vue"),
-    "y-svg-hearts": () => import("./svg/hearts.vue"),
-    "y-svg-oval": () => import("./svg/oval.vue"),
-    "y-svg-puff": () => import("./svg/puff.vue"),
-    "y-svg-rings": () => import("./svg/rings.vue"),
-    "y-svg-spinning-rectangle": () => import("./svg/spinning-rectangle.vue"),
-    "y-svg-spinning-circles": () => import("./svg/spinning-circles.vue"),
-    "y-svg-tail-spin": () => import("./svg/tail-spin.vue"),
-    "y-svg-three-dots": () => import("./svg/three-dots.vue")
-  },
+  components: getComponents("./svg/"),
   props: {
+    type: {
+      type: String,
+      default: "circle"
+    },
     size: {
-      type: Number,
-      default: 25
+      type: String,
+      default: "25px"
     },
     color: {
       type: String,
@@ -54,8 +31,8 @@ export default {
   computed: {
     style() {
       return {
-        width: this.size + "px",
-        height: this.size + "px"
+        width: this.size,
+        height: this.size
       };
     }
   }

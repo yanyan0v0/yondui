@@ -11,41 +11,23 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
-              <y-loading />
+              <y-loading>Loading...</y-loading>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               通过设置
-              <code>type</code>属性显示不同的提示状态：
-              <code>success</code>成功、
-              <code>warning</code>警告、
-              <code>error</code>错误。
+              <code>type</code>属性显示不同的Loading类型。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
             <pre>
             <code>
+  &lt;y-loading&gt;Loading...&lt;/y-loading&gt;
             </code>
             </pre>
           </div>
         </y-card>
       </div>
-
-      <y-alert class="m-t-5">
-        部分loading来自
-        <a
-          class="keyword-code"
-          href="http://samherbert.net/svg-loaders/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >svg-loaders</a>、
-        <a
-          class="keyword-code"
-          href="http://tobiasahlin.com/spinkit/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >spinkit</a>
-      </y-alert>
 
       <!-- 分割线 -->
       <h2>API</h2>
@@ -57,6 +39,37 @@
         <h3 id="SLOTS">{{getNav('SLOTS').name}}</h3>
         <y-table :data="filterVersion(slotList)" :columns="slotColumns"></y-table>
       </div>
+
+      <!-- 分割线 -->
+      <h2>所有Loading</h2>
+      <y-alert>
+        loading来自
+        <a
+          class="keyword-code"
+          href="http://samherbert.net/svg-loaders/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >svg-loaders</a>、
+        <a
+          class="keyword-code"
+          href="http://tobiasahlin.com/spinkit/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >spinkit</a>、
+        <a
+          class="keyword-code"
+          href="https://codepen.io/viduthalai1947/full/JkhDK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Loaders Kit</a>、
+        <a
+          class="keyword-code"
+          href="https://codepen.io/CrocoDillon/pen/Htycs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >codepen网站</a>
+      </y-alert>
+      <y-svg-list></y-svg-list>
     </article>
 
     <!-- 导航滚动条 -->
@@ -68,6 +81,9 @@
 import { PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
 import viewMixins from "@/util/viewMixins";
 export default {
+  components: {
+    YSvgList: () => import("./svg-list.vue")
+  },
   mixins: [viewMixins],
   data() {
     return {
@@ -95,23 +111,29 @@ export default {
         {
           version: "0.1.7",
           attr: "type",
-          explain: `消息类型，可选<code class="keyword-code">info</code>默认、 <code class="keyword-code">success</code>成功、<code class="keyword-code">warning</code>警告、<code class="keyword-code">error</code>错误`,
+          explain: `loading类型，具体见下方列表`,
           type: "String",
-          default: "info"
+          default: "circle"
+        },
+        {
+          version: "0.1.7",
+          attr: "color",
+          explain: `loading颜色`,
+          type: "String",
+          default: "#5cadff"
+        },
+        {
+          version: "0.1.7",
+          attr: "size",
+          explain: `loading大小`,
+          type: "String",
+          default: "25px"
         }
       ],
       slotList: [
         {
           attr: "default",
-          explain: "默认显示内容"
-        },
-        {
-          attr: "prefix",
-          explain: "头部图标"
-        },
-        {
-          attr: "suffix",
-          explain: "尾部图标"
+          explain: "默认加载文字内容"
         }
       ]
     };

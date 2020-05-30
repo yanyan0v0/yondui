@@ -7,7 +7,7 @@ export default {
     },
     filterVersion() {
       return list => {
-        return list.filter(item => !item.version || item.version >= this.version)
+        return list.filter(item => !item.version || item.version <= this.version)
       }
     },
     version() {
@@ -15,7 +15,7 @@ export default {
     },
     compareVersion() {
       return id => {
-        return this.getNav(id).version >= this.version
+        return this.getNav(id).version <= this.version
       }
     }
   },

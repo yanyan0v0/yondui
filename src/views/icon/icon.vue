@@ -5,8 +5,8 @@
       <h1>Icon 图标</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
-      <div v-show="navList[0].version >= version">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+      <div v-show="compareVersion('JC')">
+        <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -30,9 +30,9 @@
 
       <!-- 分割线 -->
       <h2>API</h2>
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
-        <y-table :data="propList" :columns="columns"></y-table>
+      <div>
+        <h3 :id="PROPS">{{getNav('PROPS').name}}</h3>
+        <y-table :data="filterVersion(propList)" :columns="columns"></y-table>
       </div>
 
       <!-- 分割线 -->
@@ -41,16 +41,18 @@
     </article>
 
     <!-- 导航滚动条 -->
-    <y-nav ref="nav" :data="navList"></y-nav>
+    <y-nav ref="nav" :data="filterVersion(navList)"></y-nav>
   </div>
 </template>
 
 <script>
 import { PROP_COLUMNS } from "@/util/config";
+import viewMixins from "@/util/viewMixins";
 export default {
   components: {
     YIconList: () => import("./icon-list.vue")
   },
+  mixins: [viewMixins],
   data() {
     return {
       navList: [

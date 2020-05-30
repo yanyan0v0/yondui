@@ -7,7 +7,7 @@ import { getSessionItem, setSessionItem } from '@/util/tools'
 export default new Vuex.Store({
   state: {
     // 当前版本
-    version: '0.1.7',
+    version: '1.0.0',
     // 当前激活的菜单数组
     activeMenu: getSessionItem('activeMenu') || [],
     // 当前菜单列表
