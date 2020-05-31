@@ -5,12 +5,12 @@
       <h1>Image 图片</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
-      <div v-show="navList[0].version >= version">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+      <div v-show="compareVersion('JC')">
+        <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-image :data="[imageList[0]]" style="width: 200px;height: 200px;" />
+              <y-image :data="[imageList[0]]" style="width: 200px;height: 200px;"/>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -41,12 +41,12 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+      <div v-show="compareVersion('SL')">
+        <h3 id="SL">{{getNav('SL').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-image :data="imageList" :max="3" style="height: 200px;" />
+              <y-image :data="imageList" :max="3" style="height: 200px;"/>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -95,12 +95,12 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[2].version >= version">
-        <h3 :id="navList[2].id">{{navList[2].name}}</h3>
+      <div v-show="compareVersion('FX')">
+        <h3 id="FX">{{getNav('FX').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-image :data="imageList" direction="vertical" :max="2" style="width: 200px;" />
+              <y-image :data="imageList" direction="vertical" :max="2" style="width: 200px;"/>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -150,26 +150,27 @@
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div v-show="navList[3].version >= version">
-        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
-        <y-table :data="propList" :columns="propColumns"></y-table>
-      </div>
-      <div v-show="navList[4].version >= version">
-        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
-        <y-table :data="eventList" :columns="eventColumns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table
+        :name="$options.name"
+        :propList="filterVersion(propList)"
+        :eventList="filterVersion(eventList)"
+      ></footer-table>
     </article>
 
     <!-- 导航滚动条 -->
-    <y-nav ref="nav" :data="navList"></y-nav>
+    <y-nav ref="nav" :data="filterVersion(navList)"></y-nav>
   </div>
 </template>
 
 <script>
-import { PROP_COLUMNS, EVENT_COLUMNS } from "@/util/config";
+import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Images",
+  components: {
+    "footer-table": () => import("@/views/footer-table.vue")
+  },
+  mixins: [viewMixins],
   data() {
     return {
       imageList: [
@@ -223,17 +224,15 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Image Props",
+          name: "Images Props",
           version: "0.1.6"
         },
         {
           id: "EVENTS",
-          name: "Image Events",
+          name: "Images Events",
           version: "0.1.6"
         }
       ],
-      propColumns: PROP_COLUMNS,
-      eventColumns: EVENT_COLUMNS,
       propList: [
         {
           attr: "data",
@@ -262,11 +261,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    version() {
-      return this.$store.state.version;
-    }
   }
 };
 </script>

@@ -5,8 +5,8 @@
       <h1>Table 表格</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
-      <div v-show="navList[0].version >= version">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+      <div v-show="compareVersion('JC')">
+        <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -73,8 +73,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+      <div v-show="compareVersion('BKTZ')">
+        <h3 id="BKTZ">{{getNav('BKTZ').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -101,8 +101,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[2].version >= version">
-        <h3 :id="navList[2].id">{{navList[2].name}}</h3>
+      <div v-show="compareVersion('BMX')">
+        <h3 id="BMX">{{getNav('BMX').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -126,8 +126,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[3].version >= version">
-        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
+      <div v-show="compareVersion('GDBT')">
+        <h3 id="GDBT">{{getNav('GDBT').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -138,7 +138,7 @@
               通过设置属性
               <code>height</code>
               给表格指定高度后，会自动固定表头,当纵向内容过多时可以使用。
-              <br />当表格的高度不确定时，可以设置
+              <br>当表格的高度不确定时，可以设置
               <code>auto-height</code>
               来自动填满父容器，此时
               <code>height</code>会失效。
@@ -158,27 +158,29 @@
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div v-show="navList[4].version >= version">
-        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
-        <y-table :data="propList" :columns="columns"></y-table>
-      </div>
-
-      <div v-show="navList[5].version >= version">
-        <h3 :id="navList[5].id">{{navList[5].name}}</h3>
-        <y-table :data="cpropList" :columns="columns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table :name="$options.name" :propList="filterVersion(propList)">
+        <div v-show="compareVersion('CPROPS')">
+          <h3 id="CPROPS">{{getNav('CPROPS').name}}</h3>
+          <y-table :data="filterVersion(cpropList)" :columns="propColumns"></y-table>
+        </div>
+      </footer-table>
     </article>
 
     <!-- 导航滚动条 -->
-    <y-nav ref="nav" :data="navList"></y-nav>
+    <y-nav ref="nav" :data="filterVersion(navList)"></y-nav>
   </div>
 </template>
 
 <script>
 import { PROP_COLUMNS } from "@/util/config";
+import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Table",
+  components: {
+    "footer-table": () => import("@/views/footer-table.vue")
+  },
+  mixins: [viewMixins],
   data() {
     return {
       columns1: [
@@ -230,7 +232,7 @@ export default {
           height: "300px"
         },
         {
-          id: "DBK",
+          id: "BKTZ",
           name: "边框和拖拽",
           version: "0.1.6"
         },
@@ -246,7 +248,7 @@ export default {
           version: "0.1.6"
         },
         {
-          id: "TPROPS",
+          id: "PROPS",
           name: "Table Props",
           version: "0.1.6"
         },
@@ -256,7 +258,7 @@ export default {
           version: "0.1.6"
         }
       ],
-      columns: PROP_COLUMNS,
+      propColumns: PROP_COLUMNS,
       propList: [
         {
           attr: "data",
@@ -358,11 +360,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    version() {
-      return this.$store.state.version;
-    }
   }
 };
 </script>

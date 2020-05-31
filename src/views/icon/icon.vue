@@ -28,12 +28,8 @@
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div>
-        <h3 :id="PROPS">{{getNav('PROPS').name}}</h3>
-        <y-table :data="filterVersion(propList)" :columns="columns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table :name="$options.name" :propList="filterVersion(propList)"></footer-table>
 
       <!-- 分割线 -->
       <h2>所有图标</h2>
@@ -46,10 +42,11 @@
 </template>
 
 <script>
-import { PROP_COLUMNS } from "@/util/config";
 import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Icon",
   components: {
+    "footer-table": () => import("@/views/footer-table.vue"),
     YIconList: () => import("./icon-list.vue")
   },
   mixins: [viewMixins],
@@ -67,7 +64,6 @@ export default {
           version: "0.1.4"
         }
       ],
-      columns: PROP_COLUMNS,
       propList: [
         {
           attr: "type",
@@ -89,11 +85,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    version() {
-      return this.$store.state.version;
-    }
   }
 };
 </script>

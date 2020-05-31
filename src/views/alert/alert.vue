@@ -154,17 +154,17 @@
             <div class="introduce">
               通过设置
               <code>scroll</code>属性触发滚动，
-              <br />滚动默认参数：
-              <br />
+              <br>滚动默认参数：
+              <br>
               <code>direction</code>
               表示方向，可选
               <code>x</code>、
               <code>y</code>。
-              <br />
+              <br>
               <code>speed</code> 表示速度，单位：px/s, 横向默认为60，竖向默认为19。
-              <br />
+              <br>
               <code>height</code> 表示可视区域高度，单位px，默认19
-              <br />若无改动可简化为
+              <br>若无改动可简化为
               <code>scroll="x"</code>或
               <code>scroll="y"</code>。
             </div>
@@ -285,16 +285,12 @@
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div>
-        <h3 id="PROPS">{{getNav('PROPS').name}}</h3>
-        <y-table :data="filterVersion(propList)" :columns="propColumns"></y-table>
-      </div>
-      <div>
-        <h3 id="SLOTS">{{getNav('SLOTS').name}}</h3>
-        <y-table :data="filterVersion(slotList)" :columns="slotColumns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table
+        :name="$options.name"
+        :propList="filterVersion(propList)"
+        :slotList="filterVersion(slotList)"
+      ></footer-table>
     </article>
 
     <!-- 导航滚动条 -->
@@ -303,9 +299,12 @@
 </template>
 
 <script>
-import { PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
 import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Alert",
+  components: {
+    "footer-table": () => import("@/views/footer-table.vue")
+  },
   mixins: [viewMixins],
   data() {
     return {
@@ -363,8 +362,6 @@ export default {
           version: "0.1.7"
         }
       ],
-      propColumns: PROP_COLUMNS,
-      slotColumns: SLOT_COLUMNS,
       propList: [
         {
           version: "0.1.7",

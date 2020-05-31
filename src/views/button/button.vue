@@ -6,8 +6,8 @@
       <h2>代码示例</h2>
 
       <!-- 分割线 -->
-      <div v-show="navList[0].version >= version">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+      <div v-show="compareVersion('ANLX')">
+        <h3 id="ANLX">{{getNav('ANLX').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -66,8 +66,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+      <div v-show="compareVersion('ANXZ')">
+        <h3 id="ANXZ">{{getNav('ANXZ').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -105,8 +105,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[2].version >= version">
-        <h3 :id="navList[2].id">{{navList[2].name}}</h3>
+      <div v-show="compareVersion('ANCC')">
+        <h3 id="ANCC">{{getNav('ANCC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -114,7 +114,7 @@
               <y-button color="primary">default</y-button>
               <y-button color="primary" size="small">small</y-button>
               <y-button color="primary" size="mini">mini</y-button>
-              <br />
+              <br>
               <y-button color="primary" shape="round" size="large">large</y-button>
               <y-button color="primary" shape="round">default</y-button>
               <y-button color="primary" shape="round" size="small">small</y-button>
@@ -148,8 +148,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[3].version >= version">
-        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
+      <div v-show="compareVersion('JY')">
+        <h3 id="JY">{{getNav('JY').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -157,7 +157,7 @@
               <y-button color="primary">primary</y-button>
               <y-button shape="dashed">dashed</y-button>
               <y-button shape="text">text</y-button>
-              <br />
+              <br>
               <y-button disabled>default</y-button>
               <y-button disabled color="primary">primary</y-button>
               <y-button disabled shape="dashed">dashed</y-button>
@@ -187,22 +187,23 @@
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div v-show="navList[4].version >= version">
-        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
-        <y-table :data="propList" :columns="columns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table :name="$options.name" :propList="filterVersion(propList)"></footer-table>
     </article>
 
     <!-- 导航滚动条 -->
-    <y-nav ref="nav" :data="navList"></y-nav>
+    <y-nav ref="nav" :data="filterVersion(navList)"></y-nav>
   </div>
 </template>
 
 <script>
-import { PROP_COLUMNS } from "@/util/config";
+import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Button",
+  components: {
+    "footer-table": () => import("@/views/footer-table.vue")
+  },
+  mixins: [viewMixins],
   data() {
     return {
       navList: [
@@ -232,7 +233,6 @@ export default {
           version: "0.1.4"
         }
       ],
-      columns: PROP_COLUMNS,
       propList: [
         {
           attr: "color",
@@ -260,11 +260,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    version() {
-      return this.$store.state.version;
-    }
   }
 };
 </script>

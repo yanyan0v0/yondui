@@ -1,7 +1,7 @@
 <template>
   <div class="y-loading">
     <component :is="'y-svg-' + type" :style="style" :color="color"></component>
-    <slot></slot>
+    <slot>Loading...</slot>
   </div>
 </template>
 
@@ -41,6 +41,10 @@ export default {
 
 <style lang="less" scoped>
 .y-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffffe6;
   .full;
   .center;
   .flex-wrap(column);

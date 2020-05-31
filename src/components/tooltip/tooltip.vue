@@ -63,7 +63,7 @@ export default {
         },
         mouseout: () => {
           if (this.trigger != "custom") {
-            this.vm.hide();
+            if (this.vm) this.vm.hide();
           }
         }
       }

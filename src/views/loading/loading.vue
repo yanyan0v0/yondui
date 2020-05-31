@@ -10,8 +10,9 @@
         <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
-            <div class="preview preview-alert">
-              <y-loading>Loading...</y-loading>
+            <div class="preview preview-loading">
+              内容
+              <y-loading></y-loading>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -22,23 +23,19 @@
           <div slot="card2" v-highlight class="code-card">
             <pre>
             <code>
-  &lt;y-loading&gt;Loading...&lt;/y-loading&gt;
+  &lt;y-loading&gt;&lt;/y-loading&gt;
             </code>
             </pre>
           </div>
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <h2>API</h2>
-      <div>
-        <h3 id="PROPS">{{getNav('PROPS').name}}</h3>
-        <y-table :data="filterVersion(propList)" :columns="propColumns"></y-table>
-      </div>
-      <div>
-        <h3 id="SLOTS">{{getNav('SLOTS').name}}</h3>
-        <y-table :data="filterVersion(slotList)" :columns="slotColumns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table
+        :name="$options.name"
+        :propList="filterVersion(propList)"
+        :slotList="filterVersion(slotList)"
+      ></footer-table>
 
       <!-- 分割线 -->
       <h2>所有Loading</h2>
@@ -78,10 +75,11 @@
 </template>
 
 <script>
-import { PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
 import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Loading",
   components: {
+    "footer-table": () => import("@/views/footer-table.vue"),
     YSvgList: () => import("./svg-list.vue")
   },
   mixins: [viewMixins],
@@ -105,8 +103,6 @@ export default {
           version: "0.1.7"
         }
       ],
-      propColumns: PROP_COLUMNS,
-      slotColumns: SLOT_COLUMNS,
       propList: [
         {
           version: "0.1.7",
@@ -141,3 +137,10 @@ export default {
   methods: {}
 };
 </script>
+
+<style lang="less" scoped>
+.preview-loading {
+  position: relative;
+  height: 200px;
+}
+</style>

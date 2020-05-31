@@ -5,8 +5,8 @@
       <h1>Timeline 时间轴列表</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
-      <div v-show="navList[0].version >= version">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+      <div v-show="compareVersion('JC')">
+        <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -51,8 +51,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[1].version >= version">
-        <h3 :id="navList[1].id">{{navList[1].name}}</h3>
+      <div v-show="compareVersion('CPLX')">
+        <h3 id="CPLX">{{getNav('CPLX').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -80,8 +80,8 @@
       </div>
 
       <!-- 分割线 -->
-      <div v-show="navList[2].version >= version">
-        <h3 :id="navList[2].id">{{navList[2].name}}</h3>
+      <div v-show="compareVersion('ZCL')">
+        <h3 id="ZCL">{{getNav('ZCL').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -89,7 +89,7 @@
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
               </y-timeline>
-              <y-divider />
+              <y-divider/>
               <y-timeline :data="timeList" :leftWidth="80" type="card">
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
@@ -100,7 +100,7 @@
               通过设置
               <code>slot</code>属性为
               <code>left</code>生成左侧内容。
-              <br />注意： 必须指定
+              <br>注意： 必须指定
               <code>leftWidth</code>的值，其代表左侧栏的宽度。
             </div>
           </div>
@@ -122,28 +122,27 @@
         </y-card>
       </div>
 
-      <h2>API</h2>
-      <!-- 分割线 -->
-      <div v-show="navList[3].version >= version">
-        <h3 :id="navList[3].id">{{navList[3].name}}</h3>
-        <y-table :data="propList" :columns="propColumns"></y-table>
-      </div>
-
-      <!-- 分割线 -->
-      <div v-show="navList[4].version >= version">
-        <h3 :id="navList[4].id">{{navList[4].name}}</h3>
-        <y-table :data="slotList" :columns="slotColumns"></y-table>
-      </div>
+      <!-- 底部API说明 -->
+      <footer-table
+        :name="$options.name"
+        :propList="filterVersion(propList)"
+        :slotList="filterVersion(slotList)"
+      ></footer-table>
     </article>
 
     <!-- 导航滚动条 -->
-    <y-nav ref="nav" :data="navList"></y-nav>
+    <y-nav ref="nav" :data="filterVersion(navList)"></y-nav>
   </div>
 </template>
 
 <script>
-import { PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
+import viewMixins from "@/util/viewMixins";
 export default {
+  name: "Timeline",
+  components: {
+    "footer-table": () => import("@/views/footer-table.vue")
+  },
+  mixins: [viewMixins],
   data() {
     return {
       navList: [
@@ -184,8 +183,6 @@ export default {
           title: "右侧内容2"
         }
       ],
-      propColumns: PROP_COLUMNS,
-      slotColumns: SLOT_COLUMNS,
       propList: [
         {
           attr: "data",
@@ -227,11 +224,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    version() {
-      return this.$store.state.version;
-    }
   }
 };
 </script>
