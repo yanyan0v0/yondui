@@ -90,7 +90,7 @@
               12个不同的方向显示Tooltip。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
             <pre>
             <code>
   &lt;y-button&gt; 
@@ -192,7 +192,7 @@
               。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[1].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('CFTJ').height}">
             <pre>
             <code>
   &lt;y-button&gt;

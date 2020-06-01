@@ -10,8 +10,8 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <div :style="{height: navList[0].height}">
-                <y-draw/>
+              <div :style="{height: getNav('JC').height}">
+                <y-draw />
               </div>
             </div>
             <y-divider position="left">说明</y-divider>

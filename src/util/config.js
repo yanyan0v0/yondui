@@ -31,6 +31,13 @@ export const MENU_LIST = [
         file: '/button/button.vue'
       },
       {
+        id: 216,
+        name: "Chart 图表",
+        icon: "anniu",
+        to: "chart",
+        file: '/chart/chart.vue'
+      },
+      {
         id: 212,
         name: "ColorPicker 颜色选择器",
         icon: "tiaoseban",
@@ -126,7 +133,7 @@ export const MENU_LIST = [
 ]
 
 // 折线图表和饼状图表所用的颜色
-export const LINE_COLORS = [
+export const PIE_COLORS = [
   '#FCAF5C',
   '#5FCEF3',
   '#7CECC8',

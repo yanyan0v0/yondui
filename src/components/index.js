@@ -4,6 +4,7 @@ import { objToArray } from '@/util/tools'
 import Alert from '@/components/alert/alert.vue'
 import Button from '@/components/button/button.vue'
 import Card from '@/components/card/card.vue'
+import Chart from '@/components/chart/chart.vue'
 import ColorPicker from '@/components/color-picker/color-picker.vue'
 import Divider from '@/components/divider/divider.vue'
 import Draw from '@/components/draw/draw.vue'
@@ -26,6 +27,7 @@ const components = {
   Alert,
   Button,
   Card,
+  Chart,
   ColorPicker,
   Divider,
   Draw,

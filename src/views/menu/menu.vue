@@ -2,11 +2,11 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>Menu 图标</h1>
+      <h1>Menu 菜单</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="compareVersion('JC')">
-        <h3 :id="navList[0].id">{{navList[0].name}}</h3>
+        <h3 id="JC">{{getNav('JC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
@@ -19,7 +19,7 @@
               <code>data</code>属性生成菜单列表。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
             <pre>
             <code>
   &lt;y-menu v-model="menu1" :data="menuList" &gt;&lt;/y-menu&gt;

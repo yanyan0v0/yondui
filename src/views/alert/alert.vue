@@ -154,17 +154,17 @@
             <div class="introduce">
               通过设置
               <code>scroll</code>属性触发滚动，
-              <br>滚动默认参数：
-              <br>
+              <br />滚动默认参数：
+              <br />
               <code>direction</code>
               表示方向，可选
               <code>x</code>、
               <code>y</code>。
-              <br>
+              <br />
               <code>speed</code> 表示速度，单位：px/s, 横向默认为60，竖向默认为19。
-              <br>
+              <br />
               <code>height</code> 表示可视区域高度，单位px，默认19
-              <br>若无改动可简化为
+              <br />若无改动可简化为
               <code>scroll="x"</code>或
               <code>scroll="y"</code>。
             </div>
@@ -220,7 +220,7 @@
               <code>error</code>错误，默认在3秒后消失。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[1].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('HSSDY').height}">
             <pre>
             <code>
   &lt;y-button @click="open('info')"&gt;默认&lt;/y-button&gt;
@@ -260,7 +260,7 @@
               。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SZSJ').height}">
             <pre>
             <code>
   &lt;y-button @click="open1"&gt;不自动关闭&lt;/y-button&gt;

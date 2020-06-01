@@ -1,6 +1,10 @@
 <template>
   <div class="y-footer-table">
     <h2>API</h2>
+
+    <!-- 分割线 -->
+    <slot name="top"></slot>
+
     <!-- 分割线 -->
     <div v-if="propList.length">
       <h3 id="PROPS">{{name}} Props</h3>

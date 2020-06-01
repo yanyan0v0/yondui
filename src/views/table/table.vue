@@ -15,7 +15,7 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">表格的最简单用法。</div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
             <pre>
             <code>
   &lt;y-table :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
@@ -90,7 +90,7 @@
               。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[1].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('BKTZ').height}">
             <pre>
             <code>
   &lt;y-table border resizable :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
@@ -115,7 +115,7 @@
               ，表格会间隔显示不同颜色，用于区分不同行数据。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[1].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('BMX').height}">
             <pre>
             <code>
   &lt;y-table stripe :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
@@ -138,13 +138,13 @@
               通过设置属性
               <code>height</code>
               给表格指定高度后，会自动固定表头,当纵向内容过多时可以使用。
-              <br>当表格的高度不确定时，可以设置
+              <br />当表格的高度不确定时，可以设置
               <code>auto-height</code>
               来自动填满父容器，此时
               <code>height</code>会失效。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[3].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('GDBT').height}">
             <pre>
             <code>
   固定高度

@@ -10,12 +10,12 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <div :style="{height: navList[0].height}">
-                <y-slider v-model="slider1"/>
+              <div :style="{height: getNav('JC').height}">
+                <y-slider v-model="slider1" />
                 <y-slider v-model="slider2" :max="250" :min="10"></y-slider>
                 <span>slider1：{{slider1}}</span>
                 <y-button @click="slider1 = slider1 + 4">加4</y-button>
-                <br>
+                <br />
                 <span>slider2：{{slider2}}</span>
                 <y-button @click="slider2 = slider2 + 4">加4</y-button>
               </div>

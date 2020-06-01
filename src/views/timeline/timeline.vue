@@ -21,7 +21,7 @@
               <code>slot-scope="{row, index}"</code>来获取每一项。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
             <pre v-pre>
             <code>
   &lt;y-timeline :data="timeList"&gt;
@@ -89,7 +89,7 @@
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
               </y-timeline>
-              <y-divider/>
+              <y-divider />
               <y-timeline :data="timeList" :leftWidth="80" type="card">
                 <p slot="left" slot-scope="{row}">{{row.time}}</p>
                 <div slot-scope="{row}">{{row.title}}</div>
@@ -100,7 +100,7 @@
               通过设置
               <code>slot</code>属性为
               <code>left</code>生成左侧内容。
-              <br>注意： 必须指定
+              <br />注意： 必须指定
               <code>leftWidth</code>的值，其代表左侧栏的宽度。
             </div>
           </div>

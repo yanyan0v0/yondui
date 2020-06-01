@@ -11,13 +11,13 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <div>
-                <y-color-picker v-model="color1"/>
+                <y-color-picker v-model="color1" />
               </div>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">最基本的颜色选择器。</div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: navList[0].height}">
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
             <pre>
             <code>
   &lt;y-color-picker v-model="color1" /&gt;
