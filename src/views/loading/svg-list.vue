@@ -12,7 +12,11 @@
     <!-- <y-loading type="location-indicator" size="500px"></y-loading> -->
     <ul class="y-svg-list-ul clearfix">
       <li v-for="svg in svgList" :key="svg">
-        <y-loading :type="svg" size="50px"></y-loading>
+        <div class="loading-wrapper">
+          <y-loading :type="svg" size="50px">
+            <span></span>
+          </y-loading>
+        </div>
         <p>{{svg}}</p>
       </li>
     </ul>
@@ -53,8 +57,12 @@ export default {
     li {
       .text-center;
       margin: 15px;
-      width: 138px;
       float: left;
+      .loading-wrapper {
+        position: relative;
+        width: 138px;
+        height: 60px;
+      }
       p {
         margin-top: 10px;
         font-size: 14px;

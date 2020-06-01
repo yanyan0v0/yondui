@@ -6,6 +6,27 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "12669171",
+      "name": "chart-bar",
+      "font_class": "chart-bar",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "14956534",
+      "name": "时钟",
+      "font_class": "shizhong",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "14956307",
+      "name": "滑块",
+      "font_class": "huakuai",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
       "icon_id": "14936872",
       "name": "上下切换",
       "font_class": "shangxiaqiehuan",
@@ -305,34 +326,6 @@
       "font_class": "tianjia",
       "unicode": "e63c",
       "unicode_decimal": 58940
-    },
-    {
-      "icon_id": "14625658",
-      "name": "系统管理",
-      "font_class": "xitongguanli",
-      "unicode": "e643",
-      "unicode_decimal": 58947
-    },
-    {
-      "icon_id": "14625659",
-      "name": "资源监控",
-      "font_class": "ziyuanjiankong",
-      "unicode": "e644",
-      "unicode_decimal": 58948
-    },
-    {
-      "icon_id": "14625660",
-      "name": "资源管理",
-      "font_class": "ziyuanguanli",
-      "unicode": "e645",
-      "unicode_decimal": 58949
-    },
-    {
-      "icon_id": "14625664",
-      "name": "最近采集时间",
-      "font_class": "zuijincaijishijian",
-      "unicode": "e647",
-      "unicode_decimal": 58951
     },
     {
       "icon_id": "14625668",

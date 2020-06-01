@@ -33,7 +33,7 @@ export const MENU_LIST = [
       {
         id: 216,
         name: "Chart 图表",
-        icon: "anniu",
+        icon: "chart-bar",
         to: "chart",
         file: '/chart/chart.vue'
       },
@@ -211,7 +211,7 @@ export const PROP_COLUMNS = [
   {
     key: "default",
     title: "默认值",
-    width: 100
+    width: 120
   }
 ]
 export const SLOT_COLUMNS = [

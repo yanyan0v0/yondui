@@ -1,7 +1,9 @@
 <template>
   <div class="y-loading">
     <component :is="'y-svg-' + type" :style="style" :color="color"></component>
-    <slot>Loading...</slot>
+    <div class="y-loading-text">
+      <slot>Loading...</slot>
+    </div>
   </div>
 </template>
 
@@ -48,5 +50,8 @@ export default {
   .full;
   .center;
   .flex-wrap(column);
+  &-text {
+    margin-top: 10px;
+  }
 }
 </style>

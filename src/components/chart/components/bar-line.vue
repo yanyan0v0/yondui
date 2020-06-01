@@ -25,8 +25,8 @@ export default {
      *  type 类型 可以是'bar'||'line'||['bar', 'line']
      *  title 标题
      *  hideYLabel 是否显示y轴label 默认false
-     *  unit 单位 当为双y轴时,需要为二项数组
-     *  xName x轴单位/名称
+     *  yUnit 单位 当为双y轴时,需要为二项数组
+     *  xUnit x轴单位/名称
      *  data series的data
      *  hideRadius 柱状图隐藏圆角 默认false
      *  legend 类目 存在时默认不显示label 数组内必须是字符串类型 位置默认在图表下方
@@ -146,7 +146,7 @@ export default {
           borderColor: "transparent"
         },
         xAxis: {
-          name: chartData.xName || "",
+          name: chartData.xUnit || "",
           nameTextStyle: {
             // padding: [0, 0, 0, 5]
           },
@@ -180,19 +180,19 @@ export default {
       };
     },
     handleYAxis(data) {
-      if (Array.isArray(data.unit) && data.unit.length === 2) {
+      if (Array.isArray(data.yUnit) && data.yUnit.length === 2) {
         return [
-          this.generateY(data.unit[0], data, 0),
-          this.generateY(data.unit[1] || data.unit[0], data, 1)
+          this.generateY(data.yUnit[0], data, 0),
+          this.generateY(data.yUnit[1] || data.yUnit[0], data, 1)
         ];
       } else {
         return this.generateY(
-          typeof data.unit === "undefined" ? "" : data.unit || data.unit[0],
+          typeof data.yUnit === "undefined" ? "" : data.yUnit || data.yUnit[0],
           data
         );
       }
     },
-    generateY(unit, chartData, index) {
+    generateY(yUnit, chartData, index) {
       if (index != undefined) {
         let list = chartData.data.map(item => item.value[index]);
         let min = Math.min(...list);
@@ -212,7 +212,7 @@ export default {
           max = 0;
         }
         return {
-          name: unit || "",
+          name: yUnit || "",
           nameTextStyle: {
             color: chartData.labelColor || THEME_COLORS.subtext,
             fontSize: 12 * this.scale
@@ -247,7 +247,7 @@ export default {
         };
       } else {
         return {
-          name: unit || "",
+          name: yUnit || "",
           nameTextStyle: {
             color: chartData.labelColor || THEME_COLORS.subtext,
             fontSize: 12 * this.scale
@@ -354,7 +354,9 @@ export default {
         type: "bar",
         stack: chartData.showStack,
         yAxisIndex:
-          Array.isArray(chartData.unit) && chartData.unit.length === 2 ? i : 0,
+          Array.isArray(chartData.yUnit) && chartData.yUnit.length === 2
+            ? i
+            : 0,
         itemStyle: {
           normal: {
             barBorderRadius: chartData.hideRadius ? 0 : 1000,
@@ -407,7 +409,9 @@ export default {
         type: "line",
         areaStyle: chartData.showArea,
         yAxisIndex:
-          Array.isArray(chartData.unit) && chartData.unit.length === 2 ? i : 0,
+          Array.isArray(chartData.yUnit) && chartData.yUnit.length === 2
+            ? i
+            : 0,
         label: {
           show: chartData.hideLabel ? false : i === 0 && !name,
           fontSize: 12 * this.scale,
@@ -432,12 +436,12 @@ export default {
         if (!Array.isArray(chartData.type)) {
           chartData.type = [chartData.type];
         }
-        // 将unit转化成数组
-        if (!Array.isArray(chartData.unit)) {
+        // 将yUnit转化成数组
+        if (!Array.isArray(chartData.yUnit)) {
           if (chartData.type.length > 1) {
-            chartData.unit = [chartData.unit, chartData.unit];
+            chartData.yUnit = [chartData.yUnit, chartData.yUnit];
           } else {
-            chartData.unit = [chartData.unit];
+            chartData.yUnit = [chartData.yUnit];
           }
         }
         for (let i in chartData.type) {
@@ -452,7 +456,7 @@ export default {
           });
           if (allZero) isOver10000 = false;
           if (isOver10000) {
-            chartData.unit[i] = "万" + chartData.unit[i];
+            chartData.yUnit[i] = "万" + chartData.yUnit[i];
             for (let item of chartData.data) {
               if (Array.isArray(item.value)) {
                 item.value[i] = Number(item.value[i]) / 10000;

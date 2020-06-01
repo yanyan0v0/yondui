@@ -11,7 +11,7 @@
 
 <script>
 const DEFAULT_CHART = {
-  unit: "个",
+  yUnit: "个",
   type: "bar",
   title: "",
   data: []

@@ -272,8 +272,7 @@ export default {
       chartData2: {
         title: "xx景区入园情况分析图表",
         type: ["bar", "line"],
-        unit: ["人", "%"],
-        xName: "ren",
+        yUnit: ["人", "%"],
         legend: ["景区入园人数", "同比"],
         data: [
           {
@@ -313,13 +312,13 @@ export default {
           default: "bar"
         },
         {
-          attr: "unit",
+          attr: "yUnit",
           explain: "y轴单位，当为2项数组时分别对应左右y轴",
           type: "String | Array",
           default: "个"
         },
         {
-          attr: "xName",
+          attr: "xUnit",
           explain: "x轴单位或名称",
           type: "String | Array",
           default: "空"
