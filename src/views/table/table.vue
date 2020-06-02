@@ -131,7 +131,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-table border resizable height="100px" :data="data1" :columns="columns1"></y-table>
+              <y-table border height="100px" :data="data1" :columns="columns1"></y-table>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -152,6 +152,176 @@
 
   不固定高度
   &lt;y-table border auto-height :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('ZDY')">
+        <h3 id="ZDY">{{getNav('ZDY').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-table border :data="data1" :columns="columns2">
+                <template slot="age" slot-scope="{row}">
+                  <y-input v-model="row.age"></y-input>
+                </template>
+              </y-table>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              在 columns 的某列声明
+              <code>type</code>为
+              <code>slot</code>
+              后，就可以在 Table 的 slot 中使用 slot-scope，对应的slot名称就是其列的key值。
+              slot-scope 的参数有 3 个：当前行数据 row，当前列数据 col，当前行序号 index。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('ZDY').height}">
+            <pre>
+            <code>
+  &lt;y-table border :data="data1" :columns="columns2"&gt;
+    &lt;template slot="age" slot-scope="{row}"&gt;
+      &lt;y-input v-model="row.age"&gt;&lt;/y-input&gt;
+    &lt;/template&gt;
+  &lt;/y-table&gt;
+
+  export default {
+    data() {
+      return {
+        columns2: [
+          {
+            title: "姓名",
+            key: "name"
+          },
+          {
+            type: "slot",
+            title: "年龄",
+            key: "age"
+          },
+          {
+            title: "地址",
+            key: "address",
+            ellipsis: true
+          }
+        ]
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('RXR')">
+        <h3 id="RXR">{{getNav('RXR').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-table border :data="data1" :columns="columns3"></y-table>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过给 columns 数据的项设置一个函数 render，可以自定义渲染当前列，包括渲染自定义组件，它基于 Vue 的 Render 函数。
+              render 函数传入两个参数，第一个是 h，第二个是对象，包含当前单元格数据
+              <code>row</code>、当前列数据
+              <code>col</code>、当前行序号
+              <code>index</code>
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('RXR').height}">
+            <pre>
+            <code>
+  &lt;y-table border :data="data1" :columns="columns3"&gt; &lt;/y-table&gt;
+
+  export default {
+    data() {
+      return {
+        columns2: [
+          {
+            title: "姓名",
+            key: "name"
+          },
+          {
+            type: "render",
+            title: "年龄",
+            key: "age",
+            render(h, params) {
+              return h("span", {
+                style: {
+                  color: params.row.age &lt;= 18 ? "green" : "red"
+                },
+                domProps: {
+                  innerHTML: params.row.age
+                }
+              });
+            }
+          },
+          {
+            title: "地址",
+            key: "address",
+            ellipsis: true
+          }
+        ]
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('XSXH')">
+        <h3 id="XSXH">{{getNav('XSXH').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-table border :data="data1" :columns="columns4"></y-table>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过给 columns 数据的项新增
+              <code>type</code>为
+              <code>index</code>的列来显示序号
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('XSXH').height}">
+            <pre>
+            <code>
+  &lt;y-table border :data="data1" :columns="columns4"&gt; &lt;/y-table&gt;
+
+  export default {
+    data() {
+      return {
+        columns2: [
+          {
+            type: "index",
+            title: "#",
+            width: 60
+          },
+          {
+            title: "姓名",
+            key: "name"
+          },
+          {
+            title: "年龄",
+            key: "age"
+          },
+          {
+            title: "地址",
+            key: "address",
+            ellipsis: true
+          }
+        ]
+      }
+    }
+  }
             </code>
             </pre>
           </div>
@@ -224,6 +394,69 @@ export default {
           date: "2016-10-04"
         }
       ],
+      columns2: [
+        {
+          title: "姓名",
+          key: "name"
+        },
+        {
+          type: "slot",
+          title: "年龄",
+          key: "age"
+        },
+        {
+          title: "地址",
+          key: "address",
+          ellipsis: true
+        }
+      ],
+      columns3: [
+        {
+          title: "姓名",
+          key: "name"
+        },
+        {
+          type: "render",
+          title: "年龄",
+          key: "age",
+          render(h, params) {
+            console.log(params.row.age);
+            return h("span", {
+              style: {
+                color: params.row.age <= 18 ? "green" : "red"
+              },
+              domProps: {
+                innerHTML: params.row.age
+              }
+            });
+          }
+        },
+        {
+          title: "地址",
+          key: "address",
+          ellipsis: true
+        }
+      ],
+      columns4: [
+        {
+          type: "index",
+          title: "#",
+          width: 60
+        },
+        {
+          title: "姓名",
+          key: "name"
+        },
+        {
+          title: "年龄",
+          key: "age"
+        },
+        {
+          title: "地址",
+          key: "address",
+          ellipsis: true
+        }
+      ],
       navList: [
         {
           id: "JC",
@@ -246,6 +479,24 @@ export default {
           id: "GDBT",
           name: "固定表头",
           version: "0.1.6"
+        },
+        {
+          id: "ZDY",
+          name: "自定义slot",
+          version: "0.1.7",
+          height: "400px"
+        },
+        {
+          id: "RXR",
+          name: "render渲染",
+          version: "0.1.7",
+          height: "400px"
+        },
+        {
+          id: "XSXH",
+          name: "显示序号",
+          version: "0.1.7",
+          height: "300px"
         },
         {
           id: "PROPS",
@@ -317,6 +568,12 @@ export default {
       ],
       cpropList: [
         {
+          attr: "type",
+          explain: `列类型，可选值为 <code class="keyword-code">index</code>显示行序号、<code class="keyword-code">render</code>使用render函数渲染、<code class="keyword-code">slot</code>使用slot自定义内容、<code class="keyword-code">html</code>以v-html的方式渲染内容`,
+          type: "String",
+          default: "空"
+        },
+        {
           attr: "title",
           explain: "列头显示文字",
           type: "String",
@@ -345,12 +602,6 @@ export default {
           explain: `最大列宽`,
           type: "Number",
           default: "-"
-        },
-        {
-          attr: "ifHtml",
-          explain: `对应列内容是否直接以html的方式渲染`,
-          type: "Boolean",
-          default: "false"
         },
         {
           attr: "ellipsis",

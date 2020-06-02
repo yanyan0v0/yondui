@@ -196,3 +196,9 @@ export default {
   &lt;p&gt;深色提示栏4&lt;/p&gt;
   &lt;p&gt;深色提示栏5&lt;/p&gt;
 &lt;/y-alert&gt;
+
+&lt;y-table border resizable :data="data1" :columns="columns2"&gt;
+  &lt;template slot="age" slot-scope="{row}"&gt;
+    &lt;y-input v-model="row.age"&gt;&lt;/y-input&gt;
+  &lt;/template&gt;
+&lt;/y-table&gt;

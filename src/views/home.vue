@@ -89,6 +89,7 @@ export default {
     border-bottom: 1px solid @border-color;
     width: 100%;
     height: 80px;
+    background-color: #fff;
     img {
       margin: auto 0;
       height: 100%;

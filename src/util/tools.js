@@ -182,8 +182,6 @@ export const deepCopy = (obj) => {
     for (let j of obj) {
       o.push(deepCopy(j))
     }
-  } else if (t === 'function') {
-    o = t.bind(o)
   } else {
     o = obj
   }

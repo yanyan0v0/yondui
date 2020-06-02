@@ -45,8 +45,21 @@
         <tbody>
           <tr v-for="(row, index) in data" :key="index" :class="[row.class]">
             <td v-for="col in columns" :key="col.key" :class="[col.class]">
-              <template v-if="col.ifHtml">
+              <template v-if="col.type=='index'">
+                <div>{{index + 1}}</div>
+              </template>
+              <template v-if="col.type=='html'">
                 <div :class="{'y-td-ellipsis': col.ellipsis}" v-html="row[col.key]"></div>
+              </template>
+              <template v-else-if="col.type=='slot'">
+                <div :class="{'y-td-ellipsis': col.ellipsis}">
+                  <table-slot :row="row" :col="col" :index="index"></table-slot>
+                </div>
+              </template>
+              <template v-else-if="col.type=='render'">
+                <div :class="{'y-td-ellipsis': col.ellipsis}">
+                  <table-render :row="row" :col="col" :index="index"></table-render>
+                </div>
               </template>
               <template v-else>
                 <div :class="{'y-td-ellipsis': col.ellipsis}">{{row[col.key]}}</div>
@@ -55,6 +68,8 @@
           </tr>
         </tbody>
       </table>
+      <!-- laoding -->
+      <y-loading v-show="loading" :type="loadType"></y-loading>
     </div>
 
     <!-- 拖拽线 -->
@@ -66,6 +81,16 @@
 import { deepCopy } from "@/util/tools";
 export default {
   name: "y-table",
+  components: {
+    "table-slot": () => import("./components/slot"),
+    "table-render": () => import("./components/render")
+  },
+  // 需要用函数来返回this
+  provide() {
+    return {
+      tableRoot: this
+    };
+  },
   props: {
     data: {
       type: Array,
@@ -106,6 +131,14 @@ export default {
     resizable: {
       type: Boolean,
       default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    loadType: {
+      type: String,
+      default: "circle"
     }
   },
   data() {
@@ -193,7 +226,9 @@ export default {
               );
             }
           }
+          // 从传递过来的columns中找到对应的列，不能直接使用col，因为col的宽度已经被修改过
           let colIndex = this.columns.findIndex(item => item.key === col.key);
+          // 修改未设任何宽度属性的列
           if (!this.columns[colIndex].width && !col.minWidth && !col.maxWidth) {
             col.width = afterWidth;
           }
@@ -303,6 +338,7 @@ export default {
     }
   }
   .y-table-body-warpper {
+    position: relative;
     overflow-y: auto;
     .y-table-body:not(.y-table-body-disabled-hover) {
       tr:hover {
@@ -369,6 +405,7 @@ export default {
       z-index: 1;
     }
   }
+  // 补充右边框
   &::before {
     content: "";
     position: absolute;
@@ -378,6 +415,7 @@ export default {
     width: 1px;
     height: 100%;
   }
+  // 补充下边框
   &::after {
     content: "";
     position: absolute;

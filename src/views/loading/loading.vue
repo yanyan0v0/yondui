@@ -42,25 +42,25 @@
       <y-alert>
         loading来自
         <a
-          class="keyword-code"
+          class="keyword-a"
           href="http://samherbert.net/svg-loaders/"
           target="_blank"
           rel="noopener noreferrer"
         >svg-loaders</a>、
         <a
-          class="keyword-code"
+          class="keyword-a"
           href="http://tobiasahlin.com/spinkit/"
           target="_blank"
           rel="noopener noreferrer"
         >spinkit</a>、
         <a
-          class="keyword-code"
+          class="keyword-a"
           href="https://codepen.io/viduthalai1947/full/JkhDK"
           target="_blank"
           rel="noopener noreferrer"
         >Loaders Kit</a>、
         <a
-          class="keyword-code"
+          class="keyword-a"
           href="https://codepen.io/CrocoDillon/pen/Htycs"
           target="_blank"
           rel="noopener noreferrer"

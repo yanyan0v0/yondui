@@ -198,9 +198,9 @@ export const PROP_COLUMNS = [
     width: 150
   },
   {
+    type: 'html',
     key: "explain",
     title: "说明",
-    ifHtml: true,
     minWidth: 100
   },
   {
@@ -234,9 +234,9 @@ export const EVENT_COLUMNS = [
     title: "说明"
   },
   {
+    type: 'html',
     key: "return",
-    title: "返回值",
-    ifHtml: true
+    title: "返回值"
   }
 ]
 

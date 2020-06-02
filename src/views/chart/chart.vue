@@ -467,13 +467,13 @@ export default {
         },
         {
           attr: "formatter",
-          explain: `label展示文本格式，详情见<a href="https://echarts.apache.org/zh/option.html#series-pie.label.formatter" target="_blank" class="keyword-code">formatter</a>`,
+          explain: `label展示文本格式，详情见<a href="https://echarts.apache.org/zh/option.html#series-pie.label.formatter" target="_blank" class="keyword-a">formatter</a>`,
           type: "String",
           default: "{b}\\n{d}%"
         },
         {
           attr: "tooltipFormatter",
-          explain: `tooltip展示文本格式，详情见<a href="https://echarts.apache.org/zh/option.html#tooltip.formatter" target="_blank" class="keyword-code">tooltipFormatter</a>`,
+          explain: `tooltip展示文本格式，详情见<a href="https://echarts.apache.org/zh/option.html#tooltip.formatter" target="_blank" class="keyword-a">tooltipFormatter</a>`,
           type: "String",
           default: "{a} <br/>{b}: {c} ({d}%)"
         },

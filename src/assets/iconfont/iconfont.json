@@ -6,6 +6,13 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "13051854",
+      "name": "link",
+      "font_class": "link",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
       "icon_id": "12669171",
       "name": "chart-bar",
       "font_class": "chart-bar",

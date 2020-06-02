@@ -209,6 +209,17 @@ code, kbd, pre, samp {
     font-weight: 400;
   }
 }
+// a标签链接
+.keyword-a{
+  padding: 0 5px;
+  color: @primary-color;
+  &::after{
+    content: '\e616';
+    font-family: "iconfont";
+    font-size: 12px;
+    margin-left: 5px;
+  }
+}
 // 代码关键词
 .keyword-code{
   padding: 0 5px;
