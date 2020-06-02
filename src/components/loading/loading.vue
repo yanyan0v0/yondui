@@ -2,7 +2,7 @@
   <div class="y-loading">
     <component :is="'y-svg-' + type" :style="style" :color="color"></component>
     <div class="y-loading-text">
-      <slot>Loading...</slot>
+      <slot></slot>
     </div>
   </div>
 </template>

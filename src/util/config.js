@@ -108,6 +108,13 @@ export const MENU_LIST = [
         file: '/slider/slider.vue'
       },
       {
+        id: 217,
+        name: "Switch 开关",
+        icon: "xian",
+        to: "switch",
+        file: '/switch/switch.vue'
+      },
+      {
         id: 28,
         name: "Table 表格",
         icon: "biaoge",
@@ -131,6 +138,14 @@ export const MENU_LIST = [
     ]
   }
 ]
+
+// 所有修改尺寸的组件 其高度都遵循此设定
+export const SIZE = {
+  'large': 35,
+  'default': 30,
+  'small': 25,
+  'mini': 20
+}
 
 // 折线图表和饼状图表所用的颜色
 export const PIE_COLORS = [

@@ -202,3 +202,8 @@ export default {
     &lt;y-input v-model="row.age"&gt;&lt;/y-input&gt;
   &lt;/template&gt;
 &lt;/y-table&gt;
+
+&lt;y-switch v-model="switch2"&gt;
+  &lt;template slot="open"&gt;ON&lt;/template&gt;
+  &lt;template slot="close"&gt;OFF&lt;/template&gt;
+&lt;/y-switch&gt;

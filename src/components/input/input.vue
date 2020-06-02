@@ -90,8 +90,9 @@ export default {
   .y-input {
     border: 1px solid @border-color;
     border-radius: 4px;
-    padding: 8px 10px;
+    padding: 7px 10px;
     width: 100%;
+    height: 30px;
     outline: none;
     background-color: #fff;
     color: @text-color;
@@ -119,13 +120,16 @@ export default {
   }
   .y-input-large {
     padding: 10px 14px;
+    height: 35px;
     font-size: 16px;
   }
   .y-input-small {
     padding: 4px 8px;
+    height: 25px;
   }
   .y-input-mini {
     padding: 2px 5px;
+    height: 20px;
     font-size: 12px;
   }
   .y-input-disabled {

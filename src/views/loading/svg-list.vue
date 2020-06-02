@@ -13,9 +13,7 @@
     <ul class="y-svg-list-ul clearfix">
       <li v-for="svg in svgList" :key="svg">
         <div class="loading-wrapper">
-          <y-loading :type="svg" size="50px">
-            <span></span>
-          </y-loading>
+          <y-loading :type="svg" size="50px"></y-loading>
         </div>
         <p>{{svg}}</p>
       </li>

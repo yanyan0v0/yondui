@@ -30,6 +30,9 @@ export default {
   },
   methods: {
     isElementInViewport(el) {
+      if (!el) {
+        return false;
+      }
       //获取元素是否在可视区域
       var rect = el.getBoundingClientRect();
       return (

@@ -17,6 +17,7 @@ import Nav from '@/components/navigator/navigator.vue'
 import Rank from '@/components/rank/rank.vue'
 import Table from '@/components/table/table.vue'
 import Slider from '@/components/slider/slider.vue'
+import Switch from '@/components/switch/switch.vue'
 import TimeLine from '@/components/timeline/timeline.vue'
 import Tooltip from '@/components/tooltip/tooltip.vue'
 
@@ -39,6 +40,7 @@ const components = {
   Nav,
   Rank,
   Slider,
+  Switch,
   Table,
   TimeLine,
   Tooltip

@@ -328,6 +328,34 @@
         </y-card>
       </div>
 
+      <!-- 分割线 -->
+      <div v-show="compareVersion('JZZ')">
+        <h3 id="JZZ">{{getNav('JZZ').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-table border :data="data1" :columns="columns4" :loading="loading"></y-table>
+              <p class="center-h">
+                <span class="m-r-5">切换加载状态</span>
+                <y-switch v-model="loading" size="small"></y-switch>
+              </p>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置
+              <code>loading</code>来使table变为加载中
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JZZ').height}">
+            <pre>
+            <code>
+  &lt;y-table border :data="data1" :columns="columns4" loading&gt; &lt;/y-table&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
       <!-- 底部API说明 -->
       <footer-table :name="$options.name" :propList="filterVersion(propList)">
         <div v-show="compareVersion('CPROPS')">
@@ -420,7 +448,6 @@ export default {
           title: "年龄",
           key: "age",
           render(h, params) {
-            console.log(params.row.age);
             return h("span", {
               style: {
                 color: params.row.age <= 18 ? "green" : "red"
@@ -457,6 +484,7 @@ export default {
           ellipsis: true
         }
       ],
+      loading: true,
       navList: [
         {
           id: "JC",
@@ -495,6 +523,12 @@ export default {
         {
           id: "XSXH",
           name: "显示序号",
+          version: "0.1.7",
+          height: "300px"
+        },
+        {
+          id: "JZZ",
+          name: "加载中",
           version: "0.1.7",
           height: "300px"
         },
@@ -544,6 +578,12 @@ export default {
         {
           attr: "stripe",
           explain: "是否显示边框",
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "loading",
+          explain: "是否显示加载中",
           type: "Boolean",
           default: "false"
         },

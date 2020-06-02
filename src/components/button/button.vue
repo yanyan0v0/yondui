@@ -117,6 +117,7 @@ export default {
   margin: 5px;
   border: 1px solid;
   padding: 6px 12px;
+  height: 30px;
   outline: none;
   font-size: 14px;
   color: @text-color;
@@ -133,15 +134,17 @@ export default {
   border-radius: 18px;
 }
 .y-button.y-button-mini {
-  padding: 1px 10px;
+  padding: 2px 10px;
+  height: 20px;
   font-size: 12px;
 }
 .y-button.y-button-small {
   padding: 4px 10px;
-  font-size: 12px;
+  height: 25px;
 }
 .y-button.y-button-large {
   padding: 8px 16px;
+  height: 35px;
   font-size: 16px;
 }
 .y-button.y-button-disabled {
