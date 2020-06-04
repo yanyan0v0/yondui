@@ -188,16 +188,12 @@ code, kbd, pre, samp {
   background: @bar-background-color;
   -webkit-border-radius: 4px;
 }
-// .fade-enter,
-// .fade-leave-active{
-//   opacity:  0;
-//   top: 0;
-// }
-// .fade-enter-active,
-// .fade-leave{
-//   opacity: 1;
-//   transition: opacity 0.3s, top 0.3s;
-// }
+
+.dropdown-fade-enter,
+.dropdown-fade-leave-active{
+  opacity:  0;
+  transform: translateY(-10px);
+}
 
 /* 全局自定义的样式 */
 

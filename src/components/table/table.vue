@@ -36,7 +36,7 @@
         :class="[
         classPrefix + align, 
           {'y-table-body-border': border, 'y-table-body-stripe': stripe, 'y-table-body-disabled-hover': disabledHover},
-          size ? classPrefix + size : '' 
+          computeSize 
         ]"
       >
         <colgroup>
@@ -156,6 +156,13 @@ export default {
     };
   },
   computed: {
+    computeSize() {
+      return this.size
+        ? this.classPrefix + this.size
+        : this.$Y2UI.size
+        ? this.classPrefix + this.$Y2UI.size
+        : "";
+    },
     getResizeLineStyle() {
       return {
         left: (this.dragCol.startX || 0) + "px",

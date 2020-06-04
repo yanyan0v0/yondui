@@ -1,7 +1,7 @@
 <template>
   <span
     class="y-switch"
-    :class="[size ? 'y-switch-' + size : '',{'y-switch-checked': value}, {'y-switch-disabled': disabled}]"
+    :class="[computeSize, {'y-switch-checked': value}, {'y-switch-disabled': disabled}]"
     :style="{'background-color': value ? openColor : closeColor}"
   >
     <span class="y-switch-name" :class="[value ? 'float-l' : 'float-r']">
@@ -41,6 +41,13 @@ export default {
     beforeChange: Function
   },
   computed: {
+    computeSize() {
+      return this.size
+        ? "y-switch-" + this.size
+        : this.$Y2UI.size
+        ? "y-switch-" + this.$Y2UI.size
+        : "";
+    },
     loadingColor() {
       return this.value ? this.openColor : this.closeColor;
     },

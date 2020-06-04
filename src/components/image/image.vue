@@ -9,7 +9,7 @@
         </div>
       </li>
     </ul>
-    <div v-show="showMask" class="y-image-mask">
+    <div v-show="showMask" class="y-image-mask" :style="maskStyle">
       <img
         v-if="data[activeIndex]"
         :src="data[activeIndex].url"
@@ -69,6 +69,11 @@ export default {
     };
   },
   computed: {
+    maskStyle() {
+      return {
+        zIndex: this.$Y2UI.getZindex()
+      };
+    },
     imageStyle() {
       return {
         "object-fit": this.objectFit,

@@ -120,8 +120,7 @@ export default {
         },
         toolbox: {
           show: chartData.showToolbox,
-          zlevel: 2020,
-          z: 2020,
+          zlevel: this.$Y2UI.getZindex(),
           feature: {
             magicType: {
               type: ["line", "bar"]

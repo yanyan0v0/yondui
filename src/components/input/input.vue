@@ -8,7 +8,7 @@
       :readonly="readonly"
       :maxlength="maxlength"
       :placeholder="placeholder"
-      :class="[size ? (classPrefix + size) : '', disabled ? (classPrefix + 'disabled') : '', $slots.prefix ? (classPrefix + 'with-prefix') : '', $slots.suffix ? (classPrefix + 'with-suffix') : '']"
+      :class="[computeSize, disabled ? (classPrefix + 'disabled') : '', $slots.prefix ? (classPrefix + 'with-prefix') : '', $slots.suffix ? (classPrefix + 'with-suffix') : '']"
       :style="{height}"
       @keyup.enter="handleEnter"
       @input="handleInput"
@@ -81,6 +81,15 @@ export default {
     return {
       classPrefix: "y-input-"
     };
+  },
+  computed: {
+    computeSize() {
+      return this.size
+        ? this.classPrefix + this.size
+        : this.$Y2UI.size
+        ? this.classPrefix + this.$Y2UI.size
+        : "";
+    }
   },
   methods: {
     handleEnter(event) {

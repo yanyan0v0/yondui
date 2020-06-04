@@ -52,7 +52,7 @@ const components = {
 
 // import customDirective from '@/directive'
 
-const install = function (Vue) {
+const install = function (Vue, opts = {}) {
   if (install.installed) return;
 
   // setDateFormat() // 注册格式化时间函数
@@ -61,6 +61,14 @@ const install = function (Vue) {
   objToArray(components).forEach(component => {
     Vue.component(component.name, component);
   });
+
+  Vue.prototype.$Y2UI = {
+    size: opts.size || '',
+    zIndex: opts.zIndex || 2020,
+    getZindex() {
+      return this.zIndex++
+    }
+  };
 
   Vue.prototype.$alert = AlertJs;
 

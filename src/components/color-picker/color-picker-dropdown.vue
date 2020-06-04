@@ -1,42 +1,44 @@
 <template>
-  <div
-    v-show="visible"
-    v-clickoutside="setVisible"
-    class="y-color-picker-dropdown"
-    :style="{top: top + 'px', left: left + 'px'}"
-  >
-    <y-panel :color="colorData" @on-change="handlePanelChange"></y-panel>
-    <div class="y-color-picker-select">
-      <!-- <span class="select-picker">
+  <transition name="dropdown-fade">
+    <div
+      v-show="visible"
+      v-clickoutside="setVisible"
+      class="y-color-picker-dropdown"
+      :style="style"
+    >
+      <y-panel :color="colorData" @on-change="handlePanelChange"></y-panel>
+      <div class="y-color-picker-select">
+        <!-- <span class="select-picker">
         <y-icon type="huabi"></y-icon>
-      </span>-->
-      <div class="selected-color">
-        <span :style="{'background': colorData.toHslString ? colorData.toHslString() : ''}"></span>
+        </span>-->
+        <div class="selected-color">
+          <span :style="{'background': colorData.toHslString ? colorData.toHslString() : ''}"></span>
+        </div>
+        <div class="select-bar">
+          <y-hue :color="colorData" @on-change="handleHubChange"></y-hue>
+          <y-alpha :color="colorData" @on-change="handleAlphaChange"></y-alpha>
+        </div>
       </div>
-      <div class="select-bar">
-        <y-hue :color="colorData" @on-change="handleHubChange"></y-hue>
-        <y-alpha :color="colorData" @on-change="handleAlphaChange"></y-alpha>
+      <div class="y-color-picker-input">
+        <y-input v-model="color" size="small">
+          <span slot="suffix" class="pointer" @click="changeFormat">
+            <y-icon type="shangxiaqiehuan"></y-icon>
+          </span>
+        </y-input>
+      </div>
+      <ul class="y-color-picker-group clearfix">
+        <li
+          v-for="(group, index) in colorGroup"
+          :key="index"
+          :style="{'background-color': group}"
+          @click="update(group)"
+        ></li>
+      </ul>
+      <div v-show="showFooter" class="y-color-picker-footer">
+        <y-button class="float-r" size="small" @click="confirm(color)">确定</y-button>
       </div>
     </div>
-    <div class="y-color-picker-input">
-      <y-input v-model="color" size="small">
-        <span slot="suffix" class="pointer" @click="changeFormat">
-          <y-icon type="shangxiaqiehuan"></y-icon>
-        </span>
-      </y-input>
-    </div>
-    <ul class="y-color-picker-group clearfix">
-      <li
-        v-for="(group, index) in colorGroup"
-        :key="index"
-        :style="{'background-color': group}"
-        @click="update(group)"
-      ></li>
-    </ul>
-    <div v-show="showFooter" class="y-color-picker-footer">
-      <y-button class="float-r" size="small" @click="confirm(color)">确定</y-button>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -63,6 +65,13 @@ export default {
     };
   },
   computed: {
+    style() {
+      return {
+        top: this.top + "px",
+        left: this.left + "px",
+        zIndex: this.$Y2UI.getZindex()
+      };
+    },
     colorData() {
       return tinycolor(this.color);
     }
@@ -119,6 +128,7 @@ export default {
   box-shadow: 0 2px 10px @border-color;
   background-color: #fff;
   z-index: 2020;
+  transition: opacity 0.3s, transform 0.3s;
   .y-color-picker-select {
     .flex;
     position: relative;

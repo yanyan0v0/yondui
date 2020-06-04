@@ -2,7 +2,7 @@
   <button
     class="y-button"
     @click="handleClick"
-    :class="[ classPrefix + size, classPrefix + shape, disabled ? classPrefix + 'disabled' : '']"
+    :class="[computeSize, classPrefix + shape, disabled ? classPrefix + 'disabled' : '']"
     :style="[colorStyle, {'width': width}]"
   >
     <slot></slot>
@@ -44,6 +44,13 @@ export default {
     };
   },
   computed: {
+    computeSize() {
+      return this.size
+        ? this.classPrefix + this.size
+        : this.$Y2UI.size
+        ? this.classPrefix + this.$Y2UI.size
+        : "";
+    },
     colorStyle() {
       // 颜色不存在时
       if (!this.color) {

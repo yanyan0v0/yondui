@@ -2,7 +2,7 @@
   <div
     class="y-alert"
     :class="[{'y-alert-fixed': !htmlRender},'y-alert-' + type, 'y-alert-' + theme]"
-    :style="{top: top + 'px'}"
+    :style="style"
   >
     <div v-show="!hideIcon" class="y-alert-type-icon">
       <slot name="prefix">
@@ -73,6 +73,16 @@ export default {
       textWrapRect: {},
       textStyle: {}
     };
+  },
+  computed: {
+    style() {
+      return this.htmlRender
+        ? ""
+        : {
+            top: this.top + "px",
+            zIndex: this.$Y2UI.getZindex()
+          };
+    }
   },
   methods: {
     close() {

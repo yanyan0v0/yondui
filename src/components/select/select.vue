@@ -30,8 +30,6 @@
         @click="handleClear"
       ></y-icon>
     </y-input>
-
-    <div class="y-select-multiple"></div>
   </div>
 </template>
 
@@ -110,7 +108,8 @@ export default {
                   display: this.visible ? "block" : "none",
                   width: this.selectRect.width + "px",
                   top: this.selectRect.bottom + 5 + "px",
-                  left: this.selectRect.left + "px"
+                  left: this.selectRect.left + "px",
+                  zIndex: this.$Y2UI.getZindex()
                 },
                 directives: [
                   {

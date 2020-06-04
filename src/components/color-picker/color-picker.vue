@@ -71,6 +71,9 @@ export default {
 
     this.instance.$mount();
     document.body.appendChild(this.instance.$el);
+  },
+  beforeDestroy() {
+    if (this.instance) document.body.removeChild(this.instance.$el);
   }
 };
 </script>
