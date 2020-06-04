@@ -33,8 +33,10 @@
 </template>
 
 <script>
+import scrollbottom from "@/directive/scrollbottom";
 export default {
   name: "y-timeline",
+  directives: { scrollbottom },
   props: {
     /**
       card 卡片样式
@@ -82,7 +84,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .y-timeline {
   .full;
   padding: 5px 5px 5px 0;

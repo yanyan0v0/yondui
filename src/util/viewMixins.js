@@ -1,4 +1,6 @@
+import scrolling from '@/directive/scrolling'
 export default {
+  directives: { scrolling },
   computed: {
     getNav() {
       return id => {

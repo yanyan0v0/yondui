@@ -2,6 +2,7 @@
 node_modules
 /dist
 /y2-ui
+/lib
 
 # local env files
 .env.local

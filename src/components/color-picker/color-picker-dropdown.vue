@@ -43,6 +43,7 @@
 
 <script>
 import tinycolor from "tinycolor2";
+import clickoutside from "@/directive/clickoutside";
 import { THEME_COLORS } from "@/util/config";
 export default {
   name: "y-color-picker",
@@ -51,6 +52,7 @@ export default {
     YHue: () => import("./components/hue.vue"),
     YAlpha: () => import("./components/alpha.vue")
   },
+  directives: { clickoutside },
   data() {
     return {
       visible: false,

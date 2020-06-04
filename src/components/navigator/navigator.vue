@@ -114,7 +114,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .y-navigator {
   position: relative;
   display: table;

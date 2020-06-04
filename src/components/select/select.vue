@@ -35,6 +35,7 @@
 
 <script>
 import Vue from "vue";
+import clickoutside from "@/directive/clickoutside";
 export default {
   name: "y-select",
   props: {
@@ -80,6 +81,7 @@ export default {
         let _this = this;
         let selectRect = this.$el.getBoundingClientRect().toJSON();
         this.vm = new Vue({
+          directives: { clickoutside },
           data() {
             return {
               // select在dom中的位置信息

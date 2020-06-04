@@ -138,7 +138,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .preview-loading {
   position: relative;
   height: 200px;

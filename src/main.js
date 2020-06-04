@@ -9,17 +9,15 @@ import y2Ui from '@/components/index.js'
 import vueHljs from "vue-hljs";
 // css样式
 import '@/assets/less/common.less'
-import '@/assets/iconfont/iconfont.css'
+// import '@/assets/iconfont/iconfont.css'
 import "vue-hljs/dist/vue-hljs.min.css";
 
 import { setDateFormat } from '@/util/tools'
-import customDirective from '@/directive'
 
 Vue.use(y2Ui)
 Vue.use(vueHljs)
 
 setDateFormat() // 注册格式化时间函数
-customDirective(Vue) // 注册指令
 Vue.config.productionTip = false
 
 new Vue({
