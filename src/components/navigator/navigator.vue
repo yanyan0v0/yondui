@@ -66,9 +66,11 @@ export default {
       let target = document.getElementsByClassName("code-article")[0];
       // 获取滚动高度
       let scrollTop = target.scrollTop;
+      // 获取元素
+      let el = document.getElementById(this.activeNav.id);
+      if (!el) return;
       // 获取当前 offsetTop
-      const targetOffsetTop = document.getElementById(this.activeNav.id)
-        .offsetTop;
+      const targetOffsetTop = el.offsetTop;
       // 定义一次跳 50 个像素，数字越大跳得越快，但是会有掉帧得感觉，步子迈大了会扯到蛋
       const STEP = 50;
       // 判断是往下滑还是往上滑

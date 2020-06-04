@@ -14,8 +14,10 @@ import Input from '@/components/input/input.vue'
 import Loading from '@/components/loading/loading.vue'
 import Menu from '@/components/menu/menu.vue'
 import Nav from '@/components/navigator/navigator.vue'
+import Option from '@/components/select/components/option.vue'
 import Rank from '@/components/rank/rank.vue'
 import Table from '@/components/table/table.vue'
+import Select from '@/components/select/select.vue'
 import Slider from '@/components/slider/slider.vue'
 import Switch from '@/components/switch/switch.vue'
 import TimeLine from '@/components/timeline/timeline.vue'
@@ -38,7 +40,9 @@ const components = {
   Loading,
   Menu,
   Nav,
+  Option,
   Rank,
+  Select,
   Slider,
   Switch,
   Table,

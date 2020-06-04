@@ -101,6 +101,13 @@ export const MENU_LIST = [
         file: '/rank/rank.vue'
       },
       {
+        id: 218,
+        name: "Select 选择框",
+        icon: "sanjiao-xia",
+        to: "select",
+        file: '/select/select.vue'
+      },
+      {
         id: 213,
         name: "Slider 滑块",
         icon: "xian",
@@ -110,7 +117,7 @@ export const MENU_LIST = [
       {
         id: 217,
         name: "Switch 开关",
-        icon: "xian",
+        icon: "switch",
         to: "switch",
         file: '/switch/switch.vue'
       },

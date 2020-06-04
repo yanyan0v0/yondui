@@ -14,7 +14,7 @@
       </div>
     </div>
     <footer class="footer">
-      <p>Copyright © 2020 liaoyanyan 微信：a717051618 邮箱：717051618@qq.com</p>
+      <p>Copyright © 2020 liaoyanyan 邮箱：717051618@qq.com</p>
     </footer>
   </div>
 </template>

@@ -158,7 +158,8 @@ export const typeOf = (obj) => {
     '[object RegExp]': 'regExp',
     '[object Undefined]': 'undefined',
     '[object Null]': 'null',
-    '[object Object]': 'object'
+    '[object Object]': 'object',
+    '[object DOMRect]': 'domRect'
   };
   return map[Object.prototype.toString.call(obj)];
 }
@@ -172,7 +173,7 @@ export const deepCopy = (obj) => {
   let o;
   let t = typeOf(obj)
 
-  if (t === 'object') {
+  if (t === 'object' || t === 'domRect') {
     o = {}
     for (let i in obj) {
       o[i] = deepCopy(obj[i])

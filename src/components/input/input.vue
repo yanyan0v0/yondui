@@ -5,11 +5,15 @@
       :value="value"
       :type="type"
       :disabled="disabled"
+      :readonly="readonly"
       :maxlength="maxlength"
       :placeholder="placeholder"
       :class="[size ? (classPrefix + size) : '', disabled ? (classPrefix + 'disabled') : '', $slots.prefix ? (classPrefix + 'with-prefix') : '', $slots.suffix ? (classPrefix + 'with-suffix') : '']"
+      :style="{height}"
       @keyup.enter="handleEnter"
       @input="handleInput"
+      @click="handleClick"
+      @focus="handleFocus"
     />
     <span v-if="this.$slots.prefix" class="y-input-prefix" :class="['y-input-prefix-' + size]">
       <slot name="prefix"></slot>
@@ -60,7 +64,15 @@ export default {
       type: String,
       default: ""
     },
+    height: {
+      type: String,
+      default: ""
+    },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -76,6 +88,13 @@ export default {
     },
     handleInput(event) {
       this.$emit("input", event.target.value);
+      this.$emit("on-change", event.target.value);
+    },
+    handleFocus() {
+      if (!this.disabled) this.$emit("on-focus");
+    },
+    handleClick() {
+      if (!this.disabled) this.$emit("on-click");
     }
   }
 };
@@ -135,47 +154,61 @@ export default {
   .y-input-disabled {
     background-color: @background-color;
     cursor: not-allowed;
-    pointer-events: none;
+    &:hover {
+      border-color: @border-color;
+    }
   }
   .y-input-with-prefix {
-    padding-left: 34px;
+    padding-left: 30px;
   }
   .y-input-with-suffix {
-    padding-right: 34px;
+    padding-right: 30px;
+  }
+  .y-input-with-prefix.y-input-large {
+    padding-left: 35px;
+  }
+  .y-input-with-suffix.y-input-large {
+    padding-right: 35px;
+  }
+  .y-input-with-prefix.y-input-small {
+    padding-left: 25px;
+  }
+  .y-input-with-suffix.y-input-small {
+    padding-right: 25px;
+  }
+  .y-input-with-prefix.y-input-mini {
+    padding-left: 20px;
+  }
+  .y-input-with-suffix.y-input-mini {
+    padding-right: 20px;
   }
   .y-input-prefix {
     position: absolute;
+    top: 0;
     left: 0;
+    width: 30px;
     height: 100%;
-    width: 34px;
-    text-align: center;
-    line-height: 34px;
-    &-large {
-      line-height: 40px;
-    }
-    &-small {
-      line-height: 26px;
-    }
-    &-mini {
-      line-height: 20px;
-    }
+    .center;
   }
   .y-input-suffix {
     position: absolute;
+    top: 0;
     right: 0;
     height: 100%;
-    width: 34px;
-    text-align: center;
-    line-height: 34px;
-    &-large {
-      line-height: 40px;
-    }
-    &-small {
-      line-height: 26px;
-    }
-    &-mini {
-      line-height: 20px;
-    }
+    width: 30px;
+    .center;
+  }
+  .y-input-prefix-large,
+  .y-input-suffix-large {
+    width: 35px;
+  }
+  .y-input-prefix-small,
+  .y-input-suffix-small {
+    width: 25px;
+  }
+  .y-input-prefix-mini,
+  .y-input-suffix-mini {
+    width: 20px;
   }
 }
 </style>

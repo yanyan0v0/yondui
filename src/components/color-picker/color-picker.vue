@@ -54,7 +54,7 @@ export default {
         left: pickerRect.left,
         color: this.value,
         showFooter: this.showFooter,
-        parentEl: this.$el
+        parentEl: this.$el // 指令clickoutside所需参数
       },
       methods: {
         updateColor: color => {

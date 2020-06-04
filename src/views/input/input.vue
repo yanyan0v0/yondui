@@ -10,7 +10,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-input v-model="value1" placeholder="请输入" width="300px"/>
+              <y-input v-model="value1" placeholder="请输入" width="300px" />
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -42,22 +42,22 @@
                 placeholder="请输入"
                 width="100px"
                 style="margin-right: 10px"
-              />
-              <y-input v-model="value3" placeholder="请输入" width="100px" style="margin-right: 10px"/>
+              ></y-input>
+              <y-input v-model="value3" placeholder="请输入" width="100px" style="margin-right: 10px"></y-input>
               <y-input
                 v-model="value4"
                 size="small"
                 placeholder="请输入"
                 width="100px"
                 style="margin-right: 10px"
-              />
+              ></y-input>
               <y-input
                 v-model="value5"
                 size="mini"
                 placeholder="请输入"
                 width="100px"
                 style="margin-right: 10px"
-              />
+              ></y-input>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -87,7 +87,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-input v-model="value6" disabled placeholder="请输入" width="300px"/>
+              <y-input v-model="value6" disabled placeholder="请输入" width="300px" />
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -106,6 +106,30 @@
       </div>
 
       <!-- 分割线 -->
+      <div v-show="compareVersion('ZD')">
+        <h3 id="ZD">{{getNav('ZD').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-input v-model="value6" readonly placeholder="请输入" width="300px" />
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过添加
+              <code>readonly</code>属性可设置为只读状态。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card">
+            <pre>
+            <code>
+  &lt;y-input v-model="value6" readonly placeholder="请输入" width="300px" /&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
       <div v-show="compareVersion('QHTB')">
         <h3 id="QHTB">{{getNav('QHTB').name}}</h3>
         <y-card :split="2">
@@ -114,7 +138,7 @@
               <y-input v-model="value7" placeholder="请输入" width="300px" class="m-b-5">
                 <y-icon type="sousuo" slot="prefix"></y-icon>
               </y-input>
-              <br>
+              <br />
               <y-input v-model="value8" placeholder="请输入" width="300px">
                 <y-icon type="sousuo" slot="suffix"></y-icon>
               </y-input>
@@ -186,6 +210,11 @@ export default {
           version: "0.1.6"
         },
         {
+          id: "ZD",
+          name: "只读",
+          version: "0.1.6"
+        },
+        {
           id: "JY",
           name: "禁用",
           version: "0.1.6"
@@ -246,6 +275,12 @@ export default {
         {
           attr: "disabled",
           explain: `设置输入框为禁用状态`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "readonly",
+          explain: `设置输入框为只读状态`,
           type: "Boolean",
           default: "false"
         }

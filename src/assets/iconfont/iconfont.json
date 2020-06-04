@@ -6,6 +6,13 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "1201491",
+      "name": "switch",
+      "font_class": "switch",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "13051854",
       "name": "link",
       "font_class": "link",

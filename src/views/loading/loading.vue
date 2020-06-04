@@ -128,7 +128,7 @@ export default {
       ],
       slotList: [
         {
-          attr: "default",
+          attr: "-",
           explain: "默认加载文字内容"
         }
       ]

@@ -2,7 +2,7 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>Menu 菜单</h1>
+      <h1>Switch 开关</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="compareVersion('JC')">
@@ -239,10 +239,6 @@ export default {
       switch1: false,
       switch2: false,
       switch3: false,
-      switch4: false,
-      switch5: false,
-      switch6: false,
-      switch7: false,
       navList: [
         {
           id: "JC",

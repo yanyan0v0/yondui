@@ -422,7 +422,7 @@ export default {
       ],
       slotList: [
         {
-          attr: "default",
+          attr: "-",
           explain: "默认显示内容"
         },
         {

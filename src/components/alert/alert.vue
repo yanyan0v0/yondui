@@ -131,7 +131,7 @@ export default {
   },
   mounted() {
     // 函数式调用 默认3s后关闭
-    if (!this.htmlRender) {
+    if (!this.htmlRender && this.duration) {
       setTimeout(() => {
         this.close();
       }, this.duration);
@@ -181,12 +181,12 @@ export default {
 //   opacity: 1;
 //   transition: all 5s ease;
 // }
-.y-alert-fade-enter-active,
-.y-alert-fade-leave-active {
-  // opacity: 0;
-  top: 0;
-  transform: translate(-50%, -100%);
-}
+// .fade-enter-active,
+// .fade-leave-active {
+//   opacity: 0;
+//   top: 0;
+//   transform: translate(-50%, -100%);
+// }
 .y-alert {
   .center-h;
   justify-content: space-between;

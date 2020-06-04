@@ -207,3 +207,22 @@ export default {
   &lt;template slot="open"&gt;ON&lt;/template&gt;
   &lt;template slot="close"&gt;OFF&lt;/template&gt;
 &lt;/y-switch&gt;
+
+&lt;y-select v-model="select1"&gt;
+  &lt;y-option v-for="city in cityList" :key="city.id" :value="city.id"&gt;{{city.name}}&lt;/y-option&gt;
+&lt;/y-select&gt;
+
+&lt;p&gt;select禁用&lt;/p&gt;
+&lt;y-select v-model="select2" disabled&gt;
+  &lt;y-option v-for="city in cityList" :key="city.id" :value="city.id"&gt;{{city.name}}&lt;/y-option&gt;
+&lt;/y-select&gt;
+
+&lt;p&gt;option禁用&lt;/p&gt;
+&lt;y-select v-model="select2"&gt;
+  &lt;y-option
+    v-for="city in cityList"
+    :key="city.id"
+    :value="city.id"
+    :disabled="city.id == 2"
+  &gt;{{city.name}}&lt;/y-option&gt;
+&lt;/y-select&gt;

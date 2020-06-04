@@ -358,7 +358,7 @@
 
       <!-- 底部API说明 -->
       <footer-table :name="$options.name" :propList="filterVersion(propList)">
-        <div v-show="compareVersion('CPROPS')">
+        <div>
           <h3 id="CPROPS">{{getNav('CPROPS').name}}</h3>
           <y-table :data="filterVersion(cpropList)" :columns="propColumns"></y-table>
         </div>

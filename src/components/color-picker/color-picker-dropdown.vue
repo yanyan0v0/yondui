@@ -81,7 +81,7 @@ export default {
     }
   },
   methods: {
-    setVisible(visible) {
+    setVisible(visible = false) {
       this.visible = visible;
     },
     handlePanelChange({ s, v }) {
