@@ -86,6 +86,123 @@
         </y-card>
       </div>
 
+      <!-- 分割线 -->
+      <div v-show="compareVersion('CFFS')">
+        <h3 id="CFFS">{{getNav('CFFS').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview preview-dropdown">
+              <y-dropdown>
+                <a href="javascript:void(0)" class="primary-color">
+                  hover触发
+                  <y-icon type="sanjiao-xia" size="12"></y-icon>
+                </a>
+                <y-dropdown-menu slot="menu">
+                  <y-dropdown-item
+                    v-for="city in cityList"
+                    :key="city.name"
+                    :value="city.name"
+                  >{{city.name}}</y-dropdown-item>
+                </y-dropdown-menu>
+              </y-dropdown>
+
+              <y-dropdown trigger="click">
+                <a href="javascript:void(0)" class="primary-color">
+                  click触发
+                  <y-icon type="sanjiao-xia" size="12"></y-icon>
+                </a>
+                <y-dropdown-menu slot="menu">
+                  <y-dropdown-item
+                    v-for="city in cityList"
+                    :key="city.name"
+                    :value="city.name"
+                  >{{city.name}}</y-dropdown-item>
+                </y-dropdown-menu>
+              </y-dropdown>
+
+              <y-dropdown trigger="custom">
+                <a href="javascript:void(0)" class="primary-color" @click="visible = !visible">
+                  custom触发
+                  <y-icon type="sanjiao-xia" size="12"></y-icon>
+                </a>
+                <y-dropdown-menu :visible="visible" slot="menu">
+                  <y-dropdown-item
+                    v-for="city in cityList"
+                    :key="city.name"
+                    :value="city.name"
+                  >{{city.name}}</y-dropdown-item>
+                  <y-button @click="visible = false" color="primary" size="small">关闭</y-button>
+                </y-dropdown-menu>
+              </y-dropdown>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              触发方式
+              <code>trigger</code>可选
+              <code>hover</code>悬停（默认）、
+              <code>click</code>点击、
+              <code>custom</code>自定义，使用 custom 时，需配合 visible 一起使用
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('CFFS').height}">
+            <pre v-pre>
+            <code>
+  &lt;y-dropdown&gt;
+    &lt;a href="javascript:void(0)"&gt;
+      hover触发
+      &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+    &lt;/a&gt;
+    &lt;y-dropdown-menu slot="menu"&gt;
+      &lt;y-dropdown-item
+        v-for="city in cityList"
+        :key="city.name"
+        :value="city.name"
+      &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+    &lt;/y-dropdown-menu&gt;
+  &lt;/y-dropdown&gt;
+
+  &lt;y-dropdown trigger="click"&gt;
+    &lt;a href="javascript:void(0)"&gt;
+      click触发
+      &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+    &lt;/a&gt;
+    &lt;y-dropdown-menu slot="menu"&gt;
+      &lt;y-dropdown-item
+        v-for="city in cityList"
+        :key="city.name"
+        :value="city.name"
+      &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+    &lt;/y-dropdown-menu&gt;
+  &lt;/y-dropdown&gt;
+
+  &lt;y-dropdown trigger="custom"&gt;
+    &lt;a href="javascript:void(0)" @click="visible = !visible"&gt;
+      custom触发
+      &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+    &lt;/a&gt;
+    &lt;y-dropdown-menu :visible="visible" slot="menu"&gt;
+      &lt;y-dropdown-item
+        v-for="city in cityList"
+        :key="city.name"
+        :value="city.name"
+      &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+      &lt;y-button @click="visible = false" color="primary" size="small"&gt;关闭&lt;/y-button&gt;
+    &lt;/y-dropdown-menu&gt;
+  &lt;/y-dropdown&gt;
+
+  export default {
+    data() {
+      return {
+        visible: false
+      };
+    }
+  };
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
       <!-- 底部API说明 -->
       <footer-table
         :name="$options.name"
@@ -117,7 +234,7 @@ export default {
   mixins: [viewMixins],
   data() {
     return {
-      select1: "",
+      visible: false,
       select2: "",
       select3: "",
       select4: "",
@@ -279,9 +396,9 @@ export default {
 </script>
 
 <style lang="less">
-.preview-select {
-  .y-select {
-    margin-bottom: 10px;
+.preview-dropdown {
+  .y-dropdown {
+    margin: 5px 10px;
   }
 }
 </style>

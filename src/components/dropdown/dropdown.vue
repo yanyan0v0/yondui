@@ -1,6 +1,6 @@
 <template>
   <div class="y-dropdown">
-    <div class="y-dropdown-trigger" ref="trigger" @mouseenter="handleMouseEnter">
+    <div class="y-dropdown-trigger" ref="trigger" @[triggerEvent]="handleMouseEnter">
       <slot></slot>
     </div>
     <slot name="menu"></slot>
@@ -16,12 +16,27 @@ export default {
     };
   },
   props: {
-    clickNoHide: Boolean
+    clickNoHide: Boolean,
+    trigger: {
+      type: String,
+      default: "hover"
+    }
   },
   data() {
     return {
       visible: false
     };
+  },
+  computed: {
+    triggerEvent() {
+      if (this.trigger == "hover") {
+        return "mouseenter";
+      } else if (this.trigger == "click") {
+        return "click";
+      } else {
+        return "";
+      }
+    }
   },
   methods: {
     handleMouseEnter() {

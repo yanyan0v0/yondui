@@ -240,3 +240,46 @@ export default {
     &gt;{{city.name}}&lt;/y-dropdown-item&gt;
   &lt;/y-dropdown-menu&gt;
 &lt;/y-dropdown&gt;
+
+&lt;y-dropdown&gt;
+  &lt;a href="javascript:void(0)"&gt;
+    hover触发
+    &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+  &lt;/a&gt;
+  &lt;y-dropdown-menu slot="menu"&gt;
+    &lt;y-dropdown-item
+      v-for="city in cityList"
+      :key="city.name"
+      :value="city.name"
+    &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+  &lt;/y-dropdown-menu&gt;
+&lt;/y-dropdown&gt;
+
+&lt;y-dropdown trigger="click"&gt;
+  &lt;a href="javascript:void(0)"&gt;
+    click触发
+    &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+  &lt;/a&gt;
+  &lt;y-dropdown-menu slot="menu"&gt;
+    &lt;y-dropdown-item
+      v-for="city in cityList"
+      :key="city.name"
+      :value="city.name"
+    &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+  &lt;/y-dropdown-menu&gt;
+&lt;/y-dropdown&gt;
+
+&lt;y-dropdown trigger="custom"&gt;
+  &lt;a href="javascript:void(0)" @click="visible = !visible"&gt;
+    custom触发
+    &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+  &lt;/a&gt;
+  &lt;y-dropdown-menu :visible="visible" slot="menu"&gt;
+    &lt;y-dropdown-item
+      v-for="city in cityList"
+      :key="city.name"
+      :value="city.name"
+    &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+    &lt;y-button @click="visible = false" color="primary" size="small"&gt;关闭&lt;/y-button&gt;
+  &lt;/y-dropdown-menu&gt;
+&lt;/y-dropdown&gt;

@@ -1,7 +1,7 @@
 <template>
   <transition name="dropdown-fade">
     <ul
-      v-show="visible"
+      v-show="dropdownVisible"
       v-clickoutside="handleMouseLeave"
       class="y-dropdown-menu"
       :style="style"
@@ -18,6 +18,9 @@ export default {
   name: "y-dropdown-menu",
   directives: { clickoutside },
   inject: ["dropdownRoot"],
+  props: {
+    visible: Boolean
+  },
   data() {
     return {
       // 触发器节点位置数据
@@ -28,13 +31,15 @@ export default {
       top: 0,
       left: 0,
       // 判断是否在body下
-      ifUnderBody: false
+      isUnderBody: false
     };
   },
   computed: {
-    visible() {
-      if (this.dropdownRoot.visible) this.handlePosition();
-      return this.dropdownRoot.visible;
+    dropdownVisible() {
+      console.log(this.visible);
+      let visible = this.dropdownRoot.visible || this.visible;
+      if (visible) this.handlePosition();
+      return visible;
     },
     style() {
       return {
@@ -49,11 +54,15 @@ export default {
       this.triggerRect = this.parentEl.getBoundingClientRect();
       this.top = this.triggerRect.bottom + 5;
       this.left = this.triggerRect.left;
-      if (!this.ifUnderBody && this.$el) {
-        const comment = document.createComment("");
-        this.dropdownRoot.$el.replaceChild(comment, this.$el);
-        document.body.appendChild(this.$el);
-        this.ifUnderBody = true;
+      if (!this.isUnderBody && this.$el) {
+        try {
+          const comment = document.createComment("");
+          this.dropdownRoot.$el.replaceChild(comment, this.$el);
+          document.body.appendChild(this.$el);
+        } catch (error) {
+          this.isUnderBody = true;
+        }
+        this.isUnderBody = true;
       }
     },
     handleMouseLeave() {
@@ -63,6 +72,9 @@ export default {
   },
   created() {
     this.parentEl = this.dropdownRoot.$refs["trigger"];
+  },
+  beforeDestroy() {
+    if (this.isUnderBody && this.$el) document.body.removeChild(this.$el);
   }
 };
 </script>
