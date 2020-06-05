@@ -1,29 +1,49 @@
 <template>
   <div class="y-dropdown">
-    <slot name="trigger"></slot>
-    <ul class="y-dropdown-content">
+    <div class="y-dropdown-trigger" ref="trigger" @mouseenter="handleMouseEnter">
       <slot></slot>
-    </ul>
+    </div>
+    <slot name="menu"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "y-dropdown"
+  name: "y-dropdown",
+  provide() {
+    return {
+      dropdownRoot: this
+    };
+  },
+  props: {
+    clickNoHide: Boolean
+  },
+  data() {
+    return {
+      visible: false
+    };
+  },
+  methods: {
+    handleMouseEnter() {
+      this.visible = true;
+    },
+    hide() {
+      this.visible = false;
+    },
+    handleItemClick(value) {
+      this.$emit("on-click", value);
+    }
+  }
 };
 </script>
 
 <style lang="less">
 .y-dropdown {
-  &-content {
-    position: absolute;
-    border: 1px solid @border-color;
-    border-radius: 4px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    padding: 5px;
-    font-size: 14px;
-    background-color: #fff;
-    z-index: 2020;
+  position: relative;
+  display: inline-block;
+  &-trigger {
+    display: inline-block;
+    cursor: pointer;
   }
 }
 </style>

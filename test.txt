@@ -226,3 +226,17 @@ export default {
     :disabled="city.id == 2"
   &gt;{{city.name}}&lt;/y-option&gt;
 &lt;/y-select&gt;
+
+&lt;y-dropdown @on-click="handleDropdownClick"&gt;
+  &lt;a href="javascript:void(0)" class="primary-color"&gt;
+    下拉菜单
+    &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+  &lt;/a&gt;
+  &lt;y-dropdown-menu slot="menu"&gt;
+    &lt;y-dropdown-item
+      v-for="city in cityList"
+      :key="city.name"
+      :value="city.name"
+    &gt;{{city.name}}&lt;/y-dropdown-item&gt;
+  &lt;/y-dropdown-menu&gt;
+&lt;/y-dropdown&gt;

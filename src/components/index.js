@@ -8,6 +8,9 @@ import Chart from '@/components/chart/chart.vue'
 import ColorPicker from '@/components/color-picker/color-picker.vue'
 import Divider from '@/components/divider/divider.vue'
 import Draw from '@/components/draw/draw.vue'
+import Dropdown from '@/components/dropdown/dropdown.vue'
+import DropdownMenu from '@/components/dropdown/dropdown-menu.vue'
+import DropdownItem from '@/components/dropdown/dropdown-item.vue'
 import Icon from '@/components/icon/icon.vue'
 import Image from '@/components/image/image.vue'
 import Input from '@/components/input/input.vue'
@@ -34,6 +37,9 @@ const components = {
   ColorPicker,
   Divider,
   Draw,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
   Icon,
   Image,
   Input,

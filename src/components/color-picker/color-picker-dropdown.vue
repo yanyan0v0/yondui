@@ -85,6 +85,10 @@ export default {
         this.formatIndex = this.formats.findIndex(
           format => format.toLowerCase().indexOf(_color._format) != -1
         );
+        // 如果找不到该颜色， 直接转化成rgb
+        if (this.formatIndex == -1) {
+          this.formatIndex = 0;
+        }
         this.hsva = _color.toHsv();
         if (!this.showFooter) this.updateColor(color);
       },

@@ -59,6 +59,13 @@ export const MENU_LIST = [
         file: '/draw/draw.vue'
       },
       {
+        id: 219,
+        name: "Dropdown 下拉菜单",
+        icon: "xiala",
+        to: "dropdown",
+        file: '/dropdown/dropdown.vue'
+      },
+      {
         id: 22,
         name: "Icon 图标",
         icon: "tubiao",

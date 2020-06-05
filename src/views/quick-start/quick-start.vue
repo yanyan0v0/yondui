@@ -31,9 +31,9 @@
             <code>
   import Vue from 'vue';
   import App from 'app.vue';
-  import YONDUI from 'yond-ui'
+  import YondUI from 'yond-ui'
 
-  Vue.use(YONDUI);
+  Vue.use(YondUI);
 
   new Vue({
     render: h => h(App)

@@ -32,17 +32,19 @@ module.exports = {
   configureWebpack: {
     // 修改打包后js文件名
     output: {
-      filename: `js/[name].js`,
-      chunkFilename: `js/[name].chunk.js`
+      filename: `[name].js`,
+      chunkFilename: `[name].js`,
+      umdNamedDefine: true
     }
   },
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
+  transpileDependencies: ['tinycolor2'],
   lintOnSave: false,
   chainWebpack: config => {
     config.resolve.alias
-      .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
+      .set('@', resolve('src'))
   },
   // 取消hash值
   filenameHashing: false,
@@ -61,17 +63,6 @@ module.exports = {
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: [path.resolve(__dirname, './src/assets/less/common.less')]
-    }
-  },
-  devServer: {
-    proxy: {
-      '/mys': {
-        target: 'http://mcmstest.yilvbao.cn/mca-web/api/v1',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/mys': ''
-        }
-      }
     }
   }
 }

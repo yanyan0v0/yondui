@@ -7,9 +7,9 @@ npm install yond-ui --save
 ## Quick Start
 ``` javascript
 import Vue from 'vue'
-import YONDUI from 'yond-ui'
+import YondUI from 'yond-ui'
 
-Vue.use(YONDUI)
+Vue.use(YondUI)
 
 // or
 import {

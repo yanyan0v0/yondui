@@ -6,7 +6,7 @@
       </router-link>
       <ul class="header-group">
         <li>
-          <a href="https://github.com/yanyan0v0/yyui" target="_blank">
+          <a href="https://github.com/yanyan0v0/yondui" target="_blank">
             <y-icon type="github"></y-icon>
           </a>
         </li>
