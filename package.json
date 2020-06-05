@@ -53,7 +53,7 @@
   "main": "lib/yond-ui.umd.min.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yanyan0v0/yyui.git"
+    "url": "git+https://github.com/yanyan0v0/yondui.git"
   },
   "keywords": [
     "ui组件库"
@@ -68,7 +68,7 @@
   "author": "liaoyanyan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yanyan0v0/yyui/issues"
+    "url": "https://github.com/yanyan0v0/yondui/issues"
   },
-  "homepage": "https://github.com/yanyan0v0/yyui#readme"
+  "homepage": "https://github.com/yanyan0v0/yondui#readme"
 }
