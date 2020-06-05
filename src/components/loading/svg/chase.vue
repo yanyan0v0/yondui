@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-chase {
   width: 40px;
   height: 40px;

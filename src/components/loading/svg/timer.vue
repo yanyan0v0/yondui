@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-timer {
   width: 100%;
   height: 100%;
@@ -46,9 +46,9 @@ export default {
   -webkit-transform-origin: 1px 1px;
   -moz-transform-origin: 1px 1px;
   transform-origin: 1px 1px;
-  -webkit-animation: minhand 2s linear infinite;
-  -moz-animation: minhand 2s linear infinite;
-  animation: minhand 2s linear infinite;
+  -webkit-animation: y-loading-timer-rotate 2s linear infinite;
+  -moz-animation: y-loading-timer-rotate 2s linear infinite;
+  animation: y-loading-timer-rotate 2s linear infinite;
 }
 
 .y-loading-timer .y-loading-timer-minute {
@@ -64,7 +64,7 @@ export default {
   animation: hrhand 8s linear infinite;
 }
 
-@-webkit-keyframes minhand {
+@-webkit-keyframes y-loading-timer-rotate {
   0% {
     -webkit-transform: rotate(0deg);
   }
@@ -72,7 +72,7 @@ export default {
     -webkit-transform: rotate(360deg);
   }
 }
-@-moz-keyframes minhand {
+@-moz-keyframes y-loading-timer-rotate {
   0% {
     -moz-transform: rotate(0deg);
   }
@@ -80,7 +80,7 @@ export default {
     -moz-transform: rotate(360deg);
   }
 }
-@keyframes minhand {
+@keyframes y-loading-timer-rotate {
   0% {
     transform: rotate(0deg);
   }

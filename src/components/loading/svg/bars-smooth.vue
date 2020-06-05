@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-bars-smooth {
   display: flex;
   position: relative;
@@ -42,8 +42,9 @@ export default {
   width: 10%;
   display: inline-block;
 
-  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  -webkit-animation: y-loading-bars-smooth-stretch-delay 1.2s infinite
+    ease-in-out;
+  animation: y-loading-bars-smooth-stretch-delay 1.2s infinite ease-in-out;
 }
 
 .y-loading-bars-smooth .rect2 {
@@ -66,18 +67,7 @@ export default {
   animation-delay: -0.8s;
 }
 
-@-webkit-keyframes sk-stretchdelay {
-  0%,
-  40%,
-  100% {
-    -webkit-transform: scaleY(0.4);
-  }
-  20% {
-    -webkit-transform: scaleY(1);
-  }
-}
-
-@keyframes sk-stretchdelay {
+@keyframes y-loading-bars-smooth-stretch-delay {
   0%,
   40%,
   100% {

@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-location-indicator {
   position: relative;
   width: 100%;
@@ -38,9 +38,9 @@ export default {
   height: 70%;
   border-radius: 100% 100% 100% 0;
   border: 2px solid #333;
-  -webkit-animation: y-mapping 1s linear infinite;
-  -moz-animation: y-mapping 1s linear infinite;
-  animation: y-mapping 1s linear infinite;
+  -webkit-animation: y-loading-location-indicator 1s linear infinite;
+  -moz-animation: y-loading-location-indicator 1s linear infinite;
+  animation: y-loading-location-indicator 1s linear infinite;
   -webkit-transform: rotate(-46deg);
   -moz-transform: rotate(-46deg);
   transform: rotate(-46deg);
@@ -55,29 +55,7 @@ export default {
   opacity: 0.2;
 }
 
-@-webkit-keyframes y-mapping {
-  0% {
-    top: 0;
-  }
-  50% {
-    top: -5px;
-  }
-  100% {
-    top: 0;
-  }
-}
-@-moz-keyframes y-mapping {
-  0% {
-    top: 0;
-  }
-  50% {
-    top: -5px;
-  }
-  100% {
-    top: 0;
-  }
-}
-@keyframes y-mapping {
+@keyframes y-loading-location-indicator {
   0% {
     top: 0;
   }

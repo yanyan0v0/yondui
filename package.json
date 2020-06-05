@@ -59,14 +59,11 @@
     "ui组件库"
   ],
   "files": [
-    "lib/y2-ui.css",
-    "lib/fonts/*",
-    "lib/img/*",
+    "lib/*",
     "src/components/*",
     "src/directive/*",
     "src/util/*",
-    "package.json",
-    "README.md"
+    "package.json"
   ],
   "author": "liaoyanyan",
   "license": "ISC",

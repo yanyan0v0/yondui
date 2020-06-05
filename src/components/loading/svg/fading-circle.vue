@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-fading-circle {
   width: 100%;
   height: 100%;
@@ -79,8 +79,8 @@ export default {
   height: 15%;
   background-color: #333;
   border-radius: 100%;
-  -webkit-animation: y-loading-circleFadeDelay 1.2s infinite ease-in-out both;
-  animation: y-loading-circleFadeDelay 1.2s infinite ease-in-out both;
+  -webkit-animation: y-loading-circle-fade-delay 1.2s infinite ease-in-out both;
+  animation: y-loading-circle-fade-delay 1.2s infinite ease-in-out both;
 }
 .y-loading-fading-circle .y-loading-circle2 {
   -webkit-transform: rotate(30deg);
@@ -182,18 +182,7 @@ export default {
   animation-delay: -0.1s;
 }
 
-@-webkit-keyframes y-loading-circleFadeDelay {
-  0%,
-  39%,
-  100% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-}
-
-@keyframes y-loading-circleFadeDelay {
+@keyframes y-loading-circle-fade-delay {
   0%,
   39%,
   100% {

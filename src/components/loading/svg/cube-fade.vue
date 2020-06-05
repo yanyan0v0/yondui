@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-cube-fade {
   position: relative;
   width: 100%;
@@ -42,8 +42,8 @@ export default {
   height: 33%;
   background-color: #333;
   float: left;
-  -webkit-animation: cube-fadeGridScaleDelay 1.3s infinite ease-in-out;
-  animation: cube-fadeGridScaleDelay 1.3s infinite ease-in-out;
+  -webkit-animation: y-loading-cube-fade 1.3s infinite ease-in-out;
+  animation: y-loading-cube-fade 1.3s infinite ease-in-out;
 }
 .y-loading-cube-fade .cube-fade1 {
   -webkit-animation-delay: 0.2s;
@@ -82,20 +82,7 @@ export default {
   animation-delay: 0.2s;
 }
 
-@-webkit-keyframes cube-fadeGridScaleDelay {
-  0%,
-  70%,
-  100% {
-    -webkit-transform: scale3D(1, 1, 1);
-    transform: scale3D(1, 1, 1);
-  }
-  35% {
-    -webkit-transform: scale3D(0, 0, 1);
-    transform: scale3D(0, 0, 1);
-  }
-}
-
-@keyframes cube-fadeGridScaleDelay {
+@keyframes y-loading-cube-fade {
   0%,
   70%,
   100% {

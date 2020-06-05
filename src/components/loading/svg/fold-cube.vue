@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-fold-cube {
   width: 100%;
   height: 100%;
@@ -58,8 +58,8 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #333;
-  -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
-  animation: sk-foldCubeAngle 2.4s infinite linear both;
+  -webkit-animation: y-loading-fold-cube-delay 2.4s infinite linear both;
+  animation: y-loading-fold-cube-delay 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
   -ms-transform-origin: 100% 100%;
   transform-origin: 100% 100%;
@@ -88,28 +88,8 @@ export default {
   -webkit-animation-delay: 0.9s;
   animation-delay: 0.9s;
 }
-@-webkit-keyframes sk-foldCubeAngle {
-  0%,
-  10% {
-    -webkit-transform: perspective(140px) rotateX(-180deg);
-    transform: perspective(140px) rotateX(-180deg);
-    opacity: 0;
-  }
-  25%,
-  75% {
-    -webkit-transform: perspective(140px) rotateX(0deg);
-    transform: perspective(140px) rotateX(0deg);
-    opacity: 1;
-  }
-  90%,
-  100% {
-    -webkit-transform: perspective(140px) rotateY(180deg);
-    transform: perspective(140px) rotateY(180deg);
-    opacity: 0;
-  }
-}
 
-@keyframes sk-foldCubeAngle {
+@keyframes y-loading-fold-cube-delay {
   0%,
   10% {
     -webkit-transform: perspective(140px) rotateX(-180deg);

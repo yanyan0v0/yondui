@@ -23,15 +23,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .y-loading-two-cube {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.cube1,
-.cube2 {
+.y-loading-two-cube .cube1,
+.y-loading-two-cube .cube2 {
   background-color: #333;
   width: 15px;
   height: 15px;
@@ -39,16 +39,16 @@ export default {
   top: 0;
   left: 0;
 
-  -webkit-animation: y-cubemove 1.8s infinite ease-in-out;
-  animation: y-cubemove 1.8s infinite ease-in-out;
+  -webkit-animation: y-loading-two-cube-move 1.8s infinite ease-in-out;
+  animation: y-loading-two-cube-move 1.8s infinite ease-in-out;
 }
 
-.cube2 {
+.y-loading-two-cube .cube2 {
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }
 
-@-webkit-keyframes y-cubemove {
+@-webkit-keyframes y-loading-two-cube-move {
   25% {
     -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
   }
@@ -64,7 +64,7 @@ export default {
   }
 }
 
-@keyframes y-cubemove {
+@keyframes y-loading-two-cube-move {
   25% {
     transform: translateX(42px) rotate(-90deg) scale(0.5);
     -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
