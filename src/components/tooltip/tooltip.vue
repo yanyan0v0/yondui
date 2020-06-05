@@ -180,7 +180,7 @@ export default {
                 opacity: 1,
                 left: x + "px",
                 top: y + "px",
-                zIndex: this.$Y2UI.getZindex()
+                zIndex: this.$YONDUI.getZindex()
               };
             },
             hide() {

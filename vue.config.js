@@ -21,7 +21,7 @@ const resolve = dir => {
 
 module.exports = {
   // 打包输出目录
-  outputDir: 'y2-ui',
+  outputDir: 'yond-ui',
   // 项目基础路径
   publicPath: './',
   // 静态资源目录

@@ -80,7 +80,7 @@ export default {
         ? ""
         : {
             top: this.top + "px",
-            zIndex: this.$Y2UI.getZindex()
+            zIndex: this.$YONDUI.getZindex()
           };
     }
   },

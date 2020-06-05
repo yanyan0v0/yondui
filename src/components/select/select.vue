@@ -111,7 +111,7 @@ export default {
                   width: this.selectRect.width + "px",
                   top: this.selectRect.bottom + 5 + "px",
                   left: this.selectRect.left + "px",
-                  zIndex: this.$Y2UI.getZindex()
+                  zIndex: this.$YONDUI.getZindex()
                 },
                 directives: [
                   {

@@ -1,25 +1,25 @@
-# y2-ui
+# yond-ui
 
 ## Install
 ```shell
-npm install y2-ui --save
+npm install yond-ui --save
 ```
 ## Quick Start
 ``` javascript
 import Vue from 'vue'
-import Y2UI from 'y2-ui'
+import YONDUI from 'yond-ui'
 
-Vue.use(Y2UI)
+Vue.use(YONDUI)
 
 // or
 import {
   Button
   // ...
-} from 'y2-ui'
+} from 'yond-ui'
 
 Vue.component(Button.name, Button)
 ```
-For more information, please refer to [Quick Start](http://marktest.zhlyjg.cn/y2-ui/index.html) in our documentation.
+For more information, please refer to [Quick Start](http://marktest.zhlyjg.cn/yond-ui/index.html) in our documentation.
 
 ## Project setup
 ```

@@ -44,8 +44,8 @@ export default {
     computeSize() {
       return this.size
         ? "y-switch-" + this.size
-        : this.$Y2UI.size
-        ? "y-switch-" + this.$Y2UI.size
+        : this.$YONDUI.size
+        ? "y-switch-" + this.$YONDUI.size
         : "";
     },
     loadingColor() {

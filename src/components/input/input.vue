@@ -86,8 +86,8 @@ export default {
     computeSize() {
       return this.size
         ? this.classPrefix + this.size
-        : this.$Y2UI.size
-        ? this.classPrefix + this.$Y2UI.size
+        : this.$YONDUI.size
+        ? this.classPrefix + this.$YONDUI.size
         : "";
     }
   },

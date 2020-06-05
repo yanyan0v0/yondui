@@ -71,7 +71,7 @@ export default {
       return {
         top: this.top + "px",
         left: this.left + "px",
-        zIndex: this.$Y2UI.getZindex()
+        zIndex: this.$YONDUI.getZindex()
       };
     },
     colorData() {

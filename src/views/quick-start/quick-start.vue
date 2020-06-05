@@ -16,7 +16,7 @@
         <div v-highlight>
           <pre>
             <code>
-  $ npm install y2-ui --save
+  $ npm install yond-ui --save
             </code>
           </pre>
         </div>
@@ -31,9 +31,9 @@
             <code>
   import Vue from 'vue';
   import App from 'app.vue';
-  import Y2UI from 'y2-ui'
+  import YONDUI from 'yond-ui'
 
-  Vue.use(Y2UI);
+  Vue.use(YONDUI);
 
   new Vue({
     render: h => h(App)
@@ -50,7 +50,7 @@
         <div v-highlight>
           <pre>
             <code>
-  import { Button, Card } from 'y2-ui';
+  import { Button, Card } from 'yond-ui';
   Vue.component('y-button', Button);
   Vue.component('y-card', Card);
             </code>

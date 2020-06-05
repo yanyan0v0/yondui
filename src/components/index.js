@@ -62,7 +62,7 @@ const install = function (Vue, opts = {}) {
     Vue.component(component.name, component);
   });
 
-  Vue.prototype.$Y2UI = {
+  Vue.prototype.$YONDUI = {
     size: opts.size || '',
     zIndex: opts.zIndex || 2020,
     getZindex() {

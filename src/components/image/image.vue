@@ -71,7 +71,7 @@ export default {
   computed: {
     maskStyle() {
       return {
-        zIndex: this.$Y2UI.getZindex()
+        zIndex: this.$YONDUI.getZindex()
       };
     },
     imageStyle() {
