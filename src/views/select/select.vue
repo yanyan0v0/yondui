@@ -436,89 +436,89 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "230px"
         },
         {
           id: "CC",
           name: "尺寸",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "280px"
         },
         {
           id: "JY",
           name: "禁用",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "KQK",
           name: "可清空",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "QZTB",
           name: "前缀图标",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "DX",
           name: "多选",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "250px"
         },
         {
           id: "KSS",
           name: "可搜索",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "220px"
         },
         {
           id: "PROPS",
           name: "Select Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Select Slots",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Select Events",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "OPTION",
           name: "Option Props",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propColumns: PROP_COLUMNS,
       propList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "value",
           explain: `可以使用 <code class="keyword-code">v-model</code> 双向绑定数据，单选时只接受 String 或 Number，多选时只接受 Array`,
           type: "String | Number | Array",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "size",
           explain: `展示类型，可选<code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
           type: "String",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "width",
           explain: `宽度`,
           type: "String",
           default: "100%"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "disabled",
           explain: `禁用开关`,
           type: "Boolean",
@@ -527,37 +527,37 @@ export default {
       ],
       slotList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "-",
           explain: "设置展示内容"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "prefix ",
           explain: "自定义 select 内头部图标"
         }
       ],
       eventList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "on-change",
           explain: "点击选项后的回调函数",
           return: "value，label"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "on-query-change",
           explain: "搜索词改变时触发",
           return: "value，label"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "on-visible-change",
           explain: "下拉框展开或收起时触发",
           return: "value，label"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "on-clear",
           explain: "点击清空时触发",
           return: "value，label"
@@ -565,21 +565,21 @@ export default {
       ],
       opPropList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "value",
           explain: "默认根据此属性值进行筛选，必填",
           type: "String | Number",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "label",
           explain: "当option内的slot内容为自定义，这需要此属性来告知选中内容",
           type: "String",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "disabled",
           explain: "是否禁用当前项",
           type: "Boolean",

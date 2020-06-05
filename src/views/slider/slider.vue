@@ -72,18 +72,18 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "180px"
         },
         {
           id: "PROPS",
           name: "Slider Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Slider Events",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propList: [

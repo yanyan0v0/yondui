@@ -130,33 +130,33 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4",
+          version: "1.0.0",
           height: "180px"
         },
         {
           id: "ZXSWZ",
           name: "值显示位置",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "BTXSWZ",
           name: "标题显示位置",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Rank Props",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Rank Slots",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Rank Events",
-          version: "0.1.4"
+          version: "1.0.0"
         }
       ],
       rankList: [

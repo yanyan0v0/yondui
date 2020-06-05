@@ -11,7 +11,7 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <p>段落</p>
-              <y-divider/>
+              <y-divider />
               <p>段落</p>
               <y-divider>文本</y-divider>
               <p>段落</p>
@@ -19,14 +19,14 @@
               <p>段落</p>
               <y-divider position="right">文本</y-divider>
               <p>段落</p>
-              <y-divider dashed/>
+              <y-divider dashed />
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               默认为水平分割线，可在中间加入文字，
-              <br>
+              <br />
               <code>dashed</code>可设置为虚线。
-              <br>
+              <br />
               <code>position</code>可控制文本位置，可选
               <code>left</code>左、
               <code>center</code>中（默认）、
@@ -60,9 +60,9 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <span>文本</span>
-              <y-divider direction="vertical"/>
+              <y-divider direction="vertical" />
               <span>文本</span>
-              <y-divider direction="vertical"/>
+              <y-divider direction="vertical" />
               <span>文本</span>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -111,17 +111,17 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "FX",
           name: "方向",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Icon Props",
-          version: "0.1.4"
+          version: "1.0.0"
         }
       ],
       propList: [

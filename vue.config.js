@@ -4,7 +4,7 @@
 * @description 项目配置
 */
 const path = require('path')
-const packjson = require('./package.json')
+// const packjson = require('./package.json')
 
 const resolve = dir => {
   return path.join(__dirname, dir)
@@ -52,10 +52,10 @@ module.exports = {
     // 是否将组件中的 CSS 提取至一个独立的 CSS 文件中 (而不是动态注入到 JavaScript 中的 inline 代码) 这样用户不用自己导入 CSS。
     // 生产环境下是 true，开发环境下是 false
     // extract: false
-    extract: {
-      filename: `css/[name].${packjson.version}.css`,
-      chunkFilename: `css/[name].${packjson.version}.css`,
-    }
+    // extract: {
+    //   filename: `css/[name].css`,
+    //   chunkFilename: `css/[name].css`,
+    // }
   },
   pluginOptions: {
     'style-resources-loader': {

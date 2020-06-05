@@ -207,30 +207,30 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.6",
+          version: "1.0.0",
           height: "330px"
         },
         {
           id: "SL",
           name: "缩略",
-          version: "0.1.6",
+          version: "1.0.0",
           height: "330px"
         },
         {
           id: "FX",
           name: "方向",
-          version: "0.1.6",
+          version: "1.0.0",
           height: "420px"
         },
         {
           id: "PROPS",
           name: "Images Props",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Images Events",
-          version: "0.1.6"
+          version: "1.0.0"
         }
       ],
       propList: [

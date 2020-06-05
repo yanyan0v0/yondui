@@ -243,58 +243,58 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "180px"
         },
         {
           id: "CC",
           name: "尺寸",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "WZ",
           name: "文字",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "JZZ",
           name: "加载中",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "JY",
           name: "禁用",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "YS",
           name: "颜色",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         // {
         //   id: "ZZQH",
         //   name: "阻止切换",
-        //   version: "0.1.7"
+        //   version: "1.0.0"
         // },
         {
           id: "PROPS",
           name: "Switchs Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Switchs Slots",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Switchs Events",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "value",
           explain: `可以使用 <code class="keyword-code">v-model</code> 双向绑定数据`,
           type: "Boolean",
@@ -302,35 +302,35 @@ export default {
         },
 
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "size",
           explain: `展示类型，可选<code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
           type: "String",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "loading",
           explain: `加载中的开关`,
           type: "Boolean",
           default: "false"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "disabled",
           explain: `禁用开关`,
           type: "Boolean",
           default: "false"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "close-color",
           explain: `自定义关闭时的背景色`,
           type: "String",
           default: "#c5c8ce"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "open-color",
           explain: `自定义打开时的背景色`,
           type: "String",
@@ -339,19 +339,19 @@ export default {
       ],
       slotList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "close",
           explain: "自定义关闭时的内容"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "open",
           explain: "自定义开启时的内容"
         }
       ],
       eventList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "on-change",
           explain: "开关变化时触发，返回当前的状态",
           return: "true | false"

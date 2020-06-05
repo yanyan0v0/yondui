@@ -239,19 +239,19 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "400px"
         },
         {
           id: "CFTJ",
           name: "触发条件",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "240px"
         },
         {
           id: "PROPS",
           name: "Tooltip Props",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propList: [

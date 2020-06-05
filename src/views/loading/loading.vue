@@ -89,37 +89,37 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "PROPS",
           name: "Loading Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Loading Slots",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "type",
           explain: `loading类型，具体见下方列表`,
           type: "String",
           default: "circle"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "color",
           explain: `loading颜色`,
           type: "String",
           default: "#5cadff"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "size",
           explain: `loading大小`,
           type: "String",

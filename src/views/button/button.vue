@@ -114,7 +114,7 @@
               <y-button color="primary">default</y-button>
               <y-button color="primary" size="small">small</y-button>
               <y-button color="primary" size="mini">mini</y-button>
-              <br>
+              <br />
               <y-button color="primary" shape="round" size="large">large</y-button>
               <y-button color="primary" shape="round">default</y-button>
               <y-button color="primary" shape="round" size="small">small</y-button>
@@ -157,7 +157,7 @@
               <y-button color="primary">primary</y-button>
               <y-button shape="dashed">dashed</y-button>
               <y-button shape="text">text</y-button>
-              <br>
+              <br />
               <y-button disabled>default</y-button>
               <y-button disabled color="primary">primary</y-button>
               <y-button disabled shape="dashed">dashed</y-button>
@@ -210,27 +210,27 @@ export default {
         {
           id: "ANLX",
           name: "按钮类型",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "ANXZ",
           name: "按钮形状",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "ANCC",
           name: "按钮尺寸",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "JY",
           name: "禁用",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Button Props",
-          version: "0.1.4"
+          version: "1.0.0"
         }
       ],
       propList: [

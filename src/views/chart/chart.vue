@@ -531,40 +531,40 @@ export default {
         {
           id: "JCFL",
           name: "基本分类",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "500px"
         },
         {
           id: "XSTL",
           name: "显示图例",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "300px"
         },
         {
           id: "FZQK",
           name: "复杂情况",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "300px"
         },
         {
           id: "BLPROPS",
           name: "Bar/Line Data Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "PPROPS",
           name: "Pie Data Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Chart Slots",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Chart Events",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ]
     };

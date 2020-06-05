@@ -56,12 +56,12 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Icon Props",
-          version: "0.1.4"
+          version: "1.0.0"
         }
       ],
       propList: [

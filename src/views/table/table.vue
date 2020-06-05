@@ -489,58 +489,58 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.6",
+          version: "1.0.0",
           height: "300px"
         },
         {
           id: "BKTZ",
           name: "边框和拖拽",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "BMX",
           name: "斑马线",
-          version: "0.1.6",
+          version: "1.0.0",
           height: "300px"
         },
         {
           id: "GDBT",
           name: "固定表头",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "ZDY",
           name: "自定义slot",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "400px"
         },
         {
           id: "RXR",
           name: "render渲染",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "400px"
         },
         {
           id: "XSXH",
           name: "显示序号",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "300px"
         },
         {
           id: "JZZ",
           name: "加载中",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "300px"
         },
         {
           id: "PROPS",
           name: "Table Props",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "CPROPS",
           name: "Column Props",
-          version: "0.1.6"
+          version: "1.0.0"
         }
       ],
       propColumns: PROP_COLUMNS,

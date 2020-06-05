@@ -74,22 +74,22 @@ export default {
         {
           id: "SYZQ",
           name: "使用之前",
-          version: "0.0.1"
+          version: "1.0.0"
         },
         {
           id: "AZ",
           name: "NPM安装",
-          version: "0.0.1"
+          version: "1.0.0"
         },
         {
           id: "YR",
           name: "引入组件库",
-          version: "0.0.1"
+          version: "1.0.0"
         },
         {
           id: "AXYR",
           name: "按需引入",
-          version: "0.0.1"
+          version: "1.0.0"
         }
       ]
     };

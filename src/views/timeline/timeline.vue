@@ -149,28 +149,28 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "CPLX",
           name: "卡片类型",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "ZCL",
           name: "左侧栏",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Timeline Props",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Timeline Slots",
-          version: "0.1.4"
+          version: "1.0.0"
         }
       ],
       timeList: [

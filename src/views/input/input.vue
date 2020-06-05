@@ -202,37 +202,37 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "CC",
           name: "尺寸",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "ZD",
           name: "只读",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "JY",
           name: "禁用",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "QHTB",
           name: "前后图标",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Input Props",
-          version: "0.1.6"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Input Slots",
-          version: "0.1.6"
+          version: "1.0.0"
         }
       ],
       propList: [

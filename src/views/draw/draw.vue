@@ -55,18 +55,18 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "PROPS",
           name: "Draw Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "EVENTS",
           name: "Draw Events",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propList: [

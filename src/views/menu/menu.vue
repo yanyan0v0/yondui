@@ -105,18 +105,18 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.4",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "ZSLX",
           name: "展示类型",
-          version: "0.1.4"
+          version: "1.0.0"
         },
         {
           id: "PROPS",
           name: "Menu Props",
-          version: "0.1.4"
+          version: "1.0.0"
         }
       ],
       menu1: [],

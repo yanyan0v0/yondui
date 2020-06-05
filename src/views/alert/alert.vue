@@ -312,108 +312,108 @@ export default {
         {
           id: "JC",
           name: "基础",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "ZT",
           name: "主题",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "GBAN",
           name: "关闭按钮",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "YCTB",
           name: "隐藏图标",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "XHGD",
           name: "循环滚动",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "HSSDY",
           name: "函数式调用",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "SZSJ",
           name: "设置时间",
-          version: "0.1.7",
+          version: "1.0.0",
           height: "200px"
         },
         {
           id: "PROPS",
           name: "Alert Props",
-          version: "0.1.7"
+          version: "1.0.0"
         },
         {
           id: "SLOTS",
           name: "Alert Slots",
-          version: "0.1.7"
+          version: "1.0.0"
         }
       ],
       propList: [
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "type",
           explain: `消息类型，可选<code class="keyword-code">info</code>默认、 <code class="keyword-code">success</code>成功、<code class="keyword-code">warning</code>警告、<code class="keyword-code">error</code>错误`,
           type: "String",
           default: "info"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "theme",
           explain: `消息主题，可选<code class="keyword-code">light</code>浅色、 <code class="keyword-code">success</code>深色`,
           type: "String",
           default: "light"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "hide-icon",
           explain: `隐藏头部图标`,
           type: "Boolean",
           default: "false"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "scroll",
           explain: "循环滚动，详情见示例",
           type: "String | Object",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "message",
           explain: "显示消息内容，函数式调用",
           type: "String",
           default: "空"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "duration",
           explain: "消息提示持续时间，0代表无限制，单位毫秒，函数式调用",
           type: "Number",
           default: "3000"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "showClose",
           explain: "显示关闭按钮",
           type: "Boolean",
           default: "false"
         },
         {
-          version: "0.1.7",
+          version: "1.0.0",
           attr: "onClose",
           explain: "点击关闭按钮的回调",
           type: "function",
