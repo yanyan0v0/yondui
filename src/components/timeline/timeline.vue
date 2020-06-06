@@ -9,7 +9,7 @@
     <ul class="y-timeline-content">
       <li v-for="(item, index) in data" :key="index">
         <div class="y-timeline-content-left" v-if="leftWidth" :style="{'width': leftWidth + 'px'}">
-          <slot name="left" :row="item" :index="index" />
+          <slot name="left" :row="item" :index="index"/>
         </div>
         <div class="y-timeline-content-right">
           <span class="y-timeline-content-right-dot" :style="{'background-color': item.color}"></span>
@@ -18,11 +18,11 @@
               <span></span>
             </div>
             <div class="y-timeline-content-right-card-right">
-              <slot :row="item" :index="index" />
+              <slot :row="item" :index="index"/>
             </div>
           </div>
           <div class="y-timeline-content-right-line" v-else>
-            <slot :row="item" :index="index" />
+            <slot :row="item" :index="index"/>
           </div>
         </div>
       </li>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import scrollbottom from "@/directive/scrollbottom1";
+import scrollbottom from "@/directive/scrollbottom";
 export default {
   name: "y-timeline",
   directives: { scrollbottom },
