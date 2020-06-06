@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import scrollbottom from "@/directive/scrollbottom";
+import scrollbottom from "@/directive/scrollbottom1";
 export default {
   name: "y-timeline",
   directives: { scrollbottom },
