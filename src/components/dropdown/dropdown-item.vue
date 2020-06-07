@@ -16,7 +16,16 @@ export default {
   methods: {
     handleClick() {
       this.dropdownRoot.handleItemClick(this.value || this.$el.innerText);
-      if (!this.dropdownRoot.clickNoHide) {
+      // 如果存在嵌套且不可见
+      if (
+        this.$parent &&
+        this.$parent.$options.name == "y-dropdown" &&
+        !this.dropdownRoot.visible
+      ) {
+        return false;
+      }
+      if (!this.$parent.clickNoHide) {
+        console.log("item", this.dropdownRoot.$refs.trigger.innerText);
         this.dropdownRoot.hide();
       }
     }

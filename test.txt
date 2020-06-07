@@ -283,3 +283,60 @@ export default {
     &lt;y-button @click="visible = false" color="primary" size="small"&gt;关闭&lt;/y-button&gt;
   &lt;/y-dropdown-menu&gt;
 &lt;/y-dropdown&gt;
+
+&lt;y-dropdown&gt;
+  &lt;a href="javascript:void(0)" class="primary-color"&gt;
+    嵌套下拉
+    &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+  &lt;/a&gt;
+  &lt;y-dropdown-menu slot="menu"&gt;
+    &lt;y-dropdown-item&gt;北京&lt;/y-dropdown-item&gt;
+    &lt;y-dropdown-item&gt;上海&lt;/y-dropdown-item&gt;
+    &lt;y-dropdown-item&gt;广州&lt;/y-dropdown-item&gt;
+    &lt;y-dropdown&gt;
+      &lt;y-dropdown-item&gt;
+        深圳
+        &lt;y-icon type="sanjiao-you" size="12"&gt;&lt;/y-icon&gt;
+      &lt;/y-dropdown-item&gt;
+      &lt;y-dropdown-menu placement="right" slot="menu"&gt;
+        &lt;y-dropdown-item&gt;宝安&lt;/y-dropdown-item&gt;
+        &lt;y-dropdown-item&gt;南山&lt;/y-dropdown-item&gt;
+        &lt;y-dropdown-item&gt;福田&lt;/y-dropdown-item&gt;
+      &lt;/y-dropdown-menu&gt;
+    &lt;/y-dropdown&gt;
+  &lt;/y-dropdown-menu&gt;
+&lt;/y-dropdown&gt;
+
+
+&lt;y-dropdown&gt;
+  &lt;a href="javascript:void(0)" class="primary-color"&gt;
+    嵌套下拉
+    &lt;y-icon type="sanjiao-xia" size="12"&gt;&lt;/y-icon&gt;
+  &lt;/a&gt;
+  &lt;y-dropdown-menu slot="menu"&gt;
+    &lt;y-dropdown-item&gt;北京&lt;/y-dropdown-item&gt;
+    &lt;y-dropdown-item&gt;上海&lt;/y-dropdown-item&gt;
+    &lt;y-dropdown-item&gt;广州&lt;/y-dropdown-item&gt;
+    &lt;y-dropdown&gt;
+      &lt;y-dropdown-item&gt;
+        深圳
+        &lt;y-icon type="sanjiao-you" size="12"&gt;&lt;/y-icon&gt;
+      &lt;/y-dropdown-item&gt;
+      &lt;y-dropdown-menu style="width: 70px" placement="right" slot="menu"&gt;
+        &lt;y-dropdown-item&gt;宝安&lt;/y-dropdown-item&gt;
+        &lt;y-dropdown style="width: 100%"&gt;
+          &lt;y-dropdown-item&gt;
+            南山
+            &lt;y-icon type="sanjiao-you" size="12"&gt;&lt;/y-icon&gt;
+          &lt;/y-dropdown-item&gt;
+          &lt;y-dropdown-menu style="width: 80px" placement="right" slot="menu"&gt;
+            &lt;y-dropdown-item&gt;欢乐谷&lt;/y-dropdown-item&gt;
+            &lt;y-dropdown-item&gt;深圳湾&lt;/y-dropdown-item&gt;
+            &lt;y-dropdown-item&gt;世界之窗&lt;/y-dropdown-item&gt;
+          &lt;/y-dropdown-menu&gt;
+        &lt;/y-dropdown&gt;
+        &lt;y-dropdown-item&gt;福田&lt;/y-dropdown-item&gt;
+      &lt;/y-dropdown-menu&gt;
+    &lt;/y-dropdown&gt;
+  &lt;/y-dropdown-menu&gt;
+&lt;/y-dropdown&gt;

@@ -8,7 +8,7 @@ export default {
         return false;
       }
       if (binding.expression) {
-        vnode.context[binding.expression]()
+        vnode.context[binding.expression](e)
       }
     }
     el.__vueClickOutside__ = documentHandler;

@@ -1,6 +1,12 @@
 <template>
   <div class="y-dropdown">
-    <div class="y-dropdown-trigger" ref="trigger" @[triggerEvent]="handleMouseEnter">
+    <div
+      class="y-dropdown-trigger"
+      ref="trigger"
+      @click="handleClick"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="hide"
+    >
       <slot></slot>
     </div>
     <slot name="menu"></slot>
@@ -16,7 +22,6 @@ export default {
     };
   },
   props: {
-    clickNoHide: Boolean,
     trigger: {
       type: String,
       default: "hover"
@@ -24,27 +29,46 @@ export default {
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      timeout: null
     };
   },
   computed: {
-    triggerEvent() {
-      if (this.trigger == "hover") {
-        return "mouseenter";
-      } else if (this.trigger == "click") {
-        return "click";
-      } else {
-        return "";
-      }
+    parentMenuNode() {
+      return this.$parent && this.$parent.$options.name == "y-dropdown-menu"
+        ? this.$parent
+        : null;
     }
   },
   methods: {
+    handleClick() {
+      if (this.trigger == "click") {
+        this.visible = !this.visible;
+      }
+    },
     handleMouseEnter() {
-      this.visible = true;
+      if (this.trigger == "hover") {
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          this.visible = true;
+        }, 250);
+      }
     },
-    hide() {
-      this.visible = false;
+    hide(event) {
+      if (this.trigger == "hover") {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+          this.timeout = setTimeout(() => {
+            this.visible = false;
+          }, 150);
+        }
+      } else {
+        if (!event) {
+          this.visible = false;
+        }
+      }
     },
+    // 提供给子组件的方法
     handleItemClick(value) {
       this.$emit("on-click", value);
     }
@@ -58,6 +82,7 @@ export default {
   display: inline-block;
   &-trigger {
     display: inline-block;
+    width: 100%;
     cursor: pointer;
   }
 }

@@ -509,7 +509,7 @@ export default {
         },
         {
           attr: "smallerData",
-          explain: "设置双环饼图的额外参数，参数等同所示",
+          explain: "设置双环饼图的额外参数，参数等同上所示",
           type: "Object",
           default: "{}"
         }
