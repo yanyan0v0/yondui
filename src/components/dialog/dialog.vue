@@ -2,7 +2,7 @@
   <transition name="dropdown-fade">
     <div v-show="value" class="y-dialog-wrap" :style="wrapStyle" @click="handleMaskClick">
       <div v-show="mask" class="y-dialog-mask"></div>
-      <div class="y-dialog" ref="dialog" :style="style">
+      <div ref="dialog" class="y-dialog" :class="{'y-dialog-scaleable' : scaleable}" :style="style">
         <y-icon v-show="showClose" class="y-dialog-close" type="guanbi" @click="handleCancel"></y-icon>
         <slot name="header">
           <div
@@ -23,8 +23,8 @@
             <y-button color="primary" @click="handleConfirm">确定</y-button>
           </div>
         </slot>
-        <div class="y-dialog-stretch" @click="handleStretchMouseDown">
-          <span @click="handleStretchMouseDown">
+        <div v-show="scaleable" class="y-dialog-stretch" :style="stretchStyle">
+          <span @mousedown="handleStretchMouseDown">
             <y-icon type="quanping"></y-icon>
           </span>
         </div>
@@ -77,16 +77,20 @@ export default {
     return {
       isUnderBody: false,
       origin: {
-        start: false,
         // 拖拽偏移量
-        moveX1: 0,
-        moveY1: 0,
+        start1: false,
+        moveX1: "",
+        moveY1: "",
         // 拉伸偏移量
+        start2: false,
         moveX2: 0,
         moveY2: 0,
         width: 0,
         height: 0
-      }
+      },
+      // 拉伸后dialog的宽高
+      dialogWidth: "",
+      dialogHeight: ""
     };
   },
   computed: {
@@ -100,25 +104,34 @@ export default {
         width: this.computeWidth,
         height: this.computeHeight,
         borderRadius: this.fullscreen ? "initial" : "",
-        transform:
-          this.draggable && this.origin.start
-            ? `translate(${this.origin.moveX1}px, ${this.origin.moveY1}px)`
-            : ""
+        transform: this.draggable
+          ? `translate(${
+              this.origin.moveX1 !== "" ? this.origin.moveX1 + "px" : "-50%"
+            }, ${
+              this.origin.moveY1 !== "" ? this.origin.moveY1 + "px" : "-50%"
+            })`
+          : ""
       };
     },
     computeWidth() {
       let width = this.fullscreen ? "100%" : this.width;
-      if (this.scaleable && this.origin.start) {
-        width = this.origin.width + this.origin.moveX2 + "px";
-      }
-      return width;
+      return this.dialogWidth || width;
     },
     computeHeight() {
       let height = this.fullscreen ? "100%" : this.height;
-      if (this.scaleable && this.origin.start) {
-        height = this.origin.height + this.origin.moveY2 + "px";
-      }
-      return height;
+      return this.dialogHeight || height;
+    },
+    stretchStyle() {
+      return {
+        width:
+          this.scaleable && this.origin.width
+            ? this.origin.width + this.origin.moveX2 + "px"
+            : "100%",
+        height:
+          this.scaleable && this.origin.height
+            ? this.origin.height + this.origin.moveY2 + "px"
+            : "100%"
+      };
     }
   },
   methods: {
@@ -147,12 +160,15 @@ export default {
       this.handleCancel("mask");
     },
     handleHeaderMouseDown(event) {
-      this.origin.start = true;
-      this.origin.x = this.origin.x || event.x;
-      this.origin.y = this.origin.y || event.y;
+      let dialogRect = this.$refs.dialog.getBoundingClientRect();
+      this.origin.moveX1 = -parseInt(dialogRect.width / 2);
+      this.origin.moveY1 = -parseInt(dialogRect.height / 2);
+      this.origin.start1 = true;
+      this.origin.x = event.x;
+      this.origin.y = event.y;
       document.body.style.userSelect = "none";
       const handleMouseMove = moveEvent => {
-        if (this.origin.start) {
+        if (this.origin.start1) {
           // 不能超过窗口边界
           if (
             moveEvent.x < 0 ||
@@ -161,12 +177,14 @@ export default {
             moveEvent.y > window.innerHeight
           )
             return false;
-          this.origin.moveX1 = moveEvent.x - this.origin.x;
-          this.origin.moveY1 = moveEvent.y - this.origin.y;
+          this.origin.moveX1 += moveEvent.x - this.origin.x;
+          this.origin.moveY1 += moveEvent.y - this.origin.y;
+          this.origin.x = moveEvent.x;
+          this.origin.y = moveEvent.y;
         }
       };
       const handleMouseUp = () => {
-        this.origin.start = false;
+        this.origin.start1 = false;
         document.body.style.userSelect = "";
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mouseup", handleMouseUp);
@@ -176,59 +194,52 @@ export default {
     },
     handleStretchMouseDown(downEvent) {
       let dialogRect = this.$refs.dialog.getBoundingClientRect();
-      this.origin.start = true;
-      this.origin.x = downEvent.x;
-      this.origin.y = downEvent.y;
+      this.origin.start2 = true;
       this.origin.width = dialogRect.width;
       this.origin.height = dialogRect.height;
       document.body.style.userSelect = "none";
       const handleMouseMove = moveEvent => {
-        if (this.origin.start) {
+        if (this.origin.start2) {
           // 不能超过窗口边界
           if (
-            moveEvent.x < dialogRect.left ||
-            moveEvent.y < dialogRect.top ||
+            moveEvent.x < dialogRect.left + 100 ||
+            moveEvent.y < dialogRect.top + 100 ||
             moveEvent.x > window.innerWidth ||
             moveEvent.y > window.innerHeight
           )
             return false;
-          this.origin.moveX2 = moveEvent.x - this.origin.x;
-          this.origin.moveY2 = moveEvent.y - this.origin.y;
+          this.origin.moveX2 = moveEvent.x - downEvent.x;
+          this.origin.moveY2 = moveEvent.y - downEvent.y;
         }
       };
       const handleMouseUp = () => {
-        this.origin.start = false;
+        this.dialogWidth = this.stretchStyle.width;
+        this.dialogHeight = this.stretchStyle.height;
+        setTimeout(() => {
+          this.origin.start2 = false;
+        });
         document.body.style.userSelect = "";
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mouseup", handleMouseUp);
       };
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
-    },
-    handleMouseMove(event) {
-      if (this.origin.start) {
-        // 不能超过窗口边界
-        if (
-          event.x < 0 ||
-          event.y < 0 ||
-          event.x > window.innerWidth ||
-          event.y > window.innerHeight
-        )
-          return false;
-        this.origin.moveX1 = event.x - this.origin.x;
-        this.origin.moveY1 = event.y - this.origin.y;
-      }
-    },
-    handleMouseUp() {
-      this.origin.start = false;
-      document.body.style.userSelect = "";
-      window.removeEventListener("mousemove", this.handleMouseMove);
-      window.removeEventListener("mouseup", this.handleMouseUp);
     }
   },
+  // watch: {
+  //   draggable: {
+  //     handler(able) {
+  //       if (able) {
+  //         let dialogRect = this.$refs.dialog.getBoundingClientRect();
+  //         this.origin.moveX1 = -parseInt(dialogRect.width / 2);
+  //         this.origin.moveY1 = -parseInt(dialogRect.height / 2);
+  //       }
+  //     }
+  //   }
+  // },
   mounted() {
     this.showDialog();
-    // 监听esc键
+    // 监听Esc键
     document.addEventListener("keydown", () => {
       if (event.keyCode == 27) {
         this.handleCancel();
@@ -250,7 +261,7 @@ export default {
 @dialog-prefix: ~"@{css-prefix}-dialog";
 .@{dialog-prefix}-wrap {
   .full-fixed;
-  .center;
+  // .center;
   transition: opacity 0.3s, transform 0.3s;
   .@{dialog-prefix}-mask {
     .mask;
@@ -260,6 +271,9 @@ export default {
     position: relative;
     background-color: #fff;
     border-radius: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     &-close {
       position: absolute;
       right: 12px;
@@ -283,16 +297,18 @@ export default {
       text-align: right;
       padding: 5px 16px 10px;
     }
+    &-scaleable {
+      transition: width 0.3s, height 0.3s;
+    }
     &-stretch {
       position: absolute;
       top: 0;
       left: 0;
       bottom: -2px;
       right: -2px;
-      border-width: 0 2px 2px 0;
-      border-color: @border-color;
-      border-style: dashed;
+      border: 2px dashed @border-color;
       overflow: hidden;
+      pointer-events: none;
       span {
         display: block;
         position: absolute;
@@ -302,6 +318,8 @@ export default {
         right: -10px;
         transform: rotate(45deg);
         background-color: @text-color;
+        pointer-events: auto;
+        cursor: nw-resize;
       }
     }
   }

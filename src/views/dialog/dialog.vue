@@ -86,11 +86,11 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               使用具名slot可替换头部和尾部内容，
-              <br />
+              <br>
               <code>title</code>属性设置对话框标题，当为空时不显示头部，
-              <br />
+              <br>
               <code>footer-hide</code>属性可隐藏尾部，
-              <br />
+              <br>
               <code>width</code> 和
               <code>height</code> 属性可自定义对话框
               <code>.y-dialog</code>的宽高。
@@ -238,7 +238,7 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               使用
-              <code>scaleable</code>属性实现拉伸。
+              <code>scaleable</code>属性实现拉伸，注意拉伸后大小最小只能是100px * 100px。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('LS').height}">
