@@ -340,3 +340,41 @@ export default {
     &lt;/y-dropdown&gt;
   &lt;/y-dropdown-menu&gt;
 &lt;/y-dropdown&gt;
+
+&lt;y-button color="primary" @click="visible1 = true"&gt;显示对话框&lt;/y-button&gt;
+&lt;y-dialog v-model="visible1" title="标题"&gt;
+  &lt;p&gt;对话框内容&lt;/p&gt;
+&lt;/y-dialog&gt;
+
+&lt;y-button color="primary" @click="visible2 = true"&gt;自定义头尾部&lt;/y-button&gt;
+&lt;y-button color="primary" @click="visible3 = true"&gt;隐藏头部&lt;/y-button&gt;
+&lt;y-button color="primary" @click="visible4 = true"&gt;隐藏尾部&lt;/y-button&gt;
+&lt;y-button color="primary" @click="visible5 = true"&gt;自定义宽高&lt;/y-button&gt;
+
+&lt;y-dialog v-model="visible2"&gt;
+  &lt;p slot="header" class="dialog-demo-header"&gt;
+    &lt;y-icon type="tishi-mianxing"&gt;&lt;/y-icon&gt;删除提示
+  &lt;/p&gt;
+  &lt;p class="text-center"&gt;是否删除该条目？&lt;/p&gt;
+  &lt;div slot="footer" class="dialog-demo-footer"&gt;
+    &lt;span @click="visible2 = false"&gt;删除&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/y-dialog&gt;
+
+&lt;y-dialog v-model="visible3"&gt;
+  &lt;p&gt;隐藏头部对话框内容&lt;/p&gt;
+  &lt;p&gt;隐藏头部对话框内容&lt;/p&gt;
+  &lt;p&gt;隐藏头部对话框内容&lt;/p&gt;
+&lt;/y-dialog&gt;
+
+&lt;y-dialog v-model="visible4" footer-hide title="隐藏尾部"&gt;
+  &lt;p&gt;隐藏尾部对话框内容&lt;/p&gt;
+  &lt;p&gt;隐藏尾部对话框内容&lt;/p&gt;
+  &lt;p&gt;隐藏尾部对话框内容&lt;/p&gt;
+&lt;/y-dialog&gt;
+
+&lt;y-dialog v-model="visible5" width="500px" height="500px" title="自定义宽高"&gt;
+  &lt;div class="full center"&gt;
+    &lt;p&gt;自定义宽高 500px * 500px&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/y-dialog&gt;

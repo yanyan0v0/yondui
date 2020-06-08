@@ -1,0 +1,63 @@
+// 整个代码文章块
+.code-article{
+  padding: 0 20px 100px 0;
+  flex: 1;
+  overflow-y: auto;
+  h1 {
+    font-size: 26px;
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+// a标签链接
+.keyword-a{
+  padding: 0 5px;
+  color: @primary-color;
+  &::after{
+    content: '\e616';
+    font-family: "iconfont";
+    font-size: 12px;
+    margin-left: 5px;
+  }
+}
+// 代码关键词
+.keyword-code{
+  padding: 0 5px;
+  color: @keyword-color;
+  background-color: #fff5f5;
+}
+// 代码框
+.code-card{
+  .main;
+  transition: height .2s;
+  pre{
+    .full;
+    .center;
+    padding: 5px;
+    .hljs{
+      .full;
+      line-height: 1.5;
+    }
+  }
+}
+// 预览框
+.preview-card {
+  .preview,
+  .introduce {
+    padding: 10px;
+    font-size: 14px;
+    & > p {
+      margin: 5px 0;
+    }
+    code {
+      .keyword-code;
+    }
+  }
+}

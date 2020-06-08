@@ -10,7 +10,7 @@
         <h3 id="ANLX">{{getNav('ANLX').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
-            <div class="preview">
+            <div class="preview preview-button">
               <y-button>default</y-button>
               <y-button color="primary">primary</y-button>
               <y-button color="success">success</y-button>
@@ -70,7 +70,7 @@
         <h3 id="ANXZ">{{getNav('ANXZ').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
-            <div class="preview">
+            <div class="preview preview-button">
               <y-button color="primary">圆弧</y-button>
               <y-button color="primary" shape="none">直角</y-button>
               <y-button color="primary" shape="round">半圆角</y-button>
@@ -109,7 +109,7 @@
         <h3 id="ANCC">{{getNav('ANCC').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
-            <div class="preview">
+            <div class="preview preview-button">
               <y-button color="primary" size="large">large</y-button>
               <y-button color="primary">default</y-button>
               <y-button color="primary" size="small">small</y-button>
@@ -152,7 +152,7 @@
         <h3 id="JY">{{getNav('JY').name}}</h3>
         <y-card :split="2">
           <div slot="card1" class="preview-card">
-            <div class="preview">
+            <div class="preview preview-button">
               <y-button>default</y-button>
               <y-button color="primary">primary</y-button>
               <y-button shape="dashed">dashed</y-button>
@@ -263,3 +263,11 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+.preview-button {
+  .y-button {
+    margin-bottom: 5px;
+  }
+}
+</style>

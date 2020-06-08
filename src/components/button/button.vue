@@ -121,7 +121,6 @@ export default {
 <style lang="less">
 .y-button {
   position: relative;
-  margin: 5px;
   border: 1px solid;
   padding: 6px 12px;
   height: 30px;
@@ -165,5 +164,8 @@ export default {
 .y-button.y-button-disabled:not(.y-button-text) {
   background-color: #f7f7f7 !important;
   border-color: #dcdee2 !important;
+}
+.y-button + .y-button {
+  margin-left: 5px;
 }
 </style>

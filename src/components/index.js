@@ -6,6 +6,7 @@ import Button from '@/components/button/button.vue'
 import Card from '@/components/card/card.vue'
 import Chart from '@/components/chart/chart.vue'
 import ColorPicker from '@/components/color-picker/color-picker.vue'
+import Dialog from '@/components/dialog/dialog.vue'
 import Divider from '@/components/divider/divider.vue'
 import Draw from '@/components/draw/draw.vue'
 import Dropdown from '@/components/dropdown/dropdown.vue'
@@ -35,6 +36,7 @@ const components = {
   Card,
   Chart,
   ColorPicker,
+  Dialog,
   Divider,
   Draw,
   Dropdown,

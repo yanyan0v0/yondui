@@ -8,8 +8,8 @@ import y2Ui from '@/components/index.js'
 // 代码高亮
 import vueHljs from "vue-hljs";
 // css样式
-import '@/assets/less/common.less'
-// import '@/assets/iconfont/iconfont.css'
+// import '@/assets/less/common.less'
+import '@/assets/less/article.less'
 import "vue-hljs/dist/vue-hljs.min.css";
 
 import { setDateFormat } from '@/util/tools'

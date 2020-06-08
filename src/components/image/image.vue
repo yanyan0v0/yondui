@@ -84,6 +84,8 @@ export default {
   methods: {
     handleImgClick(index) {
       this.activeIndex = index;
+      this.scale = 1;
+      this.rotate = 0;
       this.showMask = true;
       this.$emit("on-click", this.data[index]);
     },
@@ -174,13 +176,7 @@ export default {
   }
 
   .y-image-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2020;
-    background-color: @mask-color;
+    .mask;
     .y-image-mask-img {
       .full;
       transition: all 0.3s;
@@ -194,7 +190,6 @@ export default {
       border-radius: 50%;
       color: #fff;
       background-color: #606266;
-      z-index: 2021;
       &.y-image-pre {
         top: 50%;
         left: 30px;
@@ -220,7 +215,6 @@ export default {
       transform: translateX(-50%);
       color: #fff;
       background-color: #606266;
-      z-index: 2021;
       i {
         .pointer;
         padding: 10px;

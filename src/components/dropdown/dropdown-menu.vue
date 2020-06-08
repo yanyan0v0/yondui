@@ -15,7 +15,6 @@
 
 <script>
 import clickoutside from "@/directive/clickoutside";
-import { getOutside, setOutside } from "./checkOutside";
 export default {
   name: "y-dropdown-menu",
   directives: { clickoutside },
@@ -72,7 +71,7 @@ export default {
           this.dropdownRoot.$el.replaceChild(comment, this.$el);
           document.body.appendChild(this.$el);
         } catch (error) {
-          this.isUnderBody = true;
+          this.isUnderBody = false;
         }
         this.isUnderBody = true;
       }
@@ -159,19 +158,15 @@ export default {
   },
   created() {
     this.parentEl = this.dropdownRoot.$refs["trigger"];
+  },
+  beforeDestroy() {
+    return (
+      this.isUnderBody &&
+      this.$el &&
+      document.body.contains(this.$el) &&
+      document.body.removeChild(this.$el)
+    );
   }
-  // beforeDestroy() {
-  //   try {
-  //     return (
-  //       this.isUnderBody &&
-  //       this.$el &&
-  //       document.body.contains(this.$el) &&
-  //       document.body.removeChild(this.$el)
-  //     );
-  //   } catch (error) {
-  //     console.error("移除错误");
-  //   }
-  // }
 };
 </script>
 

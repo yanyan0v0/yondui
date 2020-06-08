@@ -32,8 +32,8 @@
               <code>y-dropdown-item</code>
               两个组件来使用，并且给列表设置具名 slot 为
               <code>menu</code>。
-              <br>默认是 hover 触发，触发对象可以是链接、按钮等各种元素。
-              <br>
+              <br />默认是 hover 触发，触发对象可以是链接、按钮等各种元素。
+              <br />
               <code>on-click</code>默认先获取绑定的
               <code>value</code>值，没有则获取y-dropdown-item内的文本值
             </div>
@@ -501,7 +501,6 @@
 import viewMixins from "@/util/viewMixins";
 import { PROP_COLUMNS } from "@/util/config";
 export default {
-  // [Vue warn]: Do not use built-in or reserved HTML elements as component id: Switch
   name: "Dropdown",
   components: {
     "footer-table": () => import("@/views/footer-table.vue")

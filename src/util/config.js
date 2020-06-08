@@ -45,6 +45,13 @@ export const MENU_LIST = [
         file: '/color-picker/color-picker.vue'
       },
       {
+        id: 220,
+        name: "Dialog 对话框",
+        icon: "xiaoxi",
+        to: "dialog",
+        file: '/dialog/dialog.vue'
+      },
+      {
         id: 27,
         name: "Divider 分割线",
         icon: "xian",
