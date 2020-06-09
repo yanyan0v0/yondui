@@ -289,7 +289,7 @@ export default {
         },
         {
           attr: "size",
-          explain: `按钮大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小关键字或者不设置`,
+          explain: `按钮大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小或者不设置`,
           type: "String",
           default: "default"
         },

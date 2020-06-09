@@ -1,10 +1,52 @@
 {
   "id": "1814696",
-  "name": "yond-ui",
+  "name": "y2-ui",
   "font_family": "iconfont",
   "css_prefix_text": "y-icon-",
   "description": "ui库基础图标",
   "glyphs": [
+    {
+      "icon_id": "15219399",
+      "name": "checkbox-indeterminate",
+      "font_class": "checkbox-indeterminate",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "15212303",
+      "name": "radio-selected",
+      "font_class": "radio-selected",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "15212304",
+      "name": "radio-unselect",
+      "font_class": "radio-unselect",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "15212305",
+      "name": "checkbox-selected",
+      "font_class": "checkbox-selected",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "15212306",
+      "name": "checkbox-unselect",
+      "font_class": "checkbox-unselect",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "5127608",
+      "name": "windows",
+      "font_class": "windows",
+      "unicode": "e858",
+      "unicode_decimal": 59480
+    },
     {
       "icon_id": "1201491",
       "name": "switch",
@@ -116,13 +158,6 @@
       "font_class": "github",
       "unicode": "e718",
       "unicode_decimal": 59160
-    },
-    {
-      "icon_id": "14884939",
-      "name": "成功-checkbox",
-      "font_class": "chenggong-checkbox",
-      "unicode": "e654",
-      "unicode_decimal": 58964
     },
     {
       "icon_id": "14884940",

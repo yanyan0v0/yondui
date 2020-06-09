@@ -410,8 +410,6 @@ export default {
       visible7: false,
       visible8: false,
       visible9: false,
-      visible10: false,
-      visible11: false,
       navList: [
         {
           id: "JC",

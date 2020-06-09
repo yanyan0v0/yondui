@@ -12,7 +12,12 @@
             @mousedown="handleHeaderMouseDown"
           >
             <p>
-              <y-icon v-if="!htmlRender" :type="typeIcons[type]" :class="[ type + '-color']"></y-icon>
+              <y-icon
+                v-if="!htmlRender"
+                :type="typeIcons[type]"
+                :class="[ type + '-color']"
+                size="20"
+              ></y-icon>
               {{title}}
             </p>
           </div>

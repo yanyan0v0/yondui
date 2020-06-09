@@ -1,6 +1,9 @@
 <template>
   <div class="code-action-bar">
-    <y-icon type="quanping" title="放大" @click="fullCode"></y-icon>
+    <span @click="fullCode">
+      <y-icon type="quanping"></y-icon>
+      <y-tooltip>放大</y-tooltip>
+    </span>
   </div>
 </template>
 
@@ -16,7 +19,7 @@ export default {
         title: this.name,
         content: `<pre>${preHtml}</pre>`,
         cancelText: "",
-        width: "fit-content",
+        width: "max-content",
         onOk: dialog => {
           dialog.close();
         }
@@ -32,7 +35,8 @@ export default {
   top: 10px;
   right: 30px;
   color: #fff;
-  i {
+  span {
+    position: relative;
     margin: 0 5px;
     cursor: pointer;
   }

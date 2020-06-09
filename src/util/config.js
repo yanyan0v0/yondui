@@ -38,6 +38,13 @@ export const MENU_LIST = [
         file: '/chart/chart.vue'
       },
       {
+        id: 221,
+        name: "Checkbox 多选框",
+        icon: "checkbox-selected",
+        to: "checkbox",
+        file: '/checkbox/checkbox.vue'
+      },
+      {
         id: 212,
         name: "ColorPicker 颜色选择器",
         icon: "tiaoseban",
@@ -47,7 +54,7 @@ export const MENU_LIST = [
       {
         id: 220,
         name: "Dialog 对话框",
-        icon: "xiaoxi",
+        icon: "windows",
         to: "dialog",
         file: '/dialog/dialog.vue'
       },
