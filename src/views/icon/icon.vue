@@ -19,6 +19,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-icon type="tianjia"&gt;&lt;/y-icon&gt;
@@ -46,6 +47,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Icon",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue"),
     YIconList: () => import("./icon-list.vue")
   },

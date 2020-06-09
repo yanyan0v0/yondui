@@ -19,6 +19,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-rank :data="rankList"&gt;&lt;/y-rank&gt;
@@ -65,6 +66,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ZXSWZ').name" />
             <pre>
             <code>
   &lt;y-rank :data="rankList" text-place="inner"&gt;&lt;/y-rank&gt;
@@ -93,6 +95,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('BTXSWZ').name" />
             <pre>
             <code>
   &lt;y-rank :data="rankList" direction="column"&gt;&lt;/y-rank&gt;
@@ -121,6 +124,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Rank",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

@@ -28,7 +28,8 @@ import TimeLine from '@/components/timeline/timeline.vue'
 import Tooltip from '@/components/tooltip/tooltip.vue'
 
 // 函数式
-import AlertJs from '@/components/alert/index.js'
+import AlertJs from '@/components/alert/alert.js'
+import DialogJs from '@/components/dialog/dialog.js'
 
 const components = {
   Alert,
@@ -79,6 +80,7 @@ const install = function (Vue, opts = {}) {
   };
 
   Vue.prototype.$alert = AlertJs;
+  Vue.prototype.$dialog = DialogJs;
 
 };
 

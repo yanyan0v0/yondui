@@ -34,6 +34,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JCFL').height}">
+            <code-action-bar :name="getNav('JCFL').name" />
             <pre>
             <code>
   &lt;y-chart :data="{type: 'bar', title: '柱状图', data: chartData}"&gt;&lt;/y-chart&gt;
@@ -92,6 +93,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('XSTL').height}">
+            <code-action-bar :name="getNav('XSTL').name" />
             <pre>
             <code>
   &lt;y-chart :data="{type: 'bar', legend: ['类型1', '类型2'], data: chartData}"&gt;&lt;/y-chart&gt;
@@ -145,6 +147,7 @@
             <div class="introduce">值得注意的是y轴数据会自动过万处理， 并在单位上加上‘万’。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('FZQK').height}">
+            <code-action-bar :name="getNav('FZQK').name" />
             <pre>
             <code>
   &lt;y-chart :data="chartData2"&gt;&lt;/y-chart&gt;
@@ -220,6 +223,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Chart",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

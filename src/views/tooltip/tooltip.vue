@@ -91,6 +91,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-button&gt; 
@@ -193,6 +194,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('CFTJ').height}">
+            <code-action-bar :name="getNav('CFTJ').name" />
             <pre>
             <code>
   &lt;y-button&gt;
@@ -229,6 +231,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Tooltip",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

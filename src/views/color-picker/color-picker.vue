@@ -18,6 +18,7 @@
             <div class="introduce">最基本的颜色选择器。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-color-picker v-model="color1" /&gt;
@@ -53,6 +54,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "ColorPicker",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

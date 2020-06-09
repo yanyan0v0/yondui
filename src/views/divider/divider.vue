@@ -35,6 +35,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;p&gt;段落&lt;/p&gt;
@@ -75,6 +76,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('FX').name" />
             <pre>
             <code>
   &lt;span&gt;文本&lt;/span&gt;
@@ -102,6 +104,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Divider",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

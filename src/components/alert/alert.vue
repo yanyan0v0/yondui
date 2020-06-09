@@ -28,12 +28,13 @@
 </template>
 
 <script>
+import { TYPE_ICONS } from "@/util/config";
 export default {
   name: "y-alert",
   props: {
     type: {
       type: String,
-      default: "info"
+      default: "text"
     },
     theme: {
       type: String,
@@ -61,12 +62,7 @@ export default {
       top: 0,
       duration: 0,
 
-      typeIcons: {
-        info: "tishi-mianxing",
-        success: "chenggong",
-        warning: "jinggao",
-        error: "shanchu"
-      },
+      typeIcons: TYPE_ICONS,
       // 帧动画id
       frameId: 0,
       scrollParams: {},
@@ -224,7 +220,7 @@ export default {
     margin-left: 10px;
     cursor: pointer;
   }
-  &-info&-light {
+  &-text&-light {
     background-color: #e8eaec;
     color: @text-color;
   }
@@ -240,7 +236,7 @@ export default {
     background-color: #fef0f0;
     color: @error-color;
   }
-  &-info&-dark {
+  &-text&-dark {
     background-color: @text-color;
     color: #e8eaec;
   }

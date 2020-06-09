@@ -26,6 +26,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-alert&gt;默认提示栏&lt;/y-alert&gt;
@@ -58,6 +59,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ZT').name" />
             <pre>
             <code>
   &lt;y-alert theme="dark"&gt;默认提示栏&lt;/y-alert&gt;
@@ -87,6 +89,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('GBAN').name" />
             <pre>
             <code>
   &lt;y-alert type="success" show-close&gt;浅色成功提示栏&lt;/y-alert&gt;
@@ -113,6 +116,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('YCTB').name" />
             <pre>
             <code>
   &lt;y-alert type="warning" hide-icon&gt;浅色警告提示栏&lt;/y-alert&gt;
@@ -130,9 +134,9 @@
           <div slot="card1" class="preview-card">
             <div class="preview preview-alert">
               <p>横向滚动</p>
-              <y-alert type="info" theme="dark" scroll="x">深色提示栏</y-alert>
+              <y-alert type="text" theme="dark" scroll="x">深色提示栏</y-alert>
               <p>竖向滚动</p>
-              <y-alert type="info" theme="dark" scroll="y">
+              <y-alert type="text" theme="dark" scroll="y">
                 <p>深色提示栏1</p>
                 <p>深色提示栏2</p>
                 <p>深色提示栏3</p>
@@ -140,9 +144,9 @@
                 <p>深色提示栏5</p>
               </y-alert>
               <p>自定义横向滚动速率</p>
-              <y-alert type="info" theme="dark" :scroll="{direction: 'x', speed: 100}">深色提示栏</y-alert>
+              <y-alert type="text" theme="dark" :scroll="{direction: 'x', speed: 100}">深色提示栏</y-alert>
               <p>自定义竖向滚动速率</p>
-              <y-alert type="info" theme="dark" :scroll="{direction: 'y', speed: 38, height: 19}">
+              <y-alert type="text" theme="dark" :scroll="{direction: 'y', speed: 38, height: 19}">
                 <p>深色提示栏1</p>
                 <p>深色提示栏2</p>
                 <p>深色提示栏3</p>
@@ -170,12 +174,13 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('XHGD').name" />
             <pre>
             <code>
   &lt;p&gt;横向滚动&lt;/p&gt;
-  &lt;y-alert type="info" theme="dark" scroll="x"&gt;深色提示栏&lt;/y-alert&gt;
+  &lt;y-alert type="text" theme="dark" scroll="x"&gt;深色提示栏&lt;/y-alert&gt;
   &lt;p&gt;竖向滚动&lt;/p&gt;
-  &lt;y-alert type="info" theme="dark" scroll="y"&gt;
+  &lt;y-alert type="text" theme="dark" scroll="y"&gt;
     &lt;p&gt;深色提示栏1&lt;/p&gt;
     &lt;p&gt;深色提示栏2&lt;/p&gt;
     &lt;p&gt;深色提示栏3&lt;/p&gt;
@@ -183,9 +188,9 @@
     &lt;p&gt;深色提示栏5&lt;/p&gt;
   &lt;/y-alert&gt;
   &lt;p&gt;自定义横向滚动速率&lt;/p&gt;
-  &lt;y-alert type="info" theme="dark" :scroll="{direction: 'x', speed: 100}"&gt;深色提示栏&lt;/y-alert&gt;
+  &lt;y-alert type="text" theme="dark" :scroll="{direction: 'x', speed: 100}"&gt;深色提示栏&lt;/y-alert&gt;
   &lt;p&gt;自定义竖向滚动速率&lt;/p&gt;
-  &lt;y-alert type="info" theme="dark" :scroll="{direction: 'y', speed: 38, height: 19}"&gt;
+  &lt;y-alert type="text" theme="dark" :scroll="{direction: 'y', speed: 38, height: 19}"&gt;
     &lt;p&gt;深色提示栏1&lt;/p&gt;
     &lt;p&gt;深色提示栏2&lt;/p&gt;
     &lt;p&gt;深色提示栏3&lt;/p&gt;
@@ -204,7 +209,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-button @click="open('info')">默认</y-button>
+              <y-button @click="open('text')">默认</y-button>
               <y-button @click="open('success')">成功</y-button>
               <y-button @click="open('warning')">警告</y-button>
               <y-button @click="open('error')">错误</y-button>
@@ -214,16 +219,17 @@
               通过调用
               <code>this.$alert[type]</code>方法显示不同的提示状态，
               <code>type</code>可以为
-              <code>info</code>默认、
+              <code>text</code>默认、
               <code>success</code>成功、
               <code>warning</code>警告、
               <code>error</code>错误，默认在3秒后消失。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('HSSDY').height}">
+            <code-action-bar :name="getNav('HSSDY').name" />
             <pre>
             <code>
-  &lt;y-button @click="open('info')"&gt;默认&lt;/y-button&gt;
+  &lt;y-button @click="open('text')"&gt;默认&lt;/y-button&gt;
   &lt;y-button @click="open('success')"&gt;成功&lt;/y-button&gt;
   &lt;y-button @click="open('warning')"&gt;警告&lt;/y-button&gt;
   &lt;y-button @click="open('error')"&gt;错误&lt;/y-button&gt;
@@ -261,6 +267,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SZSJ').height}">
+            <code-action-bar :name="getNav('SZSJ').name" />
             <pre>
             <code>
   &lt;y-button @click="open1"&gt;不自动关闭&lt;/y-button&gt;
@@ -273,7 +280,7 @@
           showClose: true,
           duration: 0,
           onClose: () => {
-            this.$alert.info("点击了关闭！");
+            this.$alert.text("点击了关闭！");
           }
         })
       }
@@ -303,6 +310,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Alert",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],
@@ -366,9 +374,9 @@ export default {
         {
           version: "1.0.0",
           attr: "type",
-          explain: `消息类型，可选<code class="keyword-code">info</code>默认、 <code class="keyword-code">success</code>成功、<code class="keyword-code">warning</code>警告、<code class="keyword-code">error</code>错误`,
+          explain: `消息类型，可选<code class="keyword-code">text</code>默认、 <code class="keyword-code">success</code>成功、<code class="keyword-code">warning</code>警告、<code class="keyword-code">error</code>错误`,
           type: "String",
-          default: "info"
+          default: "text"
         },
         {
           version: "1.0.0",
@@ -437,7 +445,7 @@ export default {
     };
   },
   methods: {
-    open(type = "info") {
+    open(type = "text") {
       this.$alert[type]("这是一条消息！");
     },
     open1() {
@@ -446,7 +454,7 @@ export default {
         showClose: true,
         duration: 0,
         onClose: () => {
-          this.$alert.info("点击了关闭！");
+          this.$alert.text("点击了关闭！");
         }
       });
     }

@@ -21,6 +21,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-input v-model="value1" placeholder="请输入" width="300px" /&gt;
@@ -69,6 +70,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('CC').name" />
             <pre>
             <code>
   &lt;y-input v-model="value2" size="large" placeholder="请输入" width="100px" style="margin-right: 10px" /&gt;
@@ -96,6 +98,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JY').name" />
             <pre>
             <code>
   &lt;y-input v-model="value6" disabled placeholder="请输入" width="300px" /&gt;
@@ -120,6 +123,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ZD').name" />
             <pre>
             <code>
   &lt;y-input v-model="value6" readonly placeholder="请输入" width="300px" /&gt;
@@ -152,6 +156,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('QHTB').name" />
             <pre>
             <code>
   &lt;y-input v-model="value7" placeholder="请输入" width="300px" class="m-b-5"&gt;
@@ -185,6 +190,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Input",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

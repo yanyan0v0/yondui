@@ -11,7 +11,7 @@ const _Alert = function (data) {
   const instance = new AlertConstructor({
     // 传递prop属性值
     propsData: {
-      type: data.type,
+      type: data.type || 'text',
       showClose: data.showClose,
       theme: data.theme,
       hideIcon: data.hideIcon,
@@ -37,7 +37,7 @@ const _Alert = function (data) {
   return instance;
 }
 
-const typeList = ['info', 'success', 'warning', 'error']
+const typeList = ['text', 'success', 'warning', 'error']
 typeList.forEach(type => {
   _Alert[type] = data => {
     let _data = {}
@@ -46,6 +46,10 @@ typeList.forEach(type => {
       _data = {
         type,
         message: data
+      }
+    } else if (typeof data === 'undefined') {
+      _data = {
+        type
       }
     } else {
       _data = {

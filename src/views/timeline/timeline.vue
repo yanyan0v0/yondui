@@ -22,6 +22,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre v-pre>
             <code>
   &lt;y-timeline :data="timeList"&gt;
@@ -68,6 +69,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('CPLX').name" />
             <pre v-pre>
             <code>
   &lt;y-timeline :data="timeList" type="card"&gt;
@@ -105,6 +107,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ZCL').name" />
             <pre v-pre>
             <code>
   &lt;y-timeline :data="timeList" :leftWidth="80"&gt;
@@ -140,6 +143,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Timeline",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

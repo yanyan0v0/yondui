@@ -20,6 +20,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-menu v-model="menu1" :data="menuList" &gt;&lt;/y-menu&gt;
@@ -73,6 +74,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ZSLX').name" />
             <pre>
             <code>
   &lt;y-menu v-model="menu2" :data="menuList" type="column-fixed"&gt;&lt;/y-icon&gt;
@@ -96,6 +98,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Menu",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

@@ -21,6 +21,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-loading&gt;&lt;/y-loading&gt;
@@ -79,6 +80,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Loading",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue"),
     YSvgList: () => import("./svg-list.vue")
   },

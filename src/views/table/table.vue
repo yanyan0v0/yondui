@@ -16,6 +16,7 @@
             <div class="introduce">表格的最简单用法。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-table :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
@@ -91,6 +92,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('BKTZ').height}">
+            <code-action-bar :name="getNav('BKTZ').name" />
             <pre>
             <code>
   &lt;y-table border resizable :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
@@ -116,6 +118,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('BMX').height}">
+            <code-action-bar :name="getNav('BMX').name" />
             <pre>
             <code>
   &lt;y-table stripe :data="data1" :columns="columns1"&gt;&lt;/y-table&gt;
@@ -145,6 +148,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('GDBT').height}">
+            <code-action-bar :name="getNav('GDBT').name" />
             <pre>
             <code>
   固定高度
@@ -180,6 +184,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('ZDY').height}">
+            <code-action-bar :name="getNav('ZDY').name" />
             <pre>
             <code>
   &lt;y-table border :data="data1" :columns="columns2"&gt;
@@ -234,6 +239,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('RXR').height}">
+            <code-action-bar :name="getNav('RXR').name" />
             <pre>
             <code>
   &lt;y-table border :data="data1" :columns="columns3"&gt; &lt;/y-table&gt;
@@ -292,6 +298,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('XSXH').height}">
+            <code-action-bar :name="getNav('XSXH').name" />
             <pre>
             <code>
   &lt;y-table border :data="data1" :columns="columns4"&gt; &lt;/y-table&gt;
@@ -347,6 +354,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JZZ').height}">
+            <code-action-bar :name="getNav('JZZ').name" />
             <pre>
             <code>
   &lt;y-table border :data="data1" :columns="columns4" loading&gt; &lt;/y-table&gt;
@@ -376,6 +384,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Table",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

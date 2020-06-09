@@ -168,6 +168,15 @@ export const SIZE = {
   'mini': 20
 }
 
+// alert, dialog ... 所需的提示类型
+export const TYPE_ICONS = {
+  text: "tishi-mianxing",
+  info: "tishi-mianxing",
+  success: "chenggong",
+  warning: "jinggao",
+  error: "shanchu"
+}
+
 // 折线图表和饼状图表所用的颜色
 export const PIE_COLORS = [
   '#FCAF5C',
@@ -212,13 +221,12 @@ export const THEME_COLORS = {
   lightPrimary: '#5cadff',
   darkPrimary: '#2b85e4',
 
-  info: '#2db7f5',
   success: '#19be6b',
   error: '#ed4014',
   warning: '#ff9900',
 
   title: '#17233d',
-  content: '#515a6e',
+  text: '#515a6e',
   subtext: '#808695',
   disabled: '#c5c8ce',
   border: '#dcdee2',

@@ -39,6 +39,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre v-pre>
             <code>
   &lt;y-dropdown @on-click="handleDropdownClick"&gt;
@@ -76,7 +77,7 @@
     },
     methods: {
       handleDropdownClick(value) {
-        this.$alert.info("点击了" + value);
+        this.$alert.text("点击了" + value);
       }
     }
   };
@@ -145,6 +146,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('CFFS').height}">
+            <code-action-bar :name="getNav('CFFS').name" />
             <pre v-pre>
             <code>
   &lt;y-dropdown&gt;
@@ -277,6 +279,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('WZ').height}">
+            <code-action-bar :name="getNav('WZ').name" />
             <pre v-pre>
             <code>
   &lt;y-dropdown&gt;
@@ -370,6 +373,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('QXYC').height}">
+            <code-action-bar :name="getNav('QXYC').name" />
             <pre v-pre>
             <code>
   &lt;y-dropdown&gt;
@@ -434,6 +438,7 @@
             <div class="introduce">下拉菜单可以进行嵌套实现级联的效果，嵌套时注意设置子集的展开方向和宽度。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('QT').height}">
+            <code-action-bar :name="getNav('QT').name" />
             <pre v-pre>
             <code>
   &lt;y-dropdown&gt;
@@ -503,6 +508,7 @@ import { PROP_COLUMNS } from "@/util/config";
 export default {
   name: "Dropdown",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],
@@ -665,7 +671,7 @@ export default {
   },
   methods: {
     handleDropdownClick(value) {
-      this.$alert.info("点击了" + value);
+      this.$alert.text("点击了" + value);
     }
   }
 };

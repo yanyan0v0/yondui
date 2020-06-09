@@ -11,16 +11,21 @@
             :class="{'y-dialog-header-drag': draggable}"
             @mousedown="handleHeaderMouseDown"
           >
-            <p>{{title}}</p>
+            <p>
+              <y-icon v-if="!htmlRender" :type="typeIcons[type]" :class="[ type + '-color']"></y-icon>
+              {{title}}
+            </p>
           </div>
         </slot>
         <div class="y-dialog-content">
-          <slot></slot>
+          <slot>
+            <div v-if="!htmlRender && content" class="full" v-html="content"></div>
+          </slot>
         </div>
         <slot name="footer">
           <div v-if="!footerHide" class="y-dialog-footer">
-            <y-button @click="handleCancel('button')">取消</y-button>
-            <y-button color="primary" @click="handleConfirm">确定</y-button>
+            <y-button v-show="cancelText" @click="handleCancel('button')">{{cancelText}}</y-button>
+            <y-button :loading="loading" color="primary" @click="handleConfirm">{{okText}}</y-button>
           </div>
         </slot>
         <div v-show="scaleable" class="y-dialog-stretch" :style="stretchStyle">
@@ -34,6 +39,7 @@
 </template>
 
 <script>
+import { TYPE_ICONS } from "@/util/config";
 export default {
   name: "y-dialog",
   props: {
@@ -71,6 +77,14 @@ export default {
     escClosable: {
       type: Boolean,
       default: true
+    },
+    okText: {
+      type: String,
+      default: "确定"
+    },
+    cancelText: {
+      type: String,
+      default: "取消"
     }
   },
   data() {
@@ -90,7 +104,18 @@ export default {
       },
       // 拉伸后dialog的宽高
       dialogWidth: "",
-      dialogHeight: ""
+      dialogHeight: "",
+
+      // 确认按钮加载状态，在回调函数内直接修改，无需使用prop传递
+      loading: false,
+
+      // 函数调用时的参数
+      typeIcons: TYPE_ICONS,
+      htmlRender: true,
+      type: "text",
+      content: "",
+      onOk: null,
+      onCancel: null
     };
   },
   computed: {
@@ -146,14 +171,24 @@ export default {
       }
     },
     handleConfirm() {
-      this.$emit("input", false);
-      this.$emit("on-ok");
+      if (!this.htmlRender && this.onOk && typeof this.onOk === "function") {
+        this.onOk(this);
+      }
+      this.$emit("on-ok", this);
     },
     handleCancel(type) {
       if (type == "mask" && !this.maskClosable) return;
       if (type == "esc" && !this.escClosable) return;
-      this.$emit("input", false);
-      this.$emit("on-cancel");
+      if (!this.htmlRender) {
+        if (this.onCancel && typeof this.onCancel === "function") {
+          this.onCancel(this);
+        } else {
+          this.value = false;
+        }
+      } else {
+        this.$emit("input", false);
+      }
+      this.$emit("on-cancel", this);
     },
     handleMaskClick(event) {
       if (this.$refs.dialog.contains(event.target)) return false;
@@ -224,19 +259,13 @@ export default {
       };
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
+    },
+    // 此方法是给函数式调用时，onOk和onCancel内调用
+    close() {
+      this.value = false;
+      document.body.removeChild(this.$el);
     }
   },
-  // watch: {
-  //   draggable: {
-  //     handler(able) {
-  //       if (able) {
-  //         let dialogRect = this.$refs.dialog.getBoundingClientRect();
-  //         this.origin.moveX1 = -parseInt(dialogRect.width / 2);
-  //         this.origin.moveY1 = -parseInt(dialogRect.height / 2);
-  //       }
-  //     }
-  //   }
-  // },
   mounted() {
     this.showDialog();
     // 监听Esc键
@@ -273,6 +302,7 @@ export default {
     border-radius: 4px;
     top: 50%;
     left: 50%;
+    max-height: 100%;
     transform: translate(-50%, -50%);
     &-close {
       position: absolute;
@@ -290,8 +320,10 @@ export default {
       }
     }
     &-content {
+      position: relative;
       flex: 1;
       padding: 12px 16px;
+      overflow-y: auto;
     }
     &-footer {
       text-align: right;

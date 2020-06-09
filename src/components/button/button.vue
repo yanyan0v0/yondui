@@ -2,9 +2,15 @@
   <button
     class="y-button"
     @click="handleClick"
-    :class="[computeSize, classPrefix + shape, disabled ? classPrefix + 'disabled' : '']"
+    :class="[computeSize, classPrefix + shape, disabled ? classPrefix + 'disabled' : '', loading ? classPrefix + 'isloading' : '']"
     :style="[colorStyle, {'width': width}]"
   >
+    <loading-svg
+      v-if="loading"
+      color="#fff"
+      class="y-button-loading"
+      :class="[size ? 'y-button-loading-' + size : '']"
+    ></loading-svg>
     <slot></slot>
   </button>
 </template>
@@ -13,6 +19,9 @@
 import { THEME_COLORS } from "@/util/config";
 export default {
   name: "y-button",
+  components: {
+    "loading-svg": () => import("@/components/loading/svg/oval.vue")
+  },
   props: {
     color: {
       type: [String, Array],
@@ -35,7 +44,8 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    loading: Boolean
   },
   data() {
     return {
@@ -112,6 +122,7 @@ export default {
   },
   methods: {
     handleClick(e) {
+      if (this.disabled || this.loading) return;
       this.$emit("click", e);
     }
   }
@@ -161,9 +172,30 @@ export default {
   color: @disabled-color !important;
   cursor: not-allowed;
 }
+.y-button.y-button-isloading {
+  cursor: default;
+}
 .y-button.y-button-disabled:not(.y-button-text) {
   background-color: #f7f7f7 !important;
   border-color: #dcdee2 !important;
+}
+.y-button-loading {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.y-button-loading-large {
+  width: 17px;
+  height: 17px;
+}
+.y-button-loading-small {
+  width: 15px;
+  height: 15px;
+}
+.y-button-loading-mini {
+  width: 14px;
+  height: 14px;
 }
 .y-button + .y-button {
   margin-left: 5px;

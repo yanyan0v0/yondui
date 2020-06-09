@@ -24,6 +24,7 @@
             <div class="introduce">最基本的滑块。</div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-slider v-model="slider1" /&gt;
@@ -61,6 +62,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Slider",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

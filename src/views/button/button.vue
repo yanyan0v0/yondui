@@ -14,7 +14,7 @@
               <y-button>default</y-button>
               <y-button color="primary">primary</y-button>
               <y-button color="success">success</y-button>
-              <y-button color="info">info</y-button>
+              <y-button color="text">text</y-button>
               <y-button color="warning">warning</y-button>
               <y-button color="error">error</y-button>
               <y-button color="#b519be">#b519be</y-button>
@@ -28,7 +28,7 @@
                 1:
                 <code>primary</code>、
                 <code>success</code>、
-                <code>info</code>、
+                <code>text</code>、
                 <code>warning</code>、
                 <code>error</code>、
                 <code>yellow</code>等这些关键字
@@ -48,12 +48,13 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ANLX').name" />
             <pre>
             <code>
   &lt;y-button&gt;default&lt;/y-button&gt;
   &lt;y-button color="primary"&gt;primary&lt;/y-button&gt;
   &lt;y-button color="success"&gt;success&lt;/y-button&gt;
-  &lt;y-button color="info"&gt;info&lt;/y-button&gt;
+  &lt;y-button color="text"&gt;text&lt;/y-button&gt;
   &lt;y-button color="warning"&gt;warning&lt;/y-button&gt;
   &lt;y-button color="error"&gt;error&lt;/y-button&gt;
   &lt;y-button color="#b519be"&gt;#b519be&lt;/y-button&gt;
@@ -90,6 +91,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ANXZ').name" />
             <pre>
             <code>
   &lt;y-button color="primary"&gt;圆弧&lt;/y-button&gt;
@@ -130,6 +132,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('ANCC').name" />
             <pre>
             <code>
   &lt;y-button color="primary" size="large"&gt;large&lt;/y-button&gt;
@@ -170,6 +173,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JY').name" />
             <pre>
             <code>
   &lt;y-button color="primary" size="large"&gt;large&lt;/y-button&gt;
@@ -181,6 +185,37 @@
   &lt;y-button color="primary" shape="round"&gt;default&lt;/y-button&gt;
   &lt;y-button color="primary" shape="round" size="small"&gt;small&lt;/y-button&gt;
   &lt;y-button color="primary" shape="round" size="mini"&gt;mini&lt;/y-button&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('JZZ')">
+        <h3 id="JZZ">{{getNav('JZZ').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview preview-button">
+              <y-button loading color="primary" size="large">large</y-button>
+              <y-button loading color="primary">default</y-button>
+              <y-button loading color="primary" size="small">small</y-button>
+              <y-button loading color="primary" size="mini">mini</y-button>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过添加
+              <code>loading</code>属性可将按钮设置为加载中。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('JZZ').name" />
+            <pre>
+            <code>
+  &lt;y-button loading color="primary" size="large"&gt;large&lt;/y-button&gt;
+  &lt;y-button loading color="primary"&gt;default&lt;/y-button&gt;
+  &lt;y-button loading color="primary" size="small"&gt;small&lt;/y-button&gt;
+  &lt;y-button loading color="primary" size="mini"&gt;mini&lt;/y-button&gt;
             </code>
             </pre>
           </div>
@@ -201,6 +236,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Button",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],
@@ -225,6 +261,11 @@ export default {
         {
           id: "JY",
           name: "禁用",
+          version: "1.0.0"
+        },
+        {
+          id: "JZZ",
+          name: "加载中",
           version: "1.0.0"
         },
         {
@@ -255,6 +296,12 @@ export default {
         {
           attr: "disabled",
           explain: "设置按钮为禁用状态",
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "loading",
+          explain: "设置按钮为加载中",
           type: "Boolean",
           default: "false"
         }

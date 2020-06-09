@@ -23,6 +23,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre v-pre>
             <code>
   &lt;y-select v-model="select1" @on-change="handleChange"&gt;
@@ -93,6 +94,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('CC').height}">
+            <code-action-bar :name="getNav('CC').name" />
             <pre v-pre>
             <code>
   &lt;y-select v-model="select2" size="large" width="200px"&gt;
@@ -172,6 +174,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JY').height}">
+            <code-action-bar :name="getNav('JY').name" />
             <pre v-pre>
             <code>
   &lt;p&gt;select禁用&lt;/p&gt;
@@ -215,6 +218,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('KQK').height}">
+            <code-action-bar :name="getNav('KQK').name" />
             <pre v-pre>
             <code>
   &lt;y-select v-model="select4" clearable&gt;
@@ -248,6 +252,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('QZTB').height}">
+            <code-action-bar :name="getNav('QZTB').name" />
             <pre v-pre>
             <code>
   &lt;y-select v-model="select5"&gt;
@@ -288,6 +293,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('DX').height}">
+            <code-action-bar :name="getNav('DX').name" />
             <pre v-pre>
             <code>
   &lt;y-select v-model="select6" clearable&gt;
@@ -345,6 +351,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('KSS').height}">
+            <code-action-bar :name="getNav('KSS').name" />
             <pre v-pre>
             <code>
   &lt;p&gt;单选可搜索&lt;/p&gt;
@@ -405,6 +412,7 @@ export default {
   // [Vue warn]: Do not use built-in or reserved HTML elements as component id: Switch
   name: "Select",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

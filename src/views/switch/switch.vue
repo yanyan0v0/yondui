@@ -16,6 +16,7 @@
             <div class="introduce">基本用法，状态切换时会触发事件。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-switch v-model="switch1" @on-change="handleChange" &gt;&lt;/y-switch&gt;
@@ -31,7 +32,7 @@
         if (state) {
           this.$alert.success("切换为开");
         } else {
-          this.$alert.info("切换为关");
+          this.$alert.text("切换为关");
         }
       }
     }
@@ -63,6 +64,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('CC').height}">
+            <code-action-bar :name="getNav('CC').name" />
             <pre>
             <code>
   &lt;y-switch v-model="switch2" size="large"&gt;&lt;/y-switch&gt;
@@ -119,6 +121,7 @@
             <div class="introduce">自定义内容，建议最多只使用2个汉字。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('WZ').height}">
+            <code-action-bar :name="getNav('WZ').name" />
             <pre>
             <code>
   &lt;y-switch v-model="switch2"&gt;
@@ -147,6 +150,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JZZ').height}">
+            <code-action-bar :name="getNav('JZZ').name" />
             <pre>
             <code>
   &lt;y-switch :value="false" loading&gt;&lt;/y-switch&gt;
@@ -173,6 +177,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JY').height}">
+            <code-action-bar :name="getNav('JY').name" />
             <pre>
             <code>
   &lt;y-switch :value="false" disabled&gt;&lt;/y-switch&gt;
@@ -200,6 +205,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('YS').height}">
+            <code-action-bar :name="getNav('YS').name" />
             <pre>
             <code>
   &lt;y-switch v-model="switch3" close-color="red" open-color="blue"&gt;&lt;/y-switch&gt;
@@ -231,6 +237,7 @@ export default {
   // [Vue warn]: Do not use built-in or reserved HTML elements as component id: Switch
   name: "Switchs",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],
@@ -364,7 +371,7 @@ export default {
       if (state) {
         this.$alert.success("切换为开");
       } else {
-        this.$alert.info("切换为关");
+        this.$alert.text("切换为关");
       }
     }
   }

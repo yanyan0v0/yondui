@@ -19,6 +19,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
   &lt;y-image :data="imageList" style="width: 200px;height: 200px;" /&gt;
@@ -55,6 +56,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SL').height}">
+            <code-action-bar :name="getNav('SL').name" />
             <pre>
             <code>
   &lt;y-image :data="imageList" :max="3" style="height: 200px;" /&gt;
@@ -111,6 +113,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('FX').height}">
+            <code-action-bar :name="getNav('FX').name" />
             <pre>
             <code>
   &lt;y-image :data="imageList" direction="vertical" :max="2" style="width: 200px;" /&gt;
@@ -168,6 +171,7 @@ import viewMixins from "@/util/viewMixins";
 export default {
   name: "Images",
   components: {
+    "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
   },
   mixins: [viewMixins],

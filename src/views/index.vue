@@ -7,9 +7,9 @@
       <div class="content">
         <div class="logo">
           <y-button color="error" size="mini" shape="round">{{version}}</y-button>
-          <p class="title">Y2-UI</p>
+          <p class="title">YOND-UI</p>
         </div>
-        <p class="introduce">一套基于 Vue.js 的高质量 UI 组件库</p>
+        <p class="introduce">一套基于 Vue2.0 的高质量 UI 组件库</p>
         <y-button shape="round" :color="['primary', '#b519be']" @click="start">快速开始</y-button>
       </div>
     </div>
@@ -61,7 +61,6 @@ export default {
     .content {
       .logo {
         position: relative;
-        width: 160px;
         .y-button {
           position: absolute;
           top: -20px;
