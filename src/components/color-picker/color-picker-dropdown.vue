@@ -1,11 +1,6 @@
 <template>
   <transition name="dropdown-fade">
-    <div
-      v-show="visible"
-      v-clickoutside="setVisible"
-      class="y-color-picker-dropdown"
-      :style="style"
-    >
+    <div v-show="visible" v-clickoutside="hide" class="y-color-picker-dropdown" :style="style">
       <y-panel :color="colorData" @on-change="handlePanelChange"></y-panel>
       <div class="y-color-picker-select">
         <!-- <span class="select-picker">
@@ -96,8 +91,8 @@ export default {
     }
   },
   methods: {
-    setVisible(visible = false) {
-      this.visible = visible;
+    hide() {
+      this.visible = false;
     },
     handlePanelChange({ s, v }) {
       this.hsva.s = s;

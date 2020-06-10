@@ -40,8 +40,7 @@ export default {
   },
   methods: {
     changeVisible() {
-      this.visible = !this.instance.visible;
-      this.instance.setVisible(this.visible);
+      this.instance.visible = !this.instance.visible;
     }
   },
   mounted() {

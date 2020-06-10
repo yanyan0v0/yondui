@@ -8,3 +8,10 @@
 &lt;y-button color="primary" @click="instance('success')"&gt;成功&lt;/y-button&gt;
 &lt;y-button color="primary" @click="instance('warning')"&gt;警告&lt;/y-button&gt;
 &lt;y-button color="primary" @click="instance('error')"&gt;错误&lt;/y-button&gt;
+
+&lt;div&gt;
+  &lt;y-loading color="blue"&gt;&lt;/y-loading&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;y-loading type="audio" color="green"&gt;&lt;/y-loading&gt;
+&lt;/div&gt;

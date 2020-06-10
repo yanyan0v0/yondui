@@ -11,17 +11,28 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <div :style="{height: getNav('JC').height}">
-                <y-draw />
+                <y-draw ref="draw" @on-save="save" />
               </div>
             </div>
             <y-divider position="left">说明</y-divider>
-            <div class="introduce">最基本的绘图。</div>
+            <div class="introduce">
+              最基本的绘图，可调用
+              <code>downloadFile</code>方法下载图片。
+            </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
             <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
-  &lt;y-draw /&gt;
+  &lt;y-draw ref="draw" @on-save="save" /&gt;
+
+  exprot default {
+    methods: {
+      save(image) {
+        this.$refs.draw.downloadFile("图片.png", image);
+      }
+    }
+  }
 
             </code>
             </pre>
@@ -97,6 +108,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    save(image) {
+      this.$refs.draw.downloadFile("图片.png", image);
+    }
   }
 };
 </script>

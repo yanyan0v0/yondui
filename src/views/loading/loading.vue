@@ -11,20 +11,29 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-loading">
-              内容
-              <y-loading></y-loading>
+              <div>
+                <y-loading color="blue"></y-loading>
+              </div>
+              <div>
+                <y-loading type="audio" color="green"></y-loading>
+              </div>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               通过设置
-              <code>type</code>属性显示不同的Loading类型。
+              <code>type</code>属性显示不同的Loading类型，所有type在下方有展示，默认type为第一个。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
             <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
-  &lt;y-loading&gt;&lt;/y-loading&gt;
+  &lt;div&gt;
+    &lt;y-loading color="blue"&gt;&lt;/y-loading&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;y-loading type="audio" color="green"&gt;&lt;/y-loading&gt;
+  &lt;/div&gt;
             </code>
             </pre>
           </div>
@@ -142,7 +151,21 @@ export default {
 
 <style lang="less">
 .preview-loading {
+  display: flex;
   position: relative;
   height: 200px;
+  & > div {
+    position: relative;
+    flex: 1;
+    & > .y-loading {
+      background-color: transparent;
+    }
+  }
+  // & > .loading1 {
+  //   background-color: blue;
+  // }
+  // & > .loading2 {
+  //   background-color: green;
+  // }
 }
 </style>
