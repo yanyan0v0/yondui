@@ -1,6 +1,6 @@
 {
   "name": "yond-ui",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve --mode development",
@@ -50,7 +50,7 @@
     "not dead"
   ],
   "description": "## Project setup ``` npm install ```",
-  "main": "lib/yond-ui.umd.min.js",
+  "main": "lib/yond-ui.common.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yanyan0v0/yondui.git"
@@ -60,6 +60,7 @@
   ],
   "files": [
     "lib/*",
+    "src/assets/less/*",
     "src/components/*",
     "src/directive/*",
     "src/util/*",

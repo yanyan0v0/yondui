@@ -40,12 +40,15 @@
 import tinycolor from "tinycolor2";
 import clickoutside from "@/directive/clickoutside";
 import { THEME_COLORS } from "@/util/config";
+import YPanel from "./components/panel.vue";
+import YHue from "./components/hue.vue";
+import YAlpha from "./components/alpha.vue";
 export default {
   name: "y-color-picker",
   components: {
-    YPanel: () => import("./components/panel.vue"),
-    YHue: () => import("./components/hue.vue"),
-    YAlpha: () => import("./components/alpha.vue")
+    YPanel,
+    YHue,
+    YAlpha
   },
   directives: { clickoutside },
   data() {

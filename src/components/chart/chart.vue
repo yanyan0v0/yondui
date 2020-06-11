@@ -16,11 +16,13 @@ const DEFAULT_CHART = {
   title: "",
   data: []
 };
+import YBarLine from "./components/bar-line.vue";
+import YPie from "./components/pie.vue";
 export default {
   name: "y-chart",
   components: {
-    "y-bar-line": () => import("./components/bar-line.vue"),
-    "y-pie": () => import("./components/pie.vue")
+    YBarLine,
+    YPie
   },
   props: {
     // 图表数据
