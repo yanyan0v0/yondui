@@ -19,7 +19,15 @@ export default {
       default: false
     },
     size: String,
-    disabled: Boolean
+    disabled: Boolean,
+    unselectIcon: {
+      type: String,
+      default: "checkbox-unselect"
+    },
+    selectedIcon: {
+      type: String,
+      default: "checkbox-selected"
+    }
   },
   computed: {
     // 父组件是否是checkbox-group
@@ -43,7 +51,7 @@ export default {
       }
     },
     iconType() {
-      return this.checked ? "checkbox-selected" : "checkbox-unselect";
+      return this.checked ? this.selectedIcon : this.unselectIcon;
     }
   },
   methods: {

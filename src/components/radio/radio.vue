@@ -19,7 +19,15 @@ export default {
       default: false
     },
     size: String,
-    disabled: Boolean
+    disabled: Boolean,
+    unselectIcon: {
+      type: String,
+      default: "radio-unselect"
+    },
+    selectedIcon: {
+      type: String,
+      default: "radio-selected"
+    }
   },
   computed: {
     // 父组件是否是radio-group
@@ -43,7 +51,7 @@ export default {
       }
     },
     iconType() {
-      return this.checked ? "radio-selected" : "radio-unselect";
+      return this.checked ? this.selectedIcon : this.unselectIcon;
     }
   },
   methods: {

@@ -581,6 +581,13 @@ export default {
           explain: `取消按钮文字， 当传空值时可隐藏取消按钮`,
           type: "String",
           default: "取消"
+        },
+        {
+          version: "1.0.0",
+          attr: "dialog-class",
+          explain: `给<code class="keyword-code">.y-dialog</code>增加自定义类`,
+          type: "String",
+          default: "空"
         }
       ],
       slotList: [

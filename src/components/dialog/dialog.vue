@@ -2,7 +2,12 @@
   <transition name="dropdown-fade">
     <div v-show="value" class="y-dialog-wrap" :style="wrapStyle" @click="handleMaskClick">
       <div v-show="mask" class="y-dialog-mask"></div>
-      <div ref="dialog" class="y-dialog" :class="{'y-dialog-scaleable' : scaleable}" :style="style">
+      <div
+        ref="dialog"
+        class="y-dialog"
+        :class="[dialogClass, {'y-dialog-scaleable' : scaleable}]"
+        :style="style"
+      >
         <y-icon v-show="showClose" class="y-dialog-close" type="guanbi" @click="handleCancel"></y-icon>
         <slot name="header">
           <div
@@ -90,7 +95,8 @@ export default {
     cancelText: {
       type: String,
       default: "取消"
-    }
+    },
+    dialogClass: String
   },
   data() {
     return {

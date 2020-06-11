@@ -176,6 +176,39 @@
         </y-card>
       </div>
 
+      <!-- 分割线 -->
+      <div v-show="compareVersion('ZDYTB')">
+        <h3 id="ZDYTB">{{getNav('ZDYTB').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-radio
+                v-model="value5"
+                unselect-icon="shoucang"
+                selected-icon="checkbox-indeterminate"
+              >图标</y-radio>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              <code>unselect-icon</code> 属性设置未选择图标，
+              <code>selected-icon</code> 属性设置已选择图标 。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('ZDYTB').height}">
+            <code-action-bar :name="getNav('ZDYTB').name" />
+            <pre v-pre>
+            <code>
+  &lt;y-radio
+    v-model="value5"
+    unselect-icon="shoucang"
+    selected-icon="checkbox-indeterminate"
+  &gt;图标&lt;/y-radio&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
       <!-- 底部API说明 -->
       <footer-table
         :name="$options.name"
@@ -237,6 +270,12 @@ export default {
         {
           id: "JY",
           name: "禁用",
+          version: "1.0.0",
+          height: "200px"
+        },
+        {
+          id: "ZDYTB",
+          name: "自定义图标",
           version: "1.0.0",
           height: "200px"
         },

@@ -30,7 +30,7 @@
         ></li>
       </ul>
       <div v-show="showFooter" class="y-color-picker-footer">
-        <y-button class="float-r" size="small" @click="confirm(color)">确定</y-button>
+        <y-button size="small" @click="confirm(color)">确定</y-button>
       </div>
     </div>
   </transition>
@@ -170,6 +170,10 @@ export default {
       border-radius: 2px;
       cursor: pointer;
     }
+  }
+  .y-color-picker-footer {
+    padding: 0 5px 5px;
+    text-align: right;
   }
 }
 </style>
