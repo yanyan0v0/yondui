@@ -75,15 +75,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-dropdown {
-  position: relative;
-  display: inline-block;
-  &-trigger {
-    display: inline-block;
-    width: 100%;
-    cursor: pointer;
-  }
-}
-</style>

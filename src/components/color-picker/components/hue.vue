@@ -63,33 +63,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-color-picker-hue {
-  position: relative;
-  margin: 5px;
-  height: 10px;
-  border-radius: 2px;
-  background: linear-gradient(
-    to right,
-    red 0,
-    #ff0 17%,
-    #0f0 33%,
-    #0ff 50%,
-    #00f 67%,
-    #f0f 83%,
-    red
-  );
-  &-slider {
-    position: absolute;
-    width: 4px;
-    border-radius: 1px;
-    height: 8px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-    background: #fff;
-    margin-top: 1px;
-    transform: translateX(-2px);
-    cursor: pointer;
-  }
-}
-</style>

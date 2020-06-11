@@ -1,0 +1,29 @@
+.y-navigator {
+  position: relative;
+  display: table;
+  margin-left: 10px;
+  border-left: 1px solid @border-color;
+  width: 120px;
+  font-size: 12px;
+  & > li {
+    padding: 8px 0 8px 16px;
+    .active {
+      color: @primary-color;
+    }
+    &:hover a {
+      .active;
+    }
+  }
+  & > .dot {
+    display: inline-block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid @primary-color;
+    background-color: #fff;
+    left: 0;
+    transition: top 0.2s ease-in-out;
+    transform: translate(-50%, 2px);
+  }
+}

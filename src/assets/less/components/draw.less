@@ -1,0 +1,61 @@
+.y-draw {
+  .main;
+  border: 1px solid @border-color;
+  &-group {
+    position: absolute;
+    border-bottom: 1px solid @border-color;
+    padding: 5px;
+    background-color: @background-color;
+    i {
+      .pointer;
+    }
+    i + i {
+      margin-left: 5px;
+    }
+  }
+  &-canvas {
+    .full;
+  }
+}
+.y-draw-top {
+  .y-draw-group {
+    top: 0;
+    width: 100%;
+    .y-slider {
+      display: inline-block;
+      margin: 0 10px;
+      width: 100px;
+      transform: translateY(10px);
+    }
+  }
+  .y-draw-canvas {
+    padding-top: 35px;
+  }
+}
+.y-draw-right {
+  .y-draw-group {
+    right: 0;
+    height: 100%;
+  }
+  .y-draw-canvas {
+    padding-right: 35px;
+  }
+}
+.y-draw-bottom {
+  .y-draw-group {
+    bottom: 0;
+    width: 100%;
+  }
+  .y-draw-canvas {
+    padding-bottom: 35px;
+  }
+}
+.y-draw-left {
+  .y-draw-group {
+    left: 0;
+    height: 100%;
+  }
+  .y-draw-canvas {
+    padding-left: 35px;
+  }
+}

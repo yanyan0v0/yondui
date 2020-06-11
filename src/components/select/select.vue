@@ -231,36 +231,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-select {
-  position: relative;
-  display: inline-block;
-  &-input {
-    .y-input {
-      cursor: pointer;
-    }
-  }
-  &-drop-icon {
-    display: inline-block;
-    transition: transform 0.3s;
-    &.turn-up {
-      transform: rotate(180deg);
-    }
-    &.turn-down {
-      transform: rotate(0);
-    }
-  }
-}
-
-.y-select-dropdown {
-  position: absolute;
-  border: 1px solid @border-color;
-  border-radius: 4px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  padding: 5px;
-  font-size: 14px;
-  background-color: #fff;
-  z-index: 2020;
-}
-</style>

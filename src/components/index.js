@@ -1,7 +1,7 @@
 import { objToArray } from '@/util/tools'
 
 // 指令式
-import Alert from '@/components/alert/alert.vue'
+import Alert from '@/components/alert'
 import Button from '@/components/button/button.vue'
 import Card from '@/components/card/card.vue'
 import Chart from '@/components/chart/chart.vue'
@@ -34,6 +34,8 @@ import Tooltip from '@/components/tooltip/tooltip.vue'
 // 函数式
 import AlertJs from '@/components/alert/alert.js'
 import DialogJs from '@/components/dialog/dialog.js'
+
+import '@/assets/less/common.less'
 
 const components = {
   Alert,

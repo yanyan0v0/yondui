@@ -9,7 +9,7 @@
     <ul class="y-timeline-content">
       <li v-for="(item, index) in data" :key="index">
         <div class="y-timeline-content-left" v-if="leftWidth" :style="{'width': leftWidth + 'px'}">
-          <slot name="left" :row="item" :index="index"/>
+          <slot name="left" :row="item" :index="index" />
         </div>
         <div class="y-timeline-content-right">
           <span class="y-timeline-content-right-dot" :style="{'background-color': item.color}"></span>
@@ -18,11 +18,11 @@
               <span></span>
             </div>
             <div class="y-timeline-content-right-card-right">
-              <slot :row="item" :index="index"/>
+              <slot :row="item" :index="index" />
             </div>
           </div>
           <div class="y-timeline-content-right-line" v-else>
-            <slot :row="item" :index="index"/>
+            <slot :row="item" :index="index" />
           </div>
         </div>
       </li>
@@ -84,92 +84,3 @@ export default {
 };
 </script>
 
-<style lang="less">
-.y-timeline {
-  .full;
-  padding: 5px 5px 5px 0;
-  overflow-y: auto;
-  &-header {
-    &-content {
-      width: 12px;
-      height: 100%;
-      margin-left: 80px;
-      .flex-wrap(column);
-      &-circle {
-        display: block;
-        width: 100%;
-        height: 12px;
-        background-color: @primary-color;
-        border-radius: 50%;
-      }
-      &-line {
-        display: block;
-        margin: 0 auto;
-        width: 2px;
-        height: 10px;
-        background-color: @primary-color;
-      }
-    }
-  }
-  &-content {
-    width: 100%;
-    li {
-      .flex;
-      .y-timeline-content-left {
-        .center-h;
-        // width: 85px;
-        padding-right: 10px;
-        text-align: right;
-        font-size: 12px;
-      }
-      .y-timeline-content-right {
-        .flex;
-        flex: 1;
-        position: relative;
-        margin-left: 5px;
-        border-left: 2px solid @primary-color;
-        padding: 8px 0;
-        &-dot {
-          position: absolute;
-          left: -6px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 10px;
-          height: 10px;
-          background-color: @primary-color;
-          border-radius: 50%;
-        }
-        &-card {
-          .flex;
-          position: relative;
-          width: 100%;
-          &-left {
-            .center;
-            width: 15px;
-            & > span {
-              display: block;
-              width: 100%;
-              height: 2px;
-              background-color: @primary-color;
-            }
-          }
-          &-right {
-            flex: 1;
-            border: 2px solid @primary-color;
-            padding: 5px;
-          }
-        }
-        &-line {
-          position: relative;
-          padding: 5px 5px 5px 20px;
-          .full-w;
-        }
-      }
-    }
-  }
-  & > .footer {
-    text-align: center;
-    color: @disabled-color;
-  }
-}
-</style>

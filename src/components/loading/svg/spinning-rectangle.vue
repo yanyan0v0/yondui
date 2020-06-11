@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner" :style="{backgroundColor: color}"></div>
+  <div class="y-loading-spinning-rectangle" :style="{backgroundColor: color}"></div>
 </template>
 
 <script>
@@ -12,28 +12,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.spinner {
-  width: 40px;
-  height: 40px;
-  background-color: #333;
-
-  animation: sk-rotateplane 1.2s infinite ease-in-out;
-}
-
-@keyframes sk-rotateplane {
-  0% {
-    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-  }
-  50% {
-    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-  }
-  100% {
-    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-  }
-}
-</style>

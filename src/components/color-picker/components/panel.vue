@@ -48,34 +48,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-color-picker-panel {
-  position: relative;
-  width: 100%;
-  height: 120px;
-  &-white {
-    background-image: linear-gradient(to right, #fff, transparent);
-  }
-  &-black {
-    background-image: linear-gradient(to top, #000, transparent);
-  }
-  &-white,
-  &-black {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-  &-cursor {
-    position: absolute;
-    border: 1px solid #fff;
-    border-radius: 50%;
-    padding: 2px;
-    width: 8px;
-    height: 8px;
-    transform: translate(-50%, -50%);
-  }
-}
-</style>

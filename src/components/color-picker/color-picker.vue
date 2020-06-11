@@ -76,28 +76,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-color-picker {
-  display: inline-block;
-  position: relative;
-  width: 36px;
-  height: 36px;
-  border: 1px solid @border-color;
-  border-radius: 4px;
-  padding: 2px;
-  &-color {
-    .full;
-    border: 1px solid @border-color;
-    color: #fff;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
-    span {
-      .center;
-      .full;
-      i {
-        font-size: 12px;
-      }
-    }
-  }
-}
-</style>

@@ -66,27 +66,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-color-picker-alpha {
-  position: relative;
-  margin: 5px;
-  height: 10px;
-  border-radius: 2px;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
-  & > div {
-    .full;
-    .y-color-picker-alpha-slider {
-      position: absolute;
-      width: 4px;
-      border-radius: 1px;
-      height: 8px;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-      background: #fff;
-      margin-top: 1px;
-      transform: translateX(-2px);
-      cursor: pointer;
-    }
-  }
-}
-</style>

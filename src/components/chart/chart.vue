@@ -61,27 +61,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-chart {
-  .main;
-  .header {
-    .center-h;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 5px 10px 0;
-    justify-content: space-between;
-    z-index: 1;
-    pointer-events: none;
-    & > span {
-      font-size: 16px;
-      i {
-        color: @primary-color;
-        margin-right: 5px;
-      }
-    }
-  }
-}
-</style>

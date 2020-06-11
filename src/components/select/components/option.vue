@@ -75,30 +75,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-option {
-  position: relative;
-  padding: 5px;
-  cursor: pointer;
-  &:not(.y-option-disabled):hover {
-    .y-option-active;
-  }
-  &-multiple-icon {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: @primary-color;
-  }
-}
-.y-option-active {
-  color: @primary-color;
-  // background-color: ~"@{light-primary-color}40";
-}
-.y-option-disabled {
-  color: @disabled-color;
-  // background-color: @background-color;
-  cursor: not-allowed;
-}
-</style>

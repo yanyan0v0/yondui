@@ -40,18 +40,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #ffffffe6;
-  .full;
-  .center;
-  .flex-wrap(column);
-  &-text {
-    margin-top: 10px;
-  }
-}
-</style>

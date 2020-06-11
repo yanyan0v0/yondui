@@ -32,22 +32,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.y-dropdown-item {
-  position: relative;
-  padding: 5px 10px;
-  cursor: pointer;
-  &:not(.y-dropdown-item-disabled):hover {
-    .y-dropdown-item-active;
-  }
-}
-.y-dropdown-item-active {
-  color: @primary-color;
-  background-color: ~"@{light-primary-color}40";
-}
-.y-dropdown-item-disabled {
-  color: @disabled-color;
-  cursor: not-allowed;
-}
-</style>

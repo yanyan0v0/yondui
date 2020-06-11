@@ -1,0 +1,15 @@
+.y-card {
+  position: relative;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  width: 100%;
+  &-content {
+    .flex;
+    .is-border {
+      border-right: 1px dashed @border-color;
+    }
+  }
+  &:hover {
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+  }
+}
