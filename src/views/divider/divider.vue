@@ -2,7 +2,7 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>Icon 图标</h1>
+      <h1>Divider 分割线</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="compareVersion('JC')">

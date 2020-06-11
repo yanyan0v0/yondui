@@ -2,7 +2,7 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>Checkbox 多选框</h1>
+      <h1>Radio 单选框</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="compareVersion('JC')">
@@ -10,7 +10,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-checkbox v-model="value1">基础</y-checkbox>
+              <y-radio v-model="value1">基础</y-radio>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -22,7 +22,7 @@
             <code-action-bar :name="getNav('JC').name" />
             <pre v-pre>
             <code>
-  &lt;y-checkbox v-model="value1"&gt;基础&lt;/y-checkbox&gt;
+  &lt;y-radio v-model="value1"&gt;基础&lt;/y-radio&gt;
 
   export default {
     data() {
@@ -43,10 +43,10 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-checkbox v-model="value2" size="large">大</y-checkbox>
-              <y-checkbox v-model="value2">中</y-checkbox>
-              <y-checkbox v-model="value2" size="small">小</y-checkbox>
-              <y-checkbox v-model="value2" size="mini">极小</y-checkbox>
+              <y-radio v-model="value2" size="large">大</y-radio>
+              <y-radio v-model="value2">中</y-radio>
+              <y-radio v-model="value2" size="small">小</y-radio>
+              <y-radio v-model="value2" size="mini">极小</y-radio>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -61,10 +61,10 @@
             <code-action-bar :name="getNav('JC').name" />
             <pre v-pre>
             <code>
-  &lt;y-checkbox v-model="value2" size="large"&gt;大&lt;/y-checkbox&gt;
-  &lt;y-checkbox v-model="value2"&gt;中&lt;/y-checkbox&gt;
-  &lt;y-checkbox v-model="value2" size="small"&gt;小&lt;/y-checkbox&gt;
-  &lt;y-checkbox v-model="value2" size="mini"&gt;极小&lt;/y-checkbox&gt;
+  &lt;y-radio v-model="value2" size="large"&gt;大&lt;/y-radio&gt;
+  &lt;y-radio v-model="value2"&gt;中&lt;/y-radio&gt;
+  &lt;y-radio v-model="value2" size="small"&gt;小&lt;/y-radio&gt;
+  &lt;y-radio v-model="value2" size="mini"&gt;极小&lt;/y-radio&gt;
 
   export default {
     data() {
@@ -85,17 +85,17 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-checkbox-group v-model="value3">
-                <y-checkbox value="北京">北京</y-checkbox>
-                <y-checkbox value="上海">上海</y-checkbox>
-                <y-checkbox value="广州">广州</y-checkbox>
-                <y-checkbox value="深圳">深圳</y-checkbox>
-              </y-checkbox-group>
+              <y-radio-group v-model="value3">
+                <y-radio value="北京">北京</y-radio>
+                <y-radio value="上海">上海</y-radio>
+                <y-radio value="广州">广州</y-radio>
+                <y-radio value="深圳">深圳</y-radio>
+              </y-radio-group>
               <p class="disabled-color">选中的值： {{value3}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
-              <code>v-model</code>绑定的值必须是数组，且 y-checkbox 的
+              y-radio 的
               <code>value</code> 必传。
             </div>
           </div>
@@ -103,18 +103,18 @@
             <code-action-bar :name="getNav('ZH').name" />
             <pre v-pre>
             <code>
-  &lt;y-checkbox-group v-model="value3"&gt;
-    &lt;y-checkbox value="北京"&gt;北京&lt;/y-checkbox&gt;
-    &lt;y-checkbox value="上海"&gt;上海&lt;/y-checkbox&gt;
-    &lt;y-checkbox value="广州"&gt;广州&lt;/y-checkbox&gt;
-    &lt;y-checkbox value="深圳"&gt;深圳&lt;/y-checkbox&gt;
-  &lt;/y-checkbox-group&gt;
+  &lt;y-radio-group v-model="value3"&gt;
+    &lt;y-radio value="北京"&gt;北京&lt;/y-radio&gt;
+    &lt;y-radio value="上海"&gt;上海&lt;/y-radio&gt;
+    &lt;y-radio value="广州"&gt;广州&lt;/y-radio&gt;
+    &lt;y-radio value="深圳"&gt;深圳&lt;/y-radio&gt;
+  &lt;/y-radio-group&gt;
   &lt;p class="disabled-color"&gt;选中的值： {{value3}}&lt;/p&gt;
 
   export default {
     data() {
       return {
-        value3: []
+        value3: '北京'
       };
     }
   };
@@ -130,17 +130,17 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <p>checkbox禁用</p>
+              <p>radio禁用</p>
               <p>
-                <y-checkbox disabled value>全选</y-checkbox>
+                <y-radio disabled value>单选</y-radio>
               </p>
-              <p>checkbox-group禁用</p>
-              <y-checkbox-group v-model="value4" disabled>
-                <y-checkbox value="北京">北京</y-checkbox>
-                <y-checkbox value="上海">上海</y-checkbox>
-                <y-checkbox value="广州">广州</y-checkbox>
-                <y-checkbox value="深圳">深圳</y-checkbox>
-              </y-checkbox-group>
+              <p>radio-group禁用</p>
+              <y-radio-group v-model="value4" disabled>
+                <y-radio value="北京">北京</y-radio>
+                <y-radio value="上海">上海</y-radio>
+                <y-radio value="广州">广州</y-radio>
+                <y-radio value="深圳">深圳</y-radio>
+              </y-radio-group>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -152,21 +152,21 @@
             <code-action-bar :name="getNav('JY').name" />
             <pre v-pre>
             <code>
-  &lt;p&gt;checkbox禁用&lt;/p&gt;
-  &lt;y-checkbox disabled value&gt;全选&lt;/y-checkbox&gt;
+  &lt;p&gt;radio禁用&lt;/p&gt;
+  &lt;y-radio disabled value&gt;单选&lt;/y-radio&gt;
 
-  &lt;p&gt;checkbox-group禁用&lt;/p&gt;
-  &lt;y-checkbox-group v-model="value4" disabled&gt;
-    &lt;y-checkbox value="北京"&gt;北京&lt;/y-checkbox&gt;
-    &lt;y-checkbox value="上海"&gt;上海&lt;/y-checkbox&gt;
-    &lt;y-checkbox value="广州"&gt;广州&lt;/y-checkbox&gt;
-    &lt;y-checkbox value="深圳"&gt;深圳&lt;/y-checkbox&gt;
-  &lt;/y-checkbox-group&gt;
+  &lt;p&gt;radio-group禁用&lt;/p&gt;
+  &lt;y-radio-group v-model="value4" disabled&gt;
+    &lt;y-radio value="北京"&gt;北京&lt;/y-radio&gt;
+    &lt;y-radio value="上海"&gt;上海&lt;/y-radio&gt;
+    &lt;y-radio value="广州"&gt;广州&lt;/y-radio&gt;
+    &lt;y-radio value="深圳"&gt;深圳&lt;/y-radio&gt;
+  &lt;/y-radio-group&gt;
 
   export default {
     data() {
       return {
-        value4: ['北京', '上海', '广州', '深圳']
+        value4: '北京'
       };
     }
   };
@@ -202,7 +202,7 @@
 import viewMixins from "@/util/viewMixins";
 import { PROP_COLUMNS, EVENT_COLUMNS } from "@/util/config";
 export default {
-  name: "Checkbox",
+  name: "Radio",
   components: {
     "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
@@ -212,8 +212,8 @@ export default {
     return {
       value1: false,
       value2: false,
-      value3: [],
-      value4: ["北京", "上海", "广州", "深圳"],
+      value3: "北京",
+      value4: "北京",
       value5: false,
       navList: [
         {
@@ -242,22 +242,22 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Checkbox Props",
+          name: "Radio Props",
           version: "1.0.0"
         },
         {
           id: "EVENTS",
-          name: "Checkbox Events",
+          name: "Radio Events",
           version: "1.0.0"
         },
         {
           id: "GROUPPROPS",
-          name: "Checkbox Group Props",
+          name: "Radio Group Props",
           version: "1.0.0"
         },
         {
           id: "GROUPEVENTS",
-          name: "Checkbox Group Events",
+          name: "Radio Group Events",
           version: "1.0.0"
         }
       ],
@@ -305,14 +305,14 @@ export default {
         {
           version: "1.0.0",
           attr: "size",
-          explain: `设置其内所有checkbox大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
+          explain: `设置其内所有radio大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
           type: "String",
           default: "-"
         },
         {
           version: "1.0.0",
           attr: "disabled",
-          explain: `是否禁用其内所有checkbox`,
+          explain: `是否禁用其内所有radio`,
           type: "Boolean",
           default: "false"
         }
@@ -322,13 +322,13 @@ export default {
           version: "1.0.0",
           attr: "on-change",
           explain: "在选项状态发生改变时触发，通过修改外部的数据改变时不会触发",
-          return: "[...]"
+          return: "value"
         }
       ]
     };
   },
   methods: {
-    handleCheckboxClick(value) {
+    handleRadioClick(value) {
       this.$alert.text("点击了" + value);
     },
     handleOk(dialog) {
@@ -359,6 +359,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-</style>

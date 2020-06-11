@@ -21,6 +21,8 @@ import Loading from '@/components/loading/loading.vue'
 import Menu from '@/components/menu/menu.vue'
 import Nav from '@/components/navigator/navigator.vue'
 import Option from '@/components/select/components/option.vue'
+import Radio from '@/components/radio/radio.vue'
+import RadioGroup from '@/components/radio/radio-group.vue'
 import Rank from '@/components/rank/rank.vue'
 import Table from '@/components/table/table.vue'
 import Select from '@/components/select/select.vue'
@@ -54,6 +56,8 @@ const components = {
   Menu,
   Nav,
   Option,
+  Radio,
+  RadioGroup,
   Rank,
   Select,
   Slider,

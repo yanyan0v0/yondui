@@ -115,6 +115,13 @@ export const MENU_LIST = [
         file: '/menu/menu.vue'
       },
       {
+        id: 222,
+        name: "Radio 单选框",
+        icon: "radio-selected",
+        to: "radio",
+        file: '/radio/radio.vue'
+      },
+      {
         id: 24,
         name: "Rank 排行",
         icon: "paihang",
