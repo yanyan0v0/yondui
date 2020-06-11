@@ -79,11 +79,13 @@
 
 <script>
 import { deepCopy } from "@/util/tools";
+import TableSlot from "./components/slot";
+import TableRender from "./components/render";
 export default {
   name: "y-table",
   components: {
-    "table-slot": () => import("./components/slot"),
-    "table-render": () => import("./components/render")
+    TableSlot,
+    TableRender
   },
   // 需要用函数来返回this
   provide() {

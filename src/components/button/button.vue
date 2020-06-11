@@ -17,10 +17,11 @@
 
 <script>
 import { THEME_COLORS } from "@/util/config";
+import LoadingSvg from "@/components/loading/svg/oval.vue";
 export default {
   name: "y-button",
   components: {
-    "loading-svg": () => import("@/components/loading/svg/oval.vue")
+    LoadingSvg
   },
   props: {
     color: {

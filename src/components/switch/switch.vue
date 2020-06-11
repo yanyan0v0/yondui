@@ -20,10 +20,11 @@
 
 <script>
 import { THEME_COLORS } from "@/util/config";
+import LoadingOval from "@/components/loading/svg/oval.vue";
 export default {
   name: "y-switch",
   components: {
-    "loading-oval": () => import("@/components/loading/svg/oval.vue")
+    LoadingOval
   },
   props: {
     value: Boolean,
