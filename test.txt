@@ -4,14 +4,10 @@
   &lt;/div&gt;
 &lt;/y-dialog&gt;
 
-&lt;y-button color="primary" @click="instance('text')"&gt;默认&lt;/y-button&gt;
-&lt;y-button color="primary" @click="instance('success')"&gt;成功&lt;/y-button&gt;
-&lt;y-button color="primary" @click="instance('warning')"&gt;警告&lt;/y-button&gt;
-&lt;y-button color="primary" @click="instance('error')"&gt;错误&lt;/y-button&gt;
-
-&lt;div&gt;
-  &lt;y-loading color="blue"&gt;&lt;/y-loading&gt;
-&lt;/div&gt;
-&lt;div&gt;
-  &lt;y-loading type="audio" color="green"&gt;&lt;/y-loading&gt;
-&lt;/div&gt;
+&lt;y-checkbox-group v-model="value3"&gt;
+  &lt;y-checkbox value="北京"&gt;北京&lt;/y-checkbox&gt;
+  &lt;y-checkbox value="上海"&gt;上海&lt;/y-checkbox&gt;
+  &lt;y-checkbox value="广州"&gt;广州&lt;/y-checkbox&gt;
+  &lt;y-checkbox value="深圳"&gt;深圳&lt;/y-checkbox&gt;
+&lt;/y-checkbox-group&gt;
+&lt;p class="disabled-color"&gt;选中的值： {{value3}}&lt;/p&gt;

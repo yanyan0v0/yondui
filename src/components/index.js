@@ -6,6 +6,7 @@ import Button from '@/components/button/button.vue'
 import Card from '@/components/card/card.vue'
 import Chart from '@/components/chart/chart.vue'
 import Checkbox from '@/components/checkbox/checkbox.vue'
+import CheckboxGroup from '@/components/checkbox/checkbox-group.vue'
 import ColorPicker from '@/components/color-picker/color-picker.vue'
 import Dialog from '@/components/dialog/dialog.vue'
 import Divider from '@/components/divider/divider.vue'
@@ -38,6 +39,7 @@ const components = {
   Card,
   Chart,
   Checkbox,
+  CheckboxGroup,
   ColorPicker,
   Dialog,
   Divider,

@@ -79,6 +79,103 @@
         </y-card>
       </div>
 
+      <!-- 分割线 -->
+      <div v-show="compareVersion('ZH')">
+        <h3 id="ZH">{{getNav('ZH').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-checkbox-group v-model="value3">
+                <y-checkbox value="北京">北京</y-checkbox>
+                <y-checkbox value="上海">上海</y-checkbox>
+                <y-checkbox value="广州">广州</y-checkbox>
+                <y-checkbox value="深圳">深圳</y-checkbox>
+              </y-checkbox-group>
+              <p class="disabled-color">选中的值： {{value3}}</p>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              <code>v-model</code>绑定的值必须是数组，且 y-checkbox 的
+              <code>value</code> 必传。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('ZH').height}">
+            <code-action-bar :name="getNav('ZH').name" />
+            <pre v-pre>
+            <code>
+  &lt;y-checkbox-group v-model="value3"&gt;
+    &lt;y-checkbox value="北京"&gt;北京&lt;/y-checkbox&gt;
+    &lt;y-checkbox value="上海"&gt;上海&lt;/y-checkbox&gt;
+    &lt;y-checkbox value="广州"&gt;广州&lt;/y-checkbox&gt;
+    &lt;y-checkbox value="深圳"&gt;深圳&lt;/y-checkbox&gt;
+  &lt;/y-checkbox-group&gt;
+  &lt;p class="disabled-color"&gt;选中的值： {{value3}}&lt;/p&gt;
+
+  export default {
+    data() {
+      return {
+        value3: []
+      };
+    }
+  };
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('JY')">
+        <h3 id="JY">{{getNav('JY').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <p>checkbox禁用</p>
+              <p>
+                <y-checkbox disabled value>全选</y-checkbox>
+              </p>
+              <p>checkbox-group禁用</p>
+              <y-checkbox-group v-model="value4" disabled>
+                <y-checkbox value="北京">北京</y-checkbox>
+                <y-checkbox value="上海">上海</y-checkbox>
+                <y-checkbox value="广州">广州</y-checkbox>
+                <y-checkbox value="深圳">深圳</y-checkbox>
+              </y-checkbox-group>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              <code>v-model</code>绑定的值必须是数组，且 y-checkbox 的
+              <code>value</code> 必传。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JY').height}">
+            <code-action-bar :name="getNav('JY').name" />
+            <pre v-pre>
+            <code>
+  &lt;p&gt;checkbox禁用&lt;/p&gt;
+  &lt;y-checkbox disabled value&gt;全选&lt;/y-checkbox&gt;
+
+  &lt;p&gt;checkbox-group禁用&lt;/p&gt;
+  &lt;y-checkbox-group v-model="value4" disabled&gt;
+    &lt;y-checkbox value="北京"&gt;北京&lt;/y-checkbox&gt;
+    &lt;y-checkbox value="上海"&gt;上海&lt;/y-checkbox&gt;
+    &lt;y-checkbox value="广州"&gt;广州&lt;/y-checkbox&gt;
+    &lt;y-checkbox value="深圳"&gt;深圳&lt;/y-checkbox&gt;
+  &lt;/y-checkbox-group&gt;
+
+  export default {
+    data() {
+      return {
+        value4: ['北京', '上海', '广州', '深圳']
+      };
+    }
+  };
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
       <!-- 底部API说明 -->
       <footer-table
         :name="$options.name"
@@ -115,8 +212,8 @@ export default {
     return {
       value1: false,
       value2: false,
-      value3: false,
-      value4: false,
+      value3: [],
+      value4: ["北京", "上海", "广州", "深圳"],
       value5: false,
       navList: [
         {
@@ -179,6 +276,13 @@ export default {
           explain: `大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
           type: "String",
           default: "-"
+        },
+        {
+          version: "1.0.0",
+          attr: "disabled",
+          explain: `是否禁用`,
+          type: "Boolean",
+          default: "false"
         }
       ],
       eventList: [
@@ -200,9 +304,16 @@ export default {
         {
           version: "1.0.0",
           attr: "size",
-          explain: `大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
+          explain: `设置其内所有checkbox大小，可选值为 <code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
           type: "String",
           default: "-"
+        },
+        {
+          version: "1.0.0",
+          attr: "disabled",
+          explain: `是否禁用其内所有checkbox`,
+          type: "Boolean",
+          default: "false"
         }
       ],
       groupEventList: [
