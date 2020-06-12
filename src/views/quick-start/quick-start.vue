@@ -32,7 +32,8 @@
   import Vue from 'vue';
   import App from 'app.vue';
   import YondUI from 'yond-ui'
-
+  import 'yond-ui/lib/yond-ui.css'
+  
   Vue.use(YondUI);
 
   new Vue({

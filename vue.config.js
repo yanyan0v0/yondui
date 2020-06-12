@@ -34,7 +34,7 @@ module.exports = {
   //   output: {
   //     filename: `js/[name].js`,
   //     chunkFilename: `js/[name].js`,
-  //     umdNamedDefine: true
+  //     umdNamedDefine: false
   //   }
   // },
   // tweak internal webpack configuration.

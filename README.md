@@ -8,6 +8,7 @@ npm install yond-ui --save
 ``` javascript
 import Vue from 'vue'
 import YondUI from 'yond-ui'
+import 'yond-ui/lib/yond-ui.css'
 
 Vue.use(YondUI)
 
