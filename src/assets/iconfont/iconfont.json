@@ -1,10 +1,31 @@
 {
   "id": "1814696",
-  "name": "y2-ui",
+  "name": "yond-ui",
   "font_family": "iconfont",
   "css_prefix_text": "y-icon-",
   "description": "ui库基础图标",
   "glyphs": [
+    {
+      "icon_id": "1441172",
+      "name": "calendar",
+      "font_class": "calendar",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "15322951",
+      "name": "双三角-左",
+      "font_class": "shuangsanjiao-zuo",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "15322940",
+      "name": "双三角-右",
+      "font_class": "shuangsanjiao-you",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
     {
       "icon_id": "15219399",
       "name": "checkbox-indeterminate",

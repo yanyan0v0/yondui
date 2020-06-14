@@ -2,7 +2,7 @@
   <button
     class="y-button"
     @click="handleClick"
-    :class="[computeSize, classPrefix + shape, disabled ? classPrefix + 'disabled' : '', loading ? classPrefix + 'isloading' : '']"
+    :class="[computeSize(classPrefix), classPrefix + shape, disabled ? classPrefix + 'disabled' : '', loading ? classPrefix + 'isloading' : '']"
     :style="[colorStyle, {'width': width}]"
   >
     <loading-svg
@@ -17,12 +17,14 @@
 
 <script>
 import { THEME_COLORS } from "@/util/config";
+import componentMixins from "@/util/componentMixins";
 import LoadingSvg from "@/components/loading/svg/oval.vue";
 export default {
   name: "y-button",
   components: {
     LoadingSvg
   },
+  mixins: [componentMixins],
   props: {
     color: {
       type: [String, Array],
@@ -55,13 +57,6 @@ export default {
     };
   },
   computed: {
-    computeSize() {
-      return this.size
-        ? this.classPrefix + this.size
-        : this.$YONDUI.size
-        ? this.classPrefix + this.$YONDUI.size
-        : "";
-    },
     colorStyle() {
       // 颜色不存在时
       if (!this.color) {

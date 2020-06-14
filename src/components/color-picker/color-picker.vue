@@ -66,9 +66,8 @@ export default {
           this.changeVisible();
         }
       }
-    });
+    }).$mount();
 
-    this.instance.$mount();
     document.body.appendChild(this.instance.$el);
   },
   beforeDestroy() {

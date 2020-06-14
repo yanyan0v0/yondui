@@ -44,7 +44,7 @@ import YPanel from "./components/panel.vue";
 import YHue from "./components/hue.vue";
 import YAlpha from "./components/alpha.vue";
 export default {
-  name: "y-color-picker",
+  name: "y-color-picker-dropdown",
   components: {
     YPanel,
     YHue,

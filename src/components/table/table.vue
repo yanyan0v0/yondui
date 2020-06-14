@@ -10,8 +10,8 @@
       ]"
     >
       <colgroup>
-        <col v-for="col in colgroups" :key="col.key" :width="col.width" />
-        <col v-if="ifScroll" :width="scrollWidth" />
+        <col v-for="col in colgroups" :key="col.key" :width="col.width">
+        <col v-if="ifScroll" :width="scrollWidth">
       </colgroup>
       <thead>
         <tr>
@@ -36,11 +36,11 @@
         :class="[
         classPrefix + align, 
           {'y-table-body-border': border, 'y-table-body-stripe': stripe, 'y-table-body-disabled-hover': disabledHover},
-          computeSize 
+          computeSize(classPrefix)
         ]"
       >
         <colgroup>
-          <col v-for="col in colgroups" :key="col.key" :width="col.width" />
+          <col v-for="col in colgroups" :key="col.key" :width="col.width">
         </colgroup>
         <tbody>
           <tr v-for="(row, index) in data" :key="index" :class="[row.class]">
@@ -79,6 +79,7 @@
 
 <script>
 import { deepCopy } from "@/util/tools";
+import componentMixins from "@/util/componentMixins";
 import TableSlot from "./components/slot";
 import TableRender from "./components/render";
 export default {
@@ -87,6 +88,7 @@ export default {
     TableSlot,
     TableRender
   },
+  mixins: [componentMixins],
   // 需要用函数来返回this
   provide() {
     return {
@@ -158,13 +160,6 @@ export default {
     };
   },
   computed: {
-    computeSize() {
-      return this.size
-        ? this.classPrefix + this.size
-        : this.$YONDUI.size
-        ? this.classPrefix + this.$YONDUI.size
-        : "";
-    },
     getResizeLineStyle() {
       return {
         left: (this.dragCol.startX || 0) + "px",

@@ -8,13 +8,13 @@
       :readonly="readonly"
       :maxlength="maxlength"
       :placeholder="placeholder"
-      :class="[computeSize, disabled ? (classPrefix + 'disabled') : '', $slots.prefix ? (classPrefix + 'with-prefix') : '', $slots.suffix ? (classPrefix + 'with-suffix') : '']"
+      :class="[computeSize(classPrefix), disabled ? (classPrefix + 'disabled') : '', $slots.prefix ? (classPrefix + 'with-prefix') : '', $slots.suffix ? (classPrefix + 'with-suffix') : '']"
       :style="{height}"
       @keyup.enter="handleEnter"
       @input="handleInput"
       @click="handleClick"
       @focus="handleFocus"
-    />
+    >
     <span v-if="this.$slots.prefix" class="y-input-prefix" :class="['y-input-prefix-' + size]">
       <slot name="prefix"></slot>
     </span>
@@ -25,8 +25,10 @@
 </template>
 
 <script>
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-input",
+  mixins: [componentMixins],
   props: {
     value: {
       type: [String, Number],
@@ -81,15 +83,6 @@ export default {
     return {
       classPrefix: "y-input-"
     };
-  },
-  computed: {
-    computeSize() {
-      return this.size
-        ? this.classPrefix + this.size
-        : this.$YONDUI.size
-        ? this.classPrefix + this.$YONDUI.size
-        : "";
-    }
   },
   methods: {
     handleEnter(event) {

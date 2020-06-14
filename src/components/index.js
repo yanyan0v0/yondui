@@ -8,6 +8,7 @@ import Chart from '@/components/chart/chart.vue'
 import Checkbox from '@/components/checkbox/checkbox.vue'
 import CheckboxGroup from '@/components/checkbox/checkbox-group.vue'
 import ColorPicker from '@/components/color-picker/color-picker.vue'
+import DatePicker from '@/components/date-picker/date-picker.vue'
 import Dialog from '@/components/dialog/dialog.vue'
 import Divider from '@/components/divider/divider.vue'
 import Draw from '@/components/draw/draw.vue'
@@ -45,6 +46,7 @@ const components = {
   Checkbox,
   CheckboxGroup,
   ColorPicker,
+  DatePicker,
   Dialog,
   Divider,
   Draw,
@@ -74,9 +76,6 @@ const components = {
 const install = function (Vue, opts = {}) {
   if (install.installed) return;
 
-  // setDateFormat() // 注册格式化时间函数
-  // customDirective(Vue) // 注册指令
-
   objToArray(components).forEach(component => {
     Vue.component(component.name, component);
   });
@@ -92,6 +91,8 @@ const install = function (Vue, opts = {}) {
   Vue.prototype.$alert = AlertJs;
   Vue.prototype.$dialog = DialogJs;
 
+
+  // customDirective(Vue) // 注册指令
 };
 
 if (typeof window !== 'undefined' && window.Vue) {

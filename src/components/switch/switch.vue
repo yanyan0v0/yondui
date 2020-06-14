@@ -1,7 +1,7 @@
 <template>
   <span
     class="y-switch"
-    :class="[computeSize, {'y-switch-checked': value}, {'y-switch-disabled': disabled}]"
+    :class="[computeSize('y-switch-'), {'y-switch-checked': value}, {'y-switch-disabled': disabled}]"
     :style="{'background-color': value ? openColor : closeColor}"
   >
     <span class="y-switch-name" :class="[value ? 'float-l' : 'float-r']">
@@ -20,12 +20,14 @@
 
 <script>
 import { THEME_COLORS } from "@/util/config";
+import componentMixins from "@/util/componentMixins";
 import LoadingOval from "@/components/loading/svg/oval.vue";
 export default {
   name: "y-switch",
   components: {
     LoadingOval
   },
+  mixins: [componentMixins],
   props: {
     value: Boolean,
     size: String,
@@ -42,13 +44,6 @@ export default {
     beforeChange: Function
   },
   computed: {
-    computeSize() {
-      return this.size
-        ? "y-switch-" + this.size
-        : this.$YONDUI.size
-        ? "y-switch-" + this.$YONDUI.size
-        : "";
-    },
     loadingColor() {
       return this.value ? this.openColor : this.closeColor;
     },

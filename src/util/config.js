@@ -52,6 +52,13 @@ export const MENU_LIST = [
         file: '/color-picker/color-picker.vue'
       },
       {
+        id: 223,
+        name: "DatePicker 时间选择器",
+        icon: "calendar",
+        to: "datePicker",
+        file: '/date-picker/date-picker.vue'
+      },
+      {
         id: 220,
         name: "Dialog 对话框",
         icon: "windows",

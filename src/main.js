@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 // 组件库
-import y2Ui from '@/components/index.js'
+import YondUi from '@/components/index.js'
 // 代码高亮
 import vueHljs from "vue-hljs";
 // css样式
@@ -12,12 +12,9 @@ import vueHljs from "vue-hljs";
 import '@/assets/less/article.less'
 import "vue-hljs/dist/vue-hljs.min.css";
 
-import { setDateFormat } from '@/util/tools'
-
-Vue.use(y2Ui)
+Vue.use(YondUi)
 Vue.use(vueHljs)
 
-setDateFormat() // 注册格式化时间函数
 Vue.config.productionTip = false
 
 new Vue({
