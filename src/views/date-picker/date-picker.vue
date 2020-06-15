@@ -10,22 +10,33 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-date-picker v-model="date1"/>
-              <y-button @click="date1 = '2020-06-15'">change</y-button>
+              <p>选择年</p>
+              <y-date-picker type="year" v-model="date1" />
+              <p>选择月</p>
+              <y-date-picker type="month" v-model="date2" />
+              <p>选择日</p>
+              <y-date-picker v-model="date3" />
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">最基本的时间选择器。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
-            <code-action-bar :name="getNav('JC').name"/>
+            <code-action-bar :name="getNav('JC').name" />
             <pre>
             <code>
-  &lt;y-color-picker v-model="color1" /&gt;
+  &lt;p&gt;选择年&lt;/p&gt;
+  &lt;y-date-picker type="year" v-model="date1" /&gt;
+  &lt;p&gt;选择月&lt;/p&gt;
+  &lt;y-date-picker type="month" v-model="date2" /&gt;
+  &lt;p&gt;选择日&lt;/p&gt;
+  &lt;y-date-picker v-model="date3" /&gt;
 
   export defalut {
     data() {
       return {
-        color1: 'red'
+        date1: new Date(),
+        date2: new Date(),
+        date3: new Date(),
       }
     }
   }
@@ -59,13 +70,15 @@ export default {
   mixins: [viewMixins],
   data() {
     return {
-      date1: new Date(),
+      date1: "",
+      date2: "",
+      date3: "",
       navList: [
         {
           id: "JC",
           name: "基础",
           version: "1.0.0",
-          height: "180px"
+          height: "300px"
         },
         {
           id: "PROPS",

@@ -73,7 +73,7 @@
             </code>
           </pre>
         </div>
-        <p>当按需引用时，由于不能通过Vue.use使用，可以直接进行如下设置：</p>
+        <p>当按需引用时，由于不能通过Vue.use使用，可以直接在入口js里进行如下设置：</p>
         <div v-highlight>
           <pre>
             <code>

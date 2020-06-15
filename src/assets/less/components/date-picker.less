@@ -6,7 +6,7 @@
     border: 1px solid @border-color;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
     font-size: 14px;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: opacity 0.3s, transform 0.3s;
     &-header{
       .center-h;
@@ -31,8 +31,6 @@
         padding: 0 5px;
         & > span{
           flex: 1;
-          padding: 3px;
-          margin: 2px;
           text-align: center;
         }
         & > .disabled-day{
@@ -40,16 +38,18 @@
         }
         & > .now-day{
           border: 1px solid @primary-color;
-          border-radius: 2px;
+          border-radius: 4px;
           color: @primary-color;
         }
         & > .active-day{
           color: #fff;
           background-color: @primary-color;
-          border-radius: 2px;
+          border-radius: 4px;
         }
       }
-      &-day{
+      &-day, 
+      &-month, 
+      &-year{
         span:not(.disabled-day){
           cursor: pointer;
         }
@@ -57,8 +57,30 @@
           color: @primary-color;
         }
       }
-      &-week{
+      &-day {
+        & > span {
+          padding: 3px;
+          margin: 2px;
+        }
+      }
+      &-week {
         color: @disabled-color;
+        & > span {
+          padding: 3px;
+          margin: 2px;
+        }
+      }
+      &-month {
+        & > span {
+          padding: 5px;
+          margin: 8px;
+        }
+      }
+      &-year {
+        & > span {
+          padding: 5px;
+          margin: 8px;
+        }
       }
     }
     &-footer{

@@ -42,10 +42,7 @@ export default {
       type: String,
       default: "请选择"
     },
-    format: {
-      type: String,
-      default: "yyyy-MM-dd"
-    },
+    format: String,
     clearable: Boolean,
     disabled: Boolean
   },
@@ -53,10 +50,33 @@ export default {
     return {
       suffixIcon: "calendar",
       inputValue: "",
-      dropdownVm: null
+      dropdownVm: null,
+      formats: {
+        year: "yyyy",
+        month: "yyyy-MM",
+        date: "yyyy-MM-dd",
+        daterange: "yyyy-MM-dd",
+        datetime: "yyyy-MM-dd hh:mm:ss",
+        datetimerange: "yyyy-MM-dd hh:mm:ss"
+      }
     };
   },
   methods: {
+    emitChange(date) {
+      this.inputValue = date.Format(this.format || this.formats[this.type]);
+      let type = typeof this.value;
+      if (type == "object") {
+        this.$emit("input", date);
+      } else if (type == "string") {
+        this.$emit(
+          "input",
+          date.Format(this.format || this.formats[this.type])
+        );
+      } else {
+        this.$emit("input", date.getTime());
+      }
+      this.$emit("on-change", date);
+    },
     handleMouseEnter() {
       if (this.clearable && this.inputValue) {
         this.suffixIcon = "shanchu";
@@ -73,28 +93,11 @@ export default {
         let _this = this;
         const DropdownConstructor = Vue.extend(DatePcikerDropdown);
         this.dropdownVm = new DropdownConstructor({
-          propsData: {
-            value: _this.value || new Date()
-          },
           data: {
             top: pickerRect.bottom + 5,
             left: pickerRect.left,
             parentVm: _this,
             parentEl: _this.$el
-          },
-          methods: {
-            emitChange(date) {
-              _this.inputValue = date.Format(_this.format);
-              let type = typeof _this.value;
-              if (type == "object") {
-                _this.$emit("input", date);
-              } else if (type == "string") {
-                _this.$emit("input", date.Format(_this.format));
-              } else {
-                _this.$emit("input", date.getTime());
-              }
-              _this.$emit("on-change", date);
-            }
           }
         }).$mount();
         document.body.appendChild(this.dropdownVm.$el);
@@ -113,12 +116,13 @@ export default {
       }
     }
   },
-  beforeCreate() {},
   watch: {
     value: {
       handler(value) {
         if (value) {
-          this.inputValue = new Date(value).Format(this.format);
+          this.inputValue = new Date(value).Format(
+            this.format || this.formats[this.type]
+          );
         } else {
           this.inputValue = "";
         }
