@@ -18,6 +18,7 @@ import componentMixins from "@/util/componentMixins";
 import Day from "./components/day.vue";
 import Month from "./components/month.vue";
 import Year from "./components/year.vue";
+import Range from "./components/range.vue";
 import { setDateFormat } from "@/util/tools";
 if (!new Date().Format) {
   setDateFormat(); // 注册格式化时间函数
@@ -27,12 +28,13 @@ export default {
   components: {
     Day,
     Month,
-    Year
+    Year,
+    Range
   },
   directives: { clickoutside },
   mixins: [componentMixins],
   props: {
-    value: [Date, String, Number],
+    value: [Date, String, Number, Array],
     visible: Boolean
   },
   data() {
@@ -54,6 +56,12 @@ export default {
     componentName() {
       let name = "";
       switch (this.dateType) {
+        case "yearrange":
+        case "monthrange":
+        case "daterange":
+        case "datetimerange":
+          name = "Range";
+          break;
         case "year":
           name = "Year";
           break;
@@ -75,7 +83,7 @@ export default {
       };
     },
     showFooter() {
-      return !["year", "month", "date"].includes(this.dateType);
+      return this.dateType.indexOf("time") != -1;
     }
   },
   methods: {
@@ -87,7 +95,14 @@ export default {
     },
     handleDate(date) {
       if (date) {
-        this.date = new Date(date);
+        if (Array.isArray(date)) {
+          this.date = [
+            date[0] ? new Date(date[0]) : "",
+            date[1] ? new Date(date[1]) : ""
+          ];
+        } else {
+          this.date = new Date(date);
+        }
       }
     },
     handleEmit(date) {

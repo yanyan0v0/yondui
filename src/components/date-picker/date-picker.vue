@@ -31,7 +31,7 @@ if (!new Date().Format) {
 export default {
   name: "y-date-picker",
   props: {
-    value: [Date, String, Number],
+    value: [Date, String, Number, Array],
     width: String,
     size: String,
     type: {
@@ -53,7 +53,9 @@ export default {
       dropdownVm: null,
       formats: {
         year: "yyyy",
+        yearrange: "yyyy",
         month: "yyyy-MM",
+        monthrange: "yyyy-MM",
         date: "yyyy-MM-dd",
         daterange: "yyyy-MM-dd",
         datetime: "yyyy-MM-dd hh:mm:ss",
@@ -120,9 +122,25 @@ export default {
     value: {
       handler(value) {
         if (value) {
-          this.inputValue = new Date(value).Format(
-            this.format || this.formats[this.type]
-          );
+          if (Array.isArray(value)) {
+            let text = "";
+            if (value[0]) {
+              text =
+                new Date(value[0]).Format(
+                  this.format || this.formats[this.type]
+                ) + "-";
+            }
+            if (value[1]) {
+              text += new Date(value[1]).Format(
+                this.format || this.formats[this.type]
+              );
+            }
+            this.inputValue = text;
+          } else {
+            this.inputValue = new Date(value).Format(
+              this.format || this.formats[this.type]
+            );
+          }
         } else {
           this.inputValue = "";
         }

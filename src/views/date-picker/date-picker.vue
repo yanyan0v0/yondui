@@ -16,9 +16,19 @@
               <y-date-picker type="month" v-model="date2" />
               <p>选择日</p>
               <y-date-picker v-model="date3" />
+              <p>选择时间</p>
+              <y-date-picker v-model="date4" />
             </div>
             <y-divider position="left">说明</y-divider>
-            <div class="introduce">最基本的时间选择器。</div>
+            <div class="introduce">
+              最基本的时间选择器，通过
+              <code>v-model</code>绑定数据，
+              传递
+              <code>type</code>为
+              <code>year</code>或
+              <code>month</code>或
+              <code>datetime</code>可选择年月日时间。
+            </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
             <code-action-bar :name="getNav('JC').name" />
@@ -34,9 +44,60 @@
   export defalut {
     data() {
       return {
-        date1: new Date(),
-        date2: new Date(),
-        date3: new Date(),
+        date1: '',
+        date2: '',
+        date3: ''
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('FWXZ')">
+        <h3 id="FWXZ">{{getNav('FWXZ').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <p>选择年范围</p>
+              <y-date-picker type="yearrange" v-model="date5" />
+              <p>选择月范围</p>
+              <y-date-picker type="monthrange" v-model="date6" />
+              <p>选择日范围</p>
+              <y-date-picker type="daterange" v-model="date7" />
+              <p>选择时间范围</p>
+              <y-date-picker type="datetimerange" v-model="date8" />
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              传递
+              <code>type</code>为
+              <code>yearrange</code>、
+              <code>monthrange</code>、
+              <code>daterange</code>、
+              <code>datetimerange</code>可选择时间范围。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('FWXZ').height}">
+            <code-action-bar :name="getNav('FWXZ').name" />
+            <pre>
+            <code>
+  &lt;p&gt;选择年&lt;/p&gt;
+  &lt;y-date-picker type="year" v-model="date1" /&gt;
+  &lt;p&gt;选择月&lt;/p&gt;
+  &lt;y-date-picker type="month" v-model="date2" /&gt;
+  &lt;p&gt;选择日&lt;/p&gt;
+  &lt;y-date-picker v-model="date3" /&gt;
+
+  export defalut {
+    data() {
+      return {
+        date1: '',
+        date2: '',
+        date3: ''
       }
     }
   }
@@ -73,10 +134,21 @@ export default {
       date1: "",
       date2: "",
       date3: "",
+      date4: "",
+      date5: [],
+      date6: [],
+      date7: [],
+      date8: [],
       navList: [
         {
           id: "JC",
           name: "基础",
+          version: "1.0.0",
+          height: "300px"
+        },
+        {
+          id: "FWXZ",
+          name: "范围选择",
           version: "1.0.0",
           height: "300px"
         },

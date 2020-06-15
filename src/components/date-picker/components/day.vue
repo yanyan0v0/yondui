@@ -29,7 +29,12 @@ export default {
   name: "y-date-picker-dropdown-day",
   mixins: [dateMixins],
   props: {
-    value: Date
+    value: [Date, String],
+    // 当为范围选择时，判断为第一个还是第二个
+    order: {
+      type: String,
+      default: "first"
+    }
   },
   data() {
     return {
@@ -56,7 +61,9 @@ export default {
   },
   methods: {
     getDays(date) {
-      let yearMonthDay = this.getYearMonthDay(date);
+      let yearMonthDay = this.getYearMonthDay(
+        this.order === "first" ? date : this.lastOrNext("month", 1, date)
+      );
       let year = yearMonthDay.year;
       let month = yearMonthDay.month;
       let day = yearMonthDay.day;

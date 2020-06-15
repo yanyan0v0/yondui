@@ -24,7 +24,12 @@ export default {
   name: "y-date-picker-dropdown-year",
   mixins: [dateMixins],
   props: {
-    value: Date
+    value: [Date, String],
+    // 当为范围选择时，判断为第一个还是第二个
+    order: {
+      type: String,
+      default: "first"
+    }
   },
   data() {
     return {
@@ -44,8 +49,9 @@ export default {
   },
   methods: {
     getYears(date) {
-      console.log(date);
-      let yearMonthDay = this.getYearMonthDay(date);
+      let yearMonthDay = this.getYearMonthDay(
+        this.order === "first" ? date : this.lastOrNext("year", 9, date)
+      );
       let year = yearMonthDay.year;
 
       this.changedDate = {
