@@ -36,8 +36,10 @@
 <script>
 import Vue from "vue";
 import clickoutside from "@/directive/clickoutside";
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-select",
+  mixins: [componentMixins],
   props: {
     value: [String, Number, Array],
     size: String,

@@ -15,9 +15,11 @@
 
 <script>
 import clickoutside from "@/directive/clickoutside";
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-dropdown-menu",
   directives: { clickoutside },
+  mixins: [componentMixins],
   inject: ["dropdownRoot"],
   props: {
     visible: Boolean,

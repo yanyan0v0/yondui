@@ -7,7 +7,7 @@
       <div class="content">
         <div class="logo">
           <y-button color="error" size="mini" shape="round">{{version}}</y-button>
-          <p class="title">YOND-UI</p>
+          <p class="title">Yond-UI</p>
         </div>
         <p class="introduce">一套基于 Vue2.0 的高质量 UI 组件库</p>
         <y-button shape="round" :color="['primary', '#b519be']" @click="start">快速开始</y-button>

@@ -33,9 +33,11 @@
 
 <script>
 import clickoutside from "@/directive/clickoutside";
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-date-picker-dropdown",
   directives: { clickoutside },
+  mixins: [componentMixins],
   props: {
     value: {
       type: [Date, String, Number],

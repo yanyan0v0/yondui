@@ -50,8 +50,10 @@
 
 <script>
 import { TYPE_ICONS } from "@/util/config";
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-dialog",
+  mixins: [componentMixins],
   props: {
     value: Boolean,
     title: String,

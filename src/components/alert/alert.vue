@@ -29,8 +29,10 @@
 
 <script>
 import { TYPE_ICONS } from "@/util/config";
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-alert",
+  mixins: [componentMixins],
   props: {
     type: {
       type: String,

@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 // 组件库
-import YondUi from '@/components/index.js'
+import YondUI from '@/index.js'
 // 代码高亮
 import vueHljs from "vue-hljs";
 // css样式
@@ -12,7 +12,7 @@ import vueHljs from "vue-hljs";
 import '@/assets/less/article.less'
 import "vue-hljs/dist/vue-hljs.min.css";
 
-Vue.use(YondUi)
+Vue.use(YondUI)
 Vue.use(vueHljs)
 
 Vue.config.productionTip = false

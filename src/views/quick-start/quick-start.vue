@@ -58,6 +58,33 @@
           </pre>
         </div>
       </div>
+
+      <!-- 分隔线 -->
+      <div v-show="compareVersion('QJPZ')">
+        <h2 id="QJPZ">{{getNav('QJPZ').name}}</h2>
+        <p>在引入 YondUI 时，可以传入一个全局配置对象。该对象目前支持 size 与 zIndex 字段。size 用于改变组件的默认尺寸，zIndex 设置弹框的初始 z-index（默认值：2020）：</p>
+        <div v-highlight>
+          <pre>
+            <code>
+  Vue.use(YondUI, {
+    size: 'large',
+    zIndex: 2020
+  });
+            </code>
+          </pre>
+        </div>
+        <p>当按需引用时，由于不能通过Vue.use使用，可以直接进行如下设置：</p>
+        <div v-highlight>
+          <pre>
+            <code>
+  Vue.prototype.$YONDUI = {
+    size: 'small',
+    zIndex: 2020
+  }
+            </code>
+          </pre>
+        </div>
+      </div>
     </article>
 
     <!-- 导航滚动条 -->
@@ -90,6 +117,11 @@ export default {
         {
           id: "AXYR",
           name: "按需引入",
+          version: "1.0.0"
+        },
+        {
+          id: "QJPZ",
+          name: "全局配置",
           version: "1.0.0"
         }
       ]

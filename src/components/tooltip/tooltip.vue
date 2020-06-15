@@ -1,8 +1,9 @@
 <script>
 import Vue from "vue";
-
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-tooltip",
+  mixins: [componentMixins],
   props: {
     value: {
       type: Boolean,

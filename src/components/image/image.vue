@@ -38,8 +38,10 @@
 </template>
 
 <script>
+import componentMixins from "@/util/componentMixins";
 export default {
   name: "y-image",
+  mixins: [componentMixins],
   props: {
     data: {
       type: Array,

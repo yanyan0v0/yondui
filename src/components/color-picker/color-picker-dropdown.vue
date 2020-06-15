@@ -40,11 +40,13 @@
 import tinycolor from "tinycolor2";
 import clickoutside from "@/directive/clickoutside";
 import { THEME_COLORS } from "@/util/config";
+import componentMixins from "@/util/componentMixins";
 import YPanel from "./components/panel.vue";
 import YHue from "./components/hue.vue";
 import YAlpha from "./components/alpha.vue";
 export default {
   name: "y-color-picker-dropdown",
+  mixins: [componentMixins],
   components: {
     YPanel,
     YHue,

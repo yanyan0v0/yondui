@@ -21,7 +21,7 @@ import Input from '@/components/input/input.vue'
 import Loading from '@/components/loading/loading.vue'
 import Menu from '@/components/menu/menu.vue'
 import Nav from '@/components/navigator/navigator.vue'
-import Option from '@/components/select/components/option.vue'
+import Option from '@/components/select/option.vue'
 import Radio from '@/components/radio/radio.vue'
 import RadioGroup from '@/components/radio/radio-group.vue'
 import Rank from '@/components/rank/rank.vue'
@@ -38,7 +38,7 @@ import DialogJs from '@/components/dialog/dialog.js'
 
 import '@/assets/less/common.less'
 
-const components = {
+export const components = {
   Alert,
   Button,
   Card,
@@ -71,7 +71,10 @@ const components = {
   Tooltip
 }
 
-// import customDirective from '@/directive'
+export const componentJs = {
+  AlertJs,
+  DialogJs
+}
 
 const install = function (Vue, opts = {}) {
   if (install.installed) return;
@@ -91,8 +94,6 @@ const install = function (Vue, opts = {}) {
   Vue.prototype.$alert = AlertJs;
   Vue.prototype.$dialog = DialogJs;
 
-
-  // customDirective(Vue) // 注册指令
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
