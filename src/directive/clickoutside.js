@@ -1,7 +1,7 @@
 export default {
   bind(el, binding, vnode) {
     function documentHandler(e) {
-      if (vnode.context.parentEl && vnode.context.parentEl.contains(e.target)) {
+      if (vnode.context[binding.arg || 'parentEl'] && vnode.context[binding.arg || 'parentEl'].contains(e.target)) {
         return false
       }
       if (el.contains(e.target)) {

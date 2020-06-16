@@ -12,12 +12,18 @@
             <div class="preview">
               <p>选择年</p>
               <y-date-picker type="year" v-model="date1" />
+              <y-button @click="date1 = '2012-01-05'">change</y-button>
+              <p>{{date1}}</p>
               <p>选择月</p>
               <y-date-picker type="month" v-model="date2" />
+              <y-button @click="date2 = '2012-01-05'">change</y-button>
+              <p>{{date2}}</p>
               <p>选择日</p>
               <y-date-picker v-model="date3" />
+              <p>{{date3}}</p>
               <p>选择时间</p>
-              <y-date-picker v-model="date4" />
+              <y-date-picker type="datetime" v-model="date4" />
+              <p>{{date4}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -64,12 +70,19 @@
             <div class="preview">
               <p>选择年范围</p>
               <y-date-picker type="yearrange" v-model="date5" />
+              <y-button @click="date5 = ['2012', '2015']">change</y-button>
+              <p>{{date5}}</p>
               <p>选择月范围</p>
               <y-date-picker type="monthrange" v-model="date6" />
+              <y-button @click="date6 = ['2012-05', '2015-02']">change</y-button>
+              <p>{{date6}}</p>
               <p>选择日范围</p>
               <y-date-picker type="daterange" v-model="date7" />
+              <y-button @click="date7 = ['2012-01-05', '2015-05-16']">change</y-button>
+              <p>{{date7}}</p>
               <p>选择时间范围</p>
               <y-date-picker type="datetimerange" v-model="date8" />
+              <p>{{date8}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">

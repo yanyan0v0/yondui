@@ -15,7 +15,7 @@
         <span
           v-for="day in week"
           :key="day.day"
-          :class="{'disabled-day': day.disabled, 'now-day': day.nowDay, 'active-day': checkSelected(day)}"
+          :class="{'disabled-day': day.disabled, 'now-day': day.nowDay, 'active-day': checkSelected(day), 'hover-active-day': checkRange(day)}"
           @click="handleDayClick(day)"
         >{{day.day}}</span>
       </li>
@@ -34,15 +34,19 @@ export default {
     order: {
       type: String,
       default: "first"
-    }
+    },
+    // 选择的时间范围
+    range: Array
   },
   data() {
     return {
       weekList: ["日", "一", "二", "三", "四", "五", "六"],
       // 选择的时间值
       dateValue: {},
-      // 保存每次变化后的日期
+      // 保存每次切换年月变化后的日期
       changedDate: {},
+      // 保存多选时的数据
+      multiSelect: [],
       // 渲染当月天的数组，每一子项为一周的数组
       liList: []
     };
@@ -50,6 +54,16 @@ export default {
   computed: {
     checkSelected() {
       return day => {
+        let time = new Date(day.year, day.month - 1, day.day).getTime();
+        // 当为范围选择时
+        if (this.range && this.range.length) {
+          return this.range.includes(time);
+        }
+        // 当为多选
+        if (this.$parent.isMultiple) {
+          return this.multiSelect.includes(time);
+        }
+        // 当为单选时
         return (
           !day.disabled &&
           this.dateValue.year == day.year &&
@@ -60,7 +74,7 @@ export default {
     }
   },
   methods: {
-    getDays(date) {
+    init(date) {
       let yearMonthDay = this.getYearMonthDay(
         this.order === "first" ? date : this.lastOrNext("month", 1, date)
       );
@@ -131,11 +145,15 @@ export default {
     },
     handleDayClick(day) {
       if (day.disabled) return;
+      let date = new Date(day.year, day.month - 1, day.day);
       this.changedDate = day;
-      this.$parent.handleEmit(new Date(day.year, day.month - 1, day.day));
+      this.$parent.handleEmit(date);
+
+      // 多选操作
+      this.handleMultiple(date);
     },
     handleChange(type, step) {
-      this.getDays(this.lastOrNext(type, step));
+      this.init(this.lastOrNext(type, step));
     }
   },
   watch: {
@@ -144,7 +162,7 @@ export default {
         if (value) {
           this.dateValue = this.getYearMonthDay(new Date(value));
         }
-        this.getDays(value ? new Date(value) : new Date());
+        this.init(value ? new Date(value) : new Date());
       },
       immediate: true
     }

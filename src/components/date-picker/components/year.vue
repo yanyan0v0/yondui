@@ -10,8 +10,8 @@
         <span
           v-for="year in row"
           :key="year.year"
-          :class="{'now-day': year.nowMonth, 'active-day': checkSelected(year)}"
-          @click="handleMonthClick(year)"
+          :class="{'now-day': year.nowYear, 'active-day': checkSelected(year), 'hover-active-day': checkRange(year)}"
+          @click="handleYearClick(year)"
         >{{year.year}}</span>
       </li>
     </ul>
@@ -29,13 +29,17 @@ export default {
     order: {
       type: String,
       default: "first"
-    }
+    },
+    // 选择的时间范围
+    range: Array
   },
   data() {
     return {
       yearList: [],
       // 选择的时间值
       dateValue: {},
+      // 保存多选时的数据
+      multiSelect: [],
       // 保存每次变化后的日期
       changedDate: {}
     };
@@ -43,24 +47,33 @@ export default {
   computed: {
     checkSelected() {
       return year => {
+        let time = new Date(year.year, 0, 1).getTime();
+        // 当为范围选择时
+        if (this.range && this.range.length) {
+          return this.range.includes(time);
+        }
+        // 当为多选
+        if (this.$parent.isMultiple) {
+          return this.multiSelect.includes(time);
+        }
         return this.dateValue.year == year.year;
       };
     }
   },
   methods: {
-    getYears(date) {
+    init(date) {
       let yearMonthDay = this.getYearMonthDay(
         this.order === "first" ? date : this.lastOrNext("year", 9, date)
       );
-      let year = yearMonthDay.year;
 
       this.changedDate = {
-        year
+        year: yearMonthDay.year
       };
 
       let nowYear = new Date().getFullYear();
 
       this.yearList = [];
+      let year = yearMonthDay.year - (yearMonthDay.year % 9);
       // 分3行
       for (let i = 0; i < 3; i++) {
         let list = [];
@@ -74,12 +87,16 @@ export default {
         this.yearList.push(list);
       }
     },
-    handleMonthClick(year) {
+    handleYearClick(year) {
+      let date = new Date(year.year, 0, 1);
       this.changedDate = year;
       this.$parent.handleEmit(new Date(year.year, 0, 1));
+
+      // 多选操作
+      this.handleMultiple(date);
     },
     handleChange(type, step) {
-      this.getYears(this.lastOrNext(type, step));
+      this.init(this.lastOrNext(type, step));
     }
   },
   watch: {
@@ -88,7 +105,7 @@ export default {
         if (value) {
           this.dateValue = this.getYearMonthDay(new Date(value));
         }
-        this.getYears(value ? new Date(value) : new Date());
+        this.init(value ? new Date(value) : new Date());
       },
       immediate: true
     }

@@ -44,7 +44,8 @@ export default {
     },
     format: String,
     clearable: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    multiple: Boolean
   },
   data() {
     return {
@@ -63,21 +64,39 @@ export default {
       }
     };
   },
+  computed: {
+    // 时间格式
+    dateFormat() {
+      return this.format || this.formats[this.type];
+    }
+  },
   methods: {
-    emitChange(date) {
-      this.inputValue = date.Format(this.format || this.formats[this.type]);
-      let type = typeof this.value;
-      if (type == "object") {
-        this.$emit("input", date);
-      } else if (type == "string") {
-        this.$emit(
-          "input",
-          date.Format(this.format || this.formats[this.type])
-        );
-      } else {
-        this.$emit("input", date.getTime());
+    emitChange(date, time) {
+      // 范围选择
+      if (this.type.indexOf("range") != -1) {
+        let startString = this.handleFormat(date[0], time[0]);
+        let endString = this.handleFormat(date[1], time[1]);
+        let formatString = startString + " 至 " + endString;
+        this.inputValue = formatString;
+        this.$emit("input", [startString, endString]);
+        this.$emit("on-change", [startString, endString]);
+        return;
       }
-      this.$emit("on-change", date);
+      let formatString = this.handleFormat(date, time);
+      this.inputValue = formatString;
+      this.$emit("input", formatString);
+      this.$emit("on-change", formatString);
+    },
+    handleFormat(date, time = "", type = "string") {
+      console.log(date, time);
+      let datetime = new Date(date).Format("yyyy-MM-dd") + " " + time;
+      if (type == "object") {
+        return new Date(datetime);
+      } else if (type == "string") {
+        return new Date(datetime).Format(this.dateFormat);
+      } else {
+        return new Date(datetime).getTime();
+      }
     },
     handleMouseEnter() {
       if (this.clearable && this.inputValue) {
@@ -125,21 +144,14 @@ export default {
           if (Array.isArray(value)) {
             let text = "";
             if (value[0]) {
-              text =
-                new Date(value[0]).Format(
-                  this.format || this.formats[this.type]
-                ) + "-";
+              text = new Date(value[0]).Format(this.dateFormat) + "-";
             }
             if (value[1]) {
-              text += new Date(value[1]).Format(
-                this.format || this.formats[this.type]
-              );
+              text += new Date(value[1]).Format(this.dateFormat);
             }
             this.inputValue = text;
           } else {
-            this.inputValue = new Date(value).Format(
-              this.format || this.formats[this.type]
-            );
+            this.inputValue = new Date(value).Format(this.dateFormat);
           }
         } else {
           this.inputValue = "";

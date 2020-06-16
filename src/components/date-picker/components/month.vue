@@ -14,7 +14,7 @@
         <span
           v-for="month in row"
           :key="month.month"
-          :class="{'now-day': month.nowMonth, 'active-day': checkSelected(month)}"
+          :class="{'now-day': month.nowMonth, 'active-day': checkSelected(month), 'hover-active-day': checkRange(month)}"
           @click="handleMonthClick(month)"
         >{{month.month}}月</span>
       </li>
@@ -33,13 +33,17 @@ export default {
     order: {
       type: String,
       default: "first"
-    }
+    },
+    // 选择的时间范围
+    range: Array
   },
   data() {
     return {
       monthList: [],
       // 选择的时间值
       dateValue: {},
+      // 保存多选时的数据
+      multiSelect: [],
       // 保存每次变化后的日期
       changedDate: {}
     };
@@ -47,6 +51,15 @@ export default {
   computed: {
     checkSelected() {
       return month => {
+        let time = new Date(month.year, month.month - 1, 1).getTime();
+        // 当为范围选择时
+        if (this.range && this.range.length) {
+          return this.range.includes(time);
+        }
+        // 当为多选
+        if (this.$parent.isMultiple) {
+          return this.multiSelect.includes(time);
+        }
         return (
           !month.disabled &&
           this.dateValue.year == month.year &&
@@ -56,7 +69,7 @@ export default {
     }
   },
   methods: {
-    getMonths(date) {
+    init(date) {
       let yearMonthDay = this.getYearMonthDay(
         this.order === "first" ? date : this.lastOrNext("year", 1, date)
       );
@@ -90,11 +103,15 @@ export default {
       }
     },
     handleMonthClick(month) {
+      let date = new Date(month.year, month.month - 1, 1);
       this.changedDate = month;
-      this.$parent.handleEmit(new Date(month.year, month.month - 1, 1));
+      this.$parent.handleEmit(date);
+
+      // 多选操作
+      this.handleMultiple(date);
     },
     handleChange(type, step) {
-      this.getMonths(this.lastOrNext(type, step));
+      this.init(this.lastOrNext(type, step));
     }
   },
   watch: {
@@ -103,7 +120,7 @@ export default {
         if (value) {
           this.dateValue = this.getYearMonthDay(new Date(value));
         }
-        this.getMonths(value ? new Date(value) : new Date());
+        this.init(value ? new Date(value) : new Date());
       },
       immediate: true
     }

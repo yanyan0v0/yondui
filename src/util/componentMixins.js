@@ -13,11 +13,12 @@ export default {
   computed: {
     computeSize() {
       return classPrefix => {
-        this.size
+        return this.size
           ? classPrefix + this.size
           : this.$YONDUI.size
             ? classPrefix + this.$YONDUI.size
             : "";
+
       }
     },
   }

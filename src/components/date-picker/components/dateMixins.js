@@ -1,4 +1,17 @@
 export default {
+  computed: {
+    // 处理范围选择时中间时间的样式变化
+    checkRange() {
+      return day => {
+        if (this.range && this.range.length && this.range.length == 2) {
+          let time = new Date(day.year, day.month ? day.month - 1 : 0, day.day || 1).getTime();
+          return this.range[0] < time && this.range[1] > time;
+        } else {
+          return false;
+        }
+      };
+    }
+  },
   methods: {
     lastOrNext(type, step, date) {
       let year = this.changedDate.year;
@@ -22,6 +35,15 @@ export default {
         month: date.getMonth() + 1,
         day: date.getDate()
       };
+    },
+    handleMultiple(date) {
+      let time = date.getTime();
+      let index = this.multiSelect.findIndex(item => item == time);
+      if (index != -1) {
+        this.multiSelect.splice(index, 1);
+      } else {
+        this.multiSelect.push(time);
+      }
     }
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="y-date-picker-dropdown-range">
-    <component :is="componentName" :value="value[0]"></component>
-    <component :is="componentName" order="second" :value="value[1]"></component>
+    <component :is="componentName" :value="value[0]" :range="range"></component>
+    <component ref="second" :is="componentName" order="second" :value="value[1]" :range="range"></component>
   </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
   },
   props: {
     value: Array
+  },
+  data() {
+    return {
+      range: []
+    };
   },
   computed: {
     dateType() {
@@ -43,6 +48,26 @@ export default {
           break;
       }
       return name;
+    }
+  },
+  methods: {
+    handleEmit(date) {
+      let time = date.getTime();
+      if (this.range.length) {
+        if (this.range.length == 1) {
+          // 判断谁大谁小
+          if (this.range[0] > time) {
+            this.range = [time, this.range[0]];
+          } else if (this.range[0] < time) {
+            this.range = [this.range[0], time];
+          }
+          this.$parent.handleEmit(this.range);
+        } else {
+          this.range = [time];
+        }
+      } else {
+        this.range.push(time);
+      }
     }
   }
 };
