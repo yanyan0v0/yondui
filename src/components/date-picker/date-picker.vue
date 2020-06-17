@@ -1,23 +1,20 @@
 <template>
-  <div
-    class="y-date-picker"
-    :style="{width}"
-    @mouseover="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
-  >
+  <div class="y-date-picker" :style="{width}">
     <y-input
       v-model="inputValue"
       type="textarea"
       readonly
       :disabled="disabled"
       :size="size"
+      :clearable="clearable"
       :placeholder="placeholder"
       @on-focus="handleInputFocus"
+      @on-clear="handleClear"
     >
       <template slot="prefix">
         <slot name="prefix"></slot>
       </template>
-      <y-icon slot="suffix" size="14" color="#c0c4cc" :type="suffixIcon" @click="handleClear"></y-icon>
+      <y-icon slot="suffix" size="14" color="#c0c4cc" type="calendar"></y-icon>
     </y-input>
   </div>
 </template>
@@ -46,11 +43,11 @@ export default {
     format: String,
     clearable: Boolean,
     disabled: Boolean,
-    multiple: Boolean
+    multiple: Boolean,
+    disabledDate: Function
   },
   data() {
     return {
-      suffixIcon: "calendar",
       // input框展示内容
       inputValue: "",
       // 给dropdown的值
@@ -71,7 +68,7 @@ export default {
   computed: {
     // 时间格式
     dateFormat() {
-      return this.format || this.formats[this.type];
+      return this.formats[this.type];
     }
   },
   methods: {
@@ -80,46 +77,41 @@ export default {
       if (this.type.indexOf("range") != -1) {
         let startString = this.handleFormat(date[0], time ? time[0] : "");
         let endString = this.handleFormat(date[1], time ? time[1] : "");
-        let formatString = startString + " 至 " + endString;
+        let formatString = startString.format + " 至 " + endString.format;
         this.inputValue = formatString;
-        this.$emit("input", [startString, endString]);
-        this.$emit("on-change", [startString, endString]);
+        this.$emit("input", [startString.normal, endString.normal]);
+        this.$emit("on-change", [startString.normal, endString.normal]);
         return;
       }
 
       // 当为多选时
       if (this.multiple) {
         let list = this.getMultipleList(date, time);
-        this.inputValue = list.toString();
-        this.$emit("input", list);
-        this.$emit("on-change", list);
+        this.inputValue = list.map(item => item.format).toString();
+        this.$emit(
+          "input",
+          list.map(item => item.normal)
+        );
+        this.$emit(
+          "on-change",
+          list.map(item => item.normal)
+        );
         return;
       }
 
       let formatString = this.handleFormat(date, time);
-      this.inputValue = formatString;
-      this.$emit("input", formatString);
-      this.$emit("on-change", formatString);
+      this.inputValue = formatString.format;
+      this.$emit("input", formatString.normal);
+      this.$emit("on-change", formatString.normal);
     },
-    handleFormat(date, time = "", type = "string") {
+    handleFormat(date, time = "") {
       let datetime = new Date(date).Format("yyyy-MM-dd") + " " + time;
-      if (type == "object") {
-        return new Date(datetime);
-      } else if (type == "string") {
-        return new Date(datetime).Format(this.dateFormat);
-      } else {
-        return new Date(datetime).getTime();
-      }
-    },
-    handleMouseEnter() {
-      if (this.clearable && this.inputValue) {
-        this.suffixIcon = "shanchu";
-      }
-    },
-    handleMouseLeave() {
-      if (this.clearable) {
-        this.suffixIcon = "calendar";
-      }
+      return {
+        // 显示格式
+        format: new Date(datetime).Format(this.format || this.dateFormat),
+        // 实际格式
+        normal: new Date(datetime).Format(this.dateFormat)
+      };
     },
     handleInputFocus() {
       let pickerRect = this.$el.getBoundingClientRect();
@@ -144,10 +136,8 @@ export default {
     },
     // 点击清空按钮
     handleClear() {
-      if (this.suffixIcon == "shanchu") {
-        this.$emit("on-clear");
-        this.inputValue = "";
-      }
+      this.$emit("on-clear");
+      this.inputValue = "";
     },
     getMultipleList(dateList, timeList) {
       let list = [];
@@ -173,18 +163,26 @@ export default {
             this.dateValue = [firstDate, secondDate];
             let text = "";
             if (firstDate) {
-              text = new Date(firstDate).Format(this.dateFormat) + "-";
+              text =
+                new Date(firstDate).Format(this.format || this.dateFormat) +
+                "-";
             }
             if (secondDate) {
-              text += new Date(secondDate).Format(this.dateFormat);
+              text += new Date(secondDate).Format(
+                this.format || this.dateFormat
+              );
             }
             this.inputValue = text;
           } else {
             this.dateValue = value;
             if (this.multiple) {
-              this.inputValue = this.getMultipleList(value).toString();
+              this.inputValue = this.getMultipleList(value)
+                .map(item => item.format)
+                .toString();
             } else {
-              this.inputValue = new Date(value).Format(this.dateFormat);
+              this.inputValue = new Date(value).Format(
+                this.format || this.dateFormat
+              );
             }
           }
         } else {

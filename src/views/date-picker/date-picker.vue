@@ -146,6 +146,49 @@
         </y-card>
       </div>
 
+      <!-- 分割线 -->
+      <div v-show="compareVersion('RQGS')">
+        <h3 id="RQGS">{{getNav('RQGS').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <p>yyyy年</p>
+              <y-date-picker format="yyyy年" type="year" v-model="date13" />
+              <y-button @click="date13 = '2012'">change</y-button>
+              <p>{{date13}}</p>
+              <p>yyyy年MM月</p>
+              <y-date-picker format="yyyy年MM月" type="month" v-model="date14" />
+              <y-button @click="date14 = '2012-02'">change</y-button>
+              <p>{{date14}}</p>
+              <p>yyyy年MM月dd日</p>
+              <y-date-picker format="yyyy年MM月dd日" v-model="date15" />
+              <y-button @click="date15 = '2012-02-22'">change</y-button>
+              <p>{{date15}}</p>
+              <p>yyyy年MM月dd日 hh时mm分</p>
+              <y-date-picker format="yyyy年MM月dd日 hh时mm分" type="datetime" v-model="date16" />
+              <y-button @click="date16 = '2012-02-22 12:03:00'">change</y-button>
+              <p>{{date16}}</p>
+              <p>yyyy年MM月dd日 hh时mm分ss秒</p>
+              <y-date-picker format="yyyy年MM月dd日 hh时mm分ss秒" type="datetime" v-model="date17" />
+              <y-button @click="date17 = '2012-02-22 12:03:00'">change</y-button>
+              <p>{{date17}}</p>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置属性
+              <code>format</code>可以改变日期的显示格式。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('RQGS').height}">
+            <code-action-bar :name="getNav('RQGS').name" />
+            <pre>
+            <code>
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
       <!-- 底部API说明 -->
       <footer-table
         :name="$options.name"
@@ -182,6 +225,14 @@ export default {
       date10: [],
       date11: [],
       date12: [],
+      date13: "",
+      date14: "",
+      date15: "",
+      date16: "",
+      date17: "",
+      date18: "",
+      date19: "",
+      date20: "",
       navList: [
         {
           id: "JC",
@@ -198,6 +249,12 @@ export default {
         {
           id: "DX",
           name: "多选",
+          version: "1.0.0",
+          height: "300px"
+        },
+        {
+          id: "RQGS",
+          name: "日期格式",
           version: "1.0.0",
           height: "300px"
         },

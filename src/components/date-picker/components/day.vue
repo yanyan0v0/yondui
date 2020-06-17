@@ -15,7 +15,7 @@
         <span
           v-for="day in week"
           :key="day.day"
-          :class="{'disabled-day': day.disabled, 'now-day': day.nowDay, 'active-day': checkSelected(day), 'hover-active-day': checkRange(day)}"
+          :class="{'disabled-day': day.disabled || checkDisabled(day), 'now-day': day.nowDay, 'active-day': checkSelected(day), 'hover-active-day': checkRange(day)}"
           @click="handleDayClick(day)"
         >{{day.day}}</span>
       </li>

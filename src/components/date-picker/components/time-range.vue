@@ -13,7 +13,8 @@ export default {
   },
   props: {
     show: Boolean,
-    value: Array
+    value: Array,
+    format: String
   },
   data() {
     return {

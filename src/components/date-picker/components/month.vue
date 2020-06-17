@@ -14,7 +14,7 @@
         <span
           v-for="month in row"
           :key="month.month"
-          :class="{'now-day': month.nowMonth, 'active-day': checkSelected(month), 'hover-active-day': checkRange(month)}"
+          :class="{'now-day': month.nowMonth || checkDisabled(month), 'active-day': checkSelected(month), 'hover-active-day': checkRange(month)}"
           @click="handleMonthClick(month)"
         >{{month.month}}月</span>
       </li>

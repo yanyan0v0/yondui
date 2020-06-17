@@ -5,6 +5,13 @@ export default {
     }
   },
   computed: {
+    // 处理用户设置的禁用函数
+    checkDisabled() {
+      return day => {
+        let date = new Date(day.year, day.month ? day.month - 1 : 0, day.day || 1)
+        return this.$parent.parentVm.disabledDate && this.$parent.parentVm.disabledDate(date)
+      }
+    },
     // 处理范围选择时中间时间的样式变化
     checkRange() {
       return day => {

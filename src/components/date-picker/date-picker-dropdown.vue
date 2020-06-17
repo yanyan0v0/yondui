@@ -29,8 +29,18 @@
           class="y-date-picker-dropdown-time"
           v-clickoutside:inputEl="hideTime"
         >
-          <Time v-if="dateType == 'datetime'" :value="date" :show="showTime"></Time>
-          <TimeRange v-if="dateType == 'datetimerange'" :value="date" :show="showTime"></TimeRange>
+          <Time
+            v-if="dateType == 'datetime'"
+            :value="date"
+            :show="showTime"
+            :format="parentVm.format"
+          ></Time>
+          <TimeRange
+            v-if="dateType == 'datetimerange'"
+            :value="date"
+            :show="showTime"
+            :format="parentVm.format"
+          ></TimeRange>
         </div>
       </transition>
     </div>
@@ -85,11 +95,6 @@ export default {
       // 当需要点击确定才能回显数据的情况时需要保存未确定的时间数据，当多选时为数组类型
       tempDate: "",
       tempTime: ""
-    };
-  },
-  provide() {
-    return {
-      showTime: this.showTime
     };
   },
   computed: {

@@ -10,7 +10,7 @@
         <span
           v-for="year in row"
           :key="year.year"
-          :class="{'now-day': year.nowYear, 'active-day': checkSelected(year), 'hover-active-day': checkRange(year)}"
+          :class="{'now-day': year.nowYear || checkDisabled(year), 'active-day': checkSelected(year), 'hover-active-day': checkRange(year)}"
           @click="handleYearClick(year)"
         >{{year.year}}</span>
       </li>
