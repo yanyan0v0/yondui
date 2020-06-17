@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <ul v-for="time in timeList" :key="time.type">
+    <ul v-for="time in timeList" :key="time.type" :ref="time.type">
       <li class="first-li">{{time.name}}</li>
       <li
         v-for="num in time.max"
@@ -15,10 +15,10 @@
 <script>
 export default {
   name: "y-date-picker-dropdown-time",
-  inject: ["dropdownRoot"],
+  inject: ["showTime"],
   props: {
-    value: [Date, String],
-    visible: Boolean,
+    value: [Date, String, Array],
+    show: Boolean,
     // 当为范围选择时，判断为第一个还是第二个
     order: {
       type: String,
@@ -50,9 +50,6 @@ export default {
     };
   },
   computed: {
-    parentEl() {
-      return this.dropdownRoot.$refs.time.$el;
-    },
     formatNum() {
       return num => (num < 10 ? "0" + num : String(num));
     },
@@ -68,9 +65,6 @@ export default {
     }
   },
   methods: {
-    hide() {
-      this.dropdownRoot.hideTime();
-    },
     handleTimeClick(num, type) {
       switch (type) {
         case "hour":
@@ -83,23 +77,55 @@ export default {
           this.second = num;
           break;
       }
+      this.handleChange();
+    },
+    handleChange() {
       this.$parent.handleTimeEmit(
         `${this.hour}:${this.minute}:${this.second}`,
         this.order
       );
+    },
+    scrollTo() {
+      if (this.show) {
+        this.$refs.hour[0]
+          .getElementsByClassName("active-li")[0]
+          .scrollIntoView({ block: "center" });
+        this.$refs.minute[0]
+          .getElementsByClassName("active-li")[0]
+          .scrollIntoView({ block: "center" });
+        this.$refs.second[0]
+          .getElementsByClassName("active-li")[0]
+          .scrollIntoView({ block: "center" });
+      }
     }
   },
   watch: {
     value: {
       handler(value) {
         if (value) {
-          let time = new Date(value).Format("hh:mm:ss").split(":");
-          this.hour = time[0];
-          this.minute = time[1];
-          this.second = time[2];
+          let date = null;
+          // 当为多选时
+          if (Array.isArray(value)) {
+            date = value.length && value[0] ? value[0] : "";
+          } else {
+            date = value;
+          }
+          if (date) {
+            let time = new Date(date).Format("hh:mm:ss").split(":");
+            this.hour = time[0];
+            this.minute = time[1];
+            this.second = time[2];
+            this.$nextTick(() => {
+              this.scrollTo();
+            });
+          }
         }
+        this.handleChange();
       },
       immediate: true
+    },
+    show() {
+      this.scrollTo();
     }
   }
 };

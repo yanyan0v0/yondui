@@ -20,9 +20,11 @@
               <p>{{date2}}</p>
               <p>选择日</p>
               <y-date-picker v-model="date3" />
+              <y-button @click="date3 = '2012-01-05'">change</y-button>
               <p>{{date3}}</p>
               <p>选择时间</p>
               <y-date-picker type="datetime" v-model="date4" />
+              <y-button @click="date4 = '2012-01-05 12:05:45'">change</y-button>
               <p>{{date4}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -74,14 +76,15 @@
               <p>{{date5}}</p>
               <p>选择月范围</p>
               <y-date-picker type="monthrange" v-model="date6" />
-              <y-button @click="date6 = ['2012-05', '2015-02']">change</y-button>
+              <y-button @click="date6 = ['2012-05', '2012-02']">change</y-button>
               <p>{{date6}}</p>
               <p>选择日范围</p>
               <y-date-picker type="daterange" v-model="date7" />
-              <y-button @click="date7 = ['2012-01-05', '2015-05-16']">change</y-button>
+              <y-button @click="date7 = ['2015-05-05', '2015-05-16']">change</y-button>
               <p>{{date7}}</p>
               <p>选择时间范围</p>
               <y-date-picker type="datetimerange" v-model="date8" />
+              <y-button @click="date8 = ['2012-01-05 15:12:56', '2015-05-16 11:12:13']">change</y-button>
               <p>{{date8}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -98,22 +101,45 @@
             <code-action-bar :name="getNav('FWXZ').name" />
             <pre>
             <code>
-  &lt;p&gt;选择年&lt;/p&gt;
-  &lt;y-date-picker type="year" v-model="date1" /&gt;
-  &lt;p&gt;选择月&lt;/p&gt;
-  &lt;y-date-picker type="month" v-model="date2" /&gt;
-  &lt;p&gt;选择日&lt;/p&gt;
-  &lt;y-date-picker v-model="date3" /&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
 
-  export defalut {
-    data() {
-      return {
-        date1: '',
-        date2: '',
-        date3: ''
-      }
-    }
-  }
+      <!-- 分割线 -->
+      <div v-show="compareVersion('DX')">
+        <h3 id="DX">{{getNav('DX').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <p>选择年</p>
+              <y-date-picker multiple type="year" v-model="date9" />
+              <y-button @click="date9 = ['2012', '2015']">change</y-button>
+              <p>{{date9}}</p>
+              <p>选择月</p>
+              <y-date-picker multiple type="month" v-model="date10" />
+              <y-button @click="date10 = ['2012-02', '2015-09']">change</y-button>
+              <p>{{date10}}</p>
+              <p>选择日</p>
+              <y-date-picker multiple v-model="date11" />
+              <y-button @click="date11 = ['2012-02-22', '2015-01-27']">change</y-button>
+              <p>{{date11}}</p>
+              <p>选择时间</p>
+              <y-date-picker multiple type="datetime" v-model="date12" />
+              <y-button @click="date12 = ['2012-02-22 12:03:00', '2015-01-27 15:45:34']">change</y-button>
+              <p>{{date12}}</p>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置属性
+              <code>multiple</code>可开启多选，范围选择不支持此属性。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('DX').height}">
+            <code-action-bar :name="getNav('DX').name" />
+            <pre>
+            <code>
             </code>
             </pre>
           </div>
@@ -152,6 +178,10 @@ export default {
       date6: [],
       date7: [],
       date8: [],
+      date9: [],
+      date10: [],
+      date11: [],
+      date12: [],
       navList: [
         {
           id: "JC",
@@ -162,6 +192,12 @@ export default {
         {
           id: "FWXZ",
           name: "范围选择",
+          version: "1.0.0",
+          height: "300px"
+        },
+        {
+          id: "DX",
+          name: "多选",
           version: "1.0.0",
           height: "300px"
         },

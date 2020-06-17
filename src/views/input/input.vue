@@ -134,6 +134,31 @@
       </div>
 
       <!-- 分割线 -->
+      <div v-show="compareVersion('KQK')">
+        <h3 id="KQK">{{getNav('KQK').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-input v-model="value9" clearable placeholder="请输入" width="300px" />
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              通过设置
+              <code>clearable</code>属性可显示清空按钮。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card">
+            <code-action-bar :name="getNav('KQK').name" />
+            <pre>
+            <code>
+  &lt;y-input v-model="value9" clearable placeholder="请输入" width="300px" /&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
       <div v-show="compareVersion('QHTB')">
         <h3 id="QHTB">{{getNav('QHTB').name}}</h3>
         <y-card :split="2">
@@ -143,7 +168,7 @@
                 <y-icon type="sousuo" slot="prefix"></y-icon>
               </y-input>
               <br />
-              <y-input v-model="value8" placeholder="请输入" width="300px">
+              <y-input v-model="value8" clearable placeholder="请输入" width="300px">
                 <y-icon type="sousuo" slot="suffix"></y-icon>
               </y-input>
             </div>
@@ -204,6 +229,7 @@ export default {
       value6: "",
       value7: "",
       value8: "",
+      value9: "",
       navList: [
         {
           id: "JC",
@@ -223,6 +249,11 @@ export default {
         {
           id: "JY",
           name: "禁用",
+          version: "1.0.0"
+        },
+        {
+          id: "KQK",
+          name: "可清空",
           version: "1.0.0"
         },
         {

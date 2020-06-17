@@ -46,7 +46,7 @@
           border-radius: 4px;
         }
         & > .hover-active-day{
-          background-color: ~'@{primary-color}40';
+          background-color: ~'@{primary-color}30';
         }
       }
       &-day, 
@@ -90,6 +90,13 @@
       justify-content: space-between;
       padding: 5px;
       border-top: 1px solid @border-color;
+      & > .y-input-wrapper{
+        min-width: 100px;
+        width: 50%;
+      }
+      &-right{
+        float: right;
+      }
     }
 
     &-range{
@@ -132,6 +139,9 @@
           background-color: @primary-color;
           border-radius: 4px;
         }
+      }
+      .flex + .flex{
+        border-left: 1px solid @border-color;
       }
     }
   }

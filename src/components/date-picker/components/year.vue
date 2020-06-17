@@ -24,7 +24,7 @@ export default {
   name: "y-date-picker-dropdown-year",
   mixins: [dateMixins],
   props: {
-    value: [Date, String],
+    value: [Date, String, Array],
     // 当为范围选择时，判断为第一个还是第二个
     order: {
       type: String,
@@ -47,14 +47,16 @@ export default {
   computed: {
     checkSelected() {
       return year => {
-        let time = new Date(year.year, 0, 1).getTime();
+        let time = new Date(year.year, 0, 1).Format("yyyy");
         // 当为范围选择时
         if (this.range && this.range.length) {
-          return this.range.includes(time);
+          return this.range.find(item => new Date(item).Format("yyyy") == time);
         }
         // 当为多选
         if (this.$parent.isMultiple) {
-          return this.multiSelect.includes(time);
+          return this.multiSelect.find(
+            item => new Date(item).Format("yyyy") == time
+          );
         }
         return this.dateValue.year == year.year;
       };
@@ -62,9 +64,7 @@ export default {
   },
   methods: {
     init(date) {
-      let yearMonthDay = this.getYearMonthDay(
-        this.order === "first" ? date : this.lastOrNext("year", 9, date)
-      );
+      let yearMonthDay = this.getYearMonthDay(date);
 
       this.changedDate = {
         year: yearMonthDay.year
@@ -90,9 +90,8 @@ export default {
     handleYearClick(year) {
       let date = new Date(year.year, 0, 1);
       this.changedDate = year;
-      this.$parent.handleEmit(new Date(year.year, 0, 1));
 
-      // 多选操作
+      // 单选或多选操作
       this.handleMultiple(date);
     },
     handleChange(type, step) {
@@ -102,10 +101,16 @@ export default {
   watch: {
     value: {
       handler(value) {
-        if (value) {
-          this.dateValue = this.getYearMonthDay(new Date(value));
+        // 当为多选时
+        if (Array.isArray(value)) {
+          this.multiSelect = value;
+          this.init(value.length && value[0] ? new Date(value[0]) : new Date());
+        } else {
+          if (value) {
+            this.dateValue = this.getYearMonthDay(new Date(value));
+          }
+          this.init(value ? new Date(value) : new Date());
         }
-        this.init(value ? new Date(value) : new Date());
       },
       immediate: true
     }

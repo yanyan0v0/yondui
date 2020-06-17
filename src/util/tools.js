@@ -206,6 +206,29 @@ export const objToArray = (obj) => {
   }
   return list
 }
+/**
+ * @description 获取浏览器类型
+ * @return 浏览器类型
+ */
+
+export const getBrowser = () => {
+  if (!!window.ActiveXObject || "ActiveXObject" in window) {
+    return 'ie'
+  }
+  let agent = navigator.userAgent
+  if (agent.indexOf('Chrome') != -1 && agent.indexOf('Edge') != -1) {
+    return 'edge'
+  }
+  if (agent.indexOf('Firefox') != -1) {
+    return 'firefox'
+  }
+  if (agent.indexOf('Mac') != -1 && agent.indexOf('Safari') != -1) {
+    return 'safari'
+  }
+  if (agent.indexOf('Chrome') != -1) {
+    return 'chrome'
+  }
+}
 
 /**
  * 时间格式化

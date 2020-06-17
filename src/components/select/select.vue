@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="y-select"
-    :style="{width}"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
-  >
+  <div class="y-select" :style="{width}">
     <y-input
       v-model="selectedLabel"
       :readonly="!filterable"
@@ -12,10 +7,12 @@
       :height="inputHeight"
       :disabled="disabled"
       :size="size"
+      :clearable="clearable"
       :placeholder="placeholder"
       :class="{'y-select-input': !disabled}"
       @on-click="handleSelectClick"
       @on-change="handleInputChange"
+      @on-clear="handleClear"
     >
       <template slot="prefix">
         <slot name="prefix"></slot>
@@ -24,10 +21,9 @@
         slot="suffix"
         size="12"
         color="#c0c4cc"
-        :type="dropIcon"
+        type="sanjiao-xia"
         class="y-select-drop-icon"
-        :class="[vm && vm.visible ? 'turn-up' : 'turn-down', {'pointer': dropIcon == 'shanchu'}]"
-        @click="handleClear"
+        :class="[vm && vm.visible ? 'turn-up' : 'turn-down']"
       ></y-icon>
     </y-input>
   </div>
@@ -62,9 +58,7 @@ export default {
       // input展示的内容
       selectedLabel: "",
       // input显示的高度 当多选时需要
-      inputHeight: "",
-      // 右侧图标
-      dropIcon: "sanjiao-xia"
+      inputHeight: ""
     };
   },
   methods: {
@@ -172,16 +166,6 @@ export default {
         document.body.appendChild(this.vm.$el);
       }
     },
-    handleMouseEnter() {
-      if (this.clearable && this.selectedLabel) {
-        this.dropIcon = "shanchu";
-      }
-    },
-    handleMouseLeave() {
-      if (this.clearable) {
-        this.dropIcon = "sanjiao-xia";
-      }
-    },
     handleInputChange(value) {
       if (this.vm) {
         this.vm.filterValue = value;
@@ -190,20 +174,18 @@ export default {
     },
     // 点击清空按钮
     handleClear() {
-      if (this.dropIcon == "shanchu") {
-        this.$emit("on-clear");
+      this.$emit("on-clear");
 
-        this.selectedLabel = "";
-        if (Array.isArray(this.value)) {
-          this.$emit("input", []);
-          this.$emit("on-change", []);
-        } else {
-          this.$emit("input", "");
-          this.$emit("on-change", "");
-        }
-        if (this.filterable && this.vm) {
-          this.vm.filterValue = "";
-        }
+      this.selectedLabel = "";
+      if (Array.isArray(this.value)) {
+        this.$emit("input", []);
+        this.$emit("on-change", []);
+      } else {
+        this.$emit("input", "");
+        this.$emit("on-change", "");
+      }
+      if (this.filterable && this.vm) {
+        this.vm.filterValue = "";
       }
     }
   },

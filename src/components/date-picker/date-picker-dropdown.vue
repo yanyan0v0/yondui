@@ -1,30 +1,36 @@
 <template>
   <transition name="dropdown-fade">
     <div v-show="visible" v-clickoutside="hide" class="y-date-picker-dropdown" :style="style">
+      <!-- 日期选择 -->
       <component :is="componentName" :value="date"></component>
-      <div v-show="showFooter" class="y-date-picker-dropdown-footer">
+      <!-- 底部时间选择和确认栏 -->
+      <div v-show="showTimeInput || isMultiple" class="y-date-picker-dropdown-footer">
         <y-input
+          v-if="showTimeInput"
           v-model="timeValue"
           ref="time"
           size="small"
+          readonly
           placeholder="选择时间"
-          width="70%"
           @on-focus="showTime = true"
         >
           <y-icon slot="suffix" size="14" color="#c0c4cc" type="shizhong"></y-icon>
         </y-input>
+        <!-- 充当占位元素， 让确定按钮始终在右侧 -->
+        <span v-else></span>
         <div class="y-date-picker-dropdown-footer-right">
           <y-button color="primary" size="small" @click="handleConfirm">确定</y-button>
         </div>
       </div>
+      <!-- 时间选择弹窗 -->
       <transition name="dropdown-fade">
         <div
           v-show="showTime"
           class="y-date-picker-dropdown-time"
           v-clickoutside:inputEl="hideTime"
         >
-          <Time v-if="dateType == 'datetime'" :value="date" :visible.sync="showTime"></Time>
-          <TimeRange v-if="dateType == 'datetimerange'" :value="date" :visible.sync="showTime"></TimeRange>
+          <Time v-if="dateType == 'datetime'" :value="date" :show="showTime"></Time>
+          <TimeRange v-if="dateType == 'datetimerange'" :value="date" :show="showTime"></TimeRange>
         </div>
       </transition>
     </div>
@@ -56,11 +62,6 @@ export default {
   },
   directives: { clickoutside },
   mixins: [componentMixins],
-  provide() {
-    return {
-      dropdownRoot: this
-    };
-  },
   props: {
     value: [Date, String, Number, Array],
     visible: Boolean
@@ -81,8 +82,14 @@ export default {
       showTime: false,
       // 时间值
       timeValue: "00:00:00",
-      // 当需要点击确定才能回显数据的情况时需要保存未确定的时间
-      tempDate: ""
+      // 当需要点击确定才能回显数据的情况时需要保存未确定的时间数据，当多选时为数组类型
+      tempDate: "",
+      tempTime: ""
+    };
+  },
+  provide() {
+    return {
+      showTime: this.showTime
     };
   },
   computed: {
@@ -127,7 +134,7 @@ export default {
         zIndex: this.$YONDUI.getZindex()
       };
     },
-    showFooter() {
+    showTimeInput() {
       return this.dateType.indexOf("time") != -1;
     }
   },
@@ -144,28 +151,34 @@ export default {
     handleDate(date) {
       if (date) {
         if (Array.isArray(date)) {
-          this.date = [
-            date[0] ? new Date(date[0]) : "",
-            date[1] ? new Date(date[1]) : ""
-          ];
+          if (this.isMultiple) {
+            this.date = JSON.parse(JSON.stringify(date));
+          } else {
+            this.date = [
+              date[0] ? new Date(date[0]) : "",
+              date[1] ? new Date(date[1]) : ""
+            ];
+          }
         } else {
           this.date = new Date(date);
         }
       }
     },
-    handleEmit(date) {
-      if (!this.showFooter) {
+    // 当type = datetime/datetimerange 且为多选时， 会有第二个参数， 表示多选的时间数组
+    handleEmit(date, time) {
+      if (!this.showTimeInput && !this.isMultiple) {
         this.parentVm.emitChange(date);
         this.hide();
       } else {
         this.tempDate = date;
+        this.tempTime = time;
       }
     },
     handleTimeEmit(time) {
       if (Array.isArray(time)) {
         let text = "";
         if (time[0]) {
-          text = time[0] + "-";
+          text = time[0] + " - ";
         }
         if (time[1]) {
           text += time[1];
@@ -173,19 +186,22 @@ export default {
         this.timeValue = text;
       } else {
         this.timeValue = time;
+        if (this.isMultiple && this.tempTime.length) {
+          this.tempTime[this.tempTime.length - 1] = time;
+        }
       }
     },
     handleConfirm() {
-      let isTimeRange = this.dateType === "datetimerange";
-      this.parentVm.emitChange(
-        this.tempDate,
-        isTimeRange ? this.timeValue.split("-") : this.timeValue
-      );
+      let time = this.timeValue;
+      if (this.dateType === "datetimerange") time = this.timeValue.split("-");
+      if (this.isMultiple) time = this.tempTime;
+
+      this.parentVm.emitChange(this.tempDate, time);
       this.hide();
     }
   },
   mounted() {
-    this.inputEl = this.$refs.time.$el;
+    if (this.showTimeInput) this.inputEl = this.$refs.time.$el;
   },
   watch: {
     // 单独做组件时，监听v-model的值
@@ -196,7 +212,7 @@ export default {
       immediate: true
     },
     // 做date-picker的子组件时，监听date-picker的v-model值
-    "parentVm.value": {
+    "parentVm.dateValue": {
       handler(value) {
         this.handleDate(value);
       },

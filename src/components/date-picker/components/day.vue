@@ -29,7 +29,7 @@ export default {
   name: "y-date-picker-dropdown-day",
   mixins: [dateMixins],
   props: {
-    value: [Date, String],
+    value: [Date, String, Array],
     // 当为范围选择时，判断为第一个还是第二个
     order: {
       type: String,
@@ -43,6 +43,8 @@ export default {
       weekList: ["日", "一", "二", "三", "四", "五", "六"],
       // 选择的时间值
       dateValue: {},
+      // 当type=datetime时需要
+      tempDate: {},
       // 保存每次切换年月变化后的日期
       changedDate: {},
       // 保存多选时的数据
@@ -54,14 +56,27 @@ export default {
   computed: {
     checkSelected() {
       return day => {
-        let time = new Date(day.year, day.month - 1, day.day).getTime();
+        let time = new Date(day.year, day.month - 1, day.day).Format(
+          "yyyy-MM-dd"
+        );
         // 当为范围选择时
         if (this.range && this.range.length) {
           return this.range.includes(time);
         }
         // 当为多选
         if (this.$parent.isMultiple) {
-          return this.multiSelect.includes(time);
+          return this.multiSelect.find(
+            item => new Date(item).Format("yyyy-MM-dd") == time
+          );
+        }
+        // 当为时间单选时
+        if (this.$parent.dateType == "datetime") {
+          return (
+            !day.disabled &&
+            this.tempDate.year == day.year &&
+            this.tempDate.month == day.month &&
+            this.tempDate.day == day.day
+          );
         }
         // 当为单选时
         return (
@@ -75,9 +90,7 @@ export default {
   },
   methods: {
     init(date) {
-      let yearMonthDay = this.getYearMonthDay(
-        this.order === "first" ? date : this.lastOrNext("month", 1, date)
-      );
+      let yearMonthDay = this.getYearMonthDay(date);
       let year = yearMonthDay.year;
       let month = yearMonthDay.month;
       let day = yearMonthDay.day;
@@ -147,9 +160,8 @@ export default {
       if (day.disabled) return;
       let date = new Date(day.year, day.month - 1, day.day);
       this.changedDate = day;
-      this.$parent.handleEmit(date);
-
-      // 多选操作
+      if (this.$parent.dateType == "datetime") this.tempDate = day;
+      // 单选或多选操作
       this.handleMultiple(date);
     },
     handleChange(type, step) {
@@ -159,10 +171,22 @@ export default {
   watch: {
     value: {
       handler(value) {
-        if (value) {
-          this.dateValue = this.getYearMonthDay(new Date(value));
+        // 当为多选时
+        if (Array.isArray(value)) {
+          this.multiSelect = value;
+          if (this.$parent.dateType == "datetime") {
+            this.multiTime = value.map(item =>
+              item ? new Date(item).Format("hh:mm:ss") : ""
+            );
+          }
+          this.init(value.length && value[0] ? new Date(value[0]) : new Date());
+        } else {
+          if (value) {
+            this.dateValue = this.getYearMonthDay(new Date(value));
+            this.tempDate = this.dateValue;
+          }
+          this.init(value ? new Date(value) : new Date());
         }
-        this.init(value ? new Date(value) : new Date());
       },
       immediate: true
     }

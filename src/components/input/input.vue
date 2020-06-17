@@ -1,5 +1,10 @@
 <template>
-  <div class="y-input-wrapper" :style="{width}">
+  <div
+    class="y-input-wrapper"
+    :style="{width}"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
     <input
       class="y-input"
       :value="value"
@@ -14,12 +19,25 @@
       @input="handleInput"
       @click="handleClick"
       @focus="handleFocus"
-    >
-    <span v-if="this.$slots.prefix" class="y-input-prefix" :class="['y-input-prefix-' + size]">
+    />
+    <span v-if="$slots.prefix" class="y-input-prefix" :class="['y-input-prefix-' + size]">
       <slot name="prefix"></slot>
     </span>
-    <span v-if="this.$slots.suffix" class="y-input-suffix" :class="['y-input-suffix-' + size]">
+    <span
+      v-if="$slots.suffix"
+      v-show="!showClear"
+      class="y-input-suffix"
+      :class="['y-input-suffix-' + size]"
+    >
       <slot name="suffix"></slot>
+    </span>
+    <span
+      v-if="clearable && !disabled"
+      v-show="showClear"
+      class="y-input-suffix y-input-suffix-clear"
+      :class="['y-input-suffix-' + size]"
+    >
+      <y-icon size="14" color="#c0c4cc" type="shanchu" @click="handleClear"></y-icon>
     </span>
   </div>
 </template>
@@ -54,34 +72,18 @@ export default {
       type: [Number, String],
       default: ""
     },
-    placeholder: {
-      type: String,
-      default: ""
-    },
-    size: {
-      type: String,
-      default: ""
-    },
-    width: {
-      type: String,
-      default: ""
-    },
-    height: {
-      type: String,
-      default: ""
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    }
+    placeholder: String,
+    size: String,
+    width: String,
+    height: String,
+    disabled: Boolean,
+    readonly: Boolean,
+    clearable: Boolean
   },
   data() {
     return {
-      classPrefix: "y-input-"
+      classPrefix: "y-input-",
+      showClear: false
     };
   },
   methods: {
@@ -89,14 +91,29 @@ export default {
       this.$emit("on-enter", event.target.value);
     },
     handleInput(event) {
-      this.$emit("input", event.target.value);
-      this.$emit("on-change", event.target.value);
+      let value = event.target.value;
+      this.$emit("input", value);
+      this.$emit("on-change", value);
+
+      if (value) this.showClear = true;
+      else this.showClear = false;
     },
     handleFocus() {
       if (!this.disabled) this.$emit("on-focus");
     },
     handleClick() {
       if (!this.disabled) this.$emit("on-click");
+    },
+    handleClear() {
+      this.$emit("input", "");
+      this.$emit("on-change", "");
+      this.$emit("on-clear");
+    },
+    handleMouseEnter() {
+      if (this.value) this.showClear = true;
+    },
+    handleMouseLeave() {
+      this.showClear = false;
     }
   }
 };

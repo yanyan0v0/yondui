@@ -2,12 +2,13 @@
   <div
     class="y-date-picker"
     :style="{width}"
-    @mouseenter="handleMouseEnter"
+    @mouseover="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <y-input
       v-model="inputValue"
       type="textarea"
+      readonly
       :disabled="disabled"
       :size="size"
       :placeholder="placeholder"
@@ -50,7 +51,10 @@ export default {
   data() {
     return {
       suffixIcon: "calendar",
+      // input框展示内容
       inputValue: "",
+      // 给dropdown的值
+      dateValue: null,
       dropdownVm: null,
       formats: {
         year: "yyyy",
@@ -74,21 +78,30 @@ export default {
     emitChange(date, time) {
       // 范围选择
       if (this.type.indexOf("range") != -1) {
-        let startString = this.handleFormat(date[0], time[0]);
-        let endString = this.handleFormat(date[1], time[1]);
+        let startString = this.handleFormat(date[0], time ? time[0] : "");
+        let endString = this.handleFormat(date[1], time ? time[1] : "");
         let formatString = startString + " 至 " + endString;
         this.inputValue = formatString;
         this.$emit("input", [startString, endString]);
         this.$emit("on-change", [startString, endString]);
         return;
       }
+
+      // 当为多选时
+      if (this.multiple) {
+        let list = this.getMultipleList(date, time);
+        this.inputValue = list.toString();
+        this.$emit("input", list);
+        this.$emit("on-change", list);
+        return;
+      }
+
       let formatString = this.handleFormat(date, time);
       this.inputValue = formatString;
       this.$emit("input", formatString);
       this.$emit("on-change", formatString);
     },
     handleFormat(date, time = "", type = "string") {
-      console.log(date, time);
       let datetime = new Date(date).Format("yyyy-MM-dd") + " " + time;
       if (type == "object") {
         return new Date(datetime);
@@ -135,25 +148,47 @@ export default {
         this.$emit("on-clear");
         this.inputValue = "";
       }
+    },
+    getMultipleList(dateList, timeList) {
+      let list = [];
+      for (let i in dateList) {
+        list.push(this.handleFormat(dateList[i], timeList ? timeList[i] : ""));
+      }
+      return list;
     }
   },
   watch: {
     value: {
       handler(value) {
         if (value) {
-          if (Array.isArray(value)) {
-            let text = "";
-            if (value[0]) {
-              text = new Date(value[0]).Format(this.dateFormat) + "-";
+          if (!this.multiple && Array.isArray(value)) {
+            let ifBigger = true;
+            if (value[0] && value[1]) {
+              // 判断谁大谁小
+              ifBigger =
+                new Date(value[1]).getTime() > new Date(value[0]).getTime();
             }
-            if (value[1]) {
-              text += new Date(value[1]).Format(this.dateFormat);
+            let firstDate = value[ifBigger ? 0 : 1];
+            let secondDate = value[ifBigger ? 1 : 0];
+            this.dateValue = [firstDate, secondDate];
+            let text = "";
+            if (firstDate) {
+              text = new Date(firstDate).Format(this.dateFormat) + "-";
+            }
+            if (secondDate) {
+              text += new Date(secondDate).Format(this.dateFormat);
             }
             this.inputValue = text;
           } else {
-            this.inputValue = new Date(value).Format(this.dateFormat);
+            this.dateValue = value;
+            if (this.multiple) {
+              this.inputValue = this.getMultipleList(value).toString();
+            } else {
+              this.inputValue = new Date(value).Format(this.dateFormat);
+            }
           }
         } else {
+          this.dateValue = "";
           this.inputValue = "";
         }
       },

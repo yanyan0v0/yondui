@@ -1,7 +1,7 @@
 <template>
   <div class="y-date-picker-dropdown-range">
-    <Time :value="value[0]"></Time>
-    <Time :value="value[1]" order="second"></Time>
+    <Time :value="value[0]" :show="show"></Time>
+    <Time :value="value[1]" order="second" :show="show"></Time>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
     Time
   },
   props: {
+    show: Boolean,
     value: Array
   },
   data() {
@@ -21,7 +22,6 @@ export default {
   },
   methods: {
     handleTimeEmit(time, order) {
-      console.log(time);
       this.range[order == "first" ? 0 : 1] = time;
       this.$parent.handleTimeEmit(this.range);
     }

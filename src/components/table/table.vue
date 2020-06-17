@@ -10,8 +10,8 @@
       ]"
     >
       <colgroup>
-        <col v-for="col in colgroups" :key="col.key" :width="col.width">
-        <col v-if="ifScroll" :width="scrollWidth">
+        <col v-for="col in colgroups" :key="col.key" :width="col.width" />
+        <col v-if="ifScroll" :width="scrollWidth" />
       </colgroup>
       <thead>
         <tr>
@@ -40,7 +40,7 @@
         ]"
       >
         <colgroup>
-          <col v-for="col in colgroups" :key="col.key" :width="col.width">
+          <col v-for="col in colgroups" :key="col.key" :width="col.width" />
         </colgroup>
         <tbody>
           <tr v-for="(row, index) in data" :key="index" :class="[row.class]">
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { deepCopy } from "@/util/tools";
+import { deepCopy, getBrowser } from "@/util/tools";
 import componentMixins from "@/util/componentMixins";
 import TableSlot from "./components/slot";
 import TableRender from "./components/render";
@@ -150,8 +150,8 @@ export default {
       classPrefix: "y-table-",
       colgroups: [],
 
-      // 根据浏览器内核判定滚动条的宽度
-      scrollWidth: navigator.userAgent.indexOf("AppleWebKit") != -1 ? 8 : 17,
+      // 根据浏览器判定滚动条的宽度
+      scrollWidth: ["chrome", "firefox"].includes(getBrowser()) ? 8 : 17,
       // 是否出现滚动条
       ifScroll: false,
 
@@ -160,6 +160,9 @@ export default {
     };
   },
   computed: {
+    browserIsIe() {
+      return !!window.ActiveXObject || "ActiveXObject" in window;
+    },
     getResizeLineStyle() {
       return {
         left: (this.dragCol.startX || 0) + "px",
