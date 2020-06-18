@@ -101,6 +101,9 @@
 
     &-range{
       .flex;
+      &-time{
+        .flex-wrap(column);
+      }
     }
 
     &-time{
@@ -131,6 +134,7 @@
         & > .first-li{
           position: sticky;
           top: 0;
+          margin-bottom: 5px;
           border-bottom: 1px solid @border-color;
           background-color: #fff;
         }

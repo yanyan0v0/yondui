@@ -1,0 +1,71 @@
+.y-time-picker{
+  display: inline-block;
+  &-dropdown{
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid @border-color;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    border-radius: 4px;
+    transition: opacity 0.3s, transform 0.3s;
+    &-footer{
+      .flex;
+      justify-content: space-between;
+      padding: 5px;
+      border-top: 1px solid @border-color;
+    }
+
+    &-range{
+      .flex;
+      &-content{
+        .flex-wrap(column);
+        padding: 5px;
+        &>p{
+          text-align: center;
+        }
+      }
+      &-content + &-content{
+        border-left: 1px solid @border-color;
+      }
+    }
+
+    &-time{
+      .flex;
+      height: 200px;
+      background-color: #fff;
+      ul{
+        position: relative;
+        margin: 2px 5px;
+        max-height: 100%;
+        flex: 1;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar{
+          display: none;
+        }
+        & > li{
+          padding: 2px 5px;
+          text-align: center;
+          cursor: pointer;
+        }
+        & > .first-time{
+          position: sticky;
+          top: 0;
+          margin-bottom: 5px;
+          border-bottom: 1px solid @border-color;
+          color: @disabled-color;
+          background-color: #fff;
+        }
+        & > .active-time{
+          color: #fff;
+          background-color: @primary-color;
+          border-radius: 4px;
+        }
+        & > .disabled-time{
+          background-color: @disabled-color;
+        }
+      }
+    }
+  }
+}

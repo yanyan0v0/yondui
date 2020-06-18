@@ -171,6 +171,13 @@ export const MENU_LIST = [
         file: '/timeline/timeline.vue'
       },
       {
+        id: 224,
+        name: "TimePicker 时间选择器",
+        icon: "shizhong",
+        to: "timePicker",
+        file: '/time-picker/time-picker.vue'
+      },
+      {
         id: 214,
         name: "Tooltip 提示框",
         icon: "xiaoxi",

@@ -1,7 +1,13 @@
 <template>
   <div class="y-date-picker-dropdown-range">
-    <Time :value="value[0]" :show="show"></Time>
-    <Time :value="value[1]" order="second" :show="show"></Time>
+    <div class="y-date-picker-dropdown-range-time">
+      <p>开始时间</p>
+      <Time :value="value[0]" :show="show"></Time>
+    </div>
+    <div class="y-date-picker-dropdown-range-time">
+      <p>结束时间</p>
+      <Time :value="value[1]" order="second" :show="show"></Time>
+    </div>
   </div>
 </template>
 

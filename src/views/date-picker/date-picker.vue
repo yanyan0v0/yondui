@@ -2,7 +2,7 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>DatePicker 时间选择器</h1>
+      <h1>DatePicker 日期选择器</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="compareVersion('JC')">
@@ -66,7 +66,7 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <p>选择年范围</p>
-              <y-date-picker type="yearrange" v-model="date5" />
+              <y-date-picker type="yearrange" v-model="date5" clearable />
               <p>{{date5}}</p>
               <y-divider />
               <p>选择月范围</p>
@@ -220,7 +220,7 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               设置属性
-              <code>format</code>可以改变日期的显示格式。
+              <code>format</code>可以改变日期的显示格式，但实际的值不会同样变化。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('RQGS').height}">
@@ -301,7 +301,7 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               设置属性
-              <code>handleDisabled</code>，传递一个函数，参数为当前日期，返回为true则为禁用。
+              <code>disabled-date</code>，传递一个函数，参数为当前日期，返回为true则为禁用。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JYHS').height}">

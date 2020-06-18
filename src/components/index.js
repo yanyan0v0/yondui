@@ -30,6 +30,7 @@ import Select from '@/components/select/select.vue'
 import Slider from '@/components/slider/slider.vue'
 import Switch from '@/components/switch/switch.vue'
 import TimeLine from '@/components/timeline/timeline.vue'
+import TimePicker from '@/components/time-picker/time-picker.vue'
 import Tooltip from '@/components/tooltip/tooltip.vue'
 
 // 函数式
@@ -68,6 +69,7 @@ export const components = {
   Switch,
   Table,
   TimeLine,
+  TimePicker,
   Tooltip
 }
 
