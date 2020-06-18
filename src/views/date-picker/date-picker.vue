@@ -12,24 +12,16 @@
             <div class="preview">
               <p>选择年</p>
               <y-date-picker type="year" v-model="date1" />
-              <y-button @click="date1 = '2012-01-05'">change</y-button>
-              <p>{{date1}}</p>
               <p>选择月</p>
               <y-date-picker type="month" v-model="date2" />
-              <y-button @click="date2 = '2012-01-05'">change</y-button>
-              <p>{{date2}}</p>
               <p>选择日</p>
               <y-date-picker v-model="date3" />
-              <y-button @click="date3 = '2012-01-05'">change</y-button>
-              <p>{{date3}}</p>
               <p>选择时间</p>
               <y-date-picker type="datetime" v-model="date4" />
-              <y-button @click="date4 = '2012-01-05 12:05:45'">change</y-button>
-              <p>{{date4}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
-              最基本的时间选择器，通过
+              最基本的日期选择器，通过
               <code>v-model</code>绑定数据，
               传递
               <code>type</code>为
@@ -48,13 +40,16 @@
   &lt;y-date-picker type="month" v-model="date2" /&gt;
   &lt;p&gt;选择日&lt;/p&gt;
   &lt;y-date-picker v-model="date3" /&gt;
+  &lt;p&gt;选择时间&lt;/p&gt;
+  &lt;y-date-picker type="datetime" v-model="date4" /&gt;
 
-  export defalut {
+  export default {
     data() {
       return {
         date1: '',
         date2: '',
-        date3: ''
+        date3: '',
+        date4: '',
       }
     }
   }
@@ -72,19 +67,18 @@
             <div class="preview">
               <p>选择年范围</p>
               <y-date-picker type="yearrange" v-model="date5" />
-              <y-button @click="date5 = ['2012', '2015']">change</y-button>
               <p>{{date5}}</p>
+              <y-divider />
               <p>选择月范围</p>
               <y-date-picker type="monthrange" v-model="date6" />
-              <y-button @click="date6 = ['2012-05', '2012-02']">change</y-button>
               <p>{{date6}}</p>
+              <y-divider />
               <p>选择日范围</p>
               <y-date-picker type="daterange" v-model="date7" />
-              <y-button @click="date7 = ['2015-05-05', '2015-05-16']">change</y-button>
               <p>{{date7}}</p>
+              <y-divider />
               <p>选择时间范围</p>
               <y-date-picker type="datetimerange" v-model="date8" />
-              <y-button @click="date8 = ['2012-01-05 15:12:56', '2015-05-16 11:12:13']">change</y-button>
               <p>{{date8}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -99,8 +93,34 @@
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('FWXZ').height}">
             <code-action-bar :name="getNav('FWXZ').name" />
-            <pre>
+            <pre v-pre>
             <code>
+  &lt;p&gt;选择年范围&lt;/p&gt;
+  &lt;y-date-picker type="yearrange" v-model="date5" /&gt;
+  &lt;p&gt;{{date5}}&lt;/p&gt;
+
+  &lt;p&gt;选择月范围&lt;/p&gt;
+  &lt;y-date-picker type="monthrange" v-model="date6" /&gt;
+  &lt;p&gt;{{date6}}&lt;/p&gt;
+
+  &lt;p&gt;选择日范围&lt;/p&gt;
+  &lt;y-date-picker type="daterange" v-model="date7" /&gt;
+  &lt;p&gt;{{date7}}&lt;/p&gt;
+
+  &lt;p&gt;选择时间范围&lt;/p&gt;
+  &lt;y-date-picker type="datetimerange" v-model="date8" /&gt;
+  &lt;p&gt;{{date8}}&lt;/p&gt;
+
+  export default {
+    data() {
+      return {
+        date5: [],
+        date6: [],
+        date7: [],
+        date8: [],
+      }
+    }
+  }
             </code>
             </pre>
           </div>
@@ -115,19 +135,18 @@
             <div class="preview">
               <p>选择年</p>
               <y-date-picker multiple type="year" v-model="date9" />
-              <y-button @click="date9 = ['2012', '2015']">change</y-button>
               <p>{{date9}}</p>
+              <y-divider />
               <p>选择月</p>
               <y-date-picker multiple type="month" v-model="date10" />
-              <y-button @click="date10 = ['2012-02', '2015-09']">change</y-button>
               <p>{{date10}}</p>
+              <y-divider />
               <p>选择日</p>
               <y-date-picker multiple v-model="date11" />
-              <y-button @click="date11 = ['2012-02-22', '2015-01-27']">change</y-button>
               <p>{{date11}}</p>
+              <y-divider />
               <p>选择时间</p>
               <y-date-picker multiple type="datetime" v-model="date12" />
-              <y-button @click="date12 = ['2012-02-22 12:03:00', '2015-01-27 15:45:34']">change</y-button>
               <p>{{date12}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -138,8 +157,34 @@
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('DX').height}">
             <code-action-bar :name="getNav('DX').name" />
-            <pre>
+            <pre v-pre>
             <code>
+  &lt;p&gt;选择年&lt;/p&gt;
+  &lt;y-date-picker multiple type="year" v-model="date9" /&gt;
+  &lt;p&gt;{{date9}}&lt;/p&gt;
+  
+  &lt;p&gt;选择月&lt;/p&gt;
+  &lt;y-date-picker multiple type="month" v-model="date10" /&gt;
+  &lt;p&gt;{{date10}}&lt;/p&gt;
+  
+  &lt;p&gt;选择日&lt;/p&gt;
+  &lt;y-date-picker multiple v-model="date11" /&gt;
+  &lt;p&gt;{{date11}}&lt;/p&gt;
+  
+  &lt;p&gt;选择时间&lt;/p&gt;
+  &lt;y-date-picker multiple type="datetime" v-model="date12" /&gt;
+  &lt;p&gt;{{date12}}&lt;/p&gt;
+
+  export default {
+    data() {
+      return {
+        date9: [],
+        date10: [],
+        date11: [],
+        date12: [],
+      }
+    }
+  }
             </code>
             </pre>
           </div>
@@ -154,24 +199,23 @@
             <div class="preview">
               <p>yyyy年</p>
               <y-date-picker format="yyyy年" type="year" v-model="date13" />
-              <y-button @click="date13 = '2012'">change</y-button>
-              <p>{{date13}}</p>
+              <p>实际的值为：{{date13}}</p>
+              <y-divider />
               <p>yyyy年MM月</p>
               <y-date-picker format="yyyy年MM月" type="month" v-model="date14" />
-              <y-button @click="date14 = '2012-02'">change</y-button>
-              <p>{{date14}}</p>
+              <p>实际的值为：{{date14}}</p>
+              <y-divider />
               <p>yyyy年MM月dd日</p>
               <y-date-picker format="yyyy年MM月dd日" v-model="date15" />
-              <y-button @click="date15 = '2012-02-22'">change</y-button>
-              <p>{{date15}}</p>
+              <p>实际的值为：{{date15}}</p>
+              <y-divider />
               <p>yyyy年MM月dd日 hh时mm分</p>
               <y-date-picker format="yyyy年MM月dd日 hh时mm分" type="datetime" v-model="date16" />
-              <y-button @click="date16 = '2012-02-22 12:03:00'">change</y-button>
-              <p>{{date16}}</p>
+              <p>实际的值为：{{date16}}</p>
+              <y-divider />
               <p>yyyy年MM月dd日 hh时mm分ss秒</p>
-              <y-date-picker format="yyyy年MM月dd日 hh时mm分ss秒" type="datetime" v-model="date17" />
-              <y-button @click="date17 = '2012-02-22 12:03:00'">change</y-button>
-              <p>{{date17}}</p>
+              <y-date-picker format="yyyy年MM月dd日-hh时mm分ss秒" type="datetime" v-model="date17" />
+              <p>实际的值为：{{date17}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -181,8 +225,145 @@
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('RQGS').height}">
             <code-action-bar :name="getNav('RQGS').name" />
+            <pre v-pre>
+            <code>
+  &lt;p&gt;yyyy年&lt;/p&gt;
+  &lt;y-date-picker format="yyyy年" type="year" v-model="date13" /&gt;
+  &lt;p&gt;实际的值为：{{date13}}&lt;/p&gt;
+
+  &lt;p&gt;yyyy年MM月&lt;/p&gt;
+  &lt;y-date-picker format="yyyy年MM月" type="month" v-model="date14" /&gt;
+  &lt;p&gt;实际的值为：{{date14}}&lt;/p&gt;
+
+  &lt;p&gt;yyyy年MM月dd日&lt;/p&gt;
+  &lt;y-date-picker format="yyyy年MM月dd日" v-model="date15" /&gt;
+  &lt;p&gt;实际的值为：{{date15}}&lt;/p&gt;
+
+  &lt;p&gt;yyyy年MM月dd日 hh时mm分&lt;/p&gt;
+  &lt;y-date-picker format="yyyy年MM月dd日 hh时mm分" type="datetime" v-model="date16" /&gt;
+  &lt;p&gt;实际的值为：{{date16}}&lt;/p&gt;
+
+  &lt;p&gt;yyyy年MM月dd日 hh时mm分ss秒&lt;/p&gt;
+  &lt;y-date-picker format="yyyy年MM月dd日-hh时mm分ss秒" type="datetime" v-model="date17" /&gt;
+  &lt;p&gt;实际的值为：{{date17}}&lt;/p&gt;
+
+  export default {
+    data() {
+      return {
+        date13: "",
+        date14: "",
+        date15: "",
+        date16: "",
+        date17: "",
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('JY')">
+        <h3 id="JY">{{getNav('JY').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-date-picker disabled :value="new Date()" />
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置属性
+              <code>disabled</code>可以禁用日期选择。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JY').height}">
+            <code-action-bar :name="getNav('JY').name" />
             <pre>
             <code>
+  &lt;y-date-picker disabled :value="new Date()" /&gt;
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('JYHS')">
+        <h3 id="JYHS">{{getNav('JYHS').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <p>禁用现在之后的日期</p>
+              <y-date-picker :disabled-date="handleDisabled" v-model="date18" />
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置属性
+              <code>handleDisabled</code>，传递一个函数，参数为当前日期，返回为true则为禁用。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JYHS').height}">
+            <code-action-bar :name="getNav('JYHS').name" />
+            <pre>
+            <code>
+  &lt;y-date-picker :disabled-date="handleDisabled" v-model="date18" /&gt;
+
+  export default {
+    data() {
+      return {
+        date18: ''
+      }
+    },
+    methods: {
+      handleDisabled(date) {
+        return date.getTime() > new Date().getTime();
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('SJGL')">
+        <h3 id="SJGL">{{getNav('SJGL').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-date-picker :filter-time="filterTime" v-model="date19" type="datetime" />
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置属性
+              <code>filter-time</code>，传递一个函数，参数为hour | minute | second，返回值可以是数字或数组。
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SJGL').height}">
+            <code-action-bar :name="getNav('SJGL').name" />
+            <pre>
+            <code>
+  &lt;y-date-picker :filter-time="filterTime" v-model="date19" type="datetime" /&gt;
+
+  export default {
+    data() {
+      return {
+        date19: ''
+      }
+    },
+    methods: {
+      filterTime(type) {
+        if (type == "hour") {
+          return 12;
+        } else if (type == "minute") {
+          return [0, 10, 20, 30, 40, 50];
+        } else return [0, 30];
+      }
+    }
+  }
             </code>
             </pre>
           </div>
@@ -238,25 +419,43 @@ export default {
           id: "JC",
           name: "基础",
           version: "1.0.0",
-          height: "300px"
+          height: "380px"
         },
         {
           id: "FWXZ",
           name: "范围选择",
           version: "1.0.0",
-          height: "300px"
+          height: "580px"
         },
         {
           id: "DX",
           name: "多选",
           version: "1.0.0",
-          height: "300px"
+          height: "580px"
         },
         {
           id: "RQGS",
           name: "日期格式",
           version: "1.0.0",
-          height: "300px"
+          height: "700px"
+        },
+        {
+          id: "JY",
+          name: "禁用",
+          version: "1.0.0",
+          height: "150px"
+        },
+        {
+          id: "JYHS",
+          name: "禁用函数",
+          version: "1.0.0",
+          height: "180px"
+        },
+        {
+          id: "SJGL",
+          name: "时间过滤",
+          version: "1.0.0",
+          height: "150px"
         },
         {
           id: "PROPS",
@@ -277,25 +476,104 @@ export default {
           default: "-"
         },
         {
-          attr: "show-footer",
-          explain: `是否显示底部确认按钮`,
+          attr: "type",
+          explain: `时间类型，可选值为 <code class="keyword-code">year</code>、<code class="keyword-code">month</code>、<code class="keyword-code">date</code>、<code class="keyword-code">datetime</code>、<code class="keyword-code">yearrange</code>、<code class="keyword-code">monthrange</code>、<code class="keyword-code">daterange</code>、<code class="keyword-code">datetimerange</code>`,
+          type: "String",
+          default: "date"
+        },
+        {
+          version: "1.0.0",
+          attr: "size",
+          explain: `展示类型，可选<code class="keyword-code">large</code>大、<code class="keyword-code">small</code>小、<code class="keyword-code">mini</code>极小`,
+          type: "String",
+          default: "空"
+        },
+        {
+          version: "1.0.0",
+          attr: "width",
+          explain: `宽度`,
+          type: "String",
+          default: "100%"
+        },
+        {
+          version: "1.0.0",
+          attr: "disabled",
+          explain: `禁用开关`,
           type: "Boolean",
           default: "false"
+        },
+        {
+          attr: "multiple",
+          explain: `是否多选，当为范围选择时不可用`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          version: "1.0.0",
+          attr: "placeholder",
+          explain: `占位文本`,
+          type: "String",
+          default: "请选择"
+        },
+        {
+          version: "1.0.0",
+          attr: "format",
+          explain: `日期格式`,
+          type: "String",
+          default: "yyyy-MM-dd hh:mm:ss"
+        },
+        {
+          version: "1.0.0",
+          attr: "clearable",
+          explain: `是否显示清空按钮`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          version: "1.0.0",
+          attr: "disabled-date",
+          explain: `设置不可选的日期函数`,
+          type: "Function",
+          default: "-"
+        },
+        {
+          version: "1.0.0",
+          attr: "filter-time",
+          explain: `设置时间选择项函数`,
+          type: "Function",
+          default: "-"
         }
       ],
       eventList: [
         {
           attr: "on-change",
-          explain: "颜色发生变化后的回调",
-          return: "当前颜色值"
+          explain: "日期发生变化后的回调",
+          return: "日期值"
         },
         {
-          attr: "on-confirm",
-          explain: "点击确定按钮的回调",
-          return: "当前颜色值"
+          attr: "on-visible-change",
+          explain: "日期弹出框显示或隐藏的回调",
+          return: "true | false"
+        },
+        {
+          attr: "on-clear",
+          explain: "点击清空按钮的回调",
+          return: "无"
         }
       ]
     };
+  },
+  methods: {
+    handleDisabled(date) {
+      return date.getTime() > new Date().getTime();
+    },
+    filterTime(type) {
+      if (type == "hour") {
+        return 12;
+      } else if (type == "minute") {
+        return [0, 10, 20, 30, 40, 50];
+      } else return [0, 30];
+    }
   }
 };
 </script>

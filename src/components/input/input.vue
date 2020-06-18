@@ -25,15 +25,14 @@
     </span>
     <span
       v-if="$slots.suffix"
-      v-show="!showClear"
+      v-show="!showClearIcon"
       class="y-input-suffix"
       :class="['y-input-suffix-' + size]"
     >
       <slot name="suffix"></slot>
     </span>
     <span
-      v-if="clearable && !disabled"
-      v-show="showClear"
+      v-show="showClearIcon"
       class="y-input-suffix y-input-suffix-clear"
       :class="['y-input-suffix-' + size]"
     >
@@ -85,6 +84,11 @@ export default {
       classPrefix: "y-input-",
       showClear: false
     };
+  },
+  computed: {
+    showClearIcon() {
+      return this.clearable && !this.disabled && this.showClear;
+    }
   },
   methods: {
     handleEnter(event) {

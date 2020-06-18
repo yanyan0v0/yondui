@@ -531,6 +531,20 @@ export default {
           explain: `禁用开关`,
           type: "Boolean",
           default: "false"
+        },
+        {
+          version: "1.0.0",
+          attr: "placeholder",
+          explain: `占位文本`,
+          type: "String",
+          default: "请选择"
+        },
+        {
+          version: "1.0.0",
+          attr: "clearable",
+          explain: `是否显示清空按钮`,
+          type: "Boolean",
+          default: "false"
         }
       ],
       slotList: [

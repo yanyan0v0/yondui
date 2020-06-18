@@ -4,10 +4,15 @@
   &lt;/div&gt;
 &lt;/y-dialog&gt;
 
-&lt;y-checkbox-group v-model="value3"&gt;
-  &lt;y-checkbox value="北京"&gt;北京&lt;/y-checkbox&gt;
-  &lt;y-checkbox value="上海"&gt;上海&lt;/y-checkbox&gt;
-  &lt;y-checkbox value="广州"&gt;广州&lt;/y-checkbox&gt;
-  &lt;y-checkbox value="深圳"&gt;深圳&lt;/y-checkbox&gt;
-&lt;/y-checkbox-group&gt;
-&lt;p class="disabled-color"&gt;选中的值： {{value3}}&lt;/p&gt;
+&lt;p&gt;选择年范围&lt;/p&gt;
+&lt;y-date-picker type="yearrange" v-model="date5" /&gt;
+&lt;p&gt;{{date5}}&lt;/p&gt;
+&lt;p&gt;选择月范围&lt;/p&gt;
+&lt;y-date-picker type="monthrange" v-model="date6" /&gt;
+&lt;p&gt;{{date6}}&lt;/p&gt;
+&lt;p&gt;选择日范围&lt;/p&gt;
+&lt;y-date-picker type="daterange" v-model="date7" /&gt;
+&lt;p&gt;{{date7}}&lt;/p&gt;
+&lt;p&gt;选择时间范围&lt;/p&gt;
+&lt;y-date-picker type="datetimerange" v-model="date8" /&gt;
+&lt;p&gt;{{date8}}&lt;/p&gt;

@@ -53,7 +53,7 @@ export const MENU_LIST = [
       },
       {
         id: 223,
-        name: "DatePicker 时间选择器",
+        name: "DatePicker 日期选择器",
         icon: "calendar",
         to: "datePicker",
         file: '/date-picker/date-picker.vue'

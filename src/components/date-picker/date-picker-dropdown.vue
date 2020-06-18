@@ -91,7 +91,7 @@ export default {
       // 显示时间选择
       showTime: false,
       // 时间值
-      timeValue: "00:00:00",
+      timeValue: "",
       // 当需要点击确定才能回显数据的情况时需要保存未确定的时间数据，当多选时为数组类型
       tempDate: "",
       tempTime: ""
@@ -146,12 +146,14 @@ export default {
   methods: {
     hide() {
       this.visible = false;
+      this.parentVm.$emit("on-visible-change", false);
     },
     hideTime() {
       this.showTime = false;
     },
     show() {
       this.visible = true;
+      this.parentVm.$emit("on-visible-change", true);
     },
     handleDate(date) {
       if (date) {
@@ -199,9 +201,12 @@ export default {
     handleConfirm() {
       let time = this.timeValue;
       if (this.dateType === "datetimerange") time = this.timeValue.split("-");
-      if (this.isMultiple) time = this.tempTime;
-
-      this.parentVm.emitChange(this.tempDate, time);
+      if (this.isMultiple) {
+        time = this.tempTime;
+        if (this.tempDate.length) this.parentVm.emitChange(this.tempDate, time);
+      } else {
+        if (this.tempDate) this.parentVm.emitChange(this.tempDate, time);
+      }
       this.hide();
     }
   },

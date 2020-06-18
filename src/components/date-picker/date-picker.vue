@@ -44,7 +44,8 @@ export default {
     clearable: Boolean,
     disabled: Boolean,
     multiple: Boolean,
-    disabledDate: Function
+    disabledDate: Function,
+    filterTime: Function
   },
   data() {
     return {

@@ -157,7 +157,7 @@ export default {
       }
     },
     handleDayClick(day) {
-      if (day.disabled) return;
+      if (day.disabled || this.checkDisabled(day)) return;
       let date = new Date(day.year, day.month - 1, day.day);
       this.changedDate = day;
       if (this.$parent.dateType == "datetime") this.tempDate = day;

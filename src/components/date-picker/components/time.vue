@@ -3,11 +3,11 @@
     <ul v-for="time in filterTimeList" :key="time.type" :ref="time.type">
       <li class="first-li">{{time.name}}</li>
       <li
-        v-for="num in time.max"
+        v-for="num in filterTime(time)"
         :key="num"
-        :class="{'active-li': checkActive(formatNum(num - 1), time.type)}"
-        @click="handleTimeClick(formatNum(num - 1), time.type)"
-      >{{formatNum(num - 1)}}</li>
+        :class="{'active-li': checkActive(formatNum(filterTime(time), num), time.type)}"
+        @click="handleTimeClick(formatNum(filterTime(time), num), time.type)"
+      >{{formatNum(filterTime(time), num)}}</li>
     </ul>
   </div>
 </template>
@@ -50,8 +50,18 @@ export default {
     };
   },
   computed: {
+    // 根据函数判断需要显示自定义的时分秒
+    filterTime() {
+      return time => {
+        if (this.$parent.parentVm && this.$parent.parentVm.filterTime) {
+          return this.$parent.parentVm.filterTime(time.type);
+        } else {
+          return time.max;
+        }
+      };
+    },
+    // 根据format格式判断需要显示的时分秒
     filterTimeList() {
-      console.log(this.format);
       if (this.format) {
         return this.timeList.filter(
           item => this.format.indexOf(item.type[0]) != -1
@@ -61,7 +71,12 @@ export default {
       }
     },
     formatNum() {
-      return num => (num < 10 ? "0" + num : String(num));
+      return (time, num) => {
+        if (typeof time == "number") {
+          num--;
+        }
+        return num < 10 ? "0" + num : String(num);
+      };
     },
     checkActive() {
       return (num, type) => {
@@ -87,22 +102,33 @@ export default {
       this.handleChange();
     },
     handleChange() {
-      this.$parent.handleTimeEmit(
-        `${this.hour}:${this.minute}:${this.second}`,
-        this.order
-      );
+      if (this.format) {
+        let text = "";
+        if (this.format.indexOf("h") != -1) text += this.hour;
+        if (this.format.indexOf("m") != -1) text += `:${this.minute}`;
+        if (this.format.indexOf("s") != -1) text += `:${this.second}`;
+        this.$parent.handleTimeEmit(text, this.order);
+      } else {
+        this.$parent.handleTimeEmit(
+          `${this.hour}:${this.minute}:${this.second}`,
+          this.order
+        );
+      }
     },
     scrollTo() {
       if (this.show) {
         this.$refs.hour &&
+          this.$refs.hour[0].getElementsByClassName("active-li").length &&
           this.$refs.hour[0]
             .getElementsByClassName("active-li")[0]
             .scrollIntoView({ block: "center" });
         this.$refs.minute &&
+          this.$refs.minute[0].getElementsByClassName("active-li").length &&
           this.$refs.minute[0]
             .getElementsByClassName("active-li")[0]
             .scrollIntoView({ block: "center" });
         this.$refs.second &&
+          this.$refs.second[0].getElementsByClassName("active-li").length &&
           this.$refs.second[0]
             .getElementsByClassName("active-li")[0]
             .scrollIntoView({ block: "center" });
