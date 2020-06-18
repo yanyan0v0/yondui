@@ -45,6 +45,7 @@ export default {
     return {
       top: 0,
       left: 0,
+      bottom: 0,
       // 获取父组件的vnode
       parentVm: {},
       // clickoutside所需参数
@@ -75,12 +76,13 @@ export default {
       return {
         top: this.top + "px",
         left: this.left + "px",
+        bottom: this.top ? "" : this.bottom + "px",
         zIndex: this.$YONDUI.getZindex()
       };
     }
   },
   methods: {
-    handleDate(time) {
+    handleTime(time) {
       if (time) {
         if (Array.isArray(time)) {
           this.timeValue = [time[0] || "", time[1] || ""];
@@ -107,6 +109,7 @@ export default {
       }
     },
     handleConfirm(time) {
+      this.initialValue = "";
       this.parentVm.emitChange(time || this.tempTime);
       this.hide();
     },
@@ -127,7 +130,7 @@ export default {
     // 做time-picker的子组件时，监听date-picker的v-model值
     "parentVm.timeValue": {
       handler(value) {
-        this.handleDate(value);
+        this.handleTime(value);
       },
       immediate: true
     }

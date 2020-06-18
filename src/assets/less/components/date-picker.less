@@ -90,63 +90,10 @@
       justify-content: space-between;
       padding: 5px;
       border-top: 1px solid @border-color;
-      & > .y-input-wrapper{
-        min-width: 100px;
-        width: 50%;
-      }
-      &-right{
-        float: right;
-      }
     }
 
     &-range{
       .flex;
-      &-time{
-        .flex-wrap(column);
-      }
-    }
-
-    &-time{
-      .flex;
-      position: absolute;
-      left: 5px;
-      bottom: 40px;
-      height: 200px;
-      background-color: #fff;
-      border: 1px solid @border-color;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
-      transition: opacity 0.3s, transform 0.3s;
-      ul{
-        position: relative;
-        margin: 2px 5px;
-        // border-right: 1px solid @border-color;
-        max-height: 100%;
-        overflow-y: scroll;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        &::-webkit-scrollbar{
-          display: none;
-        }
-        & > li{
-          padding: 2px 5px;
-          cursor: pointer;
-        }
-        & > .first-li{
-          position: sticky;
-          top: 0;
-          margin-bottom: 5px;
-          border-bottom: 1px solid @border-color;
-          background-color: #fff;
-        }
-        & > .active-li{
-          color: #fff;
-          background-color: @primary-color;
-          border-radius: 4px;
-        }
-      }
-      .flex + .flex{
-        border-left: 1px solid @border-color;
-      }
     }
   }
 }

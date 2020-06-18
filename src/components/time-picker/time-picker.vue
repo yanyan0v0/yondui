@@ -41,7 +41,11 @@ export default {
     clearable: Boolean,
     disabled: Boolean,
     disabledTime: Function,
-    filterTime: Function
+    filterTime: Function,
+    appendToBody: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -104,22 +108,26 @@ export default {
     },
     handleInputFocus() {
       let pickerRect = this.$el.getBoundingClientRect();
+      let top = this.appendToBody ? pickerRect.bottom + 5 : "";
+      let left = this.appendToBody ? pickerRect.left : 0;
       if (!this.dropdownVm) {
         let _this = this;
         const DropdownConstructor = Vue.extend(TimePcikerDropdown);
         this.dropdownVm = new DropdownConstructor({
           data: {
-            top: pickerRect.bottom + 5,
-            left: pickerRect.left,
+            top,
+            left,
+            bottom: pickerRect.height + 5,
             parentVm: _this,
             parentEl: _this.$el
           }
         }).$mount();
-        document.body.appendChild(this.dropdownVm.$el);
+        if (this.appendToBody) document.body.appendChild(this.dropdownVm.$el);
+        else this.$el.appendChild(this.dropdownVm.$el);
         this.dropdownVm.show();
       } else {
-        this.dropdownVm.top = pickerRect.bottom + 5;
-        this.dropdownVm.left = pickerRect.left;
+        this.dropdownVm.top = top;
+        this.dropdownVm.left = left;
         this.dropdownVm.show();
       }
     },

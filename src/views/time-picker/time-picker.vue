@@ -155,7 +155,9 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
+              <p>过滤小时</p>
               <y-time-picker :filter-time="filterTime" v-model="time6" />
+              <p>左右两边都过滤小时</p>
               <y-time-picker range :filter-time="filterRangeTime" v-model="time7" />
             </div>
             <y-divider position="left">说明</y-divider>
@@ -177,7 +179,8 @@
             <code-action-bar :name="getNav('SJGL').name" />
             <pre>
             <code>
-  &lt;y-date-picker :filter-time="filterTime" v-model="date19" type="datetime" /&gt;
+  &lt;y-time-picker :filter-time="filterTime" v-model="time6" /&gt;
+  &lt;y-time-picker range :filter-time="filterRangeTime" v-model="time7" /&gt;
 
   export default {
     data() {
@@ -187,24 +190,23 @@
       }
     },
     methods: {
-      filterTime(type) {
+      filterTime(num, type) {
         if (type == "hour") {
-          return 12;
-        } else if (type == "minute") {
-          return [0, 10, 20, 30, 40, 50];
-        } else return [0, 30];
+          return num &gt; 8;
+        }
+        return true;
       },
       filterRangeTime(num, type, order) {
         // 设置第一个时间选择框
         if (order == "first") {
           if (type == "hour") {
-            return num > 8;
+            return num &gt; 8;
           } else return true;
         }
         // 设置第二个时间选择框
         else {
           if (type == "hour") {
-            return num < 22;
+            return num &lt; 22;
           } else return true;
         }
       }
@@ -278,7 +280,7 @@ export default {
           id: "SJGL",
           name: "时间过滤",
           version: "1.0.0",
-          height: "150px"
+          height: "300px"
         },
         {
           id: "PROPS",
@@ -354,15 +356,8 @@ export default {
         },
         {
           version: "1.0.0",
-          attr: "disabled-date",
-          explain: `设置不可选的时间函数`,
-          type: "Function",
-          default: "-"
-        },
-        {
-          version: "1.0.0",
           attr: "filter-time",
-          explain: `设置时间选择项函数`,
+          explain: `设置时间过滤函数`,
           type: "Function",
           default: "-"
         }
