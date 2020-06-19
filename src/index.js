@@ -31,7 +31,9 @@ export const Slider = components.Slider
 export const Switch = components.Switch
 export const Table = components.Table
 export const TimeLine = components.TimeLine
+export const TimePicker = components.TimePicker
 export const Tooltip = components.Tooltip
+export const Upload = components.Upload
 
 export const AlertJs = componentJs.AlertJs
 export const DialogJs = componentJs.DialogJs

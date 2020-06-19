@@ -1,18 +1,8 @@
-&lt;y-dialog v-model="visible5" width="500px" height="500px" title="自定义宽高"&gt;
-  &lt;div class="full center"&gt;
-    &lt;p&gt;自定义宽高 500px * 500px&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/y-dialog&gt;
+&lt; &lt;
+&gt; &gt;
 
-&lt;p&gt;选择年范围&lt;/p&gt;
-&lt;y-date-picker type="yearrange" v-model="date5" /&gt;
-&lt;p&gt;{{date5}}&lt;/p&gt;
-&lt;p&gt;选择月范围&lt;/p&gt;
-&lt;y-date-picker type="monthrange" v-model="date6" /&gt;
-&lt;p&gt;{{date6}}&lt;/p&gt;
-&lt;p&gt;选择日范围&lt;/p&gt;
-&lt;y-date-picker type="daterange" v-model="date7" /&gt;
-&lt;p&gt;{{date7}}&lt;/p&gt;
-&lt;p&gt;选择时间范围&lt;/p&gt;
-&lt;y-date-picker type="datetimerange" v-model="date8" /&gt;
-&lt;p&gt;{{date8}}&lt;/p&gt;
+&lt;y-upload :active="active1" action="/egg/upload"&gt;
+  &lt;y-button type="primary" @click="active1 = true"&gt;
+    &lt;y-icon type="upload" size="18"&gt;&lt;/y-icon&gt;上传 
+  &lt;/y-button&gt;
+&lt;/y-upload&gt;

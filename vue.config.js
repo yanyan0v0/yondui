@@ -64,5 +64,16 @@ module.exports = {
       preProcessor: 'less',
       patterns: [path.resolve(__dirname, './src/assets/less/common.less')]
     }
+  },
+  devServer: {
+    proxy: {
+      '/egg': {
+        target: 'http://127.0.0.1:7001',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/egg': ''
+        }
+      }
+    }
   }
 }

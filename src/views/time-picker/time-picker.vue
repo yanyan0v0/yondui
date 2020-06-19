@@ -251,8 +251,6 @@ export default {
       time5: "",
       time6: "",
       time7: "",
-      time8: "",
-      time9: "",
       navList: [
         {
           id: "JC",
@@ -287,6 +285,11 @@ export default {
         {
           id: "PROPS",
           name: "TimePicker Props",
+          version: "1.0.0"
+        },
+        {
+          id: "SLOTS",
+          name: "TimePicker Slots",
           version: "1.0.0"
         },
         {

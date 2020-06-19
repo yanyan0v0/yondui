@@ -184,6 +184,13 @@ export const MENU_LIST = [
         to: "tooltip",
         file: '/tooltip/tooltip.vue'
       },
+      {
+        id: 225,
+        name: "Upload 文件上传",
+        icon: "upload",
+        to: "upload",
+        file: '/upload/upload.vue'
+      },
     ]
   }
 ]

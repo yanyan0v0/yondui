@@ -32,6 +32,7 @@ import Switch from '@/components/switch/switch.vue'
 import TimeLine from '@/components/timeline/timeline.vue'
 import TimePicker from '@/components/time-picker/time-picker.vue'
 import Tooltip from '@/components/tooltip/tooltip.vue'
+import Upload from '@/components/upload/upload.vue'
 
 // 函数式
 import AlertJs from '@/components/alert/alert.js'
@@ -70,7 +71,8 @@ export const components = {
   Table,
   TimeLine,
   TimePicker,
-  Tooltip
+  Tooltip,
+  Upload
 }
 
 export const componentJs = {

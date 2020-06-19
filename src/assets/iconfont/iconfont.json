@@ -6,6 +6,20 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "88049",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "88092",
+      "name": "upload",
+      "font_class": "upload",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "1441172",
       "name": "calendar",
       "font_class": "calendar",
