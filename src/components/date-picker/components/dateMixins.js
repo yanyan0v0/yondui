@@ -53,7 +53,7 @@ export default {
       };
     },
     handleMultiple(date) {
-      if (this.$parent.isMultiple) {
+      if (this.$parent.multiple) {
         let time = date.Format("yyyy-MM-dd");
         let index = this.multiSelect.findIndex(item => new Date(item).Format("yyyy-MM-dd") == time);
         if (index != -1) {

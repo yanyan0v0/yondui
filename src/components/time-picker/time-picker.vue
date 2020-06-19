@@ -7,7 +7,7 @@
       :size="size"
       :clearable="clearable"
       :placeholder="placeholder"
-      @on-focus="handleInputFocus"
+      @on-click="handleInputFocus"
       @on-clear="handleClear"
     >
       <template slot="prefix">
@@ -40,6 +40,7 @@ export default {
     immediate: Boolean,
     clearable: Boolean,
     disabled: Boolean,
+    hideFooter: Boolean,
     disabledTime: Function,
     filterTime: Function,
     appendToBody: {
@@ -109,7 +110,7 @@ export default {
     handleInputFocus() {
       let pickerRect = this.$el.getBoundingClientRect();
       let top = this.appendToBody ? pickerRect.bottom + 5 : "";
-      let left = this.appendToBody ? pickerRect.left : 0;
+      let left = this.appendToBody ? pickerRect.left : 5;
       if (!this.dropdownVm) {
         let _this = this;
         const DropdownConstructor = Vue.extend(TimePcikerDropdown);
@@ -149,14 +150,8 @@ export default {
       handler(value) {
         if (value) {
           if (this.range) {
-            let ifBigger = true;
-            if (value[0] && value[1]) {
-              // 判断谁大谁小
-              ifBigger =
-                new Date(value[1]).getTime() > new Date(value[0]).getTime();
-            }
-            let firstTime = value[ifBigger ? 0 : 1];
-            let secondTime = value[ifBigger ? 1 : 0];
+            let firstTime = value[0];
+            let secondTime = value[1];
             let text = "";
             if (firstTime) {
               text = this.handleFormat(firstTime).format + "-";

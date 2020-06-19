@@ -64,7 +64,7 @@ export default {
           return this.range.includes(time);
         }
         // 当为多选
-        if (this.$parent.isMultiple) {
+        if (this.$parent.multiple) {
           return this.multiSelect.find(
             item => new Date(item).Format("yyyy-MM-dd") == time
           );

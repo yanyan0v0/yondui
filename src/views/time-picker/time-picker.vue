@@ -44,6 +44,7 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <y-time-picker range v-model="time2" />
+              <p>{{time2}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -223,6 +224,7 @@
         :name="$options.name"
         :propList="filterVersion(propList)"
         :eventList="filterVersion(eventList)"
+        :slotList="filterVersion(slotList)"
       ></footer-table>
     </article>
 
@@ -356,6 +358,20 @@ export default {
         },
         {
           version: "1.0.0",
+          attr: "immediate",
+          explain: `是否选择即变化`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          version: "1.0.0",
+          attr: "hide-footer",
+          explain: `是否隐藏底部操作栏`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          version: "1.0.0",
           attr: "filter-time",
           explain: `设置时间过滤函数`,
           type: "Function",
@@ -377,6 +393,12 @@ export default {
           attr: "on-clear",
           explain: "点击清空按钮的回调",
           return: "无"
+        }
+      ],
+      slotList: [
+        {
+          attr: "footer",
+          explain: "自定义底部操作栏"
         }
       ]
     };

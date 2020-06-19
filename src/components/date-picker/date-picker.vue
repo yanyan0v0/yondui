@@ -7,7 +7,7 @@
       :size="size"
       :clearable="clearable"
       :placeholder="placeholder"
-      @on-focus="handleInputFocus"
+      @on-click="handleInputFocus"
       @on-clear="handleClear"
     >
       <template slot="prefix">
@@ -68,7 +68,14 @@ export default {
   computed: {
     // 时间格式
     dateFormat() {
-      return this.formats[this.type];
+      if (this.format && this.type.indexOf("time") != -1) {
+        let text = "yyyy-MM-dd ";
+        if (this.format.indexOf("h") != -1) text += "hh:";
+        if (this.format.indexOf("m") != -1) text += "mm";
+        if (this.format.indexOf("s") != -1) text += ":ss";
+        if (text == "hh:") text = "hh";
+        return text;
+      } else return this.formats[this.type];
     }
   },
   methods: {

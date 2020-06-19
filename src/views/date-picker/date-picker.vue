@@ -328,48 +328,6 @@
         </y-card>
       </div>
 
-      <!-- 分割线 -->
-      <div v-show="compareVersion('SJGL')">
-        <h3 id="SJGL">{{getNav('SJGL').name}}</h3>
-        <y-card :split="2">
-          <div slot="card1" class="preview-card">
-            <div class="preview">
-              <y-date-picker :filter-time="filterTime" v-model="date19" type="datetime" />
-            </div>
-            <y-divider position="left">说明</y-divider>
-            <div class="introduce">
-              设置属性
-              <code>filter-time</code>，传递一个函数，参数为hour | minute | second，返回值可以是数字或数组。
-            </div>
-          </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SJGL').height}">
-            <code-action-bar :name="getNav('SJGL').name" />
-            <pre>
-            <code>
-  &lt;y-date-picker :filter-time="filterTime" v-model="date19" type="datetime" /&gt;
-
-  export default {
-    data() {
-      return {
-        date19: ''
-      }
-    },
-    methods: {
-      filterTime(type) {
-        if (type == "hour") {
-          return 12;
-        } else if (type == "minute") {
-          return [0, 10, 20, 30, 40, 50];
-        } else return [0, 30];
-      }
-    }
-  }
-            </code>
-            </pre>
-          </div>
-        </y-card>
-      </div>
-
       <!-- 底部API说明 -->
       <footer-table
         :name="$options.name"
@@ -450,12 +408,6 @@ export default {
           name: "禁用函数",
           version: "1.0.0",
           height: "180px"
-        },
-        {
-          id: "SJGL",
-          name: "时间过滤",
-          version: "1.0.0",
-          height: "150px"
         },
         {
           id: "PROPS",
@@ -539,7 +491,7 @@ export default {
         {
           version: "1.0.0",
           attr: "filter-time",
-          explain: `设置时间选择项函数`,
+          explain: `设置时间过滤函数, 详情见TimePicker组件`,
           type: "Function",
           default: "-"
         }
@@ -566,13 +518,6 @@ export default {
   methods: {
     handleDisabled(date) {
       return date.getTime() > new Date().getTime();
-    },
-    filterTime(type) {
-      if (type == "hour") {
-        return 12;
-      } else if (type == "minute") {
-        return [0, 10, 20, 30, 40, 50];
-      } else return [0, 30];
     }
   }
 };

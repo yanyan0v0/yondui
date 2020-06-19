@@ -4,17 +4,22 @@
       <!-- 日期选择 -->
       <component :is="componentName" :value="date"></component>
       <!-- 底部时间选择和确认栏 -->
-      <div v-show="showTimeInput || isMultiple" class="y-date-picker-dropdown-footer">
+      <div v-show="showTime || multiple" class="y-date-picker-dropdown-footer">
         <y-time-picker
-          v-if="showTimeInput"
+          v-if="showTime"
           v-model="timeValue"
           size="small"
+          immediate
+          hide-footer
+          :format="timeFormat"
           :append-to-body="false"
-          :width="dateType==='datetimerange' ? '150px' : '100px'"
+          :width="dateType==='datetimerange' ? '200px' : '120px'"
           :range="dateType==='datetimerange'"
+          :filter-time="filterTime"
           @on-change="handleTimeChange"
         ></y-time-picker>
-        <y-button color="primary" shape="text" size="small" @click="handleCurrent">此刻</y-button>
+        <!-- 占位元素 -->
+        <span></span>
         <div>
           <y-button color="primary" size="small" @click="handleConfirm">确定</y-button>
         </div>
@@ -58,9 +63,11 @@ export default {
       parentVm: null,
       // clickoutside所需参数
       parentEl: null,
-      // 时间值
+      // time-picker组件绑定的时间值
       timeValue: "",
-      // 当需要点击确定才能回显数据的情况时需要保存未确定的时间数据，当多选时为数组类型
+      // 保存未确定的时间数据，在type=datetime|datetimerange 或 多选时需要
+      // type=datetime为String类型
+      // type=datetimerange 或 多选时为数组类型
       tempDate: "",
       tempTime: ""
     };
@@ -71,12 +78,25 @@ export default {
       return this.parentVm.type;
     },
     // 是否多选
-    isMultiple() {
+    multiple() {
       return this.parentVm.multiple;
     },
-    // 时间格式
+    // 日期格式
     dateFormat() {
       return this.parentVm.dateFormat;
+    },
+    // 时间过滤函数
+    filterTime() {
+      return this.parentVm.filterTime;
+    },
+    // 时间格式
+    timeFormat() {
+      if (this.parentVm.format) {
+        let index = this.parentVm.format.indexOf("h");
+        return this.parentVm.format.slice(index);
+      } else {
+        return "";
+      }
     },
     componentName() {
       let name = "";
@@ -107,7 +127,7 @@ export default {
         zIndex: this.$YONDUI.getZindex()
       };
     },
-    showTimeInput() {
+    showTime() {
       return this.dateType.indexOf("time") != -1;
     }
   },
@@ -115,16 +135,27 @@ export default {
     handleDate(date) {
       if (date) {
         if (Array.isArray(date)) {
-          if (this.isMultiple) {
+          if (this.multiple) {
             this.date = JSON.parse(JSON.stringify(date));
+            this.tempTime = this.date.map(item =>
+              new Date(item).Format("hh:mm:ss")
+            );
+            this.timeValue = this.date[this.date.length - 1]
+              ? new Date(this.date[this.date.length - 1]).Format("hh:mm:ss")
+              : "";
           } else {
             this.date = [
               date[0] ? new Date(date[0]) : "",
               date[1] ? new Date(date[1]) : ""
             ];
+            this.timeValue = [
+              date[0] ? new Date(date[0]).Format("hh:mm:ss") : "",
+              date[1] ? new Date(date[1]).Format("hh:mm:ss") : ""
+            ];
           }
         } else {
           this.date = new Date(date);
+          this.timeValue = this.date.Format("hh:mm:ss");
         }
       }
     },
@@ -136,42 +167,34 @@ export default {
       this.visible = true;
       this.parentVm.$emit("on-visible-change", true);
     },
-    // 给Year, Month, Day子组件调用的方法
+    // 给Year, Month, Day，Range子组件调用的方法
     handleEmit(date) {
-      if (!this.showTimeInput && !this.isMultiple) {
+      if (!this.showTime && !this.multiple) {
         this.parentVm.emitChange(date);
         this.hide();
       } else {
         this.tempDate = date;
+        if (this.multiple) this.tempTime.push(this.timeValue);
+        else this.tempTime = this.timeValue;
       }
     },
     handleTimeChange(time) {
-      if (Array.isArray(time)) {
-        let text = "";
-        if (time[0]) {
-          text = time[0] + " - ";
-        }
-        if (time[1]) {
-          text += time[1];
-        }
-        this.tempTime = text;
+      console.log(time);
+      if (this.multiple) {
+        if (this.tempTime.length)
+          this.tempTime[this.tempTime.length - 1] = time;
+        else this.tempTime.push(time);
       } else {
         this.tempTime = time;
-        if (this.isMultiple && this.tempTime.length) {
-          this.tempTime[this.tempTime.length - 1] = time;
-        }
       }
     },
-    handleCurrent() {
-      this.parentVm.emitChange(new Date());
-    },
     handleConfirm() {
-      let time = this.timeValue;
-      if (this.isMultiple) {
-        time = this.tempTime;
-        if (this.tempDate.length) this.parentVm.emitChange(this.tempDate, time);
+      if (this.multiple) {
+        if (this.tempDate.length)
+          this.parentVm.emitChange(this.tempDate, this.tempTime);
       } else {
-        if (this.tempDate) this.parentVm.emitChange(this.tempDate, time);
+        if (this.tempDate)
+          this.parentVm.emitChange(this.tempDate, this.tempTime);
       }
       this.hide();
     }

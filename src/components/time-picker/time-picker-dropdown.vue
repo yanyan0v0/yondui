@@ -9,12 +9,20 @@
     >
       <y-time v-if="!range" :value="timeValue" :show="visible" @on-change="handleChange"></y-time>
       <y-time-range v-else :value="timeValue" :show="visible" @on-change="handleChange"></y-time-range>
-      <div class="y-time-picker-dropdown-footer">
-        <y-button color="primary" shape="text" size="mini" @click="handleCurrent">此刻</y-button>
-        <div>
-          <y-button shape="text" size="mini" @click="handleCancel">取消</y-button>
-          <y-button color="primary" shape="text" size="mini" @click="handleConfirm()">确定</y-button>
-        </div>
+      <div v-show="!hideFooter" class="y-time-picker-dropdown-footer">
+        <slot name="footer">
+          <y-button color="primary" shape="text" size="mini" @click="handleCurrent">此刻</y-button>
+          <div>
+            <y-button shape="text" size="mini" @click="handleCancel">取消</y-button>
+            <y-button
+              v-show="!immediate"
+              color="primary"
+              shape="text"
+              size="mini"
+              @click="handleConfirm()"
+            >确定</y-button>
+          </div>
+        </slot>
       </div>
     </div>
   </transition>
@@ -72,6 +80,10 @@ export default {
     immediate() {
       return this.parentVm.immediate;
     },
+    // 是否隐藏底部操作栏
+    hideFooter() {
+      return this.parentVm.hideFooter;
+    },
     style() {
       return {
         top: this.top + "px",
@@ -103,14 +115,15 @@ export default {
     },
     handleChange(time) {
       if (this.immediate) {
-        this.handleConfirm(time);
+        this.initialValue = "";
+        this.parentVm.emitChange(time);
       } else {
         this.tempTime = time;
       }
     },
-    handleConfirm(time) {
+    handleConfirm() {
       this.initialValue = "";
-      this.parentVm.emitChange(time || this.tempTime);
+      this.parentVm.emitChange(this.tempTime);
       this.hide();
     },
     handleCurrent() {

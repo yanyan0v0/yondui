@@ -107,19 +107,19 @@ export default {
     scrollTo() {
       if (this.show) {
         this.$refs.hour &&
-          this.$refs.hour[0].getElementsByClassName("active-li").length &&
+          this.$refs.hour[0].getElementsByClassName("active-time").length &&
           this.$refs.hour[0]
-            .getElementsByClassName("active-li")[0]
+            .getElementsByClassName("active-time")[0]
             .scrollIntoView({ block: "center" });
         this.$refs.minute &&
-          this.$refs.minute[0].getElementsByClassName("active-li").length &&
+          this.$refs.minute[0].getElementsByClassName("active-time").length &&
           this.$refs.minute[0]
-            .getElementsByClassName("active-li")[0]
+            .getElementsByClassName("active-time")[0]
             .scrollIntoView({ block: "center" });
         this.$refs.second &&
-          this.$refs.second[0].getElementsByClassName("active-li").length &&
+          this.$refs.second[0].getElementsByClassName("active-time").length &&
           this.$refs.second[0]
-            .getElementsByClassName("active-li")[0]
+            .getElementsByClassName("active-time")[0]
             .scrollIntoView({ block: "center" });
       }
     }
