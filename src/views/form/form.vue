@@ -2,7 +2,7 @@
   <div class="main-row">
     <!-- 文档内容 -->
     <article class="code-article" v-scrolling>
-      <h1>Upload 文件上传</h1>
+      <h1>Form 表单</h1>
       <h2>代码示例</h2>
       <!-- 分割线 -->
       <div v-show="compareVersion('JC')">
@@ -51,7 +51,12 @@
         :name="$options.name"
         :propList="filterVersion(propList)"
         :eventList="filterVersion(eventList)"
-      ></footer-table>
+      >
+        <div>
+          <h3 id="METHODS">{{getNav('METHODS').name}}</h3>
+          <y-table :data="filterVersion(methodList)" :columns="eventColumn"></y-table>
+        </div>
+      </footer-table>
     </article>
 
     <!-- 导航滚动条 -->
@@ -61,8 +66,9 @@
 
 <script>
 import viewMixins from "@/util/viewMixins";
+import { EVENT_COLUMNS } from "@/util/config";
 export default {
-  name: "Upload",
+  name: "Form",
   components: {
     "code-action-bar": () => import("@/views/code-action-bar.vue"),
     "footer-table": () => import("@/views/footer-table.vue")
@@ -70,8 +76,6 @@ export default {
   mixins: [viewMixins],
   data() {
     return {
-      active1: false,
-      time1: "",
       navList: [
         {
           id: "JC",
@@ -81,67 +85,94 @@ export default {
         },
         {
           id: "PROPS",
-          name: "Upload Props",
+          name: "Form Props",
           version: "1.0.0"
         },
         {
           id: "EVENTS",
-          name: "Upload Events",
+          name: "Form Events",
+          version: "1.0.0"
+        },
+        {
+          id: "METHODS",
+          name: "Form Methods",
           version: "1.0.0"
         }
       ],
+      eventColumn: EVENT_COLUMNS,
       propList: [
         {
-          attr: "active",
-          explain: `是否激活上传`,
-          type: "Boolean",
-          default: "false"
-        },
-        {
           version: "1.0.0",
-          attr: "action",
-          explain: `上传的地址`,
-          type: "String",
-          default: "-"
-        },
-        {
-          version: "1.0.0",
-          attr: "headers",
-          explain: `设置上传的请求头部`,
+          attr: "value",
+          explain: `可以使用 <code class="keyword-code">v-model</code> 双向绑定数据`,
           type: "Object",
           default: "-"
         },
         {
           version: "1.0.0",
-          attr: "data",
-          explain: `上传时附带的额外参数`,
-          type: "Object",
+          attr: "rules",
+          explain: `表单验证规则，具体配置查看 <a class="keyword-a" href="https://github.com/yiminghe/async-validator">async-validator</a>`,
+          type: "String",
           default: "-"
         },
         {
-          attr: "multiple",
-          explain: `是否多选文件`,
+          attr: "inline",
+          explain: `是否开启行内表单模式`,
           type: "Boolean",
           default: "false"
         },
         {
           version: "1.0.0",
-          attr: "accept",
-          explain: `接受上传的文件类型，input 标签原生的 accept 属性`,
-          type: "String",
+          attr: "label-width",
+          explain: `表单域标签的宽度，所有的 FormItem 都会继承 Form 组件的 label-width 的值`,
+          type: "Object",
           default: "-"
+        },
+        {
+          attr: "show-error",
+          explain: `是否显示校验错误信息`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "hide-required-mark",
+          explain: `是否隐藏所有表单项的必选标记`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "label-colon",
+          explain: `是否自动在 label 名称后添加冒号`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "disabled",
+          explain: `是否禁用该表单内的所有组件（适用于具有 disabled 属性的表单类组件）`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "autocomplete",
+          explain: `原生的 autocomplete 属性，可选值为 off 或 on`,
+          type: "String",
+          default: "off"
         }
       ],
       eventList: [
         {
-          attr: "on-success",
-          explain: "文件上传成功时的钩子",
-          return: "response"
-        },
+          attr: "on-validate",
+          explain:
+            "任一表单项被校验后触发，返回表单项 prop、校验状态、错误消息",
+          return: "prop, status, error"
+        }
+      ],
+      methodList: [
         {
-          attr: "on-error",
-          explain: "文件上传失败时的钩子",
-          return: "error"
+          attr: "validate",
+          explain:
+            "对整个表单进行校验，参数为检验完的回调，会返回一个 Boolean 表示成功与失败，支持 Promise",
+          return: "	callback"
         }
       ]
     };
