@@ -10,11 +10,15 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-upload :active="active1" action="/egg/upload">
-                <y-button color="primary" @click="active1 = true">
-                  <y-icon type="upload" size="18" />上传
-                </y-button>
-              </y-upload>
+              <y-form label-width="100px" inline>
+                <y-form-item label="姓名" error="姓名不能为空">
+                  <y-input maxlength="12"></y-input>
+                </y-form-item>
+                <y-form-item label="性别" error="性别不能为空">
+                  <y-radio>男</y-radio>
+                  <y-radio>女</y-radio>
+                </y-form-item>
+              </y-form>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -24,7 +28,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
-            <code-action-bar :name="getNav('JC').name" />
+            <code-action-bar :name="getNav('JC').name"/>
             <pre>
             <code>
   &lt;y-upload :active="active1" action="/egg/upload"&gt;

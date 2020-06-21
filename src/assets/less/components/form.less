@@ -1,0 +1,46 @@
+.y-form {
+  &-inline{
+    .flex;
+  }
+  &-item {
+    position: relative;
+    padding-bottom: 20px;
+    &-inline{
+      .flex;
+    }
+    &-label {
+      line-height: 1;
+      & > span {
+        color: @error-color
+      }
+      &-right {
+        padding: 8px;
+        float: left;
+        text-align: right
+      }
+      &-left {
+        padding: 8px;
+        float: left;
+        text-align: left
+      }
+      &-top {
+        display: inline-block;
+        padding: 8px 0;
+      }
+    }
+    &-content{
+      .center-h;
+      &&-error{
+        .y-input{
+          border-color: @error-color;
+        }
+      }
+    }
+    &-error-message{
+      position: absolute;
+      bottom: 2px;
+      color: @error-color;
+      font-size: 12px;
+    }
+  }
+}

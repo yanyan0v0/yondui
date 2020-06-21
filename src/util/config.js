@@ -87,6 +87,13 @@ export const MENU_LIST = [
         file: '/dropdown/dropdown.vue'
       },
       {
+        id: 226,
+        name: "Form 表单",
+        icon: "xiala",
+        to: "form",
+        file: '/form/form.vue'
+      },
+      {
         id: 22,
         name: "Icon 图标",
         icon: "tubiao",

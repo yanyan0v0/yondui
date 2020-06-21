@@ -15,6 +15,8 @@ import Draw from '@/components/draw/draw.vue'
 import Dropdown from '@/components/dropdown/dropdown.vue'
 import DropdownMenu from '@/components/dropdown/dropdown-menu.vue'
 import DropdownItem from '@/components/dropdown/dropdown-item.vue'
+import Form from '@/components/form/form.vue'
+import FormItem from '@/components/form/form-item.vue'
 import Icon from '@/components/icon/icon.vue'
 import Image from '@/components/image/image.vue'
 import Input from '@/components/input/input.vue'
@@ -55,6 +57,8 @@ export const components = {
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  Form,
+  FormItem,
   Icon,
   Image,
   Input,
