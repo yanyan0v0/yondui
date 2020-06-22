@@ -40,7 +40,7 @@
 import tinycolor from "tinycolor2";
 import clickoutside from "@/directive/clickoutside";
 import { THEME_COLORS } from "@/util/config";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 import YPanel from "./components/panel.vue";
 import YHue from "./components/hue.vue";
 import YAlpha from "./components/alpha.vue";

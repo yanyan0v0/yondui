@@ -1,31 +1,68 @@
 .y-switch {
   display: inline-block;
   position: relative;
-  width: 62px;
-  height: 30px;
+  height: 25px;
   border-radius: 25px;
   user-select: none;
   background-color: @disabled-color;
   transition: background-color 0.2s ease-in-out;
+  vertical-align: middle;
   &-inner {
+    .center;
     position: absolute;
     top: 2px;
-    left: 2px;
-    width: 26px;
-    height: 26px;
+    // margin: 2px;
+    width: 21px;
+    height: 21px;
     border-radius: 50%;
     background-color: #fff;
-    transition: left 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
-    .center;
+    &-left{
+      left: 2px;
+      animation: y-loading-spinner 0.3s ease-in-out;
+      @keyframes y-loading-spinner {
+        0%{
+          left: 12px;
+        }
+        100% {
+          left: 2px;
+        }
+      }
+    }
+    &-right{
+      right: 2px;
+      animation: y-loading-spinner1 0.3s ease-in-out;
+      @keyframes y-loading-spinner1 {
+        0%{
+          right: 12px;
+        }
+        100% {
+          right: 2px;
+        }
+      }
+    }
   }
   &-inner&-loading {
     cursor: default;
   }
   &-name {
+    vertical-align: top;
     color: #fff;
-    line-height: 30px;
-    padding: 0 5px;
+    line-height: 25px;
+    font-size: 12px;
+    &-left{
+      padding: 0 25px 0 5px;
+    }
+    &-empty-left{
+      padding: 0 25px 0 20px;
+    }
+    &-right{
+      padding: 0 5px 0 25px;
+    }
+    &-empty-right{
+      padding: 0 20px 0 25px;
+    }
   }
 }
 .y-switch-disabled {
@@ -35,59 +72,71 @@
     cursor: not-allowed;
   }
 }
-.y-switch-checked {
-  .y-switch-inner {
-    left: 34px;
-  }
-}
 .y-switch-large {
-  width: 72px;
-  height: 35px;
+  height: 30px;
   .y-switch-inner {
-    width: 31px;
-    height: 31px;
+    width: 26px;
+    height: 26px;
   }
   .y-switch-name {
-    font-size: 16px;
-    line-height: 35px;
-  }
-  &.y-switch-checked {
-    .y-switch-inner {
-      left: 39px;
+    font-size: 14px;
+    line-height: 30px;
+    &-left{
+      padding: 0 30px 0 5px;
+    }
+    &-empty-left{
+      padding: 0 30px 0 25px;
+    }
+    &-right{
+      padding: 0 5px 0 30px;
+    }
+    &-empty-right{
+      padding: 0 25px 0 30px;
     }
   }
 }
 .y-switch-small {
-  width: 54px;
-  height: 25px;
-  .y-switch-inner {
-    width: 21px;
-    height: 21px;
-  }
-  .y-switch-name {
-    font-size: 12px;
-    line-height: 25px;
-  }
-  &.y-switch-checked {
-    .y-switch-inner {
-      left: 31px;
-    }
-  }
-}
-.y-switch-mini {
-  width: 48px;
   height: 20px;
   .y-switch-inner {
     width: 16px;
     height: 16px;
   }
   .y-switch-name {
-    font-size: 12px;
     line-height: 20px;
+    &-left{
+      padding: 0 20px 0 5px;
+    }
+    &-empty-left{
+      padding: 0 20px 0 15px;
+    }
+    &-right{
+      padding: 0 5px 0 20px;
+    }
+    &-empty-right{
+      padding: 0 15px 0 20px;
+    }
   }
-  &.y-switch-checked {
-    .y-switch-inner {
-      left: 30px;
+}
+.y-switch-mini {
+  height: 15px;
+  .y-switch-inner {
+    width: 11px;
+    height: 11px;
+  }
+  .y-switch-name {
+    font-size: 12px;
+    line-height: 15px;
+    &-left{
+      padding: 0 15px 0 5px;
+    }
+    &-empty-left{
+      padding: 0 15px 0 10px;
+    }
+    &-right{
+      padding: 0 5px 0 15px;
+    }
+    &-empty-right{
+      padding: 0 10px 0 15px;
     }
   }
 }

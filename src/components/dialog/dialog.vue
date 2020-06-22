@@ -50,7 +50,7 @@
 
 <script>
 import { TYPE_ICONS } from "@/util/config";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 export default {
   name: "y-dialog",
   mixins: [componentMixins],

@@ -17,7 +17,7 @@
               通过设置
               <code>v-model</code>实现数据的双向绑定，
               可以直接设置
-              <code>width</code>来改变输入框的宽度，默认 100%。
+              <code>width</code>来改变输入框的宽度，默认 auto。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card">
@@ -202,6 +202,7 @@
         :name="$options.name"
         :propList="filterVersion(propList)"
         :slotList="filterVersion(slotList)"
+        :eventList="filterVersion(eventList)"
       ></footer-table>
     </article>
 
@@ -211,7 +212,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 export default {
   name: "Input",
   components: {
@@ -270,6 +271,11 @@ export default {
           id: "SLOTS",
           name: "Input Slots",
           version: "1.0.0"
+        },
+        {
+          id: "EVENTS",
+          name: "Input Events",
+          version: "1.0.0"
         }
       ],
       propList: [
@@ -301,7 +307,7 @@ export default {
           attr: "width",
           explain: `宽度`,
           type: "String",
-          default: "100%"
+          default: "auto"
         },
         {
           attr: "placeholder",
@@ -330,6 +336,63 @@ export default {
         {
           attr: "suffix",
           explain: `输入框尾部图标`
+        }
+      ],
+      eventList: [
+        {
+          attr: "on-focus",
+          explain: `输入框聚焦时触发`,
+          return: "无"
+        },
+        {
+          attr: "on-enter",
+          explain: `按下回车键时触发`,
+          return: "value"
+        },
+        {
+          attr: "on-click",
+          explain: `点击input时触发`,
+          return: "event"
+        },
+        {
+          attr: "on-change",
+          explain: `数据改变时触发`,
+          return: "value"
+        },
+        {
+          attr: "on-blur",
+          explain: `输入框失去焦点时触发`,
+          return: "event"
+        },
+        {
+          attr: "on-clear",
+          explain: `点击清空按钮时触发`,
+          return: "无"
+        },
+        {
+          attr: "on-prefix-click",
+          explain: `点击头部图标时触发`,
+          return: "event"
+        },
+        {
+          attr: "on-suffix-click",
+          explain: `点击尾部图标时触发`,
+          return: "event"
+        },
+        {
+          attr: "on-keydown",
+          explain: `原生的 keydown 事件`,
+          return: "event"
+        },
+        {
+          attr: "on-keypress",
+          explain: `原生的 keypress 事件`,
+          return: "event"
+        },
+        {
+          attr: "on-keyup",
+          explain: `原生的 keyup 事件`,
+          return: "event"
         }
       ]
     };

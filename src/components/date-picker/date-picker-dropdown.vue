@@ -30,7 +30,7 @@
 
 <script>
 import clickoutside from "@/directive/clickoutside";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 import Day from "./components/day.vue";
 import Month from "./components/month.vue";
 import Year from "./components/year.vue";

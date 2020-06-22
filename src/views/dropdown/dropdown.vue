@@ -503,7 +503,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 import { PROP_COLUMNS } from "@/util/config";
 export default {
   name: "Dropdown",

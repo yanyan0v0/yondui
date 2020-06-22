@@ -79,7 +79,7 @@
 
 <script>
 import { deepCopy, getBrowser } from "@/util/tools";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 import TableSlot from "./components/slot";
 import TableRender from "./components/render";
 export default {

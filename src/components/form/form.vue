@@ -17,9 +17,12 @@ export default {
       default: "right"
     },
     disabled: Boolean,
-    showError: Boolean,
+    showError: {
+      type: Boolean,
+      default: true
+    },
     hideRequiredMark: Boolean,
-    labelColon: Boolean,
+    labelSymbol: String,
     autocomplete: {
       type: String,
       default: "off"

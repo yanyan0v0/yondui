@@ -234,7 +234,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 export default {
   name: "TimePicker",
   components: {
@@ -323,7 +323,7 @@ export default {
           attr: "width",
           explain: `宽度`,
           type: "String",
-          default: "100%"
+          default: "auto"
         },
         {
           version: "1.0.0",

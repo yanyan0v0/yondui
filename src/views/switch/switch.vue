@@ -83,51 +83,89 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview preview-switch">
-              <y-switch v-model="switch2" size="large">
-                <template slot="open">ON</template>
-                <template slot="close">OFF</template>
+              <y-switch v-model="switch4" size="large">
+                <template slot="open">是</template>
+                <template slot="close">否</template>
               </y-switch>
-              <y-switch v-model="switch2">
-                <template slot="open">ON</template>
-                <template slot="close">OFF</template>
+              <y-switch v-model="switch4">
+                <template slot="open">是</template>
+                <template slot="close">否</template>
               </y-switch>
-              <y-switch v-model="switch2" size="small">
-                <template slot="open">ON</template>
-                <template slot="close">OFF</template>
+              <y-switch v-model="switch4" size="small">
+                <template slot="open">是</template>
+                <template slot="close">否</template>
               </y-switch>
-              <y-switch v-model="switch2" size="mini">
-                <template slot="open">ON</template>
-                <template slot="close">OFF</template>
+              <y-switch v-model="switch4" size="mini">
+                <template slot="open">是</template>
+                <template slot="close">否</template>
               </y-switch>
               <br />
-              <y-switch v-model="switch2" size="large">
+              <y-switch v-model="switch5" size="large">
                 <template slot="open">开启</template>
                 <template slot="close">关闭</template>
               </y-switch>
-              <y-switch v-model="switch2">
+              <y-switch v-model="switch5">
                 <template slot="open">开启</template>
                 <template slot="close">关闭</template>
               </y-switch>
-              <y-switch v-model="switch2" size="small">
+              <y-switch v-model="switch5" size="small">
                 <template slot="open">开启</template>
                 <template slot="close">关闭</template>
               </y-switch>
-              <y-switch v-model="switch2" size="mini">
+              <y-switch v-model="switch5" size="mini">
                 <template slot="open">开启</template>
                 <template slot="close">关闭</template>
               </y-switch>
             </div>
             <y-divider position="left">说明</y-divider>
-            <div class="introduce">自定义内容，建议最多只使用2个汉字。</div>
+            <div class="introduce">自定义内容，长度不限。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('WZ').height}">
             <code-action-bar :name="getNav('WZ').name" />
             <pre>
             <code>
-  &lt;y-switch v-model="switch2"&gt;
-    &lt;template slot="open"&gt;ON&lt;/template&gt;
-    &lt;template slot="close"&gt;OFF&lt;/template&gt;
+  &lt;y-switch v-model="switch4" size="large"&gt;
+    &lt;template slot="open"&gt;是&lt;/template&gt;
+    &lt;template slot="close"&gt;否&lt;/template&gt;
   &lt;/y-switch&gt;
+  &lt;y-switch v-model="switch4"&gt;
+    &lt;template slot="open"&gt;是&lt;/template&gt;
+    &lt;template slot="close"&gt;否&lt;/template&gt;
+  &lt;/y-switch&gt;
+  &lt;y-switch v-model="switch4" size="small"&gt;
+    &lt;template slot="open"&gt;是&lt;/template&gt;
+    &lt;template slot="close"&gt;否&lt;/template&gt;
+  &lt;/y-switch&gt;
+  &lt;y-switch v-model="switch4" size="mini"&gt;
+    &lt;template slot="open"&gt;是&lt;/template&gt;
+    &lt;template slot="close"&gt;否&lt;/template&gt;
+  &lt;/y-switch&gt;
+  &lt;br /&gt;
+  &lt;y-switch v-model="switch5" size="large"&gt;
+    &lt;template slot="open"&gt;开启&lt;/template&gt;
+    &lt;template slot="close"&gt;关闭&lt;/template&gt;
+  &lt;/y-switch&gt;
+  &lt;y-switch v-model="switch5"&gt;
+    &lt;template slot="open"&gt;开启&lt;/template&gt;
+    &lt;template slot="close"&gt;关闭&lt;/template&gt;
+  &lt;/y-switch&gt;
+  &lt;y-switch v-model="switch5" size="small"&gt;
+    &lt;template slot="open"&gt;开启&lt;/template&gt;
+    &lt;template slot="close"&gt;关闭&lt;/template&gt;
+  &lt;/y-switch&gt;
+  &lt;y-switch v-model="switch5" size="mini"&gt;
+    &lt;template slot="open"&gt;开启&lt;/template&gt;
+    &lt;template slot="close"&gt;关闭&lt;/template&gt;
+  &lt;/y-switch&gt;
+
+  export default {
+    data() {
+      return {
+        switch4: false,
+        switch5: false,
+      };
+    }
+  };
             </code>
             </pre>
           </div>
@@ -232,7 +270,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 export default {
   // [Vue warn]: Do not use built-in or reserved HTML elements as component id: Switch
   name: "Switchs",
@@ -246,6 +284,8 @@ export default {
       switch1: false,
       switch2: false,
       switch3: false,
+      switch4: false,
+      switch5: false,
       navList: [
         {
           id: "JC",
@@ -261,7 +301,8 @@ export default {
         {
           id: "WZ",
           name: "文字",
-          version: "1.0.0"
+          version: "1.0.0",
+          height: "200px"
         },
         {
           id: "JZZ",

@@ -18,7 +18,7 @@ require("echarts/lib/component/legend");
 require("echarts/lib/component/legendScroll");
 
 import { THEME_COLORS, BAR_COLORS } from "@/util/config";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 export default {
   mixins: [componentMixins],
   props: {

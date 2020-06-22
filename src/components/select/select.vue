@@ -3,13 +3,12 @@
     <y-input
       v-model="selectedLabel"
       :readonly="!filterable"
-      type="textarea"
       :height="inputHeight"
       :disabled="disabled"
       :size="size"
       :clearable="clearable"
       :placeholder="placeholder"
-      :class="{'y-select-input': !disabled}"
+      :class="{'y-select-input': !formDisabled}"
       @on-click="handleSelectClick"
       @on-change="handleInputChange"
       @on-clear="handleClear"
@@ -32,10 +31,11 @@
 <script>
 import Vue from "vue";
 import clickoutside from "@/directive/clickoutside";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
+import formMixins from "@/mixins/form";
 export default {
   name: "y-select",
-  mixins: [componentMixins],
+  mixins: [componentMixins, formMixins],
   props: {
     value: [String, Number, Array],
     size: String,

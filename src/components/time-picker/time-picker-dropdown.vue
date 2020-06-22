@@ -30,7 +30,7 @@
 
 <script>
 import clickoutside from "@/directive/clickoutside";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 import YTime from "./components/time.vue";
 import YTimeRange from "./components/time-range.vue";
 import { setDateFormat } from "@/util/tools";

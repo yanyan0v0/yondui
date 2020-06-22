@@ -12,14 +12,10 @@ export default {
   },
   computed: {
     computeSize() {
-      return classPrefix => {
-        return this.size
-          ? classPrefix + this.size
-          : this.$YONDUI.size
-            ? classPrefix + this.$YONDUI.size
-            : "";
-
+      return (classPrefix, parentSize) => {
+        let size = this.size || parentSize || this.$YONDUI.size
+        return size ? classPrefix + size : "";
       }
-    },
+    }
   }
 }

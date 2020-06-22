@@ -303,7 +303,8 @@ export const PROP_COLUMNS = [
 export const SLOT_COLUMNS = [
   {
     key: "attr",
-    title: "属性"
+    title: "属性",
+    width: 150
   },
   {
     key: "explain",
@@ -313,7 +314,8 @@ export const SLOT_COLUMNS = [
 export const EVENT_COLUMNS = [
   {
     key: "attr",
-    title: "事件名"
+    title: "事件名",
+    width: 150
   },
   {
     key: "explain",

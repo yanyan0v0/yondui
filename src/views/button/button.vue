@@ -232,7 +232,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 export default {
   name: "Button",
   components: {

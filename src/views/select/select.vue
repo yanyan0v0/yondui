@@ -406,7 +406,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 import { PROP_COLUMNS } from "@/util/config";
 export default {
   // [Vue warn]: Do not use built-in or reserved HTML elements as component id: Switch
@@ -523,7 +523,7 @@ export default {
           attr: "width",
           explain: `宽度`,
           type: "String",
-          default: "100%"
+          default: "auto"
         },
         {
           version: "1.0.0",

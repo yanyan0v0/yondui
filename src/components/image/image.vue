@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 export default {
   name: "y-image",
   mixins: [componentMixins],

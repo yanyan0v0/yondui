@@ -232,7 +232,7 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 import { PROP_COLUMNS, EVENT_COLUMNS } from "@/util/config";
 export default {
   name: "Checkbox",
@@ -309,6 +309,13 @@ export default {
           explain: `对话框是否显示，需使用 <code class="keyword-code">v-model</code>  双向绑定数据`,
           type: "Boolean",
           default: "false"
+        },
+        {
+          version: "1.0.0",
+          attr: "label",
+          explain: "内容，为空则取value的值",
+          type: "String",
+          default: "空"
         },
         {
           version: "1.0.0",

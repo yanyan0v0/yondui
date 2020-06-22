@@ -17,7 +17,7 @@
 
 <script>
 import { THEME_COLORS } from "@/util/config";
-import componentMixins from "@/util/componentMixins";
+import componentMixins from "@/mixins/component";
 import LoadingSvg from "@/components/loading/svg/oval.vue";
 export default {
   name: "y-button",

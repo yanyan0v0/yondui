@@ -380,7 +380,7 @@
 
 <script>
 import { PROP_COLUMNS } from "@/util/config";
-import viewMixins from "@/util/viewMixins";
+import viewMixins from "@/mixins/view";
 export default {
   name: "Table",
   components: {

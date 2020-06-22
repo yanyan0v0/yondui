@@ -10,37 +10,238 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-form label-width="100px" inline>
-                <y-form-item label="姓名" error="姓名不能为空">
-                  <y-input maxlength="12"></y-input>
+              <y-form label-width="100px">
+                <y-form-item label="姓名">
+                  <y-input v-model="form1.name" placeholder="请输入姓名" maxlength="12"></y-input>
                 </y-form-item>
-                <y-form-item label="性别" error="性别不能为空">
-                  <y-radio>男</y-radio>
-                  <y-radio>女</y-radio>
+                <y-form-item label="性别">
+                  <y-radio-group v-model="form1.sex">
+                    <y-radio :value="0">男</y-radio>
+                    <y-radio :value="1">女</y-radio>
+                  </y-radio-group>
+                </y-form-item>
+                <y-form-item label="是否学生">
+                  <y-switch v-model="form1.ifStudent">
+                    <template slot="open">是</template>
+                    <template slot="close">否</template>
+                  </y-switch>
+                </y-form-item>
+                <y-form-item label="所在城市">
+                  <y-select v-model="form1.city">
+                    <y-option value="北京"></y-option>
+                    <y-option value="上海"></y-option>
+                    <y-option value="广州"></y-option>
+                    <y-option value="深圳"></y-option>
+                  </y-select>
+                </y-form-item>
+                <y-form-item label="出生日期">
+                  <y-date-picker v-model="form1.birthday"></y-date-picker>
+                </y-form-item>
+                <y-form-item label="爱好">
+                  <y-checkbox-group v-model="form1.hobby">
+                    <y-checkbox value="运动"></y-checkbox>
+                    <y-checkbox value="旅游"></y-checkbox>
+                    <y-checkbox value="看书"></y-checkbox>
+                    <y-checkbox value="游戏"></y-checkbox>
+                  </y-checkbox-group>
+                </y-form-item>
+                <y-form-item>
+                  <y-button color="primary">提交</y-button>
+                </y-form-item>
+              </y-form>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">最基本用法，没有校验规则。</div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
+            <code-action-bar :name="getNav('JC').name" />
+            <pre>
+            <code>
+  &lt;y-form label-width="100px"&gt;
+    &lt;y-form-item label="姓名"&gt;
+      &lt;y-input v-model="form1.name" placeholder="请输入姓名" maxlength="12"&gt;&lt;/y-input&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item label="性别"&gt;
+      &lt;y-radio-group v-model="form1.sex"&gt;
+        &lt;y-radio :value="0"&gt;男&lt;/y-radio&gt;
+        &lt;y-radio :value="1"&gt;女&lt;/y-radio&gt;
+      &lt;/y-radio-group&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item label="所在城市"&gt;
+      &lt;y-select v-model="form1.city"&gt;
+        &lt;y-option value="北京"&gt;&lt;/y-option&gt;
+        &lt;y-option value="上海"&gt;&lt;/y-option&gt;
+        &lt;y-option value="广州"&gt;&lt;/y-option&gt;
+        &lt;y-option value="深圳"&gt;&lt;/y-option&gt;
+      &lt;/y-select&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item label="出生日期"&gt;
+      &lt;y-date-picker v-model="form1.birthday"&gt;&lt;/y-date-picker&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item label="爱好"&gt;
+      &lt;y-checkbox-group v-model="form1.hobby"&gt;
+        &lt;y-checkbox value="运动"&gt;&lt;/y-checkbox&gt;
+        &lt;y-checkbox value="旅游"&gt;&lt;/y-checkbox&gt;
+        &lt;y-checkbox value="看书"&gt;&lt;/y-checkbox&gt;
+        &lt;y-checkbox value="游戏"&gt;&lt;/y-checkbox&gt;
+      &lt;/y-checkbox-group&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item&gt;
+      &lt;y-button color="primary"&gt;提交&lt;/y-button&gt;
+    &lt;/y-form-item&gt;
+  &lt;/y-form&gt;
+
+  export default {
+    data() {
+      return {
+        form1: {
+          name: "",
+          sex: 0,
+          ifStudent: false,
+          city: "",
+          hobby: [],
+          birthday: ""
+        }
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('HNBD')">
+        <h3 id="HNBD">{{getNav('HNBD').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-form inline>
+                <y-form-item label="姓名">
+                  <y-input v-model="form2.name" placeholder="请输入姓名" maxlength="12"></y-input>
+                </y-form-item>
+                <y-form-item label="所在城市">
+                  <y-select v-model="form2.city">
+                    <y-option value="北京"></y-option>
+                    <y-option value="上海"></y-option>
+                    <y-option value="广州"></y-option>
+                    <y-option value="深圳"></y-option>
+                  </y-select>
+                </y-form-item>
+                <y-form-item>
+                  <y-button color="primary">搜索</y-button>
                 </y-form-item>
               </y-form>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
-              最基本用法，激活
-              <code>active</code>
-              上传，一次选择一个文件。
+              设置
+              <code>inline</code>开启行内表单，适合做搜索栏。
             </div>
           </div>
-          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
-            <code-action-bar :name="getNav('JC').name"/>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('HNBD').height}">
+            <code-action-bar :name="getNav('HNBD').name" />
             <pre>
             <code>
-  &lt;y-upload :active="active1" action="/egg/upload"&gt;
-    &lt;y-button type="primary" @click="active1 = true"&gt;
-      &lt;y-icon type="upload" size="18" /&gt;上传 
-    &lt;/y-button&gt;
-  &lt;/y-upload&gt;
+  &lt;y-form inline&gt;
+    &lt;y-form-item label="姓名"&gt;
+      &lt;y-input v-model="form2.name" maxlength="12"&gt;&lt;/y-input&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item label="所在城市"&gt;
+      &lt;y-select v-model="form2.city"&gt;
+        &lt;y-option value="北京"&gt;&lt;/y-option&gt;
+        &lt;y-option value="上海"&gt;&lt;/y-option&gt;
+        &lt;y-option value="广州"&gt;&lt;/y-option&gt;
+        &lt;y-option value="深圳"&gt;&lt;/y-option&gt;
+      &lt;/y-select&gt;
+    &lt;/y-form-item&gt;
+    &lt;y-form-item&gt;
+      &lt;y-button color="primary"&gt;搜索&lt;/y-button&gt;
+    &lt;/y-form-item&gt;
+  &lt;/y-form&gt;
 
   export default {
     data() {
       return {
-        active1: false
+        form2: {
+          name: "",
+          city: ""
+        }
+      }
+    }
+  }
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
+      <!-- 分割线 -->
+      <div v-show="compareVersion('BDJY')">
+        <h3 id="BDJY">{{getNav('BDJY').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-form :model="form1" label-width="100px" :rules="rules1">
+                <y-form-item label="姓名" prop="name">
+                  <y-input v-model="form1.name" placeholder="请输入姓名" maxlength="12"></y-input>
+                </y-form-item>
+                <y-form-item label="性别" prop="sex">
+                  <y-radio-group v-model="form1.sex">
+                    <y-radio :value="0">男</y-radio>
+                    <y-radio :value="1">女</y-radio>
+                  </y-radio-group>
+                </y-form-item>
+                <y-form-item label="是否学生" prop="ifStudent">
+                  <y-switch v-model="form1.ifStudent">
+                    <template slot="open">是</template>
+                    <template slot="close">否</template>
+                  </y-switch>
+                </y-form-item>
+                <y-form-item label="所在城市" prop="city">
+                  <y-select v-model="form1.city">
+                    <y-option value="北京"></y-option>
+                    <y-option value="上海"></y-option>
+                    <y-option value="广州"></y-option>
+                    <y-option value="深圳"></y-option>
+                  </y-select>
+                </y-form-item>
+                <y-form-item label="出生日期" prop="birthday">
+                  <y-date-picker v-model="form1.birthday"></y-date-picker>
+                </y-form-item>
+                <y-form-item label="爱好" prop="hobby">
+                  <y-checkbox-group v-model="form1.hobby">
+                    <y-checkbox value="运动"></y-checkbox>
+                    <y-checkbox value="旅游"></y-checkbox>
+                    <y-checkbox value="看书"></y-checkbox>
+                    <y-checkbox value="游戏"></y-checkbox>
+                  </y-checkbox-group>
+                </y-form-item>
+                <y-form-item>
+                  <y-button color="primary">提交</y-button>
+                </y-form-item>
+              </y-form>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">最基本用法，没有校验规则。</div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('BDJY').height}">
+            <code-action-bar :name="getNav('BDJY').name" />
+            <pre>
+            <code>
+
+  export default {
+    data() {
+      return {
+        form1: {
+          name: "",
+          sex: 0,
+          ifStudent: false,
+          city: "",
+          hobby: [],
+          birthday: ""
+        }
       }
     }
   }
@@ -57,8 +258,12 @@
         :eventList="filterVersion(eventList)"
       >
         <div>
-          <h3 id="METHODS">{{getNav('METHODS').name}}</h3>
-          <y-table :data="filterVersion(methodList)" :columns="eventColumn"></y-table>
+          <h3 id="ITEMPROPS">{{getNav('ITEMPROPS').name}}</h3>
+          <y-table :data="filterVersion(itemPropList)" :columns="itemPropColumn"></y-table>
+        </div>
+        <div>
+          <h3 id="ITEMSLOTS">{{getNav('ITEMSLOTS').name}}</h3>
+          <y-table :data="filterVersion(itemSlotList)" :columns="itemSlotColumn"></y-table>
         </div>
       </footer-table>
     </article>
@@ -69,8 +274,8 @@
 </template>
 
 <script>
-import viewMixins from "@/util/viewMixins";
-import { EVENT_COLUMNS } from "@/util/config";
+import viewMixins from "@/mixins/view";
+import { EVENT_COLUMNS, PROP_COLUMNS, SLOT_COLUMNS } from "@/util/config";
 export default {
   name: "Form",
   components: {
@@ -80,12 +285,48 @@ export default {
   mixins: [viewMixins],
   data() {
     return {
+      form1: {
+        name: "",
+        sex: 0,
+        ifStudent: false,
+        city: "",
+        hobby: [],
+        birthday: ""
+      },
+      form2: {
+        name: "",
+        city: ""
+      },
+      rules1: {
+        name: { require: true, message: "姓名不能为空", trigger: "blur" },
+        sex: { require: true, message: "性别不能为空", trigger: "blur" },
+        ifStudent: {
+          require: true,
+          message: "是否学生不能为空",
+          trigger: "blur"
+        },
+        city: { require: true, message: "所在城市不能为空", trigger: "blur" },
+        hobby: { require: true, message: "爱好不能为空", trigger: "blur" },
+        birthday: { require: true, message: "生日不能为空", trigger: "blur" }
+      },
       navList: [
         {
           id: "JC",
           name: "基础",
           version: "1.0.0",
-          height: "150px"
+          height: "460px"
+        },
+        {
+          id: "HNBD",
+          name: "行内表单",
+          version: "1.0.0",
+          height: "180px"
+        },
+        {
+          id: "BDJY",
+          name: "表单校验",
+          version: "1.0.0",
+          height: "460px"
         },
         {
           id: "PROPS",
@@ -101,22 +342,34 @@ export default {
           id: "METHODS",
           name: "Form Methods",
           version: "1.0.0"
+        },
+        {
+          id: "ITEMPROPS",
+          name: "FormItem Props",
+          version: "1.0.0"
+        },
+        {
+          id: "ITEMSLOTS",
+          name: "FormItem Slots",
+          version: "1.0.0"
         }
       ],
       eventColumn: EVENT_COLUMNS,
+      itemPropColumn: PROP_COLUMNS,
+      itemSlotColumn: SLOT_COLUMNS,
       propList: [
         {
           version: "1.0.0",
-          attr: "value",
-          explain: `可以使用 <code class="keyword-code">v-model</code> 双向绑定数据`,
+          attr: "model",
+          explain: `表单数据对象`,
           type: "Object",
           default: "-"
         },
         {
           version: "1.0.0",
           attr: "rules",
-          explain: `表单验证规则，具体配置查看 <a class="keyword-a" href="https://github.com/yiminghe/async-validator">async-validator</a>`,
-          type: "String",
+          explain: `表单验证规则，具体配置查看 <a class="keyword-a" href="https://github.com/yiminghe/async-validator" target="_blank">async-validator</a>`,
+          type: "Object",
           default: "-"
         },
         {
@@ -129,14 +382,14 @@ export default {
           version: "1.0.0",
           attr: "label-width",
           explain: `表单域标签的宽度，所有的 FormItem 都会继承 Form 组件的 label-width 的值`,
-          type: "Object",
+          type: "String",
           default: "-"
         },
         {
           attr: "show-error",
           explain: `是否显示校验错误信息`,
           type: "Boolean",
-          default: "false"
+          default: "true"
         },
         {
           attr: "hide-required-mark",
@@ -145,10 +398,10 @@ export default {
           default: "false"
         },
         {
-          attr: "label-colon",
-          explain: `是否自动在 label 名称后添加冒号`,
-          type: "Boolean",
-          default: "false"
+          attr: "label-symbol",
+          explain: `在 label 名称后添加该符号`,
+          type: "String",
+          default: "-"
         },
         {
           attr: "disabled",
@@ -158,7 +411,7 @@ export default {
         },
         {
           attr: "autocomplete",
-          explain: `原生的 autocomplete 属性，可选值为 off 或 on`,
+          explain: `form原生的 autocomplete 属性，可选值为 off 或 on`,
           type: "String",
           default: "off"
         }
@@ -177,6 +430,72 @@ export default {
           explain:
             "对整个表单进行校验，参数为检验完的回调，会返回一个 Boolean 表示成功与失败，支持 Promise",
           return: "	callback"
+        }
+      ],
+      itemPropList: [
+        {
+          attr: "prop",
+          explain: `对应表单域 value 里的字段`,
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "label",
+          explain: `标签文本`,
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "label-width",
+          explain: `表单域标签的的宽度`,
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "label-for",
+          explain: `指定原生的 label 标签的 for 属性`,
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "required",
+          explain: `是否必填，如不设置，则会根据校验规则自动生成`,
+          type: "Boolean",
+          default: "false"
+        },
+        {
+          attr: "rules",
+          explain: `表单验证规则`,
+          type: "Object | Array",
+          default: "-"
+        },
+        {
+          attr: "error",
+          explain: `设置该值会使表单验证状态变为error，并显示该错误信息`,
+          type: "String",
+          default: "-"
+        },
+        {
+          attr: "show-error",
+          explain: `是否显示校验错误信息`,
+          type: "Boolean",
+          default: "true"
+        },
+        {
+          attr: "hide-label-symbol",
+          explain: `是否隐藏label后的符号`,
+          type: "Boolean",
+          default: "true"
+        }
+      ],
+      itemSlotList: [
+        {
+          attr: "无",
+          explain: `内容`
+        },
+        {
+          attr: "label",
+          explain: `label 内容`
         }
       ]
     };

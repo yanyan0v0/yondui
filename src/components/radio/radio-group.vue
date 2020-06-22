@@ -15,13 +15,11 @@ export default {
   methods: {
     change(checked, value) {
       if (checked) {
-        this.value = value;
         this.$emit("input", value);
       } else {
-        this.value = "";
         this.$emit("input", "");
       }
-      this.$emit("on-change", this.value);
+      this.$emit("on-change", value);
     }
   }
 };

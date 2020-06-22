@@ -5,7 +5,7 @@
     :class="{'y-option-active': checkSelected, 'y-option-disabled': disabled}"
     @click="handleClick"
   >
-    <slot></slot>
+    <slot>{{text}}</slot>
     <y-icon
       v-show="isMultiple && checkSelected"
       type="queding"
@@ -25,6 +25,9 @@ export default {
     disabled: Boolean
   },
   computed: {
+    text() {
+      return this.label || this.value;
+    },
     // 是否是多选
     isMultiple() {
       return this.$parent.multiple;
