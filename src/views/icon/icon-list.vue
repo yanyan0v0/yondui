@@ -12,7 +12,7 @@
     <ul class="y-icon-list-ul clearfix">
       <li v-for="icon in iconList" :key="icon.icon_id">
         <y-icon :type="icon.font_class" size="24"></y-icon>
-        <p>{{icon.name}}</p>
+        <!-- <p>{{icon.name}}</p> -->
         <p>{{icon.font_class}}</p>
       </li>
     </ul>
@@ -56,6 +56,7 @@ export default {
       .text-center;
       margin: 10px;
       width: 138px;
+      height: 70px;
       float: left;
       p {
         margin-top: 5px;
