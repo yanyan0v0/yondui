@@ -6,6 +6,13 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "9940300",
+      "name": "form",
+      "font_class": "form",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
       "icon_id": "88049",
       "name": "download",
       "font_class": "download",

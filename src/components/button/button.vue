@@ -2,6 +2,7 @@
   <button
     class="y-button"
     @click="handleClick"
+    :type="type"
     :class="[computeSize(classPrefix), classPrefix + shape, disabled ? classPrefix + 'disabled' : '', loading ? classPrefix + 'isloading' : '']"
     :style="[colorStyle, {'width': width}]"
   >
@@ -26,6 +27,10 @@ export default {
   },
   mixins: [componentMixins],
   props: {
+    type: {
+      type: String,
+      default: "button"
+    },
     color: {
       type: [String, Array],
       default: ""

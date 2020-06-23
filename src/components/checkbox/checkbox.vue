@@ -78,6 +78,7 @@ export default {
         this.$emit("input", !this.value);
         this.$emit("on-change", !this.value);
       }
+      this.emitTriggerToForm("change");
     }
   }
 };

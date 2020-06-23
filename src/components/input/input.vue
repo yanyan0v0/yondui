@@ -8,6 +8,7 @@
     <input
       ref="input"
       class="y-input"
+      :value="value"
       :type="type"
       :disabled="formDisabled"
       :readonly="readonly"
@@ -23,6 +24,9 @@
       @keyup="handleKeyup"
       @keypress="handleKeypress"
       @keydown="handleKeydown"
+      @compositionstart="handleCompositionStart"
+      @compositionupdate="handleCompositionUpdate"
+      @compositionend="handleCompositionEnd"
     />
     <span
       v-if="$slots.prefix"
@@ -55,7 +59,6 @@
 <script>
 import componentMixins from "@/mixins/component";
 import formMixins from "@/mixins/form";
-import { throttle } from "@/util/tools";
 export default {
   name: "y-input",
   mixins: [componentMixins, formMixins],
@@ -95,50 +98,40 @@ export default {
   data() {
     return {
       classPrefix: "y-input-",
-      showClear: false
+      showClear: false,
+      isComposing: false
     };
   },
   computed: {
-    nativeInputValue() {
-      return this.value === null || this.value === undefined
-        ? ""
-        : String(this.value);
-    },
     showClearIcon() {
-      return this.clearable && !this.formDisabled && this.showClear;
+      return (
+        this.clearable && !this.formDisabled && this.showClear && this.value
+      );
     }
   },
   methods: {
-    setNativeInputValue() {
-      const input = this.$refs.input;
-      if (!input) return;
-      if (input.value === this.nativeInputValue) return;
-      input.value = this.nativeInputValue;
-    },
     handleEnter(event) {
       this.$emit("on-enter", event.target.value);
     },
     handleInput(event) {
+      if (this.isComposing) return;
       let value = event.target.value;
-      if (value === this.nativeInputValue) return;
 
       this.$emit("input", value);
-      // this.$emit("on-change", value);
-      this.$nextTick(this.setNativeInputValue);
-
-      if (this.clearable) {
-        if (value) this.showClear = true;
-        else this.showClear = false;
-      }
+      this.$emit("on-change", value);
+      this.emitTriggerToForm("change");
     },
     handleFocus() {
       if (!this.formDisabled) this.$emit("on-focus");
     },
     handleBlur() {
       this.$emit("on-blur");
+      this.emitTriggerToForm("blur");
     },
     handleClick(event) {
-      if (!this.formDisabled) this.$emit("on-click", event);
+      if (!this.formDisabled) {
+        this.$emit("on-click", event);
+      }
     },
     handlePrefixClick(event) {
       if (!this.formDisabled) this.$emit("on-prefix-click", event);
@@ -165,11 +158,16 @@ export default {
     },
     handleMouseLeave() {
       this.showClear = false;
-    }
-  },
-  watch: {
-    nativeInputValue() {
-      this.setNativeInputValue();
+    },
+    handleCompositionStart() {
+      this.isComposing = true;
+    },
+    handleCompositionUpdate(event) {},
+    handleCompositionEnd(event) {
+      if (this.isComposing) {
+        this.isComposing = false;
+        this.handleInput(event);
+      }
     }
   }
 };

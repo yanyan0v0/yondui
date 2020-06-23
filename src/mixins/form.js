@@ -9,8 +9,8 @@ export default {
     }
   },
   methods: {
-    emitBlurToForm() {
-      return this.formItemRoot && this.formItemRoot.handleBlur()
+    emitTriggerToForm(trigger) {
+      return this.formItemRoot && this.formItemRoot.validate(trigger)
     }
   },
 }

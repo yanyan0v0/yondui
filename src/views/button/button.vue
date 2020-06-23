@@ -276,6 +276,12 @@ export default {
       ],
       propList: [
         {
+          attr: "type",
+          explain: `按钮原生type属性`,
+          type: "String",
+          default: "button"
+        },
+        {
           attr: "color",
           explain: `按钮颜色，可选值为 <code class="keyword-code">primary</code>、<code class="keyword-code">success</code>等关键字；16进制颜色值；rgba；数组实现渐变或者不设置`,
           type: "String | Array",

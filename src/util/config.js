@@ -89,7 +89,7 @@ export const MENU_LIST = [
       {
         id: 226,
         name: "Form 表单",
-        icon: "xiala",
+        icon: "form",
         to: "form",
         file: '/form/form.vue'
       },
