@@ -129,6 +129,13 @@ export const MENU_LIST = [
         file: '/menu/menu.vue'
       },
       {
+        id: 227,
+        name: "Page 分页",
+        icon: "page",
+        to: "page",
+        file: '/page/page.vue'
+      },
+      {
         id: 222,
         name: "Radio 单选框",
         icon: "radio-selected",

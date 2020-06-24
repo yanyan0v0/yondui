@@ -25,6 +25,7 @@ export const Loading = components.Loading
 export const Menu = components.Menu
 export const Nav = components.Nav
 export const Option = components.Option
+export const Page = components.Page
 export const Radio = components.Radio
 export const RadioGroup = components.RadioGroup
 export const Rank = components.Rank

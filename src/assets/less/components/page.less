@@ -1,0 +1,39 @@
+.y-page{
+  .center-h;
+  .text-center;
+  &-ul{
+    .flex;
+    padding: 0 5px;
+    & > li{
+      .center;
+      .pointer;
+      margin: 0 4px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid @border-color;
+      border-radius: 4px;
+    }
+    & > li:not(.y-page-li-disabled):hover{
+      color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+  &-ul > &-li-active{
+    color: @primary-color;
+    border-color: @primary-color;
+  }
+  &-ul > &-li-disabled{
+    color: @disabled-color;
+    border-color: @disabled-color;
+    cursor: default;
+    & > i {
+      color: @disabled-color;
+    }
+  }
+  &-ul > &-li-ellipsis{
+    border: none;
+  }
+  &-jumper{
+    margin: 0 5px;
+  }
+}

@@ -6,6 +6,27 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "15538841",
+      "name": "ellipsis-circle",
+      "font_class": "ellipsis-circle",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "12310028",
+      "name": "ellipsis",
+      "font_class": "ellipsis",
+      "unicode": "e84a",
+      "unicode_decimal": 59466
+    },
+    {
+      "icon_id": "704109",
+      "name": "page",
+      "font_class": "page",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
       "icon_id": "9940300",
       "name": "form",
       "font_class": "form",

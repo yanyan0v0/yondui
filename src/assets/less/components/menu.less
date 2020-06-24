@@ -16,22 +16,24 @@
         }
       }
     }
-    .disabled-a {
-      cursor: default;
-      color: @disabled-color;
-      &:hover {
-        color: @disabled-color;
-        & > i {
-          color: @disabled-color;
-        }
-      }
-    }
     .active-a {
       border-right: 2px solid @primary-color;
       background-color: #f0faff;
       color: @light-primary-color;
       & > i {
         color: @light-primary-color;
+      }
+    }
+    .disabled-a {
+      cursor: default;
+      border-right: none;
+      color: @disabled-color;
+      background-color: inherit;
+      &:hover {
+        color: @disabled-color;
+        & > i {
+          color: @disabled-color;
+        }
       }
     }
   }

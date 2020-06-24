@@ -23,6 +23,7 @@ import Input from '@/components/input/input.vue'
 import Loading from '@/components/loading/loading.vue'
 import Menu from '@/components/menu/menu.vue'
 import Nav from '@/components/navigator/navigator.vue'
+import Page from '@/components/page/page.vue'
 import Option from '@/components/select/option.vue'
 import Radio from '@/components/radio/radio.vue'
 import RadioGroup from '@/components/radio/radio-group.vue'
@@ -65,6 +66,7 @@ export const components = {
   Loading,
   Menu,
   Nav,
+  Page,
   Option,
   Radio,
   RadioGroup,
