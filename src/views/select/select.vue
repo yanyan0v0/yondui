@@ -307,7 +307,7 @@
   export default {
     data() {
       return {
-        select6: []
+        select6: ["北京"]
       };
     }
   };

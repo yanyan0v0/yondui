@@ -178,6 +178,7 @@ export default {
 
       this.selectedLabel = "";
       if (Array.isArray(this.value)) {
+        this.tagList = [];
         this.$emit("input", []);
         this.$emit("on-change", []);
       } else {
