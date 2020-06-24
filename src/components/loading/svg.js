@@ -13,7 +13,7 @@ const SVG_LIST = [
   'spinning-circles',
   'three-dots',
   'chase',
-  'spinner',
+  // 'spinner',
   'bars-smooth',
   'two-cube',
   'fold-cube',
@@ -38,7 +38,7 @@ import YSvgSpinningRectangle from './svg/spinning-rectangle.vue'
 import YSvgSpinningCircles from './svg/spinning-circles.vue'
 import YSvgThreeDots from './svg/three-dots.vue'
 import YSvgChase from './svg/chase.vue'
-import YSvgSpinner from './svg/spinner.vue'
+// import YSvgSpinner from './svg/spinner.vue'
 import YSvgBarsSmooth from './svg/bars-smooth.vue'
 import YSvgTwoCube from './svg/two-cube.vue'
 import YSvgFoldCube from './svg/fold-cube.vue'
@@ -49,17 +49,15 @@ import YSvgLocationIndicator from './svg/location-indicator.vue'
 import YSvgRaining from './svg/raining.vue'
 
 export const getComponents = (path) => {
-  // if (process.env.NODE_ENV == 'production') {
-  //   path += 'yond-ui/'
+
+  // let components = {}
+  // for (let svg of SVG_LIST) {
+  //   components['y-svg-' + svg] = () => import(path + svg + '.vue')
+  //   components['y-svg-' + svg] = resolve => {
+  //     require([path + svg + '.vue'], resolve);
+  //   }
   // }
-  let components = {}
-  for (let svg of SVG_LIST) {
-    components['y-svg-' + svg] = () => import(path + svg + '.vue')
-    // components['y-svg-' + svg] = resolve => {
-    //   require([path + svg + '.vue'], resolve);
-    // }
-  }
-  // return components
+
   return {
     YSvgCircle,
     YSvgCircles,
@@ -75,7 +73,7 @@ export const getComponents = (path) => {
     YSvgSpinningCircles,
     YSvgThreeDots,
     YSvgChase,
-    YSvgSpinner,
+    // YSvgSpinner,
     YSvgBarsSmooth,
     YSvgTwoCube,
     YSvgFoldCube,
