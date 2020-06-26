@@ -105,6 +105,7 @@ export default {
       isUnderBody: false,
       origin: {
         // 拖拽偏移量
+        hadDrag: false,
         start1: false,
         moveX1: "",
         moveY1: "",
@@ -209,8 +210,12 @@ export default {
     },
     handleHeaderMouseDown(event) {
       let dialogRect = this.$refs.dialog.getBoundingClientRect();
-      this.origin.moveX1 = -parseInt(dialogRect.width / 2);
-      this.origin.moveY1 = -parseInt(dialogRect.height / 2);
+      // 判断是否已经拖拽过
+      if (!this.origin.hadDrag) {
+        this.origin.moveX1 = -parseInt(dialogRect.width / 2);
+        this.origin.moveY1 = -parseInt(dialogRect.height / 2);
+      }
+      this.origin.hadDrag = true;
       this.origin.start1 = true;
       this.origin.x = event.x;
       this.origin.y = event.y;

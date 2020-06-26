@@ -29,12 +29,11 @@
               <code>type</code>属性只支持
               <code>bar</code>柱状图、
               <code>line</code>折线图、
-              <code>pie</code>饼状图、
-              。
+              <code>pie</code>饼状图。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JCFL').height}">
-            <code-action-bar :name="getNav('JCFL').name" />
+            <code-action-bar :name="getNav('JCFL').name"/>
             <pre>
             <code>
   &lt;y-chart :data="{type: 'bar', title: '柱状图', data: chartData}"&gt;&lt;/y-chart&gt;
@@ -89,11 +88,11 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               通过设置
-              <code>legend</code>属性生成图例，必须为数组、只支持柱状图和饼状图。
+              <code>legend</code>属性生成图例，必须为数组。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('XSTL').height}">
-            <code-action-bar :name="getNav('XSTL').name" />
+            <code-action-bar :name="getNav('XSTL').name"/>
             <pre>
             <code>
   &lt;y-chart :data="{type: 'bar', legend: ['类型1', '类型2'], data: chartData}"&gt;&lt;/y-chart&gt;
@@ -147,7 +146,7 @@
             <div class="introduce">值得注意的是y轴数据会自动过万处理， 并在单位上加上‘万’。</div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('FZQK').height}">
-            <code-action-bar :name="getNav('FZQK').name" />
+            <code-action-bar :name="getNav('FZQK').name"/>
             <pre>
             <code>
   &lt;y-chart :data="chartData2"&gt;&lt;/y-chart&gt;

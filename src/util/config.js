@@ -31,6 +31,13 @@ export const MENU_LIST = [
         file: '/button/button.vue'
       },
       {
+        id: 228,
+        name: "Card 卡片",
+        icon: "card",
+        to: "card",
+        file: '/card/card.vue'
+      },
+      {
         id: 216,
         name: "Chart 图表",
         icon: "chart-bar",

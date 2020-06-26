@@ -24,7 +24,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
-            <code-action-bar :name="getNav('JC').name" />
+            <code-action-bar :name="getNav('JC').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="visible1 = true"&gt;显示对话框&lt;/y-button&gt;
@@ -87,18 +87,18 @@
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               使用具名slot可替换头部和尾部内容，
-              <br />
+              <br>
               <code>title</code>属性设置对话框标题，当为空时不显示头部，
-              <br />
+              <br>
               <code>footer-hide</code>属性可隐藏尾部，
-              <br />
+              <br>
               <code>width</code> 和
               <code>height</code> 属性可自定义对话框
               <code>.y-dialog</code>的宽高。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('ZDYYS').height}">
-            <code-action-bar :name="getNav('ZDYYS').name" />
+            <code-action-bar :name="getNav('ZDYYS').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="visible2 = true"&gt;自定义头尾部&lt;/y-button&gt;
@@ -168,7 +168,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('QP').height}">
-            <code-action-bar :name="getNav('QP').name" />
+            <code-action-bar :name="getNav('QP').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="visible6 = true"&gt;显示对话框&lt;/y-button&gt;
@@ -207,7 +207,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('TZ').height}">
-            <code-action-bar :name="getNav('TZ').name" />
+            <code-action-bar :name="getNav('TZ').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="visible7 = true"&gt;显示对话框&lt;/y-button&gt;
@@ -246,7 +246,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('LS').height}">
-            <code-action-bar :name="getNav('LS').name" />
+            <code-action-bar :name="getNav('LS').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="visible8 = true"&gt;显示对话框&lt;/y-button&gt;
@@ -287,7 +287,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('YBJZ').height}">
-            <code-action-bar :name="getNav('YBJZ').name" />
+            <code-action-bar :name="getNav('YBJZ').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="visible9 = true"&gt;异步加载对话框&lt;/y-button&gt;
@@ -340,7 +340,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('HSDY').height}">
-            <code-action-bar :name="getNav('HSDY').name" />
+            <code-action-bar :name="getNav('HSDY').name"/>
             <pre v-pre>
             <code>
   &lt;y-button color="primary" @click="instance('info')"&gt;默认&lt;/y-button&gt;
@@ -501,7 +501,7 @@ export default {
         {
           version: "1.0.0",
           attr: "mask",
-          explain: `是否显示遮罩层，开启 draggable 时，强制不显示`,
+          explain: `是否显示遮罩层`,
           type: "Boolean",
           default: "true"
         },

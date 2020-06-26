@@ -1,5 +1,11 @@
 &lt;
 &gt;
-
-&lt;y-page v-model="page1" :total="200"&gt;&lt;/y-page&gt;
-&lt;p&gt;当前页：{{page1}}&lt;/p&gt;
+&lt;style lang="less" &gt;
+  .y-card {
+    margin-bottom: 10px;
+    .example-split {
+      padding: 20px;
+      text-align: center;
+    }
+  }
+&lt;/style&gt;

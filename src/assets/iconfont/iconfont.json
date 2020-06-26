@@ -6,6 +6,13 @@
   "description": "ui库基础图标",
   "glyphs": [
     {
+      "icon_id": "15547844",
+      "name": "card",
+      "font_class": "card",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
       "icon_id": "15538841",
       "name": "ellipsis-circle",
       "font_class": "ellipsis-circle",
