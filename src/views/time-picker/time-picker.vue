@@ -10,7 +10,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-time-picker v-model="time1" />
+              <y-time-picker v-model="time1"/>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -19,7 +19,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JC').height}">
-            <code-action-bar :name="getNav('JC').name" />
+            <code-action-bar :name="getNav('JC').name"/>
             <pre>
             <code>
   &lt;y-time-picker v-model="time1" /&gt;
@@ -43,7 +43,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-time-picker range v-model="time2" />
+              <y-time-picker range v-model="time2"/>
               <p>{{time2}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('FWXZ').height}">
-            <code-action-bar :name="getNav('FWXZ').name" />
+            <code-action-bar :name="getNav('FWXZ').name"/>
             <pre v-pre>
             <code>
   &lt;y-time-picker range v-model="time2" /&gt;
@@ -78,15 +78,15 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <p>hh时</p>
-              <y-time-picker format="hh时" v-model="time3" />
+              <y-time-picker format="hh时" v-model="time3"/>
               <p>实际的值为：{{time3}}</p>
-              <y-divider />
+              <y-divider/>
               <p>hh时mm分</p>
-              <y-time-picker format="hh时mm分" v-model="time4" />
+              <y-time-picker format="hh时mm分" v-model="time4"/>
               <p>实际的值为：{{time4}}</p>
-              <y-divider />
+              <y-divider/>
               <p>hh时mm分ss秒</p>
-              <y-time-picker format="hh时mm分ss秒" v-model="time5" />
+              <y-time-picker format="hh时mm分ss秒" v-model="time5"/>
               <p>实际的值为：{{time5}}</p>
             </div>
             <y-divider position="left">说明</y-divider>
@@ -96,7 +96,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SJGS').height}">
-            <code-action-bar :name="getNav('SJGS').name" />
+            <code-action-bar :name="getNav('SJGS').name"/>
             <pre v-pre>
             <code>
   &lt;p&gt;hh时&lt;/p&gt;
@@ -131,7 +131,7 @@
         <y-card :split="2">
           <div slot="card1" class="preview-card">
             <div class="preview">
-              <y-time-picker disabled :value="new Date()" />
+              <y-time-picker disabled :value="new Date()"/>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('JY').height}">
-            <code-action-bar :name="getNav('JY').name" />
+            <code-action-bar :name="getNav('JY').name"/>
             <pre>
             <code>
   &lt;y-date-picker disabled :value="new Date()" /&gt;
@@ -157,27 +157,27 @@
           <div slot="card1" class="preview-card">
             <div class="preview">
               <p>过滤小时</p>
-              <y-time-picker :filter-time="filterTime" v-model="time6" />
+              <y-time-picker :filter-time="filterTime" v-model="time6"/>
               <p>左右两边都过滤小时</p>
-              <y-time-picker range :filter-time="filterRangeTime" v-model="time7" />
+              <y-time-picker range :filter-time="filterRangeTime" v-model="time7"/>
             </div>
             <y-divider position="left">说明</y-divider>
             <div class="introduce">
               设置属性
               <code>filter-time</code>，传递一个函数，参数有3个：
-              <br />第一个参数为时间值，范围在[0-23]或[0-59]，
-              <br />第二个参数为时间类型，值为
+              <br>第一个参数为时间值，范围在[0-23]或[0-59]，
+              <br>第二个参数为时间类型，值为
               <code>hour</code>、
               <code>minute</code>、
               <code>second</code>，
-              <br />第三个参数为排序，在设置
+              <br>第三个参数为排序，在设置
               <code>range</code>后需要，可分别对左右时间进行设置，值为
               <code>first</code>、
               <code>second</code> 。
             </div>
           </div>
           <div slot="card2" v-highlight class="code-card" :style="{height: getNav('SJGL').height}">
-            <code-action-bar :name="getNav('SJGL').name" />
+            <code-action-bar :name="getNav('SJGL').name"/>
             <pre>
             <code>
   &lt;y-time-picker :filter-time="filterTime" v-model="time6" /&gt;
@@ -187,7 +187,7 @@
     data() {
       return {
         time6: '',
-        time7: '',
+        time7: [],
       }
     },
     methods: {
@@ -250,7 +250,7 @@ export default {
       time4: "",
       time5: "",
       time6: "",
-      time7: "",
+      time7: [],
       navList: [
         {
           id: "JC",

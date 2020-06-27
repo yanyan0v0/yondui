@@ -64,7 +64,7 @@
     <!-- 跳转输入框 -->
     <p v-show="showJumper" class="y-page-jumper">
       前往
-      <y-input v-model="inputValue" :disabled="disabled" width="60px" @on-change="handleJumper"></y-input>页
+      <y-input v-model="inputValue" :disabled="disabled" width="60px" @on-enter="handleJumper"></y-input>页
     </p>
   </div>
 </template>

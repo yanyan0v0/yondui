@@ -219,8 +219,6 @@ export default {
   mixins: [viewMixins],
   data() {
     return {
-      page1: 1,
-      page2: 1,
       navList: [
         {
           id: "JC",
