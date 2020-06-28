@@ -13,7 +13,7 @@ const SVG_LIST = [
   'spinning-circles',
   'three-dots',
   'chase',
-  // 'spinner',
+  'spinner',
   'bars-smooth',
   'two-cube',
   'fold-cube',
@@ -38,7 +38,7 @@ import YSvgSpinningRectangle from './svg/spinning-rectangle.vue'
 import YSvgSpinningCircles from './svg/spinning-circles.vue'
 import YSvgThreeDots from './svg/three-dots.vue'
 import YSvgChase from './svg/chase.vue'
-// import YSvgSpinner from './svg/spinner.vue'
+import YSvgSpinner from './svg/spinner.vue'
 import YSvgBarsSmooth from './svg/bars-smooth.vue'
 import YSvgTwoCube from './svg/two-cube.vue'
 import YSvgFoldCube from './svg/fold-cube.vue'
@@ -73,7 +73,7 @@ export const getComponents = (path) => {
     YSvgSpinningCircles,
     YSvgThreeDots,
     YSvgChase,
-    // YSvgSpinner,
+    YSvgSpinner,
     YSvgBarsSmooth,
     YSvgTwoCube,
     YSvgFoldCube,
