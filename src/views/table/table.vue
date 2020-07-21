@@ -364,8 +364,62 @@
         </y-card>
       </div>
 
+      <!-- 分割线 -->
+      <div v-show="compareVersion('KPX')">
+        <h3 id="KPX">{{getNav('KPX').name}}</h3>
+        <y-card :split="2">
+          <div slot="card1" class="preview-card">
+            <div class="preview">
+              <y-table border :data="data1" :columns="columns5"></y-table>
+            </div>
+            <y-divider position="left">说明</y-divider>
+            <div class="introduce">
+              设置
+              <code>sortable</code>显示排序按钮
+            </div>
+          </div>
+          <div slot="card2" v-highlight class="code-card" :style="{height: getNav('KPX').height}">
+            <code-action-bar :name="getNav('KPX').name" />
+            <pre>
+            <code>
+  &lt;y-table border :data="data1" :columns="columns5"&gt; &lt;/y-table&gt;
+
+  export default {
+    data() {
+      return {
+        columns5: [
+          {
+            title: "姓名",
+            key: "name",
+            sortable: true
+          },
+          {
+            title: "年龄",
+            key: "age",
+            sortable: true
+          },
+          {
+            title: "地址",
+            key: "address",
+            ellipsis: true
+          }
+        ]
+      }
+    }
+  }
+  
+            </code>
+            </pre>
+          </div>
+        </y-card>
+      </div>
+
       <!-- 底部API说明 -->
-      <footer-table :name="$options.name" :propList="filterVersion(propList)">
+      <footer-table
+        :name="$options.name"
+        :propList="filterVersion(propList)"
+        :eventList="filterVersion(eventList)"
+      >
         <div>
           <h3 id="CPROPS">{{getNav('CPROPS').name}}</h3>
           <y-table :data="filterVersion(cpropList)" :columns="propColumns"></y-table>
@@ -493,6 +547,23 @@ export default {
           ellipsis: true
         }
       ],
+      columns5: [
+        {
+          title: "姓名",
+          key: "name",
+          sortable: "desc"
+        },
+        {
+          title: "年龄",
+          key: "age",
+          sortable: "asc"
+        },
+        {
+          title: "地址",
+          key: "address",
+          ellipsis: true
+        }
+      ],
       loading: true,
       navList: [
         {
@@ -538,6 +609,12 @@ export default {
         {
           id: "JZZ",
           name: "加载中",
+          version: "1.0.0",
+          height: "300px"
+        },
+        {
+          id: "KPX",
+          name: "可排序",
           version: "1.0.0",
           height: "300px"
         },
@@ -613,6 +690,13 @@ export default {
           explain: "禁用鼠标悬停时的高亮",
           type: "Boolean",
           default: "false"
+        }
+      ],
+      eventList: [
+        {
+          attr: "on-sort-change",
+          explain: "当点击排序时触发",
+          return: "key：排序依据的指标 , order：排序的顺序，值为 asc 或 desc"
         }
       ],
       cpropList: [

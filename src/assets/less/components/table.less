@@ -19,9 +19,20 @@
     th {
       border-top: 1px solid @border-color;
       background-color: @background-color;
+      & > div{
+        .flex;
+      }
     }
     .scroll-th {
       padding: 0;
+    }
+    &-sort{
+      .pointer;
+      & > i {
+        margin-left: 5px;
+        font-size: 12px;
+        color: #666;
+      }
     }
   }
   .y-table-body-warpper {

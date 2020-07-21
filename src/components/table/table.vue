@@ -16,7 +16,17 @@
       <thead>
         <tr>
           <th v-for="col in columns" :key="col.key" :class="[col.class]">
-            {{col.title}}
+            <div>
+              {{col.title}}
+              <span
+                v-if="col.sortable"
+                class="y-table-header-sort"
+                @click="handleSortChange(col)"
+              >
+                <y-icon v-show="col.sortable === 'asc'" type="shangla"></y-icon>
+                <y-icon v-show="col.sortable === 'desc'" type="xiala"></y-icon>
+              </span>
+            </div>
             <div
               v-if="resizable && border"
               class="y-table-header-resizable"
@@ -136,6 +146,10 @@ export default {
       type: Boolean,
       default: false
     },
+    sortable: {
+      type: Boolean,
+      default: false
+    },
     loading: {
       type: Boolean,
       default: false
@@ -171,6 +185,14 @@ export default {
     }
   },
   methods: {
+    handleSortChange(col) {
+      if (col.sortable === "desc") {
+        col.sortable = "asc";
+      } else {
+        col.sortable = "desc";
+      }
+      this.$emit("on-sort-change", col.key, col.sortable);
+    },
     handleMouseDown(col, event) {
       this.dragCol = {
         key: col.key,
