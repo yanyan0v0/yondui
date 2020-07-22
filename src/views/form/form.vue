@@ -294,7 +294,7 @@
           city: { required: true, message: "所在城市不能为空", trigger: "change" },
           hobby: [
             { required: true,type: 'array', message: "爱好不能为空", trigger: "blur" },
-            { type: 'array', max: 2, message: "爱好至少选择一项", trigger: "change" }
+            { type: 'array', min: 2, message: "爱好至少选择一项", trigger: "change" }
           ],
           birthday: { required: true, message: "生日不能为空", trigger: "change" }
         }
@@ -392,7 +392,7 @@ export default {
           },
           {
             type: "array",
-            max: 2,
+            min: 2,
             message: "爱好至少选择一项",
             trigger: "change"
           }
