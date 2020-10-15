@@ -2,16 +2,16 @@
   <li
     v-show="ifShow"
     class="y-option"
-    :class="{'y-option-active': checkSelected, 'y-option-disabled': disabled}"
+    :class="{ 'y-option-active': checkSelected, 'y-option-disabled': disabled }"
     @click="handleClick"
   >
-    <slot>{{text}}</slot>
+    <slot>{{ text }}</slot>
     <y-icon
       v-show="isMultiple && checkSelected"
       type="queding"
       size="12"
       class="y-option-multiple-icon"
-      :class="{'y-option-multiple-checked': checkSelected}"
+      :class="{ 'y-option-multiple-checked': checkSelected }"
     ></y-icon>
   </li>
 </template>
@@ -22,7 +22,7 @@ export default {
   props: {
     value: [String, Number],
     label: String,
-    disabled: Boolean
+    disabled: Boolean,
   },
   computed: {
     text() {
@@ -63,7 +63,7 @@ export default {
         }
       }
       return isEqual;
-    }
+    },
   },
   methods: {
     handleClick() {
@@ -74,7 +74,7 @@ export default {
           this.label || this.$el.innerText.trim() || this.value
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -231,6 +231,49 @@ export const getBrowser = () => {
 }
 
 /**
+ * @description 获取目标元素可滚动的父节点
+ * @param {dom} element 目标元素 
+ */
+
+export const getScrollParent = (element) => {
+  var parent = element.parentNode;
+
+  if (!parent) {
+    return element;
+  }
+
+  if (parent === document.body) {
+    return parent;
+  }
+
+  // Firefox want us to check `-x` and `-y` variations as well
+  if (
+    ['scroll', 'auto'].indexOf(getStyleComputedProperty(parent, 'overflow')) !== -1 ||
+    ['scroll', 'auto'].indexOf(getStyleComputedProperty(parent, 'overflow-x')) !== -1 ||
+    ['scroll', 'auto'].indexOf(getStyleComputedProperty(parent, 'overflow-y')) !== -1
+  ) {
+    // If the detected scrollParent is body, we perform an additional check on its parentNode
+    // in this way we'll get body if the browser is Chrome-ish, or documentElement otherwise
+    // fixes issue #65
+    return parent;
+  }
+  return getScrollParent(element.parentNode);
+}
+
+/**
+ * Get CSS computed property of the given element
+ * @function
+ * @ignore
+ * @argument {Eement} element
+ * @argument {String} property
+ */
+function getStyleComputedProperty(element, property) {
+  // NOTE: 1 DOM access here
+  var css = window.getComputedStyle(element, null);
+  return css[property];
+}
+
+/**
  * 时间格式化
  * @param fmt
  * @returns {*}

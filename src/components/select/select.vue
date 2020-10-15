@@ -1,5 +1,5 @@
 <template>
-  <div class="y-select" :style="{width}">
+  <div class="y-select" :style="{ width }">
     <y-input
       v-model="selectedLabel"
       :readonly="!filterable"
@@ -8,10 +8,11 @@
       :size="size"
       :clearable="clearable"
       :placeholder="placeholder"
-      :class="{'y-select-input': !formDisabled}"
+      :class="{ 'y-select-input': !formDisabled }"
       @on-click="handleSelectClick"
       @on-change="handleInputChange"
       @on-clear="handleClear"
+      @on-blur="handleBlur"
     >
       <template slot="prefix">
         <slot name="prefix"></slot>
@@ -33,6 +34,7 @@ import Vue from "vue";
 import clickoutside from "@/directive/clickoutside";
 import componentMixins from "@/mixins/component";
 import formMixins from "@/mixins/form";
+import { getScrollParent } from "@/util/tools";
 export default {
   name: "y-select",
   mixins: [componentMixins, formMixins],
@@ -41,12 +43,12 @@ export default {
     size: String,
     placeholder: {
       type: String,
-      default: "请选择"
+      default: "请选择",
     },
     width: String,
     disabled: Boolean,
     clearable: Boolean,
-    filterable: Boolean
+    filterable: Boolean,
   },
   data() {
     return {
@@ -58,18 +60,21 @@ export default {
       // input展示的内容
       selectedLabel: "",
       // input显示的高度 当多选时需要
-      inputHeight: ""
+      inputHeight: "",
     };
   },
   methods: {
-    handleSelectClick() {
-      this.vm.visible = !this.vm.visible;
+    refreshDropmenuPostion() {
       if (this.vm.visible) {
         // 点击时重新修正位置
         // selectRect为DOMRect只读对象，不能直接赋值，需调用其toJSON()方法转化成对象
         let selectRect = this.$el.getBoundingClientRect().toJSON();
         this.vm.refreshPostion(selectRect);
       }
+    },
+    handleSelectClick() {
+      this.vm.visible = !this.vm.visible;
+      this.refreshDropmenuPostion();
       this.$emit("on-visible-change", this.vm.visible);
     },
     initDropdown() {
@@ -92,7 +97,7 @@ export default {
               selectedValue: _this.value,
               filterValue: "",
               // 指令clickoutside所需参数
-              parentEl: _this.$el
+              parentEl: _this.$el,
             };
           },
           render(h) {
@@ -100,22 +105,22 @@ export default {
               "ul",
               {
                 class: {
-                  "y-select-dropdown": true
+                  "y-select-dropdown": true,
                 },
                 style: {
                   display: this.visible ? "block" : "none",
                   width: this.selectRect.width + "px",
                   top: this.selectRect.bottom + 5 + "px",
                   left: this.selectRect.left + "px",
-                  zIndex: this.$YONDUI.getZindex()
+                  zIndex: this.$YONDUI.getZindex(),
                 },
                 directives: [
                   {
                     name: "clickoutside",
                     // 调用内部函数
-                    expression: "handleVisible"
-                  }
-                ]
+                    expression: "handleVisible",
+                  },
+                ],
               },
               _this.$slots.default
             );
@@ -139,7 +144,7 @@ export default {
             handleOptionClick(value, label) {
               if (this.multiple) {
                 let index = _this.tagList.findIndex(
-                  item => item.value == value
+                  (item) => item.value == value
                 );
                 // 没有则添加 有则移除
                 if (index == -1) {
@@ -148,8 +153,8 @@ export default {
                   _this.tagList.splice(index, 1);
                 }
                 this.ifStop = true;
-                let values = _this.tagList.map(item => item.value);
-                let labelList = _this.tagList.map(item => item.label);
+                let values = _this.tagList.map((item) => item.value);
+                let labelList = _this.tagList.map((item) => item.label);
                 _this.selectedLabel = labelList.toString();
                 _this.$emit("input", values);
                 _this.$emit("on-change", values, labelList);
@@ -160,8 +165,8 @@ export default {
                 _this.$emit("input", value);
                 _this.$emit("on-change", value, label);
               }
-            }
-          }
+            },
+          },
         }).$mount();
         document.body.appendChild(this.vm.$el);
       }
@@ -177,7 +182,7 @@ export default {
       this.$emit("on-clear");
 
       this.selectedLabel = "";
-      if (Array.isArray(this.value)) {
+      if (this.multiple) {
         this.tagList = [];
         this.$emit("input", []);
         this.$emit("on-change", []);
@@ -188,7 +193,19 @@ export default {
       if (this.filterable && this.vm) {
         this.vm.filterValue = "";
       }
-    }
+    },
+    handleBlur() {
+      if (this.filterable) {
+        if (this.multiple) {
+          this.selectedLabel = this.tagList
+            .map((item) => item.label)
+            .toString();
+        } else {
+          if (!this.value) this.selectedLabel = "";
+        }
+        if (!this.selectedLabel) this.vm.filterValue = "";
+      }
+    },
   },
   // 监听value的变化，及时回显到对应的option中
   watch: {
@@ -204,15 +221,21 @@ export default {
           }
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   mounted() {
     // 需要回显label数据，所以不能使用其他事件来初始化
     this.initDropdown();
+    // 监听滚动
+    let scrollParent = getScrollParent(this.$el);
+    scrollParent.addEventListener("scroll", (e) => {
+      if (this.vm.visible)
+        this.vm.selectRect = this.$el.getBoundingClientRect().toJSON();
+    });
   },
   beforeDestroy() {
     if (this.vm) document.body.removeChild(this.vm.$el);
-  }
+  },
 };
 </script>

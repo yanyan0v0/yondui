@@ -16,6 +16,7 @@
 <script>
 import clickoutside from "@/directive/clickoutside";
 import componentMixins from "@/mixins/component";
+import { getScrollParent } from "@/util/tools";
 export default {
   name: "y-dropdown-menu",
   directives: { clickoutside },
@@ -26,8 +27,8 @@ export default {
     clickNoHide: Boolean,
     placement: {
       type: String,
-      default: "bottom"
-    }
+      default: "bottom",
+    },
   },
   data() {
     return {
@@ -38,7 +39,7 @@ export default {
       left: 0,
       height: 0,
       // 判断是否在body下
-      isUnderBody: false
+      isUnderBody: false,
     };
   },
   computed: {
@@ -61,9 +62,9 @@ export default {
         top: this.top + "px",
         left: this.left + "px",
         maxHeight: this.height ? this.height + "px" : "",
-        zIndex: this.$YONDUI.getZindex()
+        zIndex: this.$YONDUI.getZindex(),
       };
-    }
+    },
   },
   methods: {
     showDropdown() {
@@ -156,10 +157,18 @@ export default {
     handleMouseLeave(event) {
       // 调用父节点的隐藏方法
       this.dropdownRoot.hide();
-    }
+    },
   },
   created() {
     this.parentEl = this.dropdownRoot.$refs["trigger"];
+  },
+  mounted() {
+    // 监听滚动
+    let scrollParent = getScrollParent(this.dropdownRoot.$el);
+    scrollParent.addEventListener("scroll", (e) => {
+      if (this.dropdownRoot && (this.dropdownRoot.visible || this.visible))
+        this.handlePosition(this.placement);
+    });
   },
   beforeDestroy() {
     return (
@@ -168,6 +177,6 @@ export default {
       document.body.contains(this.$el) &&
       document.body.removeChild(this.$el)
     );
-  }
+  },
 };
 </script>

@@ -1,21 +1,22 @@
 <script>
 import Vue from "vue";
 import componentMixins from "@/mixins/component";
+import { getScrollParent } from "@/util/tools";
 export default {
   name: "y-tooltip",
   mixins: [componentMixins],
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     trigger: {
       type: String,
-      default: "hover"
+      default: "hover",
     },
     theme: {
       type: String,
-      default: "dark"
+      default: "dark",
     },
     placement: {
       type: String,
@@ -32,22 +33,22 @@ export default {
           "left-end",
           "right",
           "right-start",
-          "right-end"
+          "right-end",
         ].includes(value);
       },
-      default: "top"
-    }
+      default: "top",
+    },
   },
   data() {
     return {
       vm: null,
-      triggerRect: {}
+      triggerRect: {},
     };
   },
   render(h) {
     return h("div", {
       class: {
-        "y-tooltip-trigger": true
+        "y-tooltip-trigger": true,
       },
       on: {
         click: () => {
@@ -66,8 +67,8 @@ export default {
           if (this.trigger != "custom") {
             if (this.vm) this.vm.hide();
           }
-        }
-      }
+        },
+      },
     });
   },
   methods: {
@@ -83,7 +84,7 @@ export default {
           data() {
             return {
               tipRect: {},
-              style: {}
+              style: {},
             };
           },
           render(h) {
@@ -93,17 +94,17 @@ export default {
                 class: {
                   [classPrefix]: true,
                   [classPrefix + "-" + _this.theme]: true,
-                  [classPrefix + "-" + _this.placement]: true
+                  [classPrefix + "-" + _this.placement]: true,
                 },
-                style: this.style
+                style: this.style,
               },
               [
                 _this.$slots.default,
                 h("span", {
                   class: {
-                    [classPrefix + "-arrow"]: true
-                  }
-                })
+                    [classPrefix + "-arrow"]: true,
+                  },
+                }),
               ]
             );
           },
@@ -181,14 +182,14 @@ export default {
                 opacity: 1,
                 left: x + "px",
                 top: y + "px",
-                zIndex: this.$YONDUI.getZindex()
+                zIndex: this.$YONDUI.getZindex(),
               };
             },
             hide() {
               this.style.opacity = 0;
               this.style.zIndex = -1;
-            }
-          }
+            },
+          },
         }).$mount();
         document.body.appendChild(this.vm.$el);
         this.$nextTick(() => {
@@ -202,7 +203,7 @@ export default {
       if (!this.triggerRect.width || !this.triggerRect.height) {
         this.triggerRect = this.$el.getBoundingClientRect();
       }
-    }
+    },
   },
   watch: {
     value: {
@@ -212,14 +213,19 @@ export default {
         } else {
           this.vm.hide();
         }
-      }
-    }
+      },
+    },
   },
-  // mounted() {
-  //   this.init()
-  // },
+  mounted() {
+    // 监听滚动
+    let scrollParent = getScrollParent(this.$el);
+    scrollParent.addEventListener("scroll", (e) => {
+      if (this.vm && this.vm.style.opacity)
+        this.vm.refresh(this.$el.getBoundingClientRect().toJSON());
+    });
+  },
   beforeDestroy() {
     if (this.vm) document.body.removeChild(this.vm.$el);
-  }
+  },
 };
 </script>

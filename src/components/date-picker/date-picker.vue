@@ -1,5 +1,5 @@
 <template>
-  <div class="y-date-picker" :style="{width}">
+  <div class="y-date-picker" :style="{ width }">
     <y-input
       v-model="inputValue"
       readonly
@@ -21,7 +21,7 @@
 <script>
 import Vue from "vue";
 import DatePcikerDropdown from "./date-picker-dropdown.vue";
-import { setDateFormat } from "@/util/tools";
+import { setDateFormat, getScrollParent } from "@/util/tools";
 if (!new Date().Format) {
   setDateFormat(); // 注册格式化时间函数
 }
@@ -33,18 +33,18 @@ export default {
     size: String,
     type: {
       type: String,
-      default: "date"
+      default: "date",
     },
     placeholder: {
       type: String,
-      default: "请选择"
+      default: "请选择",
     },
     format: String,
     clearable: Boolean,
     disabled: Boolean,
     multiple: Boolean,
     disabledDate: Function,
-    filterTime: Function
+    filterTime: Function,
   },
   data() {
     return {
@@ -61,8 +61,8 @@ export default {
         date: "yyyy-MM-dd",
         daterange: "yyyy-MM-dd",
         datetime: "yyyy-MM-dd hh:mm:ss",
-        datetimerange: "yyyy-MM-dd hh:mm:ss"
-      }
+        datetimerange: "yyyy-MM-dd hh:mm:ss",
+      },
     };
   },
   computed: {
@@ -76,7 +76,7 @@ export default {
         if (text == "hh:") text = "hh";
         return text;
       } else return this.formats[this.type];
-    }
+    },
   },
   methods: {
     emitChange(date, time) {
@@ -94,14 +94,14 @@ export default {
       // 当为多选时
       if (this.multiple) {
         let list = this.getMultipleList(date, time);
-        this.inputValue = list.map(item => item.format).toString();
+        this.inputValue = list.map((item) => item.format).toString();
         this.$emit(
           "input",
-          list.map(item => item.normal)
+          list.map((item) => item.normal)
         );
         this.$emit(
           "on-change",
-          list.map(item => item.normal)
+          list.map((item) => item.normal)
         );
         return;
       }
@@ -117,7 +117,7 @@ export default {
         // 显示格式
         format: new Date(datetime).Format(this.format || this.dateFormat),
         // 实际格式
-        normal: new Date(datetime).Format(this.dateFormat)
+        normal: new Date(datetime).Format(this.dateFormat),
       };
     },
     handleInputFocus() {
@@ -127,17 +127,15 @@ export default {
         const DropdownConstructor = Vue.extend(DatePcikerDropdown);
         this.dropdownVm = new DropdownConstructor({
           data: {
-            top: pickerRect.bottom + 5,
-            left: pickerRect.left,
+            pickerRect,
             parentVm: _this,
-            parentEl: _this.$el
-          }
+            parentEl: _this.$el,
+          },
         }).$mount();
         document.body.appendChild(this.dropdownVm.$el);
         this.dropdownVm.show();
       } else {
-        this.dropdownVm.top = pickerRect.bottom + 5;
-        this.dropdownVm.left = pickerRect.left;
+        this.dropdownVm.pickerRect = pickerRect;
         this.dropdownVm.show();
       }
     },
@@ -159,7 +157,15 @@ export default {
         list.push(this.handleFormat(dateList[i], timeList ? timeList[i] : ""));
       }
       return list;
-    }
+    },
+  },
+  mounted() {
+    // 监听滚动
+    let scrollParent = getScrollParent(this.$el);
+    scrollParent.addEventListener("scroll", (e) => {
+      if (this.dropdownVm.visible)
+        this.dropdownVm.pickerRect = this.$el.getBoundingClientRect().toJSON();
+    });
   },
   watch: {
     value: {
@@ -190,7 +196,7 @@ export default {
           } else {
             if (this.multiple) {
               this.inputValue = this.getMultipleList(value)
-                .map(item => item.format)
+                .map((item) => item.format)
                 .toString();
             } else {
               this.inputValue = new Date(value).Format(
@@ -204,8 +210,8 @@ export default {
           this.dateValue = "";
         }
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 };
 </script>

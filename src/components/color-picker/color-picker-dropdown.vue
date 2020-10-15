@@ -1,13 +1,22 @@
 <template>
   <transition name="dropdown-fade">
-    <div v-show="visible" v-clickoutside="hide" class="y-color-picker-dropdown" :style="style">
+    <div
+      v-show="visible"
+      v-clickoutside="hide"
+      class="y-color-picker-dropdown"
+      :style="style"
+    >
       <y-panel :color="colorData" @on-change="handlePanelChange"></y-panel>
       <div class="y-color-picker-select">
         <!-- <span class="select-picker">
         <y-icon type="huabi"></y-icon>
         </span>-->
         <div class="selected-color">
-          <span :style="{'background': colorData.toHslString ? colorData.toHslString() : ''}"></span>
+          <span
+            :style="{
+              background: colorData.toHslString ? colorData.toHslString() : '',
+            }"
+          ></span>
         </div>
         <div class="select-bar">
           <y-hue :color="colorData" @on-change="handleHubChange"></y-hue>
@@ -25,7 +34,7 @@
         <li
           v-for="(group, index) in colorGroup"
           :key="index"
-          :style="{'background-color': group}"
+          :style="{ 'background-color': group }"
           @click="update(group)"
         ></li>
       </ul>
@@ -50,40 +59,42 @@ export default {
   components: {
     YPanel,
     YHue,
-    YAlpha
+    YAlpha,
   },
   directives: { clickoutside },
   data() {
     return {
       visible: false,
-      top: 0,
-      left: 0,
+      pickerRect: {
+        bottom: 0,
+        left: 0,
+      },
       color: "",
       hsva: {},
       showFooter: false,
       formats: ["toRgbString", "toHex8String", "toHslString"],
       formatIndex: 0,
-      colorGroup: THEME_COLORS
+      colorGroup: THEME_COLORS,
     };
   },
   computed: {
     style() {
       return {
-        top: this.top + "px",
-        left: this.left + "px",
-        zIndex: this.$YONDUI.getZindex()
+        top: this.pickerRect.bottom + "px",
+        left: this.pickerRect.left + "px",
+        zIndex: this.$YONDUI.getZindex(),
       };
     },
     colorData() {
       return tinycolor(this.color);
-    }
+    },
   },
   watch: {
     color: {
       handler(color) {
         let _color = tinycolor(color);
         this.formatIndex = this.formats.findIndex(
-          format => format.toLowerCase().indexOf(_color._format) != -1
+          (format) => format.toLowerCase().indexOf(_color._format) != -1
         );
         // 如果找不到该颜色， 直接转化成rgb
         if (this.formatIndex == -1) {
@@ -92,8 +103,8 @@ export default {
         this.hsva = _color.toHsv();
         if (!this.showFooter) this.updateColor(color);
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     hide() {
@@ -122,7 +133,7 @@ export default {
         this.formatIndex++;
       }
       this.update(this.color);
-    }
-  }
+    },
+  },
 };
 </script>

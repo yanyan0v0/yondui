@@ -1,6 +1,11 @@
 <template>
   <transition name="dropdown-fade">
-    <div v-show="visible" v-clickoutside="hide" class="y-date-picker-dropdown" :style="style">
+    <div
+      v-show="visible"
+      v-clickoutside="hide"
+      class="y-date-picker-dropdown"
+      :style="style"
+    >
       <!-- 日期选择 -->
       <component :is="componentName" :value="date"></component>
       <!-- 底部时间选择和确认栏 -->
@@ -13,15 +18,17 @@
           hide-footer
           :format="timeFormat"
           :append-to-body="false"
-          :width="dateType==='datetimerange' ? '200px' : '120px'"
-          :range="dateType==='datetimerange'"
+          :width="dateType === 'datetimerange' ? '200px' : '120px'"
+          :range="dateType === 'datetimerange'"
           :filter-time="filterTime"
           @on-change="handleTimeChange"
         ></y-time-picker>
         <!-- 占位元素 -->
         <span></span>
         <div>
-          <y-button color="primary" size="small" @click="handleConfirm">确定</y-button>
+          <y-button color="primary" size="small" @click="handleConfirm"
+            >确定</y-button
+          >
         </div>
       </div>
     </div>
@@ -45,18 +52,20 @@ export default {
     Day,
     Month,
     Year,
-    Range
+    Range,
   },
   directives: { clickoutside },
   mixins: [componentMixins],
   props: {
     value: [Date, String, Number, Array],
-    visible: Boolean
+    visible: Boolean,
   },
   data() {
     return {
-      top: 0,
-      left: 0,
+      pickerRect: {
+        bottom: 0,
+        left: 0,
+      },
       // 当前时间
       date: null,
       // 获取父组件的vnode
@@ -69,7 +78,7 @@ export default {
       // type=datetime为String类型
       // type=datetimerange 或 多选时为数组类型
       tempDate: "",
-      tempTime: ""
+      tempTime: "",
     };
   },
   computed: {
@@ -122,14 +131,14 @@ export default {
     },
     style() {
       return {
-        top: this.top + "px",
-        left: this.left + "px",
-        zIndex: this.$YONDUI.getZindex()
+        top: this.pickerRect.bottom + 5 + "px",
+        left: this.pickerRect.left + "px",
+        zIndex: this.$YONDUI.getZindex(),
       };
     },
     showTime() {
       return this.dateType.indexOf("time") != -1;
-    }
+    },
   },
   methods: {
     handleDate(date) {
@@ -137,7 +146,7 @@ export default {
         if (Array.isArray(date)) {
           if (this.multiple) {
             this.date = JSON.parse(JSON.stringify(date));
-            this.tempTime = this.date.map(item =>
+            this.tempTime = this.date.map((item) =>
               new Date(item).Format("hh:mm:ss")
             );
             this.timeValue = this.date[this.date.length - 1]
@@ -146,11 +155,11 @@ export default {
           } else {
             this.date = [
               date[0] ? new Date(date[0]) : "",
-              date[1] ? new Date(date[1]) : ""
+              date[1] ? new Date(date[1]) : "",
             ];
             this.timeValue = [
               date[0] ? new Date(date[0]).Format("hh:mm:ss") : "",
-              date[1] ? new Date(date[1]).Format("hh:mm:ss") : ""
+              date[1] ? new Date(date[1]).Format("hh:mm:ss") : "",
             ];
           }
         } else {
@@ -197,7 +206,7 @@ export default {
           this.parentVm.emitChange(this.tempDate, this.tempTime);
       }
       this.hide();
-    }
+    },
   },
   watch: {
     // 做date-picker的子组件时，监听date-picker的v-model值
@@ -205,8 +214,8 @@ export default {
       handler(value) {
         this.handleDate(value);
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 };
 </script>
