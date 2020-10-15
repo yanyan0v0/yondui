@@ -1,5 +1,5 @@
 <template>
-  <div class="y-time-picker" :style="{width}">
+  <div class="y-time-picker" :style="{ width }">
     <y-input
       v-model="inputValue"
       readonly
@@ -21,7 +21,7 @@
 <script>
 import Vue from "vue";
 import TimePcikerDropdown from "./time-picker-dropdown.vue";
-import { setDateFormat } from "@/util/tools";
+import { setDateFormat, getScrollParent } from "@/util/tools";
 if (!new Date().Format) {
   setDateFormat(); // 注册格式化时间函数
 }
@@ -33,7 +33,7 @@ export default {
     size: String,
     placeholder: {
       type: String,
-      default: "请选择"
+      default: "请选择",
     },
     format: String,
     range: Boolean,
@@ -45,8 +45,8 @@ export default {
     filterTime: Function,
     appendToBody: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -54,7 +54,7 @@ export default {
       inputValue: "",
       // 给dropdown的值
       timeValue: null,
-      dropdownVm: null
+      dropdownVm: null,
     };
   },
   computed: {
@@ -67,7 +67,7 @@ export default {
         if (text == "hh:") text = "hh";
         return text;
       } else return "hh:mm:ss";
-    }
+    },
   },
   methods: {
     emitChange(time) {
@@ -91,7 +91,7 @@ export default {
       if (!time) {
         return {
           format: "",
-          normal: ""
+          normal: "",
         };
       }
       // 当传入的是Date或Number类型时， 需要转化为String
@@ -104,7 +104,7 @@ export default {
         // 显示格式
         format: new Date(datetime).Format(this.format || this.timeFormat),
         // 实际格式
-        normal: new Date(datetime).Format(this.timeFormat)
+        normal: new Date(datetime).Format(this.timeFormat),
       };
     },
     handleInputFocus() {
@@ -120,8 +120,8 @@ export default {
             left,
             bottom: pickerRect.height + 5,
             parentVm: _this,
-            parentEl: _this.$el
-          }
+            parentEl: _this.$el,
+          },
         }).$mount();
         if (this.appendToBody) document.body.appendChild(this.dropdownVm.$el);
         else this.$el.appendChild(this.dropdownVm.$el);
@@ -143,7 +143,19 @@ export default {
         this.$emit("on-change", "");
       }
       this.$emit("on-clear");
-    }
+    },
+  },
+  mounted() {
+    // 监听滚动
+    let scrollParent = getScrollParent(this.$el);
+    scrollParent.addEventListener("scroll", (e) => {
+      if (this.dropdownVm && this.dropdownVm.visible) {
+        let pickerRect = this.$el.getBoundingClientRect().toJSON();
+        this.dropdownVm.top = this.appendToBody ? pickerRect.bottom + 5 : "";
+        this.dropdownVm.left = this.appendToBody ? pickerRect.left : 5;
+        this.dropdownVm.bottom = pickerRect.height + 5;
+      }
+    });
   },
   watch: {
     value: {
@@ -170,8 +182,8 @@ export default {
           this.timeValue = "";
         }
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 };
 </script>
