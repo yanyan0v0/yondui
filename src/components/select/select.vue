@@ -7,11 +7,11 @@
       :disabled="disabled"
       :size="size"
       :clearable="clearable"
-      :placeholder="placeholder"
+      :placeholder="selectedPlaceholder || placeholder"
       :class="{ 'y-select-input': !formDisabled }"
-      @on-click="handleSelectClick"
       @on-change="handleInputChange"
       @on-clear="handleClear"
+      @on-focus="handleFocus"
       @on-blur="handleBlur"
     >
       <template slot="prefix">
@@ -59,6 +59,7 @@ export default {
       tagList: [],
       // input展示的内容
       selectedLabel: "",
+      selectedPlaceholder: "",
       // input显示的高度 当多选时需要
       inputHeight: "",
     };
@@ -71,11 +72,6 @@ export default {
         let selectRect = this.$el.getBoundingClientRect().toJSON();
         this.vm.refreshPostion(selectRect);
       }
-    },
-    handleSelectClick() {
-      this.vm.visible = !this.vm.visible;
-      this.refreshDropmenuPostion();
-      this.$emit("on-visible-change", this.vm.visible);
     },
     initDropdown() {
       if (!this.vm) {
@@ -118,7 +114,7 @@ export default {
                   {
                     name: "clickoutside",
                     // 调用内部函数
-                    expression: "handleVisible",
+                    expression: "handleClickOutside",
                   },
                 ],
               },
@@ -137,7 +133,13 @@ export default {
                 }
               });
             },
-            handleVisible() {
+            handleClickOutside() {
+              if (_this.filterable) {
+                _this.selectedLabel = _this.selectedPlaceholder;
+              }
+              this.hideSelectDrop();
+            },
+            hideSelectDrop() {
               this.visible = false;
               _this.$emit("on-visible-change", false);
             },
@@ -156,12 +158,20 @@ export default {
                 let values = _this.tagList.map((item) => item.value);
                 let labelList = _this.tagList.map((item) => item.label);
                 _this.selectedLabel = labelList.toString();
+                if (_this.filterable) {
+                  this.filterValue = "";
+                  _this.selectedPlaceholder = _this.selectedLabel;
+                }
                 _this.$emit("input", values);
                 _this.$emit("on-change", values, labelList);
               } else {
-                this.handleVisible();
+                this.hideSelectDrop();
                 this.selectedValue = value;
                 _this.selectedLabel = label;
+                if (_this.filterable) {
+                  this.filterValue = "";
+                  _this.selectedPlaceholder = label;
+                }
                 _this.$emit("input", value);
                 _this.$emit("on-change", value, label);
               }
@@ -194,17 +204,32 @@ export default {
         this.vm.filterValue = "";
       }
     },
-    handleBlur() {
+    handleFocus() {
+      this.vm.visible = true;
+      this.$emit("on-visible-change", this.vm.visible);
+      this.refreshDropmenuPostion();
+
       if (this.filterable) {
         if (this.multiple) {
-          this.selectedLabel = this.tagList
+          this.selectedPlaceholder = this.tagList
             .map((item) => item.label)
             .toString();
+          this.selectedLabel = "";
         } else {
-          if (!this.value) this.selectedLabel = "";
+          if (!this.value) {
+            this.selectedPlaceholder = "";
+          } else {
+            this.selectedPlaceholder = this.selectedLabel;
+          }
+          this.selectedLabel = "";
         }
-        if (!this.selectedLabel) this.vm.filterValue = "";
       }
+    },
+    handleBlur() {
+      // if (this.filterable) {
+      //   this.selectedLabel = this.selectedPlaceholder;
+      //   this.vm.filterValue = "";
+      // }
     },
   },
   // 监听value的变化，及时回显到对应的option中
