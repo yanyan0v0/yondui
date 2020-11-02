@@ -20,7 +20,7 @@ import {
 
 Vue.component(Button.name, Button)
 ```
-For more information, please refer to [Quick Start](http://marktest.zhlyjg.cn/yond-ui/index.html) in our documentation.
+For more information, please refer to [Quick Start](https://wxpay-transport.cdn-go.cn/wefeedback/v1.0.7/yond-ui/index.html) in our documentation.
 
 ## Project setup
 ```
